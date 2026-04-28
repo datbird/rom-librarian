@@ -1,0 +1,18 @@
+{
+  "id": "playnite",
+  "name": "Playnite",
+  "category": "library_manager",
+  "homepage": "https://playnite.link/",
+  "sources": [
+    { "type": "homepage", "url": "https://playnite.link/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://api.playnite.link/docs/", "last_reviewed": "2026-04-28", "confidence": "medium" }
+  ],
+  "platforms": ["windows"],
+  "default_paths": { "library": "user profile AppData / configured portable folder", "media": "library_files" },
+  "config_paths": { "database": "Playnite library database and config files", "extensions": "Extensions folder" },
+  "structure": { "based_on": null, "metadata_format": "database_json", "rom_structure": "metadata_defined", "media_dirs": ["library_files"], "multidisc_method": "native_or_emulator_profile_defined", "path_separator_preference": "backslash" },
+  "systems": {},
+  "scraping": { "built_in_scraper": true, "metadata_store": "playnite-library", "compatible_tools": ["built-in metadata providers", "extensions"] },
+  "quirks": [],
+  "notes": ["Playnite is a library manager. AI should inspect configured emulator profiles, game actions, and metadata database before assuming ROM-folder conventions."]
+}

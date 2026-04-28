@@ -1,0 +1,36 @@
+{
+  "id": "retropie",
+  "name": "RetroPie",
+  "category": "frontend",
+  "homepage": "https://retropie.org.uk/",
+  "sources": [
+    { "type": "homepage", "url": "https://retropie.org.uk/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://retropie.org.uk/docs/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://retropie.org.uk/docs/Transferring-Roms/", "last_reviewed": "2026-04-28", "confidence": "high" }
+  ],
+  "platforms": ["linux"],
+  "default_paths": {
+    "rom_root": "~/RetroPie/roms",
+    "bios": "~/RetroPie/BIOS"
+  },
+  "config_paths": {
+    "retropie_configs": "/opt/retropie/configs",
+    "emulationstation": "~/.emulationstation"
+  },
+  "structure": {
+    "based_on": "emulationstation",
+    "metadata_format": "es_xml",
+    "rom_structure": "system_subfolders",
+    "media_dirs": ["images", "videos", "manuals"],
+    "multidisc_method": "m3u_in_rom_root_when_core_supports_it",
+    "path_separator_preference": "forwardslash"
+  },
+  "systems": {},
+  "scraping": {
+    "built_in_scraper": false,
+    "metadata_store": "emulationstation-gamelist",
+    "compatible_tools": ["skyscraper", "sselph-scraper"]
+  },
+  "quirks": ["es-loose-images", "es-m3u-folder-name", "mame-romset-version"],
+  "notes": ["RetroPie behavior depends heavily on selected emulator/core and runcommand configuration."]
+}

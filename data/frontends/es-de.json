@@ -1,0 +1,40 @@
+{
+  "id": "es-de",
+  "name": "ES-DE Frontend",
+  "category": "frontend",
+  "homepage": "https://es-de.org/",
+  "sources": [
+    { "type": "homepage", "url": "https://es-de.org/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://gitlab.com/es-de/emulationstation-de/-/blob/master/USERGUIDE.md", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "github", "url": "https://gitlab.com/es-de/emulationstation-de", "last_reviewed": "2026-04-28", "confidence": "high" }
+  ],
+  "platforms": ["windows", "linux", "macos", "steamdeck"],
+  "default_paths": {
+    "rom_root": "~/ROMs",
+    "bios": "~/ROMs/BIOS",
+    "downloaded_media": "frontend-managed downloaded media directories"
+  },
+  "config_paths": {
+    "settings": "platform-specific ES-DE config directory",
+    "custom_systems": "custom es_systems configuration when enabled"
+  },
+  "structure": {
+    "based_on": "emulationstation",
+    "metadata_format": "es_xml",
+    "rom_structure": "system_subfolders",
+    "media_dirs": ["Downloaded_Images", "Downloaded_Videos", "Downloaded_Manuals"],
+    "multidisc_method": "m3u_in_rom_root",
+    "path_separator_preference": "forwardslash"
+  },
+  "systems": {},
+  "scraping": {
+    "built_in_scraper": true,
+    "metadata_store": "emulationstation-gamelist",
+    "compatible_tools": ["skyscraper", "skraper"]
+  },
+  "quirks": ["es-m3u-folder-name"],
+  "notes": [
+    "ES-DE is a modern EmulationStation-family frontend with its own documented ROM directory and media conventions.",
+    "Prefer checking the active ES-DE user guide before assuming older RetroPie/Batocera behavior."
+  ]
+}

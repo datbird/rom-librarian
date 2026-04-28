@@ -1,0 +1,45 @@
+{
+  "id": "launchbox-data-xml",
+  "name": "LaunchBox Data XML",
+  "frontend": "launchbox",
+  "format": "xml",
+  "paths": {
+    "platforms": "LaunchBox/Data/Platforms.xml",
+    "games_by_platform": "LaunchBox/Data/Platforms/<Platform Name>.xml",
+    "emulators": "LaunchBox/Data/Emulators.xml",
+    "media_root": "LaunchBox/Images and LaunchBox/Videos"
+  },
+  "fields": {
+    "game_node": "Game",
+    "title": "Title",
+    "notes": "Notes",
+    "developer": "Developer",
+    "publisher": "Publisher",
+    "genre": "Genre",
+    "release_date": "ReleaseDate",
+    "application_path": "ApplicationPath",
+    "manual_path": "ManualPath",
+    "database_id": "LaunchBoxDbId",
+    "additional_apps": "AdditionalApplication"
+  },
+  "media": {
+    "common_dirs": ["Box - Front", "Box - Back", "Screenshot - Gameplay", "Screenshot - Game Title", "Clear Logo", "Fanart", "Manual", "Video"],
+    "path_style": "LaunchBox media category folders under platform names"
+  },
+  "write_safety": {
+    "backup_before_edit": true,
+    "preserve_unknown_nodes": true,
+    "frontend_should_be_closed_before_bulk_write": true,
+    "prefer_launchbox_ui_for_complex_imports": true
+  },
+  "ai_operations": [
+    "audit missing notes/manual paths/media assets",
+    "verify ApplicationPath and ManualPath references",
+    "identify games by developer/publisher for targeted metadata/media checks",
+    "prepare safe XML patch plans with backups"
+  ],
+  "notes": [
+    "LaunchBox stores much of its library state in XML under Data. AI can assist with audits and carefully planned edits, but LaunchBox should be closed before writes.",
+    "For a task like ensuring Japanese-developed games have English manuals, use developer/publisher metadata plus manual path/media folder checks, then ask before editing XML or copying media."
+  ]
+}

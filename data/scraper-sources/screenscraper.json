@@ -1,0 +1,30 @@
+{
+  "id": "screenscraper",
+  "name": "ScreenScraper",
+  "category": "hybrid",
+  "homepage": "https://www.screenscraper.fr/",
+  "sources": [
+    { "type": "homepage", "url": "https://www.screenscraper.fr/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://www.screenscraper.fr/api2.php", "last_reviewed": "2026-04-28", "confidence": "medium" }
+  ],
+  "access": {
+    "public_web": true,
+    "account_required_for_api": true,
+    "api_available": true,
+    "common_clients": ["skraper", "arrm", "skyscraper"]
+  },
+  "provides": {
+    "metadata": ["title", "description", "release_date", "developer", "publisher", "genre", "players", "region"],
+    "media": ["box_2d", "box_3d", "screenshot", "title_screen", "wheel", "marquee", "video", "manual"],
+    "ids": ["screenscraper_game_id", "rom_hashes"]
+  },
+  "coverage": {
+    "strengths": ["retro console libraries", "EmulationStation media", "ROM hash matching"],
+    "weaker_areas": ["modern PC launcher libraries", "some nontraditional web/mobile runtimes"]
+  },
+  "rate_limits": {
+    "notes": "API limits and thread limits depend on account/supporter status and client behavior."
+  },
+  "legal_notes": ["Respect ScreenScraper account and API terms."],
+  "notes": ["Most useful source for ES-style media completeness checks such as missing screenshots, videos, wheels, and manuals."]
+}

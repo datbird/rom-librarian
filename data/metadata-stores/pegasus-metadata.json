@@ -1,0 +1,35 @@
+{
+  "id": "pegasus-metadata",
+  "name": "Pegasus metadata.pegasus.txt",
+  "frontend": "pegasus",
+  "format": "txt",
+  "paths": {
+    "collection_metadata": "metadata.pegasus.txt in collection/game folders",
+    "media": "media folders configured by collection metadata"
+  },
+  "fields": {
+    "collection": "collection name",
+    "game": "game block",
+    "file": "launch target",
+    "developer": "developer text",
+    "publisher": "publisher text",
+    "genre": "genre text",
+    "description": "description text",
+    "assets": "asset path declarations"
+  },
+  "media": {
+    "common_dirs": ["media", "assets", "screenshots", "covers", "logos", "videos"],
+    "path_style": "relative paths configured in metadata"
+  },
+  "write_safety": {
+    "backup_before_edit": true,
+    "preserve_comments": true,
+    "preserve_unknown_fields": true
+  },
+  "ai_operations": [
+    "audit missing game descriptions and assets",
+    "verify declared files and media paths exist",
+    "prepare metadata.pegasus.txt patch plans"
+  ],
+  "notes": ["Pegasus is metadata-file driven; correct file paths and asset declarations are the core repair surface."]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "sscraper",
+  "name": "sselph/scraper",
+  "category": "scraper",
+  "homepage": "https://github.com/sselph/scraper",
+  "sources": [
+    { "type": "github", "url": "https://github.com/sselph/scraper", "last_reviewed": "2026-04-28", "confidence": "high" }
+  ],
+  "platforms": ["linux", "windows", "macos"],
+  "input": { "rom_folders": true, "cli_flags": true },
+  "output": { "metadata_stores": ["emulationstation-gamelist"], "media_files": true },
+  "compatible_frontends": ["retropie", "es-de"],
+  "supported_sources": ["thegamesdb", "openvgdb"],
+  "safe_ai_operations": ["inspect generated XML", "identify missing metadata fields"],
+  "risky_ai_operations": ["bulk overwrite gamelist.xml"],
+  "notes": ["Older lightweight CLI scraper. Useful to know for legacy RetroPie setups."]
+}

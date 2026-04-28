@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/07/schema",
+  "$id": "https://github.com/datbird/rom-librarian/schema/user.schema.json",
+  "title": "rom-librarian user.json",
+  "description": "User-specific deployment configuration for rom-librarian. Created on first run, updated by the skill after each session.",
+  "type": "object",
+  "required": ["schema_version", "created", "last_updated", "deployment"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "description": "Schema version for migration purposes",
+      "examples": ["1.0"]
+    },
+    "created": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 date this file was first created"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 date this file was last modified"
+    },
+    "deployment": {
+      "type": "object",
+      "description": "Describes the user's hardware and software environment",
+      "required": ["frontend", "os", "wsl", "rom_root"],
+      "properties": {
+        "frontend": {
+          "type": "string",
+          "description": "Frontend ID — must match a key in static.json frontends (e.g. retrobat, batocera, es-de, launchbox)"
+        },
+        "frontend_version": {
+          "type": ["string", "null"],
+          "description": "Installed frontend version string, e.g. '2.1.0'. Null if unknown."
+        },
+        "os": {
+          "type": "string",
+          "enum": ["windows", "linux", "macos"],
+          "description": "Host operating system"
+        },
+        "wsl": {
+          "type": "boolean",
+          "description": "True if scripts and Claude Code run under Windows Subsystem for Linux (WSL). Affects path handling for Windows-native tools like 7-Zip."
+        },
+        "rom_root": {
+          "type": "string",
+          "description": "Absolute path to the ROM root directory. Use Linux/WSL path when wsl=true (e.g. /mnt/g/games/emulation/roms)."
+        },
+        "bios_root": {
+          "type": ["string", "null"],
+          "description": "Absolute path to the BIOS directory, or null if using frontend default"
+        }
+      }
+    },
+    "systems": {
+      "type": "object",
+      "description": "Per-system status and path overrides. Keys are system IDs matching static.json systems.",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether this system is actively managed by rom-librarian"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["untouched", "partial", "clean"],
+            "description": "untouched = not yet inspected, partial = in-progress or known issues remain, clean = fully organized and verified"
+          },
+          "rom_path": {
+            "type": ["string", "null"],
+            "description": "Absolute path to where this system's ROMs live (overrides static.json default if set)"
+          },
+          "images_path": {
+            "type": ["string", "null"],
+            "description": "Absolute path to where disc images live (may differ from rom_path to avoid ES double-detection)"
+          },
+          "favorites_path": {
+            "type": ["string", "null"],
+            "description": "Absolute path to the subfolder the frontend reads (e.g. a Favorite/ subfolder within the system root)"
+          },
+          "multidisc_override": {
+            "type": ["string", "null"],
+            "description": "Override the multidisc handling method for this system (e.g. m3u_in_rom_root)"
+          },
+          "notes": {
+            "type": ["string", "null"],
+            "description": "Free-text notes about this system's state, quirks encountered, or special handling"
+          },
+          "last_worked": {
+            "type": ["string", "null"],
+            "format": "date",
+            "description": "ISO 8601 date when this system was last worked on"
+          }
+        }
+      }
+    },
+    "overrides": {
+      "type": "object",
+      "description": "Sparse overrides to static.json data. user.json wins on any conflict.",
+      "properties": {
+        "frontends": {
+          "type": "object",
+          "description": "Override fields on specific frontends. Same structure as static.json frontends but only include fields that differ.",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "systems": {
+          "type": "object",
+          "description": "Override fields on specific systems. Same structure as static.json systems but only include fields that differ.",
+          "additionalProperties": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "learned": {
+      "type": "array",
+      "description": "Deployment-specific discoveries appended by the skill after each session",
+      "items": {
+        "type": "object",
+        "required": ["date", "category", "note"],
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "ISO 8601 date this was discovered"
+          },
+          "system": {
+            "type": ["string", "null"],
+            "description": "System ID this applies to, or null if applies broadly"
+          },
+          "frontend": {
+            "type": ["string", "null"],
+            "description": "Frontend ID this applies to, or null if applies broadly"
+          },
+          "category": {
+            "type": "string",
+            "enum": ["quirk", "path", "structure", "format"],
+            "description": "quirk = unexpected behavior, path = path discovery, structure = filesystem layout, format = file format detail"
+          },
+          "note": {
+            "type": "string",
+            "description": "Human-readable description of the discovery"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "mame",
+  "name": "Arcade / MAME",
+  "category": "arcade",
+  "manufacturer": "Various",
+  "sources": [
+    { "type": "homepage", "url": "https://www.mamedev.org/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://docs.mamedev.org/", "last_reviewed": "2026-04-28", "confidence": "high" }
+  ],
+  "formats": {
+    "preferred": [".zip", ".chd"],
+    "supported": [".zip", ".7z", ".chd"],
+    "descriptor_files": [],
+    "archive_formats": [".zip", ".7z"]
+  },
+  "bios": {
+    "required": true,
+    "common_files": [],
+    "notes": "BIOS/device ZIP requirements vary by machine and romset version."
+  },
+  "emulation": {
+    "preferred_emulators": ["mame", "fbneo"],
+    "retroarch_cores": ["mame", "fbneo"]
+  },
+  "library_behavior": {
+    "romset_version_sensitive": true,
+    "do_not_unzip_roms_by_default": true,
+    "set_styles": ["merged", "split", "non-merged"],
+    "chd_layout": "CHDs usually live in a subfolder named after the parent machine shortname.",
+    "parent_clone_model": true
+  },
+  "frontend_notes": {},
+  "quirks": ["mame-romset-version"],
+  "notes": ["MAME is a machine database and hardware preservation project, not a single-console emulator. Treat per-machine data as a future generated dataset, not hand-curated static JSON."]
+}

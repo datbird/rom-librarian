@@ -1,0 +1,36 @@
+{
+  "id": "recalbox",
+  "name": "Recalbox",
+  "category": "frontend",
+  "homepage": "https://www.recalbox.com/",
+  "sources": [
+    { "type": "homepage", "url": "https://www.recalbox.com/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://wiki.recalbox.com/", "last_reviewed": "2026-04-28", "confidence": "medium" }
+  ],
+  "platforms": ["linux"],
+  "default_paths": {
+    "rom_root": "/recalbox/share/roms",
+    "bios": "/recalbox/share/bios",
+    "saves": "/recalbox/share/saves"
+  },
+  "config_paths": {
+    "system": "/recalbox/share/system",
+    "emulationstation": "Recalbox EmulationStation configuration under share/system"
+  },
+  "structure": {
+    "based_on": "emulationstation",
+    "metadata_format": "es_xml",
+    "rom_structure": "system_subfolders",
+    "media_dirs": ["images", "videos", "manuals"],
+    "multidisc_method": "m3u_in_rom_root",
+    "path_separator_preference": "forwardslash"
+  },
+  "systems": {},
+  "scraping": {
+    "built_in_scraper": true,
+    "metadata_store": "emulationstation-gamelist",
+    "compatible_tools": ["skraper", "arrm"]
+  },
+  "quirks": ["es-loose-images", "es-m3u-folder-name"],
+  "notes": ["Recalbox is EmulationStation-family; metadata/media repair usually follows gamelist.xml conventions."]
+}

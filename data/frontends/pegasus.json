@@ -1,0 +1,41 @@
+{
+  "id": "pegasus",
+  "name": "Pegasus Frontend",
+  "category": "frontend",
+  "homepage": "https://pegasus-frontend.org/",
+  "sources": [
+    { "type": "homepage", "url": "https://pegasus-frontend.org/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://pegasus-frontend.org/docs/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://pegasus-frontend.org/docs/user-guide/meta-files/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://pegasus-frontend.org/docs/user-guide/meta-assets/", "last_reviewed": "2026-04-28", "confidence": "high" }
+  ],
+  "platforms": ["windows", "linux", "macos", "steamdeck"],
+  "default_paths": {
+    "rom_root": "user-defined collections",
+    "metadata": "metadata.pegasus.txt files in configured collection locations",
+    "assets": "collection-defined media/asset folders"
+  },
+  "config_paths": {
+    "config_dirs": "documented per-platform config directories",
+    "metadata_files": "metadata.pegasus.txt"
+  },
+  "structure": {
+    "based_on": null,
+    "metadata_format": "pegasus_txt",
+    "rom_structure": "metadata_defined",
+    "media_dirs": ["media", "assets", "covers", "screenshots", "logos", "videos"],
+    "multidisc_method": "metadata_or_launcher_defined",
+    "path_separator_preference": "forwardslash"
+  },
+  "systems": {},
+  "scraping": {
+    "built_in_scraper": false,
+    "metadata_store": "pegasus-metadata",
+    "compatible_tools": ["skyscraper"]
+  },
+  "quirks": [],
+  "notes": [
+    "Pegasus is metadata-driven. AI repair work should focus on metadata.pegasus.txt, file entries, and asset references.",
+    "Skyscraper can generate Pegasus-compatible metadata/media outputs."
+  ]
+}

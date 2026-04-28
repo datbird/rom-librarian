@@ -1,0 +1,17 @@
+{
+  "id": "launchbox-scraper",
+  "name": "LaunchBox Built-in Scraper",
+  "category": "frontend_builtin",
+  "homepage": "https://www.launchbox-app.com/",
+  "sources": [
+    { "type": "homepage", "url": "https://www.launchbox-app.com/", "last_reviewed": "2026-04-28", "confidence": "high" }
+  ],
+  "platforms": ["windows"],
+  "input": { "launchbox_platform_xml": true, "rom_import_wizard": true },
+  "output": { "metadata_stores": ["launchbox-data-xml"], "media_files": true },
+  "compatible_frontends": ["launchbox"],
+  "supported_sources": ["launchbox"],
+  "safe_ai_operations": ["audit LaunchBox XML", "identify missing media files", "prepare manual scrape instructions"],
+  "risky_ai_operations": ["edit LaunchBox XML while LaunchBox is open", "bulk media deletion", "bulk platform XML rewrite"],
+  "notes": ["For LaunchBox, AI should usually manipulate XML and media paths carefully with backups rather than trying to force ES-style gamelist conventions."]
+}

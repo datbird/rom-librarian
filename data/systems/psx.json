@@ -1,0 +1,34 @@
+{
+  "id": "psx",
+  "name": "Sony PlayStation",
+  "category": "console",
+  "manufacturer": "Sony",
+  "sources": [
+    { "type": "docs", "url": "https://github.com/stenzek/duckstation", "last_reviewed": "2026-04-28", "confidence": "high" }
+  ],
+  "formats": {
+    "preferred": [".chd", ".cue", ".m3u"],
+    "supported": [".bin", ".cue", ".img", ".iso", ".mdf", ".pbp", ".ecm", ".chd", ".m3u"],
+    "descriptor_files": [".cue", ".m3u"],
+    "archive_formats": [".zip", ".7z"]
+  },
+  "bios": {
+    "required": true,
+    "common_files": ["scph5500.bin", "scph5501.bin", "scph5502.bin", "scph1001.bin"]
+  },
+  "emulation": {
+    "preferred_emulators": ["duckstation", "mednafen"],
+    "retroarch_cores": ["duckstation", "mednafen_psx_hw", "pcsx_rearmed"]
+  },
+  "library_behavior": {
+    "multidisc": true,
+    "multidisc_format": "m3u",
+    "playlist_target_preference": ".cue or .chd",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "frontend_notes": {
+    "retrobat": "Keep .m3u in the scanned folder. Move disc images outside scanned Favorite folders if EmulationStation double-detects loose .cue/.bin files."
+  },
+  "quirks": ["es-loose-images", "es-m3u-folder-name", "7z-stdin-multidisc", "wsl-path-7zip"],
+  "notes": ["For BIN/CUE sets, target .cue files from .m3u playlists rather than .bin files."]
+}

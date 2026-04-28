@@ -1,0 +1,17 @@
+{
+  "id": "arrm",
+  "name": "ARRM",
+  "category": "scraper",
+  "homepage": "https://jujuvincebros.fr/wiki/arrm/doku.php",
+  "sources": [
+    { "type": "wiki", "url": "https://jujuvincebros.fr/wiki/arrm/doku.php", "last_reviewed": "2026-04-28", "confidence": "high" }
+  ],
+  "platforms": ["windows"],
+  "input": { "rom_folders": true, "gamelist_xml": true, "manual_editing": true },
+  "output": { "metadata_stores": ["emulationstation-gamelist"], "media_files": true, "gamelist_xml": true, "renamed_roms": true },
+  "compatible_frontends": ["retrobat", "batocera", "es-de", "recalbox", "retropie"],
+  "supported_sources": ["screenscraper", "thegamesdb", "launchbox"],
+  "safe_ai_operations": ["audit gamelist.xml", "identify missing media by field", "prepare import/export checklists"],
+  "risky_ai_operations": ["ROM renaming", "bulk XML rewrite", "media purge"],
+  "notes": ["ARRM is both scraper and gamelist/media manager. Treat its output as authoritative only after backing up existing gamelist.xml and media folders."]
+}

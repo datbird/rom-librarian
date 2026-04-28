@@ -1,0 +1,46 @@
+{
+  "id": "emulationstation-gamelist",
+  "name": "EmulationStation gamelist.xml",
+  "frontend": "retrobat",
+  "format": "xml",
+  "paths": {
+    "common_locations": ["<system rom folder>/gamelist.xml", "frontend-specific downloaded metadata folders"],
+    "media_relative_to": "system rom folder or frontend media folders"
+  },
+  "fields": {
+    "game_node": "game",
+    "path": "relative or absolute ROM path",
+    "name": "display title",
+    "desc": "description",
+    "image": "box/screenshot path depending on frontend/tool",
+    "thumbnail": "thumbnail path",
+    "marquee": "wheel/logo path",
+    "video": "video path",
+    "manual": "manual path",
+    "developer": "developer text",
+    "publisher": "publisher text",
+    "genre": "genre text",
+    "releasedate": "YYYYMMDDT000000 or frontend variant",
+    "players": "player count text"
+  },
+  "media": {
+    "common_dirs": ["images", "videos", "manuals", "marquees", "miximages"],
+    "path_style": "frontend-dependent relative paths"
+  },
+  "write_safety": {
+    "backup_before_edit": true,
+    "preserve_unknown_nodes": true,
+    "do_not_reformat_entire_file_unnecessarily": true,
+    "frontend_should_be_closed_before_bulk_write": true
+  },
+  "ai_operations": [
+    "find games missing desc/image/video/manual fields",
+    "verify referenced media files exist",
+    "add or update manual/image paths after user-approved scraping",
+    "filter by metadata fields such as developer/publisher/genre/region when present"
+  ],
+  "notes": [
+    "Used by RetroBat, Batocera, Recalbox, RetroPie, and ES-DE variants with frontend-specific path details.",
+    "For a task like ensuring all 3DO games have screenshots and descriptions, inspect every game node for desc and image/thumbnail fields and verify referenced media exists."
+  ]
+}

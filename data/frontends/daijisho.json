@@ -1,0 +1,17 @@
+{
+  "id": "daijisho",
+  "name": "Daijisho",
+  "category": "frontend",
+  "homepage": "https://github.com/TapiocaFox/Daijishou",
+  "sources": [
+    { "type": "github", "url": "https://github.com/TapiocaFox/Daijishou", "last_reviewed": "2026-04-28", "confidence": "high" }
+  ],
+  "platforms": ["android"],
+  "default_paths": { "rom_root": "user selected Android storage folders", "media": "app managed or platform pack managed" },
+  "config_paths": { "platforms": "app-managed platform/player configuration", "android_storage": "SAF/content URI dependent" },
+  "structure": { "based_on": null, "metadata_format": "android_app_database", "rom_structure": "user_configured", "media_dirs": ["app managed media"], "multidisc_method": "platform_player_defined", "path_separator_preference": "forwardslash" },
+  "systems": {},
+  "scraping": { "built_in_scraper": true, "metadata_store": "daijisho-app-database", "compatible_tools": ["built-in scraper"] },
+  "quirks": [],
+  "notes": ["Android storage permissions and content URI behavior can make filesystem-level AI repair less direct than desktop frontends."]
+}

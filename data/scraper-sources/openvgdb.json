@@ -1,0 +1,27 @@
+{
+  "id": "openvgdb",
+  "name": "OpenVGDB",
+  "category": "database",
+  "homepage": "https://github.com/OpenVGDB/OpenVGDB",
+  "sources": [
+    { "type": "github", "url": "https://github.com/OpenVGDB/OpenVGDB", "last_reviewed": "2026-04-28", "confidence": "high" }
+  ],
+  "access": {
+    "public_web": true,
+    "api_available": false,
+    "database_download": true,
+    "common_clients": ["sselph-scraper"]
+  },
+  "provides": {
+    "metadata": ["title", "release_date", "developer", "publisher", "genre", "region"],
+    "media": [],
+    "ids": ["openvgdb_id"]
+  },
+  "coverage": {
+    "strengths": ["offline metadata workflows", "older scraper tooling"],
+    "weaker_areas": ["media assets", "newer systems"]
+  },
+  "rate_limits": { "notes": "Offline database workflow; no live API rate limit." },
+  "legal_notes": [],
+  "notes": ["Useful for metadata-only workflows where images/videos come from another source."]
+}

@@ -1,0 +1,40 @@
+{
+  "id": "emudeck",
+  "name": "EmuDeck",
+  "category": "frontend",
+  "homepage": "https://www.emudeck.com/",
+  "sources": [
+    { "type": "homepage", "url": "https://www.emudeck.com/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://emudeck.github.io/", "last_reviewed": "2026-04-28", "confidence": "high" }
+  ],
+  "platforms": ["steamdeck", "linux", "windows"],
+  "default_paths": {
+    "rom_root": "~/Emulation/roms",
+    "bios": "~/Emulation/bios",
+    "tools": "~/Emulation/tools"
+  },
+  "config_paths": {
+    "emudeck": "EmuDeck-managed configuration directories",
+    "steam_rom_manager": "Steam ROM Manager parser configuration",
+    "es_de": "ES-DE configuration when installed through EmuDeck"
+  },
+  "structure": {
+    "based_on": "es-de_plus_steam_rom_manager",
+    "metadata_format": "mixed",
+    "rom_structure": "system_subfolders",
+    "media_dirs": ["downloaded_media", "ES-DE media folders", "Steam grid artwork"],
+    "multidisc_method": "frontend_and_parser_dependent",
+    "path_separator_preference": "forwardslash"
+  },
+  "systems": {},
+  "scraping": {
+    "built_in_scraper": false,
+    "metadata_store": "emulationstation-gamelist",
+    "compatible_tools": ["skyscraper", "skraper", "Steam ROM Manager artwork parsers"]
+  },
+  "quirks": ["steam-rom-manager-duplicates"],
+  "notes": [
+    "EmuDeck is an orchestration layer. AI should identify whether the target surface is ES-DE, Steam ROM Manager, emulator config, or ROM folders before editing.",
+    "Steam duplicate issues often come from parser rules matching both playlists and raw disc files."
+  ]
+}

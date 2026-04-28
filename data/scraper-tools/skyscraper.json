@@ -1,0 +1,17 @@
+{
+  "id": "skyscraper",
+  "name": "Skyscraper",
+  "category": "scraper",
+  "homepage": "https://github.com/muldjord/skyscraper",
+  "sources": [
+    { "type": "github", "url": "https://github.com/muldjord/skyscraper", "last_reviewed": "2026-04-28", "confidence": "high" }
+  ],
+  "platforms": ["linux", "windows", "macos"],
+  "input": { "rom_folders": true, "config_file": true, "cache": true },
+  "output": { "metadata_stores": ["emulationstation-gamelist", "pegasus-metadata"], "media_files": true, "cache": true },
+  "compatible_frontends": ["batocera", "retropie", "pegasus", "es-de"],
+  "supported_sources": ["screenscraper", "thegamesdb", "igdb", "openvgdb"],
+  "safe_ai_operations": ["inspect config", "audit cache/output directories", "generate dry-run command suggestions"],
+  "risky_ai_operations": ["overwrite generated frontend metadata", "purge cache without user approval"],
+  "notes": ["Useful CLI-first scraper for repeatable workflows and Pegasus metadata generation."]
+}

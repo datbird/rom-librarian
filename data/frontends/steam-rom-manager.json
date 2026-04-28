@@ -1,0 +1,17 @@
+{
+  "id": "steam-rom-manager",
+  "name": "Steam ROM Manager",
+  "category": "library_manager",
+  "homepage": "https://github.com/SteamGridDB/steam-rom-manager",
+  "sources": [
+    { "type": "github", "url": "https://github.com/SteamGridDB/steam-rom-manager", "last_reviewed": "2026-04-28", "confidence": "high" }
+  ],
+  "platforms": ["windows", "linux", "steamdeck"],
+  "default_paths": { "steam_userdata": "Steam userdata folder", "parser_config": "Steam ROM Manager config directory" },
+  "config_paths": { "parsers": "parser configuration", "shortcuts": "Steam shortcuts.vdf", "artwork": "Steam grid artwork cache" },
+  "structure": { "based_on": null, "metadata_format": "steam_shortcuts", "rom_structure": "parser_defined", "media_dirs": ["Steam grid artwork"], "multidisc_method": "parser_defined", "path_separator_preference": "platform_dependent" },
+  "systems": {},
+  "scraping": { "built_in_scraper": true, "metadata_store": "steam-shortcuts", "compatible_tools": ["SteamGridDB"] },
+  "quirks": ["steam-rom-manager-duplicates"],
+  "notes": ["Duplicate repair usually means adjusting parser glob rules/exclusions, not moving ROMs blindly."]
+}

@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0",
+  "created": "2026-04-28",
+  "last_updated": "2026-04-28",
+  "deployment": {
+    "frontend": "retrobat",
+    "frontend_version": null,
+    "os": "windows",
+    "wsl": true,
+    "rom_root": "/mnt/g/games/emulation/roms",
+    "bios_root": null
+  },
+  "systems": {
+    "psx": {
+      "enabled": true,
+      "status": "clean",
+      "rom_path": "/mnt/g/games/emulation/roms/sonyplaystation/Favorite",
+      "images_path": "/mnt/g/games/emulation/roms/sonyplaystation/images",
+      "favorites_path": "/mnt/g/games/emulation/roms/sonyplaystation/Favorite",
+      "multidisc_override": null,
+      "notes": "172 games. .m3u files live in sonyplaystation/Favorite/ with relative paths ..\\images\\GameName\\disc.cue pointing to sonyplaystation/images/. All .7z archives extracted and deleted. Images moved to images/ to prevent ES double-detection.",
+      "last_worked": "2026-04-28"
+    },
+    "dreamcast": {
+      "enabled": true,
+      "status": "clean",
+      "rom_path": "/mnt/g/games/emulation/roms/segadreamcast/Favorite",
+      "images_path": null,
+      "favorites_path": "/mnt/g/games/emulation/roms/segadreamcast/Favorite",
+      "multidisc_override": null,
+      "notes": "55 games. .m3u files in segadreamcast/Favorite/ with relative paths GameName\\disc.cue. Disc images remain in Favorite/GameName/ subfolders — no loose disc files at Favorite root so no ES double-detection issue.",
+      "last_worked": "2026-04-28"
+    }
+  },
+  "overrides": {
+    "frontends": {
+      "retrobat": {
+        "default_rom_root": "/mnt/g/games/emulation/roms",
+        "system_folder_names": {
+          "psx": "sonyplaystation",
+          "dreamcast": "segadreamcast"
+        }
+      }
+    },
+    "systems": {}
+  },
+  "learned": [
+    {
+      "date": "2026-04-28",
+      "system": "psx",
+      "frontend": "retrobat",
+      "category": "structure",
+      "note": "PSX Favorite folder was initially organized as named '<game>.m3u' directories containing .7z archives and an inner .m3u file. Required repair: extract .7z archives (7z.exe via WSL with wslpath -w and < /dev/null), rename folders to remove .m3u extension, move .m3u to Favorite root, then relocate all image folders to sonyplaystation/images/ to prevent ES double-detection."
+    },
+    {
+      "date": "2026-04-28",
+      "system": "dreamcast",
+      "frontend": "retrobat",
+      "category": "structure",
+      "note": "Dreamcast Favorite folder had the same '<game>.m3u' directory structure as PSX. Images were already extracted (no .7z). Fixed by: extracting inner .m3u content, renaming folders (remove .m3u extension), writing new .m3u files at Favorite root with GameName\\disc.cue relative paths."
+    },
+    {
+      "date": "2026-04-28",
+      "system": null,
+      "frontend": null,
+      "category": "quirk",
+      "note": "7-Zip installed at C:/Program Files/7-Zip/7z.exe (WSL: /mnt/c/Program Files/7-Zip/7z.exe). Requires wslpath -w for all path arguments. Always redirect stdin with < /dev/null when calling 7z inside bash while-read loops to prevent stdin consumption."
+    },
+    {
+      "date": "2026-04-28",
+      "system": "psx",
+      "frontend": null,
+      "category": "format",
+      "note": "Final Fantasy Anthology Vol.1/2, Final Fantasy Chronicles, Final Fantasy Origins had .bin files only (no .cue). Generated MODE2/2352 .cue files manually. Format: FILE \"game.bin\" BINARY / TRACK 01 MODE2/2352 / INDEX 01 00:00:00"
+    },
+    {
+      "date": "2026-04-28",
+      "system": "psx",
+      "frontend": null,
+      "category": "structure",
+      "note": "Legend of Dragoon: single .7z contained all 4 disc images in a subfolder with .iso format (not .cue). .m3u was updated to reference 4 .iso files directly. Arc the Lad archives used full collection title in filenames (Arc the Lad Collection - Arc the Lad (USA)) despite .7z being named Arc the Lad (USA).7z."
+    }
+  ]
+}

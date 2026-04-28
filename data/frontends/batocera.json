@@ -1,0 +1,45 @@
+{
+  "id": "batocera",
+  "name": "Batocera.linux",
+  "category": "frontend",
+  "homepage": "https://batocera.org/",
+  "sources": [
+    { "type": "homepage", "url": "https://batocera.org/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "wiki", "url": "https://wiki.batocera.org/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://wiki.batocera.org/add_games_bios", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://wiki.batocera.org/scrape_from", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://wiki.batocera.org/cd_image_formats", "last_reviewed": "2026-04-28", "confidence": "high" }
+  ],
+  "platforms": ["linux"],
+  "default_paths": {
+    "rom_root": "/userdata/roms",
+    "bios": "/userdata/bios",
+    "saves": "/userdata/saves",
+    "screenshots": "/userdata/screenshots"
+  },
+  "config_paths": {
+    "batocera_conf": "/userdata/system/batocera.conf",
+    "emulationstation": "/userdata/system/configs/emulationstation",
+    "system_configs": "/userdata/system/configs"
+  },
+  "structure": {
+    "based_on": "emulationstation",
+    "metadata_format": "es_xml",
+    "rom_structure": "system_subfolders",
+    "media_dirs": ["images", "videos", "manuals"],
+    "multidisc_method": "m3u_in_rom_root",
+    "path_separator_preference": "forwardslash"
+  },
+  "systems": {},
+  "scraping": {
+    "built_in_scraper": true,
+    "metadata_store": "emulationstation-gamelist",
+    "docs": "https://wiki.batocera.org/scrape_from",
+    "compatible_tools": ["skyscraper", "skraper", "arrm"]
+  },
+  "quirks": ["es-loose-images", "es-m3u-folder-name", "mame-romset-version"],
+  "notes": [
+    "Batocera is an appliance-style Linux distribution; user data normally lives under /userdata.",
+    "Arcade and MAME work should follow Batocera's arcade documentation and romset-version guidance."
+  ]
+}

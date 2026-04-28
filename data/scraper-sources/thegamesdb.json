@@ -1,0 +1,28 @@
+{
+  "id": "thegamesdb",
+  "name": "TheGamesDB",
+  "category": "hybrid",
+  "homepage": "https://thegamesdb.net/",
+  "sources": [
+    { "type": "homepage", "url": "https://thegamesdb.net/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://api.thegamesdb.net/", "last_reviewed": "2026-04-28", "confidence": "medium" }
+  ],
+  "access": {
+    "public_web": true,
+    "api_available": true,
+    "api_key_required": true,
+    "common_clients": ["sselph-scraper", "skyscraper", "arrm"]
+  },
+  "provides": {
+    "metadata": ["title", "overview", "release_date", "developer", "publisher", "genre", "players", "rating"],
+    "media": ["boxart", "banner", "fanart", "screenshot"],
+    "ids": ["thegamesdb_game_id"]
+  },
+  "coverage": {
+    "strengths": ["general console/handheld metadata", "API access"],
+    "weaker_areas": ["some obscure systems", "manual completeness"]
+  },
+  "rate_limits": { "notes": "API key and rate limits apply." },
+  "legal_notes": ["Do not store API keys in rom-librarian configs."],
+  "notes": ["Good general metadata source when ScreenScraper is unavailable or insufficient."]
+}

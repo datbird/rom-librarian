@@ -1,0 +1,11 @@
+{
+  "name": "rom-librarian",
+  "version": "1.0.0",
+  "description": "Claude Code/OpenCode skill for managing emulation ROM library structure knowledge.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "validate": "node scripts/validate.mjs"
+  },
+  "license": "MIT"
+}

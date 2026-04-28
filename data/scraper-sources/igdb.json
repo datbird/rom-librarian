@@ -1,0 +1,29 @@
+{
+  "id": "igdb",
+  "name": "IGDB",
+  "category": "database",
+  "homepage": "https://www.igdb.com/",
+  "sources": [
+    { "type": "homepage", "url": "https://www.igdb.com/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://api-docs.igdb.com/", "last_reviewed": "2026-04-28", "confidence": "medium" }
+  ],
+  "access": {
+    "public_web": true,
+    "api_available": true,
+    "oauth_required": true,
+    "common_clients": ["skyscraper", "custom scripts"]
+  },
+  "provides": {
+    "metadata": ["title", "summary", "release_dates", "companies", "genres", "themes", "platforms", "external_ids"],
+    "media": ["cover", "screenshots", "artworks"],
+    "ids": ["igdb_game_id"]
+  },
+  "coverage": {
+    "strengths": ["modern and cross-platform metadata", "company relationships", "genre/theme tagging"],
+    "weaker_areas": ["ROM hash matching", "frontend-specific media conventions"]
+  },
+  "rate_limits": { "notes": "Twitch/IGDB API credentials and rate limits apply." },
+  "legal_notes": ["Do not store OAuth secrets in rom-librarian configs."],
+  "notes": ["Useful for normalized metadata enrichment and developer/publisher queries."
+  ]
+}

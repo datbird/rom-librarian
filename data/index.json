@@ -1,0 +1,64 @@
+{
+  "version": "1.0.0",
+  "description": "Normalized rom-librarian data index. static.json remains the broad aggregate; data/* contains sourced deep records.",
+  "frontends": [
+    "data/frontends/batocera.json",
+    "data/frontends/emudeck.json",
+    "data/frontends/es-de.json",
+    "data/frontends/launchbox.json",
+    "data/frontends/pegasus.json",
+    "data/frontends/playnite.json",
+    "data/frontends/recalbox.json",
+    "data/frontends/romm.json",
+    "data/frontends/retrobat.json",
+    "data/frontends/retropie.json",
+    "data/frontends/steam-rom-manager.json",
+    "data/frontends/daijisho.json"
+  ],
+  "systems": [
+    "data/systems/psx.json",
+    "data/systems/mame.json",
+    "data/systems/j2me.json",
+    "data/systems/flash.json"
+  ],
+  "emulators": [
+    "data/emulators/duckstation.json",
+    "data/emulators/mame.json",
+    "data/emulators/freej2me.json",
+    "data/emulators/ruffle.json"
+  ],
+  "scraper_sources": [
+    "data/scraper-sources/screenscraper.json",
+    "data/scraper-sources/launchbox-games-db.json",
+    "data/scraper-sources/thegamesdb.json",
+    "data/scraper-sources/mobygames.json",
+    "data/scraper-sources/igdb.json",
+    "data/scraper-sources/openvgdb.json"
+  ],
+  "scraper_tools": [
+    "data/scraper-tools/skraper.json",
+    "data/scraper-tools/arrm.json",
+    "data/scraper-tools/skyscraper.json",
+    "data/scraper-tools/sselph-scraper.json",
+    "data/scraper-tools/launchbox-built-in.json"
+  ],
+  "metadata_stores": [
+    "data/metadata-stores/emulationstation-gamelist.json",
+    "data/metadata-stores/launchbox-data-xml.json",
+    "data/metadata-stores/pegasus-metadata.json"
+  ],
+  "metadata_taxonomies": [
+    "data/metadata/asset-taxonomy.json"
+  ],
+  "launchers": [],
+  "schema_files": {
+    "frontend": "schema/frontend.schema.json",
+    "system": "schema/system.schema.json",
+    "emulator": "schema/emulator.schema.json",
+    "source": "schema/source.schema.json",
+    "scraper_source": "schema/scraper-source.schema.json",
+    "scraper_tool": "schema/scraper-tool.schema.json",
+    "metadata_store": "schema/metadata-store.schema.json",
+    "asset_taxonomy": "schema/asset-taxonomy.schema.json"
+  }
+}

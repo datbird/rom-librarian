@@ -1,0 +1,18 @@
+{
+  "id": "romm",
+  "name": "RomM",
+  "category": "library_manager",
+  "homepage": "https://romm.app/",
+  "sources": [
+    { "type": "homepage", "url": "https://romm.app/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "github", "url": "https://github.com/rommapp/romm", "last_reviewed": "2026-04-28", "confidence": "high" }
+  ],
+  "platforms": ["linux"],
+  "default_paths": { "library": "server configured library path", "resources": "server configured resources/media path" },
+  "config_paths": { "docker_compose": "deployment-specific", "environment": "deployment-specific environment variables", "database": "server database" },
+  "structure": { "based_on": null, "metadata_format": "database", "rom_structure": "server_configured", "media_dirs": ["server media/resources"], "multidisc_method": "database", "path_separator_preference": "forwardslash" },
+  "systems": {},
+  "scraping": { "built_in_scraper": true, "metadata_store": "romm-database", "compatible_tools": ["server-side scanner"] },
+  "quirks": [],
+  "notes": ["RomM is server/database-backed. AI should avoid direct database edits unless the user explicitly wants database-level maintenance and has backups."]
+}

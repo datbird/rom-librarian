@@ -1,0 +1,42 @@
+{
+  "id": "launchbox",
+  "name": "LaunchBox / BigBox",
+  "category": "frontend",
+  "homepage": "https://www.launchbox-app.com/",
+  "sources": [
+    { "type": "homepage", "url": "https://www.launchbox-app.com/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://www.launchbox-app.com/about", "last_reviewed": "2026-04-28", "confidence": "medium" }
+  ],
+  "platforms": ["windows"],
+  "default_paths": {
+    "portable_install_root": "<chosen install folder>/LaunchBox",
+    "data": "LaunchBox/Data",
+    "images": "LaunchBox/Images",
+    "videos": "LaunchBox/Videos",
+    "manuals": "LaunchBox/Manuals",
+    "music": "LaunchBox/Music"
+  },
+  "config_paths": {
+    "platforms_xml": "LaunchBox/Data/Platforms.xml",
+    "platform_games": "LaunchBox/Data/Platforms/<Platform Name>.xml",
+    "emulators_xml": "LaunchBox/Data/Emulators.xml"
+  },
+  "structure": {
+    "metadata_format": "launchbox_xml",
+    "roms_can_live_anywhere": true,
+    "library_is_database_driven": true,
+    "multidisc_method": "additional_apps_or_database_metadata",
+    "m3u_required": false
+  },
+  "systems": {},
+  "scraping": {
+    "built_in_scraper": true,
+    "primary_source": "LaunchBox Games Database",
+    "media_root": "LaunchBox/Images and LaunchBox/Videos"
+  },
+  "quirks": ["launchbox-native-multidisc"],
+  "notes": [
+    "LaunchBox is portable by design; there is no single universal install path.",
+    "Repair work usually means inspecting Data XML files and media paths, not forcing a filesystem-only ROM root convention."
+  ]
+}

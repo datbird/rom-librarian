@@ -1,0 +1,195 @@
+{
+  "version": "1.0.0",
+  "sources": [
+    { "type": "docs", "url": "https://pegasus-frontend.org/docs/user-guide/meta-assets/", "last_reviewed": "2026-04-28", "confidence": "high", "notes": "Primary source for Pegasus asset names and accepted aliases." },
+    { "type": "docs", "url": "https://pegasus-frontend.org/docs/dev/meta-syntax/", "last_reviewed": "2026-04-28", "confidence": "high", "notes": "Primary source for Pegasus metadata text syntax." },
+    { "type": "docs", "url": "https://wiki.batocera.org/scrape_from", "last_reviewed": "2026-04-28", "confidence": "high", "notes": "Source for Batocera scraper sources and ScreenScraper/IGDB credential behavior." },
+    { "type": "docs", "url": "https://wiki.batocera.org/emulationstation:customize_systems", "last_reviewed": "2026-04-28", "confidence": "high", "notes": "Source for ES system fields such as name/path/extension/platform/theme." }
+  ],
+  "asset_types": {
+    "box_front": {
+      "label": "Box front",
+      "category": "image_boxart",
+      "aliases": ["boxFront", "box_front", "boxart2D", "boxart", "box_front_2d", "Box - Front"],
+      "file_types": [".png", ".jpg", ".jpeg", ".webp"],
+      "description": "Front cover or 2D box art.",
+      "frontend_mappings": { "pegasus": ["assets.box_front"], "emulationstation": ["image"], "launchbox": ["Images/<Platform>/Box - Front"] }
+    },
+    "box_back": {
+      "label": "Box back",
+      "category": "image_boxart",
+      "aliases": ["boxBack", "box_back", "Box - Back"],
+      "file_types": [".png", ".jpg", ".jpeg", ".webp"],
+      "description": "Back cover of physical packaging.",
+      "frontend_mappings": { "pegasus": ["assets.box_back"], "launchbox": ["Images/<Platform>/Box - Back"] }
+    },
+    "box_spine": {
+      "label": "Box spine",
+      "category": "image_boxart",
+      "aliases": ["boxSpine", "box_spine", "boxSide", "box_side"],
+      "file_types": [".png", ".jpg", ".jpeg", ".webp"],
+      "description": "Side/spine edge of physical packaging.",
+      "frontend_mappings": { "pegasus": ["assets.box_spine"] }
+    },
+    "box_full": {
+      "label": "Full box art",
+      "category": "image_boxart",
+      "aliases": ["boxFull", "box_full", "box"],
+      "file_types": [".png", ".jpg", ".jpeg", ".webp"],
+      "description": "Full flattened box art including front/back/spine.",
+      "frontend_mappings": { "pegasus": ["assets.box_full"] }
+    },
+    "medium": {
+      "label": "Physical medium",
+      "category": "image_media",
+      "aliases": ["cartridge", "disc", "disk", "cart", "media", "Disc", "Cart - Front"],
+      "file_types": [".png", ".jpg", ".jpeg", ".webp"],
+      "description": "Cartridge, disc, floppy, tape, or other physical media image.",
+      "frontend_mappings": { "pegasus": ["assets.cartridge", "assets.disc"] }
+    },
+    "logo": {
+      "label": "Logo / wheel",
+      "category": "image_branding",
+      "aliases": ["logo", "wheel", "clear_logo", "Clear Logo"],
+      "file_types": [".png", ".jpg", ".jpeg", ".webp"],
+      "description": "Game logo/title art, often transparent, used in wheel themes.",
+      "frontend_mappings": { "pegasus": ["assets.logo"], "emulationstation": ["marquee"], "launchbox": ["Images/<Platform>/Clear Logo"] }
+    },
+    "poster": {
+      "label": "Poster / flyer",
+      "category": "image_promo",
+      "aliases": ["poster", "flyer", "Advertisement Flyer - Front"],
+      "file_types": [".png", ".jpg", ".jpeg", ".webp"],
+      "description": "Promotional poster or flyer artwork, usually portrait-oriented.",
+      "frontend_mappings": { "pegasus": ["assets.poster", "assets.flyer"], "launchbox": ["Images/<Platform>/Advertisement Flyer - Front"] }
+    },
+    "marquee": {
+      "label": "Arcade marquee",
+      "category": "image_arcade",
+      "aliases": ["marquee"],
+      "file_types": [".png", ".jpg", ".jpeg", ".webp"],
+      "description": "Wide artwork from the top of an arcade cabinet.",
+      "frontend_mappings": { "pegasus": ["assets.marquee"], "emulationstation": ["marquee"] }
+    },
+    "bezel": {
+      "label": "Bezel / border",
+      "category": "image_arcade",
+      "aliases": ["bezel", "screenmarquee", "border"],
+      "file_types": [".png", ".jpg", ".jpeg", ".webp"],
+      "description": "Decoration around the game screen.",
+      "frontend_mappings": { "pegasus": ["assets.bezel"] }
+    },
+    "control_panel": {
+      "label": "Control panel",
+      "category": "image_arcade",
+      "aliases": ["panel", "control_panel"],
+      "file_types": [".png", ".jpg", ".jpeg", ".webp"],
+      "description": "Arcade machine control panel artwork.",
+      "frontend_mappings": { "pegasus": ["assets.panel"] }
+    },
+    "cabinet_left": {
+      "label": "Cabinet left side",
+      "category": "image_arcade",
+      "aliases": ["cabinetLeft", "cabinet_left"],
+      "file_types": [".png", ".jpg", ".jpeg", ".webp"],
+      "description": "Left side of arcade cabinet.",
+      "frontend_mappings": { "pegasus": ["assets.cabinet_left"] }
+    },
+    "cabinet_right": {
+      "label": "Cabinet right side",
+      "category": "image_arcade",
+      "aliases": ["cabinetRight", "cabinet_right"],
+      "file_types": [".png", ".jpg", ".jpeg", ".webp"],
+      "description": "Right side of arcade cabinet.",
+      "frontend_mappings": { "pegasus": ["assets.cabinet_right"] }
+    },
+    "tile": {
+      "label": "Tile",
+      "category": "image_ui",
+      "aliases": ["tile"],
+      "file_types": [".png", ".jpg", ".jpeg", ".webp"],
+      "description": "Square UI tile image.",
+      "frontend_mappings": { "pegasus": ["assets.tile"] }
+    },
+    "banner": {
+      "label": "Banner",
+      "category": "image_ui",
+      "aliases": ["banner"],
+      "file_types": [".png", ".jpg", ".jpeg", ".webp"],
+      "description": "Wide 16:9 or banner-style UI image.",
+      "frontend_mappings": { "pegasus": ["assets.banner"], "launchbox": ["Images/<Platform>/Banner"] }
+    },
+    "steam_grid": {
+      "label": "Steam grid",
+      "category": "image_ui",
+      "aliases": ["steam", "steamgrid", "grid"],
+      "file_types": [".png", ".jpg", ".jpeg", ".webp"],
+      "description": "Steam grid artwork, commonly 460x215 or 920x430.",
+      "frontend_mappings": { "pegasus": ["assets.steam"], "steam-rom-manager": ["grid artwork"] }
+    },
+    "background": {
+      "label": "Background / fanart",
+      "category": "image_background",
+      "aliases": ["background", "fanart", "Fanart - Background"],
+      "file_types": [".png", ".jpg", ".jpeg", ".webp"],
+      "description": "Background artwork or selected screenshot for themes.",
+      "frontend_mappings": { "pegasus": ["assets.background"], "launchbox": ["Images/<Platform>/Fanart - Background"] }
+    },
+    "screenshot_gameplay": {
+      "label": "Gameplay screenshot",
+      "category": "image_screenshot",
+      "aliases": ["screenshot", "snap", "Screenshot - Gameplay"],
+      "file_types": [".png", ".jpg", ".jpeg", ".webp"],
+      "description": "In-game screenshot.",
+      "frontend_mappings": { "pegasus": ["assets.screenshot"], "emulationstation": ["image", "thumbnail"], "launchbox": ["Images/<Platform>/Screenshot - Gameplay"] }
+    },
+    "screenshot_title": {
+      "label": "Title screen screenshot",
+      "category": "image_screenshot",
+      "aliases": ["titlescreen", "title_screen", "Screenshot - Game Title"],
+      "file_types": [".png", ".jpg", ".jpeg", ".webp"],
+      "description": "Screenshot of title screen or main menu.",
+      "frontend_mappings": { "pegasus": ["assets.titlescreen"], "launchbox": ["Images/<Platform>/Screenshot - Game Title"] }
+    },
+    "video": {
+      "label": "Video preview",
+      "category": "video",
+      "aliases": ["video", "preview", "trailer"],
+      "file_types": [".mp4", ".webm", ".avi", ".mkv"],
+      "description": "Gameplay video, trailer, or video snap.",
+      "frontend_mappings": { "pegasus": ["assets.video"], "emulationstation": ["video"], "launchbox": ["Videos/<Platform>"] }
+    },
+    "music": {
+      "label": "Background music",
+      "category": "audio",
+      "aliases": ["music", "bgm"],
+      "file_types": [".mp3", ".ogg", ".wav", ".flac"],
+      "description": "Background music associated with a game or collection.",
+      "frontend_mappings": { "pegasus": ["assets.music"] }
+    },
+    "manual": {
+      "label": "Manual",
+      "category": "document",
+      "aliases": ["manual", "manuals", "Manual"],
+      "file_types": [".pdf", ".cbz", ".cbr", ".txt", ".html"],
+      "description": "Game manual or documentation.",
+      "frontend_mappings": { "emulationstation": ["manual"], "launchbox": ["ManualPath", "Manuals"] }
+    }
+  },
+  "metadata_fields": {
+    "title": { "label": "Title", "category": "identity", "aliases": ["name", "title", "Title"], "description": "Display title.", "frontend_mappings": { "emulationstation": ["name"], "launchbox": ["Title"], "pegasus": ["game"] } },
+    "sort_title": { "label": "Sort title", "category": "identity", "aliases": ["sort_title", "SortTitle", "sortname"], "description": "Title used for sorting." },
+    "description": { "label": "Description", "category": "descriptive", "aliases": ["desc", "description", "overview", "notes", "summary", "Notes"], "description": "Long-form game description.", "frontend_mappings": { "emulationstation": ["desc"], "launchbox": ["Notes"], "pegasus": ["description"] } },
+    "developer": { "label": "Developer", "category": "credits", "aliases": ["developer", "developers", "Developer"], "description": "Developer studio/person." },
+    "publisher": { "label": "Publisher", "category": "credits", "aliases": ["publisher", "publishers", "Publisher"], "description": "Publishing entity." },
+    "release_date": { "label": "Release date", "category": "release", "aliases": ["releasedate", "release_date", "ReleaseDate", "date"], "description": "Release date, format varies by frontend/source." },
+    "genre": { "label": "Genre", "category": "classification", "aliases": ["genre", "genres", "Genre"], "description": "Genre/category tags." },
+    "players": { "label": "Players", "category": "play", "aliases": ["players", "Players", "play_mode"], "description": "Player count or play mode." },
+    "rating": { "label": "Rating", "category": "classification", "aliases": ["rating", "Rating", "community_rating"], "description": "Review/community/content rating depending on source." },
+    "region": { "label": "Region", "category": "release", "aliases": ["region", "Region", "countries"], "description": "Release region or country metadata." },
+    "language": { "label": "Language", "category": "release", "aliases": ["language", "languages", "Language"], "description": "Language metadata when known." },
+    "series": { "label": "Series", "category": "classification", "aliases": ["series", "franchise", "Series"], "description": "Series/franchise grouping." },
+    "platform": { "label": "Platform", "category": "identity", "aliases": ["platform", "system", "Platform"], "description": "Target platform/system name." },
+    "path": { "label": "Launch path", "category": "launch", "aliases": ["path", "file", "ApplicationPath"], "description": "Path to ROM, executable, playlist, or launch target." }
+  }
+}

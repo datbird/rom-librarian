@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/07/schema",
+  "$id": "https://github.com/datbird/rom-librarian/schema/source.schema.json",
+  "title": "rom-librarian source reference",
+  "type": "object",
+  "required": ["type", "url", "last_reviewed", "confidence"],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": ["homepage", "docs", "wiki", "faq", "github", "manual", "download", "forum", "other"]
+    },
+    "url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "last_reviewed": {
+      "type": "string",
+      "format": "date"
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["high", "medium", "low"]
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

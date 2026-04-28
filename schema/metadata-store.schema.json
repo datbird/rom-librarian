@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/07/schema",
+  "$id": "https://github.com/datbird/rom-librarian/schema/metadata-store.schema.json",
+  "title": "rom-librarian metadata store record",
+  "type": "object",
+  "required": ["id", "name", "frontend", "format", "paths", "fields", "media", "ai_operations", "notes"],
+  "properties": {
+    "id": { "type": "string" },
+    "name": { "type": "string" },
+    "frontend": { "type": "string" },
+    "format": { "type": "string", "enum": ["xml", "txt", "json", "sqlite", "mixed"] },
+    "paths": { "type": "object" },
+    "fields": { "type": "object" },
+    "media": { "type": "object" },
+    "write_safety": { "type": "object" },
+    "ai_operations": { "type": "array", "items": { "type": "string" } },
+    "notes": { "type": "array", "items": { "type": "string" } }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/07/schema",
+  "$id": "https://github.com/datbird/rom-librarian/schema/system.schema.json",
+  "title": "rom-librarian system/platform record",
+  "type": "object",
+  "required": ["id", "name", "category", "manufacturer", "sources", "formats", "emulation", "library_behavior"],
+  "properties": {
+    "id": { "type": "string" },
+    "name": { "type": "string" },
+    "category": { "type": "string", "enum": ["console", "handheld", "computer", "arcade", "mobile", "web", "engine", "launcher", "pinball", "laserdisc", "fantasy_console"] },
+    "manufacturer": { "type": ["string", "null"] },
+    "sources": { "type": "array", "items": { "$ref": "source.schema.json" } },
+    "formats": { "type": "object" },
+    "bios": { "type": "object" },
+    "emulation": { "type": "object" },
+    "library_behavior": { "type": "object" },
+    "frontend_notes": { "type": "object" },
+    "quirks": { "type": "array", "items": { "type": "string" } },
+    "notes": { "type": "array", "items": { "type": "string" } }
+  }
+}

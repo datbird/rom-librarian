@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/07/schema",
+  "$id": "https://github.com/datbird/rom-librarian/schema/emulator.schema.json",
+  "title": "rom-librarian emulator/runtime record",
+  "type": "object",
+  "required": ["id", "name", "category", "homepage", "sources", "platforms", "systems", "paths", "library_behavior"],
+  "properties": {
+    "id": { "type": "string" },
+    "name": { "type": "string" },
+    "category": { "type": "string", "enum": ["emulator", "runtime", "source_port", "launcher", "compatibility_layer"] },
+    "homepage": { "type": ["string", "null"] },
+    "sources": { "type": "array", "items": { "$ref": "source.schema.json" } },
+    "platforms": { "type": "array", "items": { "type": "string" } },
+    "systems": { "type": "array", "items": { "type": "string" } },
+    "paths": { "type": "object" },
+    "supported_formats": { "type": "object" },
+    "library_behavior": { "type": "object" },
+    "quirks": { "type": "array", "items": { "type": "string" } },
+    "notes": { "type": "array", "items": { "type": "string" } }
+  }
+}

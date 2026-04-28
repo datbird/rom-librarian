@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/07/schema",
+  "$id": "https://github.com/datbird/rom-librarian/schema/scraper-tool.schema.json",
+  "title": "rom-librarian scraper/helper tool record",
+  "type": "object",
+  "required": ["id", "name", "category", "homepage", "sources", "platforms", "input", "output", "compatible_frontends", "supported_sources", "notes"],
+  "properties": {
+    "id": { "type": "string" },
+    "name": { "type": "string" },
+    "category": { "type": "string", "enum": ["scraper", "metadata_editor", "media_manager", "frontend_builtin", "rom_manager", "helper"] },
+    "homepage": { "type": ["string", "null"] },
+    "sources": { "type": "array", "items": { "$ref": "source.schema.json" } },
+    "platforms": { "type": "array", "items": { "type": "string" } },
+    "input": { "type": "object" },
+    "output": { "type": "object" },
+    "compatible_frontends": { "type": "array", "items": { "type": "string" } },
+    "supported_sources": { "type": "array", "items": { "type": "string" } },
+    "safe_ai_operations": { "type": "array", "items": { "type": "string" } },
+    "risky_ai_operations": { "type": "array", "items": { "type": "string" } },
+    "notes": { "type": "array", "items": { "type": "string" } }
+  }
+}

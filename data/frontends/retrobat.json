@@ -1,0 +1,42 @@
+{
+  "id": "retrobat",
+  "name": "RetroBat",
+  "category": "frontend",
+  "homepage": "https://www.retrobat.org/",
+  "sources": [
+    { "type": "homepage", "url": "https://www.retrobat.org/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "wiki", "url": "https://wiki.retrobat.org/", "last_reviewed": "2026-04-28", "confidence": "high" }
+  ],
+  "platforms": ["windows"],
+  "default_paths": {
+    "install_root": "C:/RetroBat",
+    "rom_root": "C:/RetroBat/roms",
+    "bios": "C:/RetroBat/bios",
+    "saves": "C:/RetroBat/saves"
+  },
+  "config_paths": {
+    "emulationstation": "emulationstation/.emulationstation",
+    "system_configs": "emulators and system folders under the RetroBat install root"
+  },
+  "structure": {
+    "based_on": "emulationstation",
+    "metadata_format": "es_xml",
+    "rom_structure": "system_subfolders",
+    "media_dirs": ["images", "videos", "manuals"],
+    "multidisc_method": "m3u_in_rom_root",
+    "path_separator_preference": "backslash"
+  },
+  "systems": {
+    "psx": { "folder": "sonyplaystation" },
+    "dreamcast": { "folder": "segadreamcast" }
+  },
+  "scraping": {
+    "compatible_tools": ["skraper", "arrm"],
+    "metadata_file": "gamelist.xml"
+  },
+  "quirks": ["es-loose-images", "es-m3u-folder-name"],
+  "notes": [
+    "The seed deployment used a custom ROM root at G:/games/emulation/roms rather than C:/RetroBat/roms.",
+    "When operating from WSL, convert Windows paths before passing them to Windows executables."
+  ]
+}

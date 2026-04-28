@@ -1,0 +1,28 @@
+{
+  "id": "mobygames",
+  "name": "MobyGames",
+  "category": "database",
+  "homepage": "https://www.mobygames.com/",
+  "sources": [
+    { "type": "homepage", "url": "https://www.mobygames.com/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://www.mobygames.com/info/api/", "last_reviewed": "2026-04-28", "confidence": "medium" }
+  ],
+  "access": {
+    "public_web": true,
+    "api_available": true,
+    "api_key_required": true,
+    "common_clients": ["custom scripts", "metadata enrichment workflows"]
+  },
+  "provides": {
+    "metadata": ["title", "description", "release_dates", "developers", "publishers", "genres", "platforms", "credits"],
+    "media": ["cover_art", "screenshots"],
+    "ids": ["mobygames_game_id"]
+  },
+  "coverage": {
+    "strengths": ["historical PC games", "developer/publisher/release metadata", "cross-platform game identity"],
+    "weaker_areas": ["frontend-specific media naming", "ROM hash matching"]
+  },
+  "rate_limits": { "notes": "API key and service limits apply." },
+  "legal_notes": ["Do not store API keys in rom-librarian configs."],
+  "notes": ["Useful for queries like identifying Japanese-developed games, but results should be reviewed because country/developer attribution can be nuanced."]
+}

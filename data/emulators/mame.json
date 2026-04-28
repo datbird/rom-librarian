@@ -1,0 +1,27 @@
+{
+  "id": "mame",
+  "name": "MAME",
+  "category": "emulator",
+  "homepage": "https://www.mamedev.org/",
+  "sources": [
+    { "type": "homepage", "url": "https://www.mamedev.org/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://docs.mamedev.org/", "last_reviewed": "2026-04-28", "confidence": "high" }
+  ],
+  "platforms": ["windows", "linux", "macos", "steamdeck"],
+  "systems": ["mame", "neogeo", "cps1", "cps2", "cps3", "model2", "model3", "cdi", "channelf", "apple2", "apple2gs"],
+  "paths": {
+    "rompath": "configured in mame.ini",
+    "hash": "MAME hash software-list directory",
+    "ini": "mame.ini or frontend-generated equivalent"
+  },
+  "supported_formats": { "arcade": [".zip", ".7z", ".chd"], "software_lists": ["varies by system"] },
+  "library_behavior": {
+    "romset_version_sensitive": true,
+    "do_not_unzip_roms_by_default": true,
+    "parent_clone_model": true,
+    "device_bios_dependencies": true,
+    "chd_subfolders": true
+  },
+  "quirks": ["mame-romset-version"],
+  "notes": ["Per-machine MAME data should eventually be generated from MAME XML/DAT output rather than hand-authored."]
+}

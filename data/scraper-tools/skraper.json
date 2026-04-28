@@ -1,0 +1,17 @@
+{
+  "id": "skraper",
+  "name": "Skraper",
+  "category": "scraper",
+  "homepage": "https://www.skraper.net/",
+  "sources": [
+    { "type": "homepage", "url": "https://www.skraper.net/", "last_reviewed": "2026-04-28", "confidence": "high" }
+  ],
+  "platforms": ["windows"],
+  "input": { "rom_folders": true, "system_profiles": true, "hash_matching": true },
+  "output": { "metadata_stores": ["emulationstation-gamelist"], "media_files": true, "gamelist_xml": true },
+  "compatible_frontends": ["retrobat", "batocera", "es-de", "recalbox", "retropie"],
+  "supported_sources": ["screenscraper"],
+  "safe_ai_operations": ["audit expected output folders", "verify missing media", "inspect gamelist.xml references"],
+  "risky_ai_operations": ["bulk overwrite existing scraped media", "regenerate gamelist.xml without backup"],
+  "notes": ["Very relevant for tasks like ensuring screenshots/videos/manuals exist for every game in an ES-style frontend."]
+}

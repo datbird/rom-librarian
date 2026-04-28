@@ -1,0 +1,27 @@
+{
+  "id": "launchbox",
+  "name": "LaunchBox Games Database",
+  "category": "hybrid",
+  "homepage": "https://gamesdb.launchbox-app.com/",
+  "sources": [
+    { "type": "homepage", "url": "https://gamesdb.launchbox-app.com/", "last_reviewed": "2026-04-28", "confidence": "high" }
+  ],
+  "access": {
+    "public_web": true,
+    "account_required_for_editing": true,
+    "api_available": false,
+    "common_clients": ["launchbox-scraper", "arrm"]
+  },
+  "provides": {
+    "metadata": ["title", "sort_title", "release_date", "developer", "publisher", "genre", "series", "play_mode", "notes"],
+    "media": ["box_front", "box_back", "screenshot", "clear_logo", "fanart", "video", "manual"],
+    "ids": ["launchbox_games_db_id"]
+  },
+  "coverage": {
+    "strengths": ["LaunchBox ecosystem", "Windows frontend metadata", "rich media categories"],
+    "weaker_areas": ["non-LaunchBox automation", "bulk API workflows"]
+  },
+  "rate_limits": { "notes": "Primarily accessed through LaunchBox itself or supported tools rather than a general public API." },
+  "legal_notes": ["Respect LaunchBox Games Database contribution and usage terms."],
+  "notes": ["Best source when the target metadata store is LaunchBox Data XML."]
+}

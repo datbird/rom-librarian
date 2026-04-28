@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/07/schema",
+  "$id": "https://github.com/datbird/rom-librarian/schema/frontend.schema.json",
+  "title": "rom-librarian frontend record",
+  "type": "object",
+  "required": ["id", "name", "category", "homepage", "sources", "platforms", "default_paths", "structure", "systems", "quirks"],
+  "properties": {
+    "id": { "type": "string" },
+    "name": { "type": "string" },
+    "category": { "type": "string", "enum": ["frontend", "launcher", "library_manager"] },
+    "homepage": { "type": ["string", "null"] },
+    "sources": { "type": "array", "items": { "$ref": "source.schema.json" } },
+    "platforms": { "type": "array", "items": { "type": "string" } },
+    "default_paths": { "type": "object" },
+    "config_paths": { "type": "object" },
+    "structure": { "type": "object" },
+    "systems": { "type": "object" },
+    "scraping": { "type": "object" },
+    "quirks": { "type": "array", "items": { "type": "string" } },
+    "notes": { "type": "array", "items": { "type": "string" } }
+  }
+}
