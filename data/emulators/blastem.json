@@ -1,0 +1,13 @@
+{
+  "id": "blastem",
+  "name": "BlastEm",
+  "category": "emulator",
+  "homepage": "https://www.retrodev.com/blastem/",
+  "sources": [{ "type": "homepage", "url": "https://www.retrodev.com/blastem/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "platforms": ["windows", "linux", "macos"],
+  "systems": ["genesis", "megadrive"],
+  "paths": { "config": "BlastEm configuration directory", "saves": "configured save directory" },
+  "supported_formats": { "rom": [".md", ".gen", ".bin", ".smd"] },
+  "library_behavior": { "cartridge_only": true, "safe_archive_deletion_requires_launch_test": true },
+  "notes": ["Standalone Genesis/Mega Drive emulator; check frontend command templates before changing extensions."]
+}

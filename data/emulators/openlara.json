@@ -1,0 +1,13 @@
+{
+  "id": "openlara",
+  "name": "OpenLara",
+  "category": "source_port",
+  "homepage": "https://github.com/XProger/OpenLara",
+  "sources": [{ "type": "github", "url": "https://github.com/XProger/OpenLara", "last_reviewed": "2026-04-29", "confidence": "high" }],
+  "platforms": ["windows", "linux", "macos", "steamdeck"],
+  "systems": ["openlara"],
+  "paths": { "game_data": "user-supplied Tomb Raider data folder", "launchers": "frontend scripts or shortcuts" },
+  "supported_formats": { "launchers": [".sh", ".bat", ".desktop", ".exe"], "content": ["folder", ".zip", ".7z"] },
+  "library_behavior": { "requires_base_game_data": true, "folder_based": true, "safe_archive_deletion_requires_launch_test": true },
+  "notes": ["Preserve working directory and game data layout when diagnosing OpenLara launches."]
+}

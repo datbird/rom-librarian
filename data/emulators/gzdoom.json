@@ -1,0 +1,13 @@
+{
+  "id": "gzdoom",
+  "name": "GZDoom",
+  "category": "source_port",
+  "homepage": "https://zdoom.org/",
+  "sources": [{ "type": "homepage", "url": "https://zdoom.org/", "last_reviewed": "2026-04-29", "confidence": "high" }],
+  "platforms": ["windows", "linux", "macos", "steamdeck"],
+  "systems": ["doom", "gzdoom"],
+  "paths": { "iwads": "user-managed IWAD directory", "mods": "PWAD/PK3/mod paths from launcher scripts" },
+  "supported_formats": { "content": [".wad", ".iwad", ".pwad", ".pk3", ".pk7", ".zip", ".sh", ".bat", ".desktop"] },
+  "library_behavior": { "requires_base_game_data": true, "launcher_arguments_matter": true, "folder_based": true },
+  "notes": ["Do not move WAD/PK3 files away from launch scripts without checking arguments."]
+}

@@ -12,8 +12,17 @@ function getGamelistPaths(gamelistPath) {
 
 const files = walk(absoluteTarget);
 const m3uFiles = files.filter((filePath) => path.extname(filePath).toLowerCase() === ".m3u");
+const discDescriptorExtensions = new Set([".cue", ".gdi", ".chd", ".iso"]);
 const findings = [];
 const playlistTargets = new Set();
+
+function discGroupKey(filePath) {
+  const basename = path.basename(filePath, path.extname(filePath));
+  return basename
+    .replace(/\s*\((disc|disk|cd)\s*\d+\)\s*$/i, "")
+    .replace(/\s*[-_ ]+(disc|disk|cd)\s*\d+\s*$/i, "")
+    .trim();
+}
 
 for (const m3uPath of m3uFiles) {
   for (const entry of readLines(m3uPath)) {
@@ -49,6 +58,38 @@ for (const m3uPath of m3uFiles) {
   }
 }
 
+const descriptorGroups = new Map();
+for (const filePath of files) {
+  const extension = path.extname(filePath).toLowerCase();
+  if (!discDescriptorExtensions.has(extension)) continue;
+  if (playlistTargets.has(path.normalize(filePath))) continue;
+
+  const key = path.join(path.dirname(filePath), discGroupKey(filePath));
+  const group = descriptorGroups.get(key) || [];
+  group.push(filePath);
+  descriptorGroups.set(key, group);
+}
+
+for (const [key, descriptors] of descriptorGroups) {
+  if (descriptors.length < 2) continue;
+
+  const directory = path.dirname(descriptors[0]);
+  const title = path.basename(key);
+  const playlistPath = path.join(directory, `${title}.m3u`);
+  if (fs.existsSync(playlistPath)) continue;
+
+  const sortedDescriptors = descriptors.slice().sort((left, right) => left.localeCompare(right, undefined, { numeric: true, sensitivity: "base" }));
+  findings.push({
+    severity: "warning",
+    type: "missing_m3u_playlist",
+    playlist: toRelative(absoluteTarget, playlistPath),
+    entries: sortedDescriptors.map((descriptor) => toRelative(directory, descriptor)),
+    descriptors: sortedDescriptors.map((descriptor) => toRelative(absoluteTarget, descriptor)),
+    likely_cause: "Multiple disc descriptors appear to belong to one title but no root .m3u playlist exists.",
+    suggested_dry_run_repair: "Create an additive .m3u playlist that lists the existing disc descriptors in order; do not move or delete disc files."
+  });
+}
+
 for (const gamelistPath of files.filter((filePath) => path.basename(filePath).toLowerCase() === "gamelist.xml")) {
   const gamelistDirectory = path.dirname(gamelistPath);
   const gamelistEntries = getGamelistPaths(gamelistPath);
@@ -58,7 +99,7 @@ for (const gamelistPath of files.filter((filePath) => path.basename(filePath).to
     const resolvedEntry = path.normalize(path.resolve(gamelistDirectory, normalizedEntry));
     const extension = path.extname(normalizedEntry).toLowerCase();
 
-    if (![".cue", ".gdi", ".chd", ".iso"].includes(extension)) continue;
+    if (!discDescriptorExtensions.has(extension)) continue;
     if (!playlistTargets.has(resolvedEntry)) continue;
 
     findings.push({
@@ -78,7 +119,7 @@ const result = {
   target: absoluteTarget,
   mode: "read-only",
   status: "completed",
-  checks: ["playlist_targets", "case_mismatches", "duplicate_disc_entries", "subfolder_suffixes"],
+  checks: ["playlist_targets", "case_mismatches", "duplicate_disc_entries", "missing_m3u_playlists", "subfolder_suffixes"],
   summary: {
     m3u_files: m3uFiles.length,
     findings: findings.length

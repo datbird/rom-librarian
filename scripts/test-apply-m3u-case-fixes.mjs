@@ -90,4 +90,45 @@ const realRollback = runJson(["scripts/rollback-backup-manifest.mjs", realResult
 assert(realRollback.real_target === true, "real target rollback should mark real_target true");
 assert(countFindings(runJson(["scripts/audit-m3u.mjs", realTarget]), "case_mismatch") === 1, "real target case mismatch should return after rollback");
 
-console.log("apply and rollback M3U case fixes fixture test passed");
+const missingFixtureRoot = path.join(tempRoot, "fixtures", "missing-m3u");
+copyFixture("fixtures/missing-m3u", missingFixtureRoot);
+const missingTarget = path.join(missingFixtureRoot, "roms", "psx");
+const missingAudit = runJson(["scripts/audit-m3u.mjs", missingTarget]);
+assert(countFindings(missingAudit, "missing_m3u_playlist") === 1, "missing fixture should start with one missing playlist finding");
+
+const missingPlan = runJson(["scripts/plan-repairs.mjs", "-", "--severity", "warning"], JSON.stringify(missingAudit));
+const missingPlanPath = path.join(tempRoot, "missing-plan.json");
+fs.writeFileSync(missingPlanPath, JSON.stringify(missingPlan), "utf8");
+
+const missingResult = runJson(["scripts/apply-missing-m3u-playlists.mjs", missingPlanPath, "--apply"]);
+assert(missingResult.status === "applied", "missing M3U applicator did not apply");
+assert(missingResult.changes.length === 1, "missing M3U applicator expected one created playlist");
+assert(fs.existsSync(missingResult.changes[0].created_path), "generated playlist should exist");
+assert(countFindings(runJson(["scripts/audit-m3u.mjs", missingTarget]), "missing_m3u_playlist") === 0, "missing playlist finding should be fixed after apply");
+
+const missingRollback = runJson(["scripts/rollback-backup-manifest.mjs", missingResult.backup_manifest, "--apply"]);
+assert(missingRollback.restored.length === 1, "missing M3U rollback expected one removed generated file");
+assert(!fs.existsSync(missingResult.changes[0].created_path), "generated playlist should be removed after rollback");
+assert(countFindings(runJson(["scripts/audit-m3u.mjs", missingTarget]), "missing_m3u_playlist") === 1, "missing playlist finding should return after rollback");
+
+const realMissingRoot = fs.mkdtempSync(path.join(os.tmpdir(), "rom-librarian-real-missing-m3u-"));
+copyFixture("fixtures/missing-m3u", realMissingRoot);
+const realMissingTarget = path.join(realMissingRoot, "roms", "psx");
+const realMissingAudit = runJson(["scripts/audit-m3u.mjs", realMissingTarget]);
+const realMissingPlan = runJson(["scripts/plan-repairs.mjs", "-", "--severity", "warning"], JSON.stringify(realMissingAudit));
+const realMissingPlanPath = path.join(realMissingRoot, "missing-plan.json");
+fs.writeFileSync(realMissingPlanPath, JSON.stringify(realMissingPlan), "utf8");
+
+const missingRefusal = runExpectFailure(["scripts/apply-missing-m3u-playlists.mjs", realMissingPlanPath, "--apply"]);
+assert(missingRefusal.includes("--allow-real-targets"), "real target missing M3U apply should require --allow-real-targets");
+
+const realMissingResult = runJson(["scripts/apply-missing-m3u-playlists.mjs", realMissingPlanPath, "--apply", "--allow-real-targets", "--confirm-target", realMissingTarget]);
+assert(realMissingResult.real_target === true, "real target missing M3U apply should mark real_target true");
+assert(countFindings(runJson(["scripts/audit-m3u.mjs", realMissingTarget]), "missing_m3u_playlist") === 0, "real target missing playlist should be fixed");
+
+const changedPlaylist = realMissingResult.changes[0].created_path;
+fs.appendFileSync(changedPlaylist, "# user edit\n", "utf8");
+const changedRollbackRefusal = runExpectFailure(["scripts/rollback-backup-manifest.mjs", realMissingResult.backup_manifest, "--apply", "--allow-real-targets", "--confirm-target", realMissingTarget]);
+assert(changedRollbackRefusal.includes("Refusing to delete changed generated playlist"), "rollback should refuse deleting changed generated playlist");
+
+console.log("apply and rollback M3U fixture tests passed");

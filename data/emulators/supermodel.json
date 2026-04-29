@@ -1,0 +1,13 @@
+{
+  "id": "supermodel",
+  "name": "Supermodel",
+  "category": "emulator",
+  "homepage": "https://www.supermodel3.com/",
+  "sources": [{ "type": "homepage", "url": "https://www.supermodel3.com/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "platforms": ["windows", "linux", "macos"],
+  "systems": ["model3"],
+  "paths": { "roms": "Model 3 ROM ZIP directory", "config": "Supermodel INI files" },
+  "supported_formats": { "arcade": [".zip"] },
+  "library_behavior": { "arcade_romsets_intact": true, "version_sensitive": true, "safe_archive_deletion_requires_launch_test": true },
+  "notes": ["Keep Model 3 arcade ZIPs intact; verify emulator version and ROM set expectations."]
+}

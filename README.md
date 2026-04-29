@@ -216,13 +216,14 @@ npm run plan:markdown -- /tmp/media-plan.json
 
 Repair plans are non-mutating. They standardize risk, backup requirements, proposed dry-run steps, and blocked actions; they do not edit metadata or files.
 
-One narrowly scoped mutating applicator exists for proving backup/apply mechanics:
+Two narrowly scoped mutating applicators exist for proving backup/apply mechanics:
 
 ```bash
 npm run apply:m3u-case-fixes -- <m3u-repair-plan.json> --apply
+npm run apply:missing-m3u-playlists -- <m3u-repair-plan.json> --apply
 ```
 
-It edits only case-mismatched `.m3u` playlist lines after creating a backup manifest. Fixture targets require `--apply`; real targets also require `--allow-real-targets` and exact `--confirm-target <absolute-target>`.
+They either edit only case-mismatched `.m3u` playlist lines after backup or add missing `.m3u` playlists without moving source files. Fixture targets require `--apply`; real targets also require `--allow-real-targets` and exact `--confirm-target <absolute-target>`.
 
 Rollback is available with:
 
@@ -232,7 +233,7 @@ npm run rollback:manifest -- <backup-manifest.json> --apply
 
 Implemented fixture-backed audits currently cover:
 
-- M3U playlist targets, case mismatches, and duplicate loose disc metadata entries.
+- M3U playlist targets, case mismatches, missing multi-disc playlists, and duplicate loose disc metadata entries.
 - BIOS expected-filename checks that never validate or store BIOS contents.
 - EmulationStation `gamelist.xml` missing ROM/media paths and orphaned media.
 - Unsupported ROM/file extensions for a selected normalized system.
@@ -269,8 +270,8 @@ Static database coverage:
 - 21 normalized asset types
 - 14 normalized metadata fields
 - 22 normalized frontend/library-manager records
-- 172 normalized system/platform records
-- 31 normalized emulator/runtime records
+- 183 normalized system/platform records
+- 50 normalized emulator/runtime records
 - 24 quirks
 
 See `docs/` for the current lists.

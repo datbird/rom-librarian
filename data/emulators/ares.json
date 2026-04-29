@@ -1,0 +1,13 @@
+{
+  "id": "ares",
+  "name": "ares",
+  "category": "emulator",
+  "homepage": "https://ares-emu.net/",
+  "sources": [{ "type": "homepage", "url": "https://ares-emu.net/", "last_reviewed": "2026-04-29", "confidence": "high" }],
+  "platforms": ["windows", "linux", "macos"],
+  "systems": ["snes", "gb", "gbc", "gba", "n64", "genesis", "megadrive", "sms", "gamegear", "pcengine", "turbografx", "ngp", "ngpc", "wonderswan"],
+  "paths": { "config": "ares user configuration directory", "saves": "ares save/state directory" },
+  "supported_formats": { "rom": [".sfc", ".smc", ".gb", ".gbc", ".gba", ".z64", ".n64", ".md", ".gen", ".sms", ".gg", ".pce", ".ngp", ".ngc", ".ws", ".wsc"] },
+  "library_behavior": { "multi_system": true, "standalone_profiles": true, "safe_archive_deletion_requires_launch_test": true },
+  "notes": ["Accuracy-focused multi-system emulator; verify per-system import and BIOS expectations before repair automation."]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "m2emulator",
+  "name": "Model 2 Emulator",
+  "category": "emulator",
+  "homepage": "https://nebula.emulatronia.com/",
+  "sources": [{ "type": "homepage", "url": "https://nebula.emulatronia.com/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "platforms": ["windows"],
+  "systems": ["model2"],
+  "paths": { "roms": "Model 2 ROM ZIP directory", "config": "emulator INI files" },
+  "supported_formats": { "arcade": [".zip"] },
+  "library_behavior": { "arcade_romsets_intact": true, "version_sensitive": true, "safe_archive_deletion_requires_launch_test": true },
+  "notes": ["Keep Model 2 arcade ZIPs intact; do not treat clone/parent sets as duplicates without DAT context."]
+}

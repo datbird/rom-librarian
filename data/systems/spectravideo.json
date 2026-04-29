@@ -1,0 +1,13 @@
+{
+  "id": "spectravideo",
+  "name": "Spectravideo",
+  "category": "computer",
+  "manufacturer": "Spectravideo",
+  "sources": [{ "type": "docs", "url": "https://docs.mamedev.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "formats": { "preferred": [".cas", ".dsk", ".rom"], "supported": [".cas", ".wav", ".dsk", ".hfe", ".rom", ".bin", ".m3u", ".zip", ".7z"], "descriptor_files": [".m3u"], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": true, "common_files": [], "notes": "Machine ROM/model requirements depend on emulator setup." },
+  "emulation": { "preferred_emulators": ["mame", "retroarch"], "retroarch_cores": ["mame"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": "m3u", "folder_based": false, "playlist_target_preference": "tape, disk, cartridge, or playlist", "safe_archive_deletion_requires_launch_test": true },
+  "safety": { "automation_level": "approval_required", "requires_backup": true, "do_not_store": ["machine_roms", "bios_roms", "rom_payloads"], "notes": ["Do not rewrite media-slot assumptions automatically."] },
+  "notes": ["Classic computer target; verify exact model before repairing libraries."]
+}

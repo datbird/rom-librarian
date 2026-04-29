@@ -18,6 +18,7 @@ function operationForStep(step) {
   if (["missing_media_path", "missing_game_path", "stale_path", "missing_playlist_path"].includes(step.finding_type)) return "metadata_path_review";
   if (["duplicate_disc_entry", "duplicate_title_group"].includes(step.finding_type)) return "metadata_visibility_review";
   if (["case_mismatch", "missing_playlist_target"].includes(step.finding_type)) return "playlist_path_review";
+  if (step.finding_type === "missing_m3u_playlist") return "playlist_create_review";
   if (["unsupported_extension", "orphaned_media"].includes(step.finding_type)) return "quarantine_candidate_review";
   return "manual_review";
 }

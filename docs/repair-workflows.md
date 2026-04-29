@@ -1,6 +1,6 @@
-# Future Repair Workflows
+# Repair Workflows
 
-The first mutating workflow is implemented only for copied fixture paths: `.m3u` case-mismatch fixes. General library repair workflows are not implemented yet.
+Two narrow mutating workflows are implemented for `.m3u` maintenance: case-mismatch fixes and additive missing-playlist generation. General library repair workflows are not implemented yet.
 
 Any future mutating workflow should use this minimum design:
 
@@ -40,7 +40,7 @@ Blocked by default:
 
 Until these guardrails are implemented and tested, audits and repair plans must remain non-mutating.
 
-## Implemented Fixture-Only Applicator
+## Implemented M3U Applicators
 
 `scripts/apply-m3u-case-fixes.mjs` can replace case-mismatched `.m3u` playlist entries when all of these are true:
 
@@ -65,6 +65,26 @@ The applicator:
 
 Rollback is available via `scripts/rollback-backup-manifest.mjs`. For non-fixture targets, rollback also requires `--allow-real-targets` and exact `--confirm-target <absolute-target>`. It restores backed-up files from `backup-manifest.json` and does not delete backup files.
 
+`scripts/apply-missing-m3u-playlists.mjs` can create missing `.m3u` playlists when all of these are true:
+
+- Input is a dry-run repair plan generated from `audit:m3u`.
+- The finding type is `missing_m3u_playlist`.
+- `--apply` is present.
+- The playlist does not already exist.
+- Every generated playlist entry resolves to an existing descriptor under the target.
+
+For non-fixture targets, this applicator also requires:
+
+- `--allow-real-targets`
+- `--confirm-target <absolute-target>` matching the repair plan target exactly
+
+The missing-playlist applicator:
+
+- creates only new `.m3u` files
+- writes `backup-manifest.json`
+- never edits, deletes, or moves ROM/disc/media/metadata files
+- rolls back by deleting a generated playlist only if its current contents exactly match the manifest
+
 Example:
 
 ```bash
@@ -72,12 +92,18 @@ npm run audit:m3u -- fixtures/es-psx-multidisc/roms/psx --json-out /tmp/m3u-audi
 npm run plan:repairs -- /tmp/m3u-audit.json --severity warning --json-out /tmp/m3u-plan.json
 npm run apply:m3u-case-fixes -- /tmp/m3u-plan.json --apply
 npm run rollback:manifest -- <backup-manifest.json> --apply
+
+npm run audit:m3u -- fixtures/missing-m3u/roms/psx --json-out /tmp/missing-m3u-audit.json
+npm run plan:repairs -- /tmp/missing-m3u-audit.json --severity warning --json-out /tmp/missing-m3u-plan.json
+npm run apply:missing-m3u-playlists -- /tmp/missing-m3u-plan.json --apply
+npm run rollback:manifest -- <backup-manifest.json> --apply
 ```
 
 Real target example:
 
 ```bash
 npm run apply:m3u-case-fixes -- /tmp/m3u-plan.json --apply --allow-real-targets --confirm-target /absolute/library/path
+npm run apply:missing-m3u-playlists -- /tmp/missing-m3u-plan.json --apply --allow-real-targets --confirm-target /absolute/library/path
 npm run rollback:manifest -- <backup-manifest.json> --apply --allow-real-targets --confirm-target /absolute/library/path
 ```
 

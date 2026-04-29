@@ -1,0 +1,13 @@
+{
+  "id": "openbor",
+  "name": "OpenBOR",
+  "category": "runtime",
+  "homepage": "https://github.com/DCurrent/openbor",
+  "sources": [{ "type": "github", "url": "https://github.com/DCurrent/openbor", "last_reviewed": "2026-04-29", "confidence": "high" }],
+  "platforms": ["windows", "linux", "macos", "steamdeck"],
+  "systems": ["openbor", "ports"],
+  "paths": { "paks": "PAK or game folder path", "saves": "runtime save directory" },
+  "supported_formats": { "content": [".pak", ".zip", "folder"] },
+  "library_behavior": { "runtime_version_sensitive": true, "folder_based": true, "safe_archive_deletion_requires_launch_test": true },
+  "notes": ["OpenBOR PAK/runtime compatibility can vary; verify launch before cleanup."]
+}

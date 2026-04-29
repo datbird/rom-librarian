@@ -1,0 +1,13 @@
+{
+  "id": "hypseus-singe",
+  "name": "Hypseus Singe",
+  "category": "emulator",
+  "homepage": "https://github.com/DirtBagXon/hypseus-singe",
+  "sources": [{ "type": "github", "url": "https://github.com/DirtBagXon/hypseus-singe", "last_reviewed": "2026-04-29", "confidence": "high" }],
+  "platforms": ["windows", "linux", "macos", "steamdeck"],
+  "systems": ["daphne", "singe"],
+  "paths": { "framefiles": "per-game framefile paths", "video": "laserdisc MPEG/OGV media folders", "roms": "Daphne ROM ZIP paths where required" },
+  "supported_formats": { "launchers": [".daphne", ".singe", ".txt", ".sh", ".bat"], "media": [".m2v", ".ogv", ".mp4"] },
+  "library_behavior": { "sidecar_media_required": true, "framefile_required": true, "safe_archive_deletion_requires_launch_test": true },
+  "notes": ["Laserdisc launches are sidecar-heavy; never flatten game folders automatically."]
+}

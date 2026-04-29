@@ -1,0 +1,13 @@
+{
+  "id": "pet",
+  "name": "Commodore PET",
+  "category": "computer",
+  "manufacturer": "Commodore",
+  "sources": [{ "type": "docs", "url": "https://docs.mamedev.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }, { "type": "homepage", "url": "https://vice-emu.sourceforge.io/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "formats": { "preferred": [".prg", ".tap", ".d64"], "supported": [".prg", ".tap", ".t64", ".d64", ".g64", ".dsk", ".hfe", ".m3u", ".rom", ".bin", ".zip", ".7z"], "descriptor_files": [".m3u"], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": true, "common_files": [], "notes": "PET machine ROM/model requirements depend on emulator setup." },
+  "emulation": { "preferred_emulators": ["vice", "mame"], "retroarch_cores": ["vice_xpet", "mame"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": "m3u", "folder_based": false, "playlist_target_preference": "program, tape, disk, or playlist", "safe_archive_deletion_requires_launch_test": true },
+  "safety": { "automation_level": "approval_required", "requires_backup": true, "do_not_store": ["machine_roms", "bios_roms", "rom_payloads"], "notes": ["Model and keyboard assumptions can be launch-critical."] },
+  "notes": ["Classic Commodore computer target; do not treat as interchangeable with C64/VIC-20 libraries."]
+}

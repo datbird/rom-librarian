@@ -1,0 +1,13 @@
+{
+  "id": "vice",
+  "name": "VICE",
+  "category": "emulator",
+  "homepage": "https://vice-emu.sourceforge.io/",
+  "sources": [{ "type": "homepage", "url": "https://vice-emu.sourceforge.io/", "last_reviewed": "2026-04-29", "confidence": "high" }],
+  "platforms": ["windows", "linux", "macos", "steamdeck"],
+  "systems": ["c64", "c128", "vic20", "plus4", "cplus4", "pet"],
+  "paths": { "config": "VICE configuration directory", "roms": "user-managed machine ROM paths where required" },
+  "supported_formats": { "media": [".d64", ".g64", ".d71", ".d81", ".tap", ".t64", ".prg", ".crt", ".m3u", ".zip", ".7z"] },
+  "library_behavior": { "requires_machine_profile": true, "supports_multidisk": true, "safe_archive_deletion_requires_launch_test": true },
+  "notes": ["Commodore computer launches depend on machine model and media type; avoid flattening disk sets automatically."]
+}

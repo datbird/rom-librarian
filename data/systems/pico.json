@@ -1,0 +1,13 @@
+{
+  "id": "pico",
+  "name": "PICO-8 (folder alias)",
+  "category": "fantasy_console",
+  "manufacturer": "Lexaloffle",
+  "sources": [{ "type": "homepage", "url": "https://www.lexaloffle.com/pico-8.php", "last_reviewed": "2026-04-29", "confidence": "high" }, { "type": "github", "url": "https://github.com/jtothebell/fake-08", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "formats": { "preferred": [".p8", ".p8.png"], "supported": [".p8", ".p8.png"], "descriptor_files": [], "archive_formats": [] },
+  "bios": { "required": false, "common_files": [], "notes": "Official PICO-8 runtime is commercial; Fake-08 is an alternate emulator/core." },
+  "emulation": { "preferred_emulators": ["pico8", "fake08"], "retroarch_cores": ["fake08"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": false, "playlist_target_preference": "cartridge file", "safe_archive_deletion_requires_launch_test": true },
+  "safety": { "automation_level": "dry_run_only", "requires_backup": true, "do_not_store": ["commercial_runtime", "rom_payloads"], "notes": ["Do not assume Fake-08 compatibility equals official PICO-8 compatibility."] },
+  "notes": ["Alias-like record for frontends that use pico instead of pico8."]
+}

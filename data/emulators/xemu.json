@@ -1,0 +1,13 @@
+{
+  "id": "xemu",
+  "name": "xemu",
+  "category": "emulator",
+  "homepage": "https://xemu.app/",
+  "sources": [{ "type": "homepage", "url": "https://xemu.app/", "last_reviewed": "2026-04-29", "confidence": "high" }],
+  "platforms": ["windows", "linux", "macos", "steamdeck"],
+  "systems": ["xbox"],
+  "paths": { "bios": "user-managed Xbox BIOS/MCPX paths", "hdd": "xemu virtual hard disk path", "config": "xemu config directory" },
+  "supported_formats": { "disc": [".iso", ".xiso"], "executables": [".xbe"] },
+  "library_behavior": { "bios_required": true, "hdd_image_required": true, "xiso_preferred": true, "safe_archive_deletion_requires_launch_test": true },
+  "notes": ["Do not store Xbox BIOS/MCPX data in project config; redump ISOs may need XISO conversion outside repair automation."]
+}

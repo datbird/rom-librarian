@@ -9,7 +9,7 @@ Common options:
 
 Implemented audits:
 
-- `npm run audit:m3u -- <path>` checks `.m3u` targets, case mismatches, and duplicate loose disc entries in `gamelist.xml`.
+- `npm run audit:m3u -- <path>` checks `.m3u` targets, case mismatches, missing multi-disc `.m3u` playlists, and duplicate loose disc entries in `gamelist.xml`.
 - `npm run audit:media -- <path>` checks EmulationStation `gamelist.xml` game/media paths and orphaned media.
 - `npm run audit:launchbox -- <path>` checks LaunchBox platform XML stale paths.
 - `npm run audit:mame -- <path>` checks MAME ZIP/CHD layout relationships without set validation.
