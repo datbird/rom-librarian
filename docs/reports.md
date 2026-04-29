@@ -83,9 +83,11 @@ JSON summary output is validated by `schema/summary-report.schema.json` in the o
 | Dry-run change JSON | `schema/dry-run-change.schema.json` |
 | Coverage-gap report JSON | `schema/coverage-gap-report.schema.json` |
 | Summary report JSON | `schema/summary-report.schema.json` |
+| Backup manifest JSON | `schema/backup-manifest.schema.json` |
 | Mutating applicator result JSON | `schema/applicator-result.schema.json` |
+| Rollback result JSON | `schema/rollback-result.schema.json` |
 
-Coverage-gap bucket names are schema-constrained so newly introduced prioritization categories must be added intentionally. Applicator result validation covers the JSON emitted by the M3U, missing-M3U, CUE, and GDI applicators; rollback output is separate from applicator output.
+Coverage-gap bucket names are schema-constrained so newly introduced prioritization categories must be added intentionally. Applicator result validation covers the JSON emitted by the M3U, missing-M3U, CUE, and GDI applicators. Rollback result validation covers manifest-backed file restores and generated-playlist deletion rollbacks.
 
 ## CI Artifacts
 

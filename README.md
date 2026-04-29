@@ -282,8 +282,8 @@ Static database coverage:
 - 21 normalized asset types
 - 14 normalized metadata fields
 - 22 normalized frontend/library-manager records
-- 284 normalized system/platform records
-- 140 normalized emulator/runtime records
+- 294 normalized system/platform records
+- 150 normalized emulator/runtime records
 - 24 quirks
 
 See `docs/` for the current lists. `docs/reports.md` summarizes audit reports, repair plans, dry-run changes, coverage gaps, and CI artifacts. `docs/alias-intent.md` explains direct records versus alias-covered IDs.

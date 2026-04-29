@@ -62,10 +62,11 @@ function bucketForStaticEntry(section, id, entry) {
   const notes = String(entry.notes || "").toLowerCase();
   if (section === "emulators") {
     const systems = entry.systems || [];
-    if (["godot", "ikemen-go", "mugen", "solarus", "vpinball", "android-emulator", "arcadeflashweb", "3dsen", "ace-dl", "flashpoint", "lutris", "wine", "winlator"].includes(id)) return "launcher_or_runtime";
+    if (["godot", "ikemen-go", "mugen", "solarus", "vpinball", "android-emulator", "arcadeflashweb", "3dsen", "ace-dl", "flashpoint", "lutris", "wine", "winlator", "azaharplus"].includes(id)) return "launcher_or_runtime";
     if (["advancemame", "finalburn-neo"].includes(id) || systems.some((systemId) => ["arcade", "mame", "fbneo", "neogeo", "cps1", "cps2", "cps3", "atomiswave", "naomi", "naomi2"].includes(systemId))) return "arcade_or_dat_sensitive";
     if (systems.some((systemId) => ["psx", "saturn", "segacd", "pcenginecd", "dreamcast", "ps2", "3do", "cdi", "neogeocd", "pcfx", "fmtowns"].includes(systemId))) return "disc_or_multidisc";
-    if (["altirra", "applewin", "beebem", "colem", "dosbox", "a7800", "amiarcadia"].includes(id) || systems.some((systemId) => ["atari5200", "atari7800", "colecovision", "apple2", "bbcmicro", "msx", "fmtowns", "pc88", "pc98"].includes(systemId))) return "bios_or_firmware_sensitive";
+    if (["altirra", "applewin", "beebem", "colem", "dosbox", "a7800", "amiarcadia", "basiliskii", "quasi88"].includes(id) || systems.some((systemId) => ["atari5200", "atari7800", "colecovision", "apple2", "bbcmicro", "msx", "fmtowns", "pc88", "pc98", "macintosh"].includes(systemId))) return "bios_or_firmware_sensitive";
+    if (["boom3", "cannonball", "dinothawr", "doukutsu-rs", "ecwolf", "eduke32", "prboom-plus", "xrick"].includes(id)) return "engine_or_source_port";
   }
   if (notes.includes("source-port") || notes.includes("engine") || ["prboom-plus", "ecwolf", "eduke32", "raze"].includes(id)) return "engine_or_source_port";
   if (entry.bios_required) return "bios_or_firmware_sensitive";

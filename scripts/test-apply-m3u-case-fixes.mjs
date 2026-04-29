@@ -8,6 +8,8 @@ import Ajv from "ajv";
 const root = process.cwd();
 const ajv = new Ajv({ allErrors: true, strict: false, validateSchema: false });
 const validateApplicatorResult = ajv.compile(JSON.parse(fs.readFileSync(path.join(root, "schema/applicator-result.schema.json"), "utf8")));
+const validateRollbackResult = ajv.compile(JSON.parse(fs.readFileSync(path.join(root, "schema/rollback-result.schema.json"), "utf8")));
+const validateBackupManifest = ajv.compile(JSON.parse(fs.readFileSync(path.join(root, "schema/backup-manifest.schema.json"), "utf8")));
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -38,6 +40,14 @@ function assertApplicatorResult(result, label) {
   assert(validateApplicatorResult(result), `${label} failed applicator result schema validation: ${ajv.errorsText(validateApplicatorResult.errors)}`);
 }
 
+function assertRollbackResult(result, label) {
+  assert(validateRollbackResult(result), `${label} failed rollback result schema validation: ${ajv.errorsText(validateRollbackResult.errors)}`);
+}
+
+function assertBackupManifest(manifest, label) {
+  assert(validateBackupManifest(manifest), `${label} failed backup manifest schema validation: ${ajv.errorsText(validateBackupManifest.errors)}`);
+}
+
 const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "rom-librarian-fixtures-"));
 const fixtureRoot = path.join(tempRoot, "fixtures", "es-psx-multidisc");
 copyFixture("fixtures/es-psx-multidisc", fixtureRoot);
@@ -61,6 +71,7 @@ assert(result.verification.length === 1, "M3U case fix expected one verification
 assert(fs.existsSync(result.backup_manifest), "backup manifest was not written");
 
 const manifest = JSON.parse(fs.readFileSync(result.backup_manifest, "utf8"));
+assertBackupManifest(manifest, "M3U backup manifest");
 assert(manifest.backup_paths.length === 1, "backup manifest expected one backup path");
 assert(fs.existsSync(manifest.backup_paths[0]), "playlist backup path missing");
 
@@ -69,6 +80,7 @@ assert(countFindings(afterAudit, "case_mismatch") === 0, "case mismatch should b
 assert(countFindings(afterAudit, "duplicate_disc_entry") === 1, "duplicate disc finding should remain after case fix");
 
 const rollback = runJson(["scripts/rollback-backup-manifest.mjs", result.backup_manifest, "--apply"]);
+assertRollbackResult(rollback, "M3U rollback result");
 assert(rollback.status === "restored", "rollback did not restore from manifest");
 assert(rollback.restored.length === 1, "rollback expected one restored file");
 assert(fs.existsSync(manifest.backup_paths[0]), "rollback should not delete backup files");
@@ -100,6 +112,7 @@ const rollbackRefusal = runExpectFailure(["scripts/rollback-backup-manifest.mjs"
 assert(rollbackRefusal.includes("--allow-real-targets"), "real target rollback should require --allow-real-targets");
 
 const realRollback = runJson(["scripts/rollback-backup-manifest.mjs", realResult.backup_manifest, "--apply", "--allow-real-targets", "--confirm-target", realTarget]);
+assertRollbackResult(realRollback, "real M3U rollback result");
 assert(realRollback.real_target === true, "real target rollback should mark real_target true");
 assert(countFindings(runJson(["scripts/audit-m3u.mjs", realTarget]), "case_mismatch") === 1, "real target case mismatch should return after rollback");
 

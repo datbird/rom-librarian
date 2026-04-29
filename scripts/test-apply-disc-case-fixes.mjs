@@ -8,12 +8,16 @@ import Ajv from "ajv";
 const root = process.cwd();
 const ajv = new Ajv({ allErrors: true, strict: false, validateSchema: false });
 const validateApplicatorResult = ajv.compile(JSON.parse(fs.readFileSync(path.join(root, "schema/applicator-result.schema.json"), "utf8")));
+const validateRollbackResult = ajv.compile(JSON.parse(fs.readFileSync(path.join(root, "schema/rollback-result.schema.json"), "utf8")));
+const validateBackupManifest = ajv.compile(JSON.parse(fs.readFileSync(path.join(root, "schema/backup-manifest.schema.json"), "utf8")));
 function assert(condition, message) { if (!condition) throw new Error(message); }
 function runJson(args, input) { return JSON.parse(execFileSync(process.execPath, args, { cwd: root, encoding: "utf8", input })); }
 function runExpectFailure(args) { try { execFileSync(process.execPath, args, { cwd: root, encoding: "utf8", stdio: "pipe" }); } catch (error) { return String(error.stderr || error.stdout || ""); } throw new Error(`Expected command to fail: ${args.join(" ")}`); }
 function copyFixture(source, destination) { fs.cpSync(path.join(root, source), destination, { recursive: true }); }
 function countFindings(result, type) { return result.findings.filter((finding) => finding.type === type).length; }
 function assertApplicatorResult(result, label) { assert(validateApplicatorResult(result), `${label} failed applicator result schema validation: ${ajv.errorsText(validateApplicatorResult.errors)}`); }
+function assertRollbackResult(result, label) { assert(validateRollbackResult(result), `${label} failed rollback result schema validation: ${ajv.errorsText(validateRollbackResult.errors)}`); }
+function assertBackupManifest(manifest, label) { assert(validateBackupManifest(manifest), `${label} failed backup manifest schema validation: ${ajv.errorsText(validateBackupManifest.errors)}`); }
 
 const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "rom-librarian-disc-case-"));
 const cueFixtureRoot = path.join(tempRoot, "fixtures", "cue-issues");
@@ -29,6 +33,8 @@ assertApplicatorResult(cueResult, "CUE result");
 assert(cueResult.status === "applied", "CUE case fix applicator did not apply");
 assert(countFindings(runJson(["scripts/audit-cue.mjs", cueTarget]), "cue_case_mismatch") === 0, "CUE case mismatch should be fixed after apply");
 const cueRollback = runJson(["scripts/rollback-backup-manifest.mjs", cueResult.backup_manifest, "--apply"]);
+assertBackupManifest(JSON.parse(fs.readFileSync(cueResult.backup_manifest, "utf8")), "CUE backup manifest");
+assertRollbackResult(cueRollback, "CUE rollback result");
 assert(cueRollback.restored.length === 1, "CUE rollback expected one restored file");
 
 const realCueRoot = fs.mkdtempSync(path.join(os.tmpdir(), "rom-librarian-real-cue-"));
@@ -54,6 +60,8 @@ assertApplicatorResult(gdiResult, "GDI result");
 assert(gdiResult.status === "applied", "GDI case fix applicator did not apply");
 assert(countFindings(runJson(["scripts/audit-gdi.mjs", gdiTarget]), "gdi_case_mismatch") === 0, "GDI case mismatch should be fixed after apply");
 const gdiRollback = runJson(["scripts/rollback-backup-manifest.mjs", gdiResult.backup_manifest, "--apply"]);
+assertBackupManifest(JSON.parse(fs.readFileSync(gdiResult.backup_manifest, "utf8")), "GDI backup manifest");
+assertRollbackResult(gdiRollback, "GDI rollback result");
 assert(gdiRollback.restored.length === 1, "GDI rollback expected one restored file");
 
 const realGdiRoot = fs.mkdtempSync(path.join(os.tmpdir(), "rom-librarian-real-gdi-"));

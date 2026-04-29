@@ -8,12 +8,16 @@ import Ajv from "ajv";
 const root = process.cwd();
 const ajv = new Ajv({ allErrors: true, strict: false, validateSchema: false });
 const validateApplicatorResult = ajv.compile(JSON.parse(fs.readFileSync(path.join(root, "schema/applicator-result.schema.json"), "utf8")));
+const validateRollbackResult = ajv.compile(JSON.parse(fs.readFileSync(path.join(root, "schema/rollback-result.schema.json"), "utf8")));
+const validateBackupManifest = ajv.compile(JSON.parse(fs.readFileSync(path.join(root, "schema/backup-manifest.schema.json"), "utf8")));
 function assert(condition, message) { if (!condition) throw new Error(message); }
 function runJson(args, input) { return JSON.parse(execFileSync(process.execPath, args, { cwd: root, encoding: "utf8", input })); }
 function runExpectFailure(args) { try { execFileSync(process.execPath, args, { cwd: root, encoding: "utf8", stdio: "pipe" }); } catch (error) { return String(error.stderr || error.stdout || ""); } throw new Error(`Expected command to fail: ${args.join(" ")}`); }
 function copyFixture(source, destination) { fs.cpSync(path.join(root, source), destination, { recursive: true }); }
 function countFindings(result, type) { return result.findings.filter((finding) => finding.type === type).length; }
 function assertApplicatorResult(result, label) { assert(validateApplicatorResult(result), `${label} failed applicator result schema validation: ${ajv.errorsText(validateApplicatorResult.errors)}`); }
+function assertRollbackResult(result, label) { assert(validateRollbackResult(result), `${label} failed rollback result schema validation: ${ajv.errorsText(validateRollbackResult.errors)}`); }
+function assertBackupManifest(manifest, label) { assert(validateBackupManifest(manifest), `${label} failed backup manifest schema validation: ${ajv.errorsText(validateBackupManifest.errors)}`); }
 
 const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "rom-librarian-missing-m3u-"));
 const missingFixtureRoot = path.join(tempRoot, "fixtures", "missing-m3u");
@@ -31,6 +35,8 @@ assert(missingResult.changes.length === 1, "missing M3U applicator expected one 
 assert(fs.existsSync(missingResult.changes[0].created_path), "generated playlist should exist");
 assert(countFindings(runJson(["scripts/audit-m3u.mjs", missingTarget]), "missing_m3u_playlist") === 0, "missing playlist finding should be fixed after apply");
 const missingRollback = runJson(["scripts/rollback-backup-manifest.mjs", missingResult.backup_manifest, "--apply"]);
+assertBackupManifest(JSON.parse(fs.readFileSync(missingResult.backup_manifest, "utf8")), "missing M3U backup manifest");
+assertRollbackResult(missingRollback, "missing M3U rollback result");
 assert(missingRollback.restored.length === 1, "missing M3U rollback expected one removed generated file");
 assert(!fs.existsSync(missingResult.changes[0].created_path), "generated playlist should be removed after rollback");
 
