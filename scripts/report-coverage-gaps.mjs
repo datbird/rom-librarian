@@ -58,8 +58,14 @@ function coveredIds(record) {
   return ids;
 }
 
-function bucketForStaticEntry(id, entry) {
+function bucketForStaticEntry(section, id, entry) {
   const notes = String(entry.notes || "").toLowerCase();
+  if (section === "emulators") {
+    if (["godot", "ikemen-go", "mugen", "solarus", "vpinball", "android-emulator", "arcadeflashweb"].includes(id)) return "launcher_or_runtime";
+    if (["advancemame"].includes(id) || (entry.systems || []).some((systemId) => ["arcade", "mame", "fbneo"].includes(systemId))) return "arcade_or_dat_sensitive";
+    if ((entry.systems || []).some((systemId) => ["psx", "saturn", "segacd", "pcenginecd", "dreamcast", "ps2"].includes(systemId))) return "disc_or_multidisc";
+    if (["altirra", "applewin", "beebem", "colem", "dosbox"].includes(id)) return "bios_or_firmware_sensitive";
+  }
   if (notes.includes("source-port") || notes.includes("engine") || ["prboom-plus", "ecwolf", "eduke32", "raze"].includes(id)) return "engine_or_source_port";
   if (entry.bios_required) return "bios_or_firmware_sensitive";
   if (entry.multidisc || entry.multidisc_format || (entry.disc_formats || []).length > 0) return "disc_or_multidisc";
@@ -69,6 +75,8 @@ function bucketForStaticEntry(id, entry) {
 
 function priorityReason(bucket) {
   if (bucket === "engine_or_source_port") return "Engine/source-port entries have launcher arguments, commercial data ownership, and save-location risks that benefit from source-backed normalization.";
+  if (bucket === "launcher_or_runtime") return "Runtime and launcher entries can contain installed state, user data, and working-directory assumptions that need explicit safety notes.";
+  if (bucket === "arcade_or_dat_sensitive") return "Arcade emulator entries need DAT/version context and explicit no-rebuild/no-unzip safety guidance.";
   if (bucket === "disc_or_multidisc") return "Disc and multi-disc entries need descriptor, playlist, CHD, and payload-safety behavior documented before repair planning.";
   if (bucket === "bios_or_firmware_sensitive") return "BIOS/firmware-sensitive entries need explicit do-not-store and manual-handling guidance.";
   if (bucket === "launcher_or_installed_app") return "Launcher/installed-app entries can contain account data, prefixes, shortcuts, and working-directory assumptions.";
@@ -78,19 +86,19 @@ function priorityReason(bucket) {
 function summarizeBuckets(section, ids) {
   const buckets = {};
   for (const id of ids) {
-    const bucket = bucketForStaticEntry(id, staticDb[section]?.[id] || {});
+    const bucket = bucketForStaticEntry(section, id, staticDb[section]?.[id] || {});
     buckets[bucket] = (buckets[bucket] || 0) + 1;
   }
   return buckets;
 }
 
 function recommendedNext(section, missing) {
-  const preferredBuckets = ["engine_or_source_port", "disc_or_multidisc", "bios_or_firmware_sensitive", "launcher_or_installed_app", "standard_media"];
+  const preferredBuckets = ["engine_or_source_port", "launcher_or_runtime", "arcade_or_dat_sensitive", "disc_or_multidisc", "bios_or_firmware_sensitive", "launcher_or_installed_app", "standard_media"];
   return [...missing]
-    .sort((a, b) => preferredBuckets.indexOf(bucketForStaticEntry(a, staticDb[section]?.[a] || {})) - preferredBuckets.indexOf(bucketForStaticEntry(b, staticDb[section]?.[b] || {})) || a.localeCompare(b))
+    .sort((a, b) => preferredBuckets.indexOf(bucketForStaticEntry(section, a, staticDb[section]?.[a] || {})) - preferredBuckets.indexOf(bucketForStaticEntry(section, b, staticDb[section]?.[b] || {})) || a.localeCompare(b))
     .slice(0, limit || 10)
     .map((id) => {
-      const bucket = bucketForStaticEntry(id, staticDb[section]?.[id] || {});
+      const bucket = bucketForStaticEntry(section, id, staticDb[section]?.[id] || {});
       return { id, bucket, priority_reason: priorityReason(bucket) };
     });
 }

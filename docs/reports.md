@@ -52,6 +52,26 @@ Use this report to prioritize normalized data backfill. Alias-covered IDs are al
 
 See `alias-intent.md` before turning a missing ID into a new normalized record.
 
+## Summary
+
+Summary reports combine normalized counts, coverage percentages, recommended backfill, and implemented mutating applicators:
+
+```bash
+npm run report:summary
+npm run report:summary -- --format markdown
+npm run report:summary -- --json-out /tmp/summary.json
+```
+
+## Format Matrix
+
+| Command | JSON stdout | `--json-out` | Markdown | HTML |
+| --- | --- | --- | --- | --- |
+| `npm run report:audit -- <audit.json>` | no | no | default, `--format markdown` | `--format html` |
+| `npm run plan:markdown -- <plan.json>` | no | no | default | no |
+| `npm run plan:changes -- <plan.json>` | default | supported | no | no |
+| `npm run report:coverage-gaps` | default | supported | `--format markdown` | no |
+| `npm run report:summary` | default | supported | `--format markdown` | no |
+
 ## CI Artifacts
 
-The Check workflow runs `npm run examples:outputs -- tmp/examples` and uploads example audit outputs. The artifact includes audit JSON, repair plans, dry-run changes, Markdown reports, HTML reports, and coverage-gap reports for representative fixtures.
+The Check workflow runs `npm run examples:outputs -- tmp/examples` and uploads example audit outputs. The artifact includes audit JSON, repair plans, dry-run changes, Markdown reports, HTML reports, coverage-gap reports, and summary reports for representative fixtures.

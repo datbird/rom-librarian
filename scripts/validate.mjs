@@ -145,7 +145,7 @@ function walk(relativeDirectory) {
 
 function validateFixtures() {
   const forbiddenNames = new Set(["prod.keys", "title.keys", "aes_keys.txt", "keys.txt", "firmware.bin", "bios7.bin", "bios9.bin", "dc_boot.bin", "dc_flash.bin"]);
-  const placeholderExtensions = new Set([".bin", ".chd", ".iso", ".rvz", ".sfc", ".zip", ".7z"]);
+  const textPlaceholderExtensions = new Set([".bin", ".chd", ".iso", ".rvz", ".sfc", ".zip", ".7z"]);
   const files = walk("fixtures");
 
   for (const relativePath of files) {
@@ -153,7 +153,9 @@ function validateFixtures() {
     assert(!forbiddenNames.has(basename), `${relativePath} looks like forbidden BIOS/key/firmware fixture content`);
 
     const extension = path.extname(relativePath).toLowerCase();
-    if (!placeholderExtensions.has(extension)) continue;
+    const size = fs.statSync(path.join(root, relativePath)).size;
+    assert(size <= 4096, `${relativePath} fixture file is too large for synthetic test data`);
+    if (!textPlaceholderExtensions.has(extension)) continue;
 
     const text = fs.readFileSync(path.join(root, relativePath), "utf8");
     assert(text.includes("Synthetic placeholder only"), `${relativePath} must contain the synthetic placeholder marker`);

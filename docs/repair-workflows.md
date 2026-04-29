@@ -51,6 +51,20 @@ Blocked by default:
 
 Until these guardrails are implemented and tested, audits and repair plans must remain non-mutating.
 
+## Mutation Safety Matrix
+
+| Workflow | Default mode | Allowed mutation | Required gates | Never touches |
+| --- | --- | --- | --- | --- |
+| Audit scripts | read-only | none | none | library files, metadata, BIOS, firmware, keys, saves |
+| Repair plans | dry-run | none | generated from audit JSON | library files, metadata, BIOS, firmware, keys, saves |
+| Dry-run change lists | dry-run | none | generated from repair plan | library files, metadata, BIOS, firmware, keys, saves |
+| M3U case fixes | gated apply | playlist text case replacement | `--apply`; real targets also require `--allow-real-targets --confirm-target <absolute-target>` | disc payloads, media, metadata, BIOS, firmware, keys, saves |
+| Missing M3U playlists | gated apply | additive `.m3u` creation | `--apply`; real targets also require `--allow-real-targets --confirm-target <absolute-target>` | disc payloads, existing playlists, media, metadata, BIOS, firmware, keys, saves |
+| CUE case fixes | gated apply | CUE `FILE` text case replacement | `--apply`; real targets also require `--allow-real-targets --confirm-target <absolute-target>` | BIN/WAV/payload tracks, media, metadata, BIOS, firmware, keys, saves |
+| GDI case fixes | gated apply | GDI track filename text case replacement | `--apply`; real targets also require `--allow-real-targets --confirm-target <absolute-target>` | track payloads, media, metadata, BIOS, firmware, keys, saves |
+| CHD candidates | read-only | none | none | CHD files, source descriptors, conversion output |
+| Arcade/MAME/FBNeo checks | read-only | none | none | zipped sets, DAT rebuilds, merged/split sets |
+
 ## Implemented M3U Applicators
 
 `scripts/apply-m3u-case-fixes.mjs` can replace case-mismatched `.m3u` playlist entries when all of these are true:

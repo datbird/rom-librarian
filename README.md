@@ -215,6 +215,8 @@ npm run plan:changes -- /tmp/media-plan.json --json-out /tmp/media-changes.json
 npm run plan:markdown -- /tmp/media-plan.json
 npm run report:audit -- /tmp/media-audit.json --format markdown
 npm run report:coverage-gaps -- --json-out /tmp/coverage-gaps.json
+npm run report:coverage-gaps -- --format markdown --limit 25
+npm run report:summary -- --format markdown
 ```
 
 Repair plans are non-mutating. They standardize risk, backup requirements, proposed dry-run steps, and blocked actions; they do not edit metadata or files.

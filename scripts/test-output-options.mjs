@@ -57,6 +57,11 @@ assert(limitedCoverage.systems.recommended_next.every((item) => item.id && item.
 const coverageMarkdown = execFileSync(process.execPath, ["scripts/report-coverage-gaps.mjs", "--section", "systems", "--limit", "5", "--format", "markdown"], { cwd: root, encoding: "utf8" });
 assert(coverageMarkdown.includes("# Coverage Gaps"), "coverage markdown missing title");
 assert(coverageMarkdown.includes("Recommended Next"), "coverage markdown missing recommendations");
+const summary = JSON.parse(execFileSync(process.execPath, ["scripts/report-summary.mjs"], { cwd: root, encoding: "utf8" }));
+assert(summary.report === "summary", "summary report should identify itself");
+assert(summary.normalized_counts.systems > 0, "summary report missing normalized counts");
+const summaryMarkdown = execFileSync(process.execPath, ["scripts/report-summary.mjs", "--format", "markdown"], { cwd: root, encoding: "utf8" });
+assert(summaryMarkdown.includes("# rom-librarian Summary"), "summary markdown missing title");
 
 const reportMatrix = [
   ["cue", "scripts/audit-cue.mjs", "fixtures/cue-issues/roms/psx"],
@@ -84,5 +89,7 @@ assert(fs.existsSync(path.join(exampleDirectory, "m3u-report.md")), "example gen
 assert(fs.existsSync(path.join(exampleDirectory, "m3u-report.html")), "example generation missing HTML report");
 assert(fs.existsSync(path.join(exampleDirectory, "coverage-gaps.json")), "example generation missing coverage JSON");
 assert(fs.existsSync(path.join(exampleDirectory, "coverage-gaps.md")), "example generation missing coverage markdown");
+assert(fs.existsSync(path.join(exampleDirectory, "summary.json")), "example generation missing summary JSON");
+assert(fs.existsSync(path.join(exampleDirectory, "summary.md")), "example generation missing summary markdown");
 
 console.log("audit output option test passed");
