@@ -1,0 +1,39 @@
+{
+  "id": "dos",
+  "name": "DOS / IBM PC Compatible",
+  "category": "computer",
+  "manufacturer": "IBM / Microsoft / Various",
+  "sources": [
+    { "type": "docs", "url": "https://dosbox-staging.github.io/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://docs.libretro.com/library/dosbox_pure/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://emudeck.github.io/cheat-sheet/", "last_reviewed": "2026-04-28", "confidence": "medium" }
+  ],
+  "formats": {
+    "preferred": ["folder", ".conf", ".dosz"],
+    "supported": ["folder", ".bat", ".com", ".conf", ".cue", ".dosz", ".exe", ".img", ".iso", ".zip", ".7z"],
+    "descriptor_files": [".conf", ".bat"],
+    "archive_formats": [".zip", ".7z"]
+  },
+  "bios": {
+    "required": false,
+    "common_files": [],
+    "notes": "DOS games generally need game data, config, mounts, and optional MIDI/soundfont setup rather than a BIOS."
+  },
+  "emulation": {
+    "preferred_emulators": ["dosbox-staging", "dosbox-pure", "dosbox-x", "dreamm"],
+    "retroarch_cores": ["dosbox-pure", "dosbox"]
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": null,
+    "folder_based": true,
+    "playlist_target_preference": "launcher script, .conf, .dosz, or game folder",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "frontend_notes": {
+    "es-de": "DOS launch behavior often depends on .conf/.bat wrapper files or zipped DOSBox Pure packages.",
+    "emudeck": "EmuDeck may use DOSBox Pure, DOSBox Staging, or DREAMM depending on parser and game type."
+  },
+  "quirks": ["parser-glob-collision"],
+  "notes": ["Path repair must preserve mount assumptions, working directory, and configuration files."]
+}

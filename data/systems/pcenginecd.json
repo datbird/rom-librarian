@@ -1,0 +1,58 @@
+{
+  "id": "pcenginecd",
+  "name": "PC Engine CD / TurboGrafx-CD",
+  "category": "console",
+  "manufacturer": "NEC",
+  "sources": [
+    { "type": "docs", "url": "https://docs.libretro.com/library/beetle_pce_fast/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://emudeck.github.io/cheat-sheet/", "last_reviewed": "2026-04-28", "confidence": "medium" },
+    { "type": "docs", "url": "https://wiki.batocera.org/systems", "last_reviewed": "2026-04-28", "confidence": "medium" }
+  ],
+  "aliases": {
+    "folder_ids": ["tg-cd"],
+    "frontend_ids": [],
+    "region_ids": [],
+    "equivalent_system_ids": []
+  },
+  "formats": {
+    "preferred": [".chd", ".cue", ".m3u"],
+    "supported": [".pce", ".cue", ".bin", ".ccd", ".chd", ".img", ".iso", ".m3u", ".zip", ".7z"],
+    "descriptor_files": [".cue", ".m3u"],
+    "archive_formats": [".zip", ".7z"]
+  },
+  "bios": {
+    "required": true,
+    "common_files": ["syscard1.pce", "syscard2.pce", "syscard3.pce", "gexpress.pce"],
+    "notes": "System Card BIOS version affects CD compatibility."
+  },
+  "emulation": {
+    "preferred_emulators": ["mednafen", "beetle_pce_fast", "geargrafx"],
+    "retroarch_cores": ["beetle_pce_fast", "geargrafx"]
+  },
+  "library_behavior": {
+    "multidisc": true,
+    "multidisc_format": "m3u",
+    "playlist_target_preference": ".cue or .chd",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "frontend_notes": {
+    "emudeck": "Folder aliases may include tg-cd or pcenginecd.",
+    "batocera": "Batocera may expose both pcengine and pcenginecd/tg-cd naming."
+  },
+  "safety": {
+    "automation_level": "approval_required",
+    "requires_backup": true,
+    "do_not_store": ["bios", "bios_roms", "firmware", "rom_payloads"],
+    "notes": ["System Card BIOS files are user-provided files; diagnostics may identify expected names but must not store file contents."]
+  },
+  "quirks": ["es-folder-alias-mismatch", "multidisc-chd-m3u-edge-cases", "retroarch-system-dir-confusion"],
+  "confidence_notes": ["CD platform aliases are frontend folder aliases; base PC Engine/TurboGrafx cartridge IDs remain separate systems."],
+  "source_map": {
+    "formats": ["https://docs.libretro.com/library/beetle_pce_fast/"],
+    "aliases": ["https://emudeck.github.io/cheat-sheet/", "https://wiki.batocera.org/systems"]
+  },
+  "last_verified_with": {
+    "source_review_date": "2026-04-28"
+  },
+  "notes": ["Do not flatten multi-track BIN/CUE sets without preserving cue sheet references."]
+}

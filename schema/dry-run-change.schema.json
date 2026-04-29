@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/07/schema",
+  "$id": "https://github.com/datbird/rom-librarian/schema/dry-run-change.schema.json",
+  "title": "rom-librarian dry-run change list",
+  "type": "object",
+  "required": ["change_list_type", "mode", "status", "audit", "target", "summary", "changes", "quarantine_root"],
+  "properties": {
+    "change_list_type": { "type": "string", "enum": ["dry_run_change_list"] },
+    "mode": { "type": "string", "enum": ["read-only"] },
+    "status": { "type": "string", "enum": ["not_applied"] },
+    "audit": { "type": "string" },
+    "target": { "type": ["string", "null"] },
+    "quarantine_root": { "type": "string" },
+    "summary": { "type": "object" },
+    "changes": { "type": "array", "items": { "type": "object", "required": ["change", "operation", "risk", "requires_backup", "quarantine_path", "applied"] } }
+  },
+  "additionalProperties": true
+}

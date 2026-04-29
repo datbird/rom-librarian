@@ -60,7 +60,7 @@ Additional systems are present in `static.json` to make the skill useful across 
 | Engines/source ports | `openbor`, `mugen`, `ikemen`, `easyrpg`, `solarus`, `doom`, `quake`, `build`, `love2d`, `godot` |
 | Pinball/laserdisc/modern arcade | `vpinball`, `futurepinball`, `daphne`, `singe`, `teknoparrot` |
 
-The database now tracks 106 systems/platforms total. The goal is not to replace emulator-specific documentation, but to give the skill enough structured defaults to recognize common frontend folders, file extensions, BIOS expectations, runtime expectations, and safe repair approaches.
+The database now tracks 362 systems/platforms total. The goal is not to replace emulator-specific documentation, but to give the skill enough structured defaults to recognize common frontend folders, file extensions, BIOS expectations, runtime expectations, and safe repair approaches.
 
 ## Nontraditional Platform Guidance
 
@@ -94,3 +94,13 @@ Arcade systems are different from console systems:
 - match ROM set version to emulator/core version
 - CHDs usually belong in a folder named after the parent ROM
 - missing parent or BIOS ZIPs can break otherwise-present games
+
+
+## Expanded Static Recognition Coverage
+
+The static database now tracks 362 system/platform IDs, including ES-DE and Batocera folder aliases, arcade board buckets, classic computer variants, source ports, native launcher buckets, fantasy consoles, and Android/handheld frontend naming variants. Many entries are intentionally shallow recognition records; add normalized `data/systems/*` records before building automated repair logic for a specific platform.
+
+
+## Normalized Deep Records
+
+Source-backed deep records now cover 172 normalized systems/platforms, including major consoles, handhelds, arcade boards, classic computers, launcher ecosystems, web runtimes, fantasy consoles, pinball/laserdisc targets, and engine/source-port libraries. These records should be preferred over shallow static entries when diagnosing repair behavior for those platforms.

@@ -1,0 +1,16 @@
+{
+  "id": "cdi",
+  "name": "Philips CD-i",
+  "category": "console",
+  "manufacturer": "Philips",
+  "sources": [{ "type": "docs", "url": "https://docs.mamedev.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "aliases": { "folder_ids": ["cdi", "cdimono1"], "frontend_ids": ["cdi"], "region_ids": [], "equivalent_system_ids": [] },
+  "formats": { "preferred": [".chd", ".cue"], "supported": [".chd", ".cue", ".bin", ".iso"], "descriptor_files": [".cue"], "archive_formats": [] },
+  "bios": { "required": true, "common_files": ["cdi200.rom", "cdi220.rom"], "notes": "CD-i machine ROM requirements depend on MAME machine target and setup." },
+  "emulation": { "preferred_emulators": ["mame"], "retroarch_cores": ["mame"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": false, "playlist_target_preference": "CHD or CUE disc descriptor", "safe_archive_deletion_requires_launch_test": true },
+  "frontend_notes": {},
+  "safety": { "automation_level": "approval_required", "requires_backup": true, "do_not_store": ["bios_roms", "rom_payloads"], "notes": ["Do not rename CHDs or machine ROM ZIPs without MAME machine context."] },
+  "quirks": ["mame-romset-version"],
+  "notes": ["CD-i is usually MAME-driven; keep BIOS/machine and disc image layout checks conservative."]
+}

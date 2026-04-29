@@ -1,0 +1,13 @@
+{
+  "id": "fds",
+  "name": "Famicom Disk System",
+  "category": "console",
+  "manufacturer": "Nintendo",
+  "sources": [{ "type": "docs", "url": "https://docs.libretro.com/library/mesen/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "formats": { "preferred": [".fds"], "supported": [".fds", ".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": true, "common_files": ["disksys.rom"], "notes": "FDS workflows commonly require a user-supplied Disk System BIOS image." },
+  "emulation": { "preferred_emulators": ["mesen", "retroarch"], "retroarch_cores": ["mesen"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": false, "playlist_target_preference": "FDS disk image", "safe_archive_deletion_requires_launch_test": true },
+  "safety": { "automation_level": "dry_run_only", "requires_backup": true, "do_not_store": ["bios_roms", "rom_payloads"], "notes": ["Audit BIOS filename presence only; do not inspect BIOS contents."] },
+  "notes": ["Keep FDS separate from cartridge NES/Famicom libraries unless the user confirms a merge."]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "amigacd32",
+  "name": "Amiga CD32",
+  "category": "console",
+  "manufacturer": "Commodore",
+  "sources": [{ "type": "homepage", "url": "https://fs-uae.net/", "last_reviewed": "2026-04-29", "confidence": "medium" }, { "type": "docs", "url": "https://docs.libretro.com/library/puae/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "aliases": { "folder_ids": ["amigacd32", "cd32"], "frontend_ids": ["amigacd32"], "region_ids": [], "equivalent_system_ids": [] },
+  "formats": { "preferred": [".cue", ".chd"], "supported": [".cue", ".bin", ".iso", ".chd"], "descriptor_files": [".cue"], "archive_formats": [] },
+  "bios": { "required": true, "common_files": ["kick40060.CD32", "kick40060.CD32.ext"], "notes": "CD32 Kickstart and extended ROM files are user-managed and must not be stored in project data." },
+  "emulation": { "preferred_emulators": ["fs-uae", "puae"], "retroarch_cores": ["puae"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": false, "playlist_target_preference": "CUE, CHD, or ISO disc image", "safe_archive_deletion_requires_launch_test": true },
+  "frontend_notes": {},
+  "safety": { "automation_level": "approval_required", "requires_backup": true, "do_not_store": ["kickstart_roms", "bios_roms", "rom_payloads"], "notes": ["Disc conversion or descriptor repair must preserve audio/data track relationships."] },
+  "quirks": ["retroarch-system-dir-confusion"],
+  "notes": ["CD32 is Amiga-family but has separate BIOS and disc-image assumptions from WHDLoad Amiga libraries."]
+}

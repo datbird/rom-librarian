@@ -1,0 +1,13 @@
+{
+  "id": "atarijaguarcd",
+  "name": "Atari Jaguar CD (folder alias)",
+  "category": "console",
+  "manufacturer": "Atari",
+  "sources": [{ "type": "docs", "url": "https://docs.libretro.com/library/virtual_jaguar/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "formats": { "preferred": [".cue", ".chd"], "supported": [".cue", ".bin", ".cdi", ".chd"], "descriptor_files": [".cue"], "archive_formats": [] },
+  "bios": { "required": true, "common_files": ["jagboot.rom"], "notes": "Jaguar CD boot ROM requirements depend on emulator support and are user-managed." },
+  "emulation": { "preferred_emulators": ["virtualjaguar"], "retroarch_cores": ["virtualjaguar"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": false, "playlist_target_preference": "CUE or CHD disc descriptor", "safe_archive_deletion_requires_launch_test": true },
+  "safety": { "automation_level": "approval_required", "requires_backup": true, "do_not_store": ["bios_roms", "rom_payloads"], "notes": ["Do not rewrite BIN/CUE path assumptions automatically."] },
+  "notes": ["Alias-like record; jaguarcd is the existing normalized canonical target."]
+}

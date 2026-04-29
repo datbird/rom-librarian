@@ -1,0 +1,18 @@
+{
+  "id": "lakka",
+  "name": "Lakka",
+  "category": "frontend",
+  "homepage": "https://www.lakka.tv/",
+  "sources": [
+    { "type": "homepage", "url": "https://www.lakka.tv/", "last_reviewed": "2026-04-29", "confidence": "high" },
+    { "type": "docs", "url": "https://www.lakka.tv/doc/Home/", "last_reviewed": "2026-04-29", "confidence": "medium" }
+  ],
+  "platforms": ["linux", "single_board_computer"],
+  "default_paths": { "rom_root": "storage/roms or configured content directories", "system": "storage/system" },
+  "config_paths": { "retroarch": "storage/.config/retroarch" },
+  "structure": { "based_on": "retroarch", "metadata_format": "retroarch_playlists", "rom_structure": "user_defined", "media_dirs": ["thumbnails"], "multidisc_method": "m3u_for_supported_cores" },
+  "systems": {},
+  "scraping": { "built_in_scraper": true, "metadata_store": "retroarch-playlists", "compatible_tools": [] },
+  "quirks": ["retroarch-system-dir-confusion"],
+  "notes": ["Lakka should be diagnosed as an appliance-style RetroArch distribution with its own storage paths."]
+}

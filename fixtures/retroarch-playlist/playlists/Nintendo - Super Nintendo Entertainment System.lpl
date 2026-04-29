@@ -1,0 +1,21 @@
+{
+  "version": "1.5",
+  "items": [
+    {
+      "path": "../roms/snes/Synthetic Platformer.sfc",
+      "label": "Synthetic Platformer",
+      "core_path": "DETECT",
+      "core_name": "DETECT",
+      "crc32": "00000000|crc",
+      "db_name": "Nintendo - Super Nintendo Entertainment System.lpl"
+    },
+    {
+      "path": "../roms/snes/Missing Game.sfc",
+      "label": "Missing Game",
+      "core_path": "DETECT",
+      "core_name": "DETECT",
+      "crc32": "00000000|crc",
+      "db_name": "Nintendo - Super Nintendo Entertainment System.lpl"
+    }
+  ]
+}

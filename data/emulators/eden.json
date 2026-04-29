@@ -1,0 +1,14 @@
+{
+  "id": "eden",
+  "name": "Eden",
+  "category": "emulator",
+  "homepage": "https://eden-emu.dev/",
+  "sources": [{ "type": "homepage", "url": "https://eden-emu.dev/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "platforms": ["windows", "linux", "android"],
+  "systems": ["switch"],
+  "paths": { "keys": "emulator-managed user keys path", "firmware": "emulator-managed firmware path", "content": "Switch game files or installed content" },
+  "supported_formats": { "content": [".xci", ".nsp", ".nca", ".nro"] },
+  "library_behavior": { "keys_required": true, "firmware_may_be_required": true, "install_based_content": true },
+  "quirks": ["switch-keys-secrets"],
+  "notes": ["Never store or request Switch keys, firmware, account data, or decrypted content metadata."]
+}

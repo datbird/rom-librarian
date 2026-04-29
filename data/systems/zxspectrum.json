@@ -1,0 +1,13 @@
+{
+  "id": "zxspectrum",
+  "name": "ZX Spectrum (folder alias)",
+  "category": "computer",
+  "manufacturer": "Sinclair",
+  "sources": [{ "type": "docs", "url": "https://docs.libretro.com/library/fuse/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "formats": { "preferred": [".tzx", ".tap", ".z80"], "supported": [".tzx", ".tap", ".z80", ".sna", ".dsk", ".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": false, "common_files": [], "notes": "Typical Fuse setups do not require user-managed BIOS files for common launches." },
+  "emulation": { "preferred_emulators": ["fuse"], "retroarch_cores": ["fuse"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": false, "playlist_target_preference": "tape, snapshot, or disk image", "safe_archive_deletion_requires_launch_test": true },
+  "safety": { "automation_level": "dry_run_only", "requires_backup": true, "do_not_store": ["rom_payloads"], "notes": ["Do not merge zxspectrum and zx-spectrum folder IDs without user confirmation."] },
+  "notes": ["Alias-like normalized record for frontends that use zxspectrum; zx-spectrum remains the existing normalized canonical spelling."]
+}

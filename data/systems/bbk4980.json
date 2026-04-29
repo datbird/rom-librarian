@@ -1,0 +1,13 @@
+{
+  "id": "bbk4980",
+  "name": "BBK 4980",
+  "category": "console",
+  "manufacturer": "BBK",
+  "sources": [{ "type": "docs", "url": "https://docs.mamedev.org/", "last_reviewed": "2026-04-29", "confidence": "low" }],
+  "formats": { "preferred": [".bin"], "supported": [".zip", ".7z", ".bin", ".rom", ".iso", ".chd"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": false, "common_files": [], "notes": "Static recognition entry; emulator requirements should be verified before any repair." },
+  "emulation": { "preferred_emulators": ["retroarch"], "retroarch_cores": [] },
+  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": false, "playlist_target_preference": "observed launcher target", "safe_archive_deletion_requires_launch_test": true },
+  "safety": { "automation_level": "read_only", "requires_backup": true, "do_not_store": ["rom_payloads"], "notes": ["Recognition-only record; do not automate repairs without more source-backed facts."] },
+  "notes": ["Low-confidence static coverage record retained for folder recognition only."]
+}

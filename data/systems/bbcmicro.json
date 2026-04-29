@@ -1,0 +1,15 @@
+{
+  "id": "bbcmicro",
+  "name": "BBC Micro",
+  "category": "computer",
+  "manufacturer": "Acorn",
+  "sources": [{ "type": "docs", "url": "https://docs.mamedev.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "aliases": { "folder_ids": ["bbcmicro", "bbc", "beeb"], "frontend_ids": ["bbcmicro"], "region_ids": [], "equivalent_system_ids": [] },
+  "formats": { "preferred": [".dsk", ".ssd"], "supported": [".zip", ".7z", ".dsk", ".ssd", ".dsd", ".hfe", ".m3u", ".tap", ".uef", ".cas", ".wav", ".rom", ".bin", ".chd", ".iso"], "descriptor_files": [".m3u"], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": true, "common_files": [], "notes": "BBC Micro machine/OS ROM requirements vary by model and emulator setup." },
+  "emulation": { "preferred_emulators": ["mame", "retroarch"], "retroarch_cores": ["mame"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": "m3u", "folder_based": false, "playlist_target_preference": "disk, tape, ROM, or playlist", "safe_archive_deletion_requires_launch_test": true },
+  "frontend_notes": {},
+  "safety": { "automation_level": "approval_required", "requires_backup": true, "do_not_store": ["machine_roms", "bios_roms", "rom_payloads"], "notes": ["Disk/tape slot assignment and model profile can be launch-critical."] },
+  "notes": ["BBC Micro media can be disk, tape, or ROM; avoid extension-only repair decisions."]
+}

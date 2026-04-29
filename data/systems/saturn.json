@@ -1,0 +1,58 @@
+{
+  "id": "saturn",
+  "name": "Sega Saturn",
+  "category": "console",
+  "manufacturer": "Sega",
+  "sources": [
+    { "type": "docs", "url": "https://docs.libretro.com/library/beetle_saturn/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://docs.libretro.com/library/kronos/", "last_reviewed": "2026-04-28", "confidence": "medium" },
+    { "type": "docs", "url": "https://emudeck.github.io/cheat-sheet/", "last_reviewed": "2026-04-28", "confidence": "medium" }
+  ],
+  "aliases": {
+    "folder_ids": [],
+    "frontend_ids": [],
+    "region_ids": ["saturnjp"],
+    "equivalent_system_ids": []
+  },
+  "formats": {
+    "preferred": [".chd", ".cue", ".m3u"],
+    "supported": [".cue", ".bin", ".chd", ".iso", ".mdf", ".ccd", ".m3u", ".zip", ".7z"],
+    "descriptor_files": [".cue", ".m3u"],
+    "archive_formats": [".zip", ".7z"]
+  },
+  "bios": {
+    "required": true,
+    "common_files": ["sega_101.bin", "mpr-17933.bin"],
+    "notes": "Saturn BIOS requirements vary by emulator/core and region."
+  },
+  "emulation": {
+    "preferred_emulators": ["mednafen", "kronos", "ssf", "ymir"],
+    "retroarch_cores": ["beetle_saturn", "kronos", "yabause"]
+  },
+  "library_behavior": {
+    "multidisc": true,
+    "multidisc_format": "m3u",
+    "playlist_target_preference": ".cue or .chd",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "frontend_notes": {
+    "es-de": "Region-specific Saturn folders such as saturnjp may appear as aliases in some frontend configurations."
+  },
+  "safety": {
+    "automation_level": "approval_required",
+    "requires_backup": true,
+    "do_not_store": ["bios", "bios_roms", "firmware", "rom_payloads"],
+    "notes": ["Saturn BIOS requirements vary by emulator and region; never store BIOS contents or dumped firmware."]
+  },
+  "quirks": ["multidisc-chd-m3u-edge-cases", "retroarch-system-dir-confusion"],
+  "confidence_notes": ["`saturnjp` is modeled as a region alias. Emulator compatibility and BIOS behavior vary significantly, so automated fixes should stay approval-gated."],
+  "source_map": {
+    "formats": ["https://docs.libretro.com/library/beetle_saturn/", "https://docs.libretro.com/library/kronos/"],
+    "aliases": ["https://emudeck.github.io/cheat-sheet/"],
+    "safety": ["https://docs.libretro.com/library/beetle_saturn/"]
+  },
+  "last_verified_with": {
+    "source_review_date": "2026-04-28"
+  },
+  "notes": ["Saturn compatibility varies significantly by emulator; path validation is not launch validation."]
+}

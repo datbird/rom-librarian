@@ -1,0 +1,19 @@
+{
+  "id": "model3",
+  "name": "Sega Model 3",
+  "category": "arcade",
+  "manufacturer": "Sega",
+  "sources": [
+    { "type": "homepage", "url": "https://www.supermodel3.com/", "last_reviewed": "2026-04-29", "confidence": "medium" },
+    { "type": "docs", "url": "https://docs.mamedev.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }
+  ],
+  "aliases": { "folder_ids": ["model3", "sega-model-3"], "frontend_ids": ["model3"], "region_ids": [], "equivalent_system_ids": [] },
+  "formats": { "preferred": [".zip"], "supported": [".zip"], "descriptor_files": [], "archive_formats": [".zip"] },
+  "bios": { "required": true, "common_files": [], "notes": "BIOS and device ROM requirements depend on emulator, title, and romset version." },
+  "emulation": { "preferred_emulators": ["supermodel", "mame"], "retroarch_cores": ["mame"] },
+  "library_behavior": { "romset_version_sensitive": true, "do_not_unzip_roms_by_default": true, "parent_clone_model": true },
+  "frontend_notes": {},
+  "safety": { "automation_level": "dry_run_only", "requires_backup": true, "do_not_store": ["bios_roms", "rom_payloads"], "notes": ["Do not rewrite Model 3 ZIP names without title-specific emulator compatibility context."] },
+  "quirks": ["mame-romset-version"],
+  "notes": ["Supermodel is the specialized emulator; MAME support and behavior vary by title."]
+}

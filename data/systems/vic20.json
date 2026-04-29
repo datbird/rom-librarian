@@ -1,0 +1,13 @@
+{
+  "id": "vic20",
+  "name": "Commodore VIC-20",
+  "category": "computer",
+  "manufacturer": "Commodore",
+  "sources": [{ "type": "homepage", "url": "https://vice-emu.sourceforge.io/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "formats": { "preferred": [".prg", ".tap", ".crt"], "supported": [".zip", ".7z", ".d64", ".t64", ".tap", ".prg", ".crt", ".rom", ".bin", ".m3u"], "descriptor_files": [".m3u"], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": true, "common_files": [], "notes": "VIC-20 ROM and memory expansion assumptions depend on emulator configuration." },
+  "emulation": { "preferred_emulators": ["vice"], "retroarch_cores": ["vice_xvic"] },
+  "library_behavior": { "multidisc": true, "multidisc_format": "m3u", "folder_based": false, "playlist_target_preference": "program, tape, disk, cartridge, or playlist", "safe_archive_deletion_requires_launch_test": true },
+  "safety": { "automation_level": "approval_required", "requires_backup": true, "do_not_store": ["machine_roms", "bios_roms", "rom_payloads"], "notes": ["Do not infer memory expansion or cartridge type from extension alone."] },
+  "notes": ["VIC-20 can need memory expansion/profile context for launch compatibility."]
+}

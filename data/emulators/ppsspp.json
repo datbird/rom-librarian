@@ -1,0 +1,14 @@
+{
+  "id": "ppsspp",
+  "name": "PPSSPP",
+  "category": "emulator",
+  "homepage": "https://www.ppsspp.org/",
+  "sources": [{ "type": "homepage", "url": "https://www.ppsspp.org/", "last_reviewed": "2026-04-29", "confidence": "high" }],
+  "platforms": ["windows", "linux", "macos", "android", "ios"],
+  "systems": ["psp"],
+  "paths": { "config": "platform-specific PPSSPP user directory", "saves": "platform-specific PSP/SAVEDATA directory" },
+  "supported_formats": { "disc": [".iso", ".cso", ".chd", ".pbp"] },
+  "library_behavior": { "bios_required": false, "supports_chd": true, "supports_archives": false },
+  "quirks": [],
+  "notes": ["Savedata and DLC are user state, not ROM-library repair targets by default."]
+}

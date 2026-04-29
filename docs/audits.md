@@ -1,0 +1,29 @@
+# Audit Commands
+
+All audit commands are read-only. They report findings as JSON and never modify ROMs, metadata, playlists, BIOS files, archives, or media.
+
+Common options:
+
+- `--json-out <file>` writes JSON directly to a file without relying on shell redirection.
+- `--help` prints usage for commands that take a library path.
+
+Implemented audits:
+
+- `npm run audit:m3u -- <path>` checks `.m3u` targets, case mismatches, and duplicate loose disc entries in `gamelist.xml`.
+- `npm run audit:media -- <path>` checks EmulationStation `gamelist.xml` game/media paths and orphaned media.
+- `npm run audit:launchbox -- <path>` checks LaunchBox platform XML stale paths.
+- `npm run audit:mame -- <path>` checks MAME ZIP/CHD layout relationships without set validation.
+- `npm run audit:pegasus -- <path>` checks Pegasus missing assets and unknown-field preservation.
+- `npm run audit:retroarch -- <path>` checks RetroArch `.lpl` playlist paths and JSON validity.
+- `npm run audit:romm -- <path>` checks RomM slug/folder names against normalized aliases.
+- `npm run audit:extensions -- <path> <system-id>` checks unsupported extensions for a normalized system.
+- `npm run audit:bios -- <path> <system-id>` checks expected BIOS filenames only; it does not validate BIOS contents.
+- `npm run audit:duplicates -- <path>` checks duplicate normalized titles for region/revision/manual review.
+- `npm run audit:fixtures` runs the implemented audits against synthetic fixtures.
+
+Safety limits:
+
+- Do not infer that missing files should be deleted.
+- Do not unzip, rebuild, or rename MAME/arcade sets from layout findings alone.
+- Do not download, paste, checksum, store, or validate BIOS/key/firmware contents.
+- Use repair plans as review artifacts, not as authorization to mutate files.

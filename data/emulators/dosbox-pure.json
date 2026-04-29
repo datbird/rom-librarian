@@ -1,0 +1,14 @@
+{
+  "id": "dosbox-pure",
+  "name": "DOSBox Pure",
+  "category": "emulator",
+  "homepage": "https://github.com/schellingb/dosbox-pure",
+  "sources": [{ "type": "github", "url": "https://github.com/schellingb/dosbox-pure", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "platforms": ["retroarch"],
+  "systems": ["dos"],
+  "paths": { "content": "zipped DOS game packages or mounted content", "saves": "RetroArch save/system directories" },
+  "supported_formats": { "content": [".zip", ".dosz", ".cue", ".iso", ".conf", ".exe", ".bat"] },
+  "library_behavior": { "folder_based": true, "archive_packages_common": true, "working_directory_matters": true },
+  "quirks": ["parser-glob-collision"],
+  "notes": ["Do not flatten DOS game folders without preserving mount and working-directory assumptions."]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "pc98",
+  "name": "NEC PC-98",
+  "category": "computer",
+  "manufacturer": "NEC",
+  "sources": [{ "type": "docs", "url": "https://docs.libretro.com/library/neko_project_ii_kai/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "formats": { "preferred": [".hdi", ".fdi"], "supported": [".hdi", ".fdi", ".fdd", ".d88", ".hdm", ".xdf", ".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": false, "common_files": [], "notes": "BIOS/font requirements vary by emulator and configuration." },
+  "emulation": { "preferred_emulators": ["np2kai"], "retroarch_cores": ["np2kai"] },
+  "library_behavior": { "multidisc": true, "multidisc_format": "emulator_specific", "playlist_target_preference": "hard disk or floppy image", "safe_archive_deletion_requires_launch_test": true },
+  "frontend_notes": {},
+  "quirks": [],
+  "notes": ["PC-98 launch validation often requires emulator-specific configuration context."]
+}

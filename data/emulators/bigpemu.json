@@ -1,0 +1,14 @@
+{
+  "id": "bigpemu",
+  "name": "BigPEmu",
+  "category": "emulator",
+  "homepage": "https://www.richwhitehouse.com/jaguar/",
+  "sources": [{ "type": "homepage", "url": "https://www.richwhitehouse.com/jaguar/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "platforms": ["windows", "linux"],
+  "systems": ["jaguar", "atarijaguar"],
+  "paths": { "content": "Atari Jaguar ROM/CD images" },
+  "supported_formats": { "content": [".j64", ".jag", ".rom", ".abs", ".cof", ".cue", ".cdi"] },
+  "library_behavior": { "bios_required": false, "cd_support_possible": true },
+  "quirks": ["es-folder-alias-mismatch"],
+  "notes": ["Jaguar/Jaguar CD folder aliases vary by frontend."]
+}

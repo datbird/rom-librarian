@@ -1,0 +1,15 @@
+{
+  "id": "fbneo",
+  "name": "FinalBurn Neo Arcade",
+  "category": "arcade",
+  "manufacturer": "Various",
+  "sources": [{ "type": "docs", "url": "https://docs.libretro.com/library/fbneo/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "formats": { "preferred": [".zip"], "supported": [".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": true, "common_files": [], "notes": "BIOS/device ZIP requirements vary by game and romset." },
+  "emulation": { "preferred_emulators": ["fbneo"], "retroarch_cores": ["fbneo"] },
+  "library_behavior": { "romset_version_sensitive": true, "do_not_unzip_roms_by_default": true, "parent_clone_model": true },
+  "frontend_notes": {},
+  "safety": { "automation_level": "dry_run_only", "requires_backup": true, "do_not_store": ["bios_roms", "device_roms", "rom_payloads"], "notes": ["FBNeo sets are version-sensitive; keep audits diagnostic-only by default."] },
+  "quirks": ["mame-romset-version"],
+  "notes": ["Do not mix MAME and FBNeo set assumptions without identifying the active emulator/core."]
+}

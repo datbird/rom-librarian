@@ -1,0 +1,15 @@
+{
+  "id": "dragon32",
+  "name": "Dragon 32/64",
+  "category": "computer",
+  "manufacturer": "Dragon Data",
+  "sources": [{ "type": "homepage", "url": "https://www.6809.org.uk/xroar/", "last_reviewed": "2026-04-29", "confidence": "medium" }, { "type": "docs", "url": "https://docs.mamedev.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "aliases": { "folder_ids": ["dragon32", "dragon64", "dragon"], "frontend_ids": ["dragon32"], "region_ids": [], "equivalent_system_ids": ["dragon64"] },
+  "formats": { "preferred": [".cas", ".dsk"], "supported": [".zip", ".7z", ".dsk", ".hfe", ".m3u", ".tap", ".cas", ".wav", ".rom", ".bin", ".chd", ".iso"], "descriptor_files": [".m3u"], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": true, "common_files": [], "notes": "Dragon model ROMs and DOS cartridge support vary by emulator profile." },
+  "emulation": { "preferred_emulators": ["xroar", "mame", "retroarch"], "retroarch_cores": ["mame"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": "m3u", "folder_based": false, "playlist_target_preference": "tape, disk, cartridge, or playlist", "safe_archive_deletion_requires_launch_test": true },
+  "frontend_notes": {},
+  "safety": { "automation_level": "approval_required", "requires_backup": true, "do_not_store": ["machine_roms", "bios_roms", "rom_payloads"], "notes": ["Do not auto-merge Dragon and CoCo libraries without explicit confirmation."] },
+  "notes": ["Dragon 32/64 and CoCo overlap technically but are not safe to treat as identical library targets."]
+}

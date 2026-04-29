@@ -1,0 +1,15 @@
+{
+  "id": "muos",
+  "name": "muOS",
+  "category": "frontend",
+  "homepage": "https://muos.dev/",
+  "sources": [{ "type": "homepage", "url": "https://muos.dev/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "platforms": ["linux", "handheld"],
+  "default_paths": { "rom_root": "device-specific ROM folders", "bios": "device-specific BIOS folder" },
+  "config_paths": { "config": "device-specific muOS config" },
+  "structure": { "based_on": "handheld_launcher", "metadata_format": "mixed", "rom_structure": "system_subfolders", "media_dirs": ["catalogue", "media"], "multidisc_method": "system_specific" },
+  "systems": {},
+  "scraping": { "built_in_scraper": false, "metadata_store": "mixed", "compatible_tools": [] },
+  "quirks": ["es-folder-alias-mismatch"],
+  "notes": ["muOS library organization can be customized; prefer audits over assumptions."]
+}

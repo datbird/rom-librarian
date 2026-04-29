@@ -1,0 +1,15 @@
+{
+  "id": "odyssey2",
+  "name": "Magnavox Odyssey 2 / Philips Videopac",
+  "category": "console",
+  "manufacturer": "Magnavox / Philips",
+  "sources": [{ "type": "docs", "url": "https://docs.libretro.com/library/o2em/", "last_reviewed": "2026-04-29", "confidence": "medium" }, { "type": "docs", "url": "https://docs.mamedev.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "aliases": { "folder_ids": ["odyssey2", "videopac", "o2em"], "frontend_ids": ["odyssey2"], "region_ids": [], "equivalent_system_ids": [] },
+  "formats": { "preferred": [".bin"], "supported": [".bin", ".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": true, "common_files": ["o2rom.bin"], "notes": "BIOS filename expectations vary by emulator/core and region naming." },
+  "emulation": { "preferred_emulators": ["o2em", "mame"], "retroarch_cores": ["o2em", "mame"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": false, "playlist_target_preference": "cartridge ROM file" },
+  "frontend_notes": {},
+  "safety": { "automation_level": "dry_run_only", "requires_backup": true, "do_not_store": ["bios_roms", "rom_payloads"], "notes": ["Keep Odyssey 2/Videopac folder merges user-confirmed because regional naming differs."] },
+  "notes": ["European themes may label this platform Videopac; preserve observed folder semantics."]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "cps1",
+  "name": "Capcom Play System",
+  "category": "arcade",
+  "manufacturer": "Capcom",
+  "sources": [
+    { "type": "docs", "url": "https://docs.libretro.com/library/fbneo/", "last_reviewed": "2026-04-29", "confidence": "medium" },
+    { "type": "docs", "url": "https://docs.mamedev.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }
+  ],
+  "aliases": { "folder_ids": ["cps1", "capcomplay_system"], "frontend_ids": ["cps1"], "region_ids": [], "equivalent_system_ids": [] },
+  "formats": { "preferred": [".zip"], "supported": [".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": false, "common_files": [], "notes": "Individual set and emulator requirements vary by romset version." },
+  "emulation": { "preferred_emulators": ["fbneo", "mame"], "retroarch_cores": ["fbneo", "mame"] },
+  "library_behavior": { "romset_version_sensitive": true, "do_not_unzip_roms_by_default": true, "parent_clone_model": true },
+  "frontend_notes": {},
+  "safety": { "automation_level": "dry_run_only", "requires_backup": true, "do_not_store": ["rom_payloads"], "notes": ["Do not rename, unzip, merge, split, or rebuild arcade sets without matching DAT/version context."] },
+  "quirks": ["mame-romset-version"],
+  "notes": ["Treat CPS1 as an arcade romset family rather than independent loose ROM files."]
+}

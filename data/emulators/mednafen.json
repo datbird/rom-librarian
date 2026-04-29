@@ -1,0 +1,14 @@
+{
+  "id": "mednafen",
+  "name": "Mednafen",
+  "category": "emulator",
+  "homepage": "https://mednafen.github.io/",
+  "sources": [{ "type": "homepage", "url": "https://mednafen.github.io/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "platforms": ["windows", "linux"],
+  "systems": ["psx", "saturn", "pcenginecd", "turbografx"],
+  "paths": { "firmware": "Mednafen firmware directory", "config": "mednafen.cfg and per-system config" },
+  "supported_formats": { "disc": [".cue", ".ccd", ".chd", ".m3u"], "cartridge": [".pce", ".zip"] },
+  "library_behavior": { "supports_m3u": true, "bios_required_for_disc_systems": true, "cli_or_frontend_wrapper_common": true },
+  "quirks": ["retroarch-system-dir-confusion", "multidisc-chd-m3u-edge-cases"],
+  "notes": ["Separate standalone Mednafen behavior from Libretro Beetle core behavior when diagnosing paths."]
+}

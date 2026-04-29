@@ -1,0 +1,15 @@
+{
+  "id": "ps3",
+  "name": "Sony PlayStation 3",
+  "category": "console",
+  "manufacturer": "Sony",
+  "sources": [{ "type": "homepage", "url": "https://rpcs3.net/", "last_reviewed": "2026-04-29", "confidence": "high" }],
+  "formats": { "preferred": ["folder", ".iso"], "supported": ["folder", ".iso", ".pkg", ".rap"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": true, "common_files": [], "notes": "RPCS3 requires user-provided PS3 firmware installed into the emulator, not stored in ROM-library metadata." },
+  "emulation": { "preferred_emulators": ["rpcs3"], "retroarch_cores": [] },
+  "library_behavior": { "multidisc": false, "multidisc_format": null, "install_based_content": true, "playlist_target_preference": "game folder, disc image, or installed emulator entry", "safe_archive_deletion_requires_launch_test": true },
+  "frontend_notes": {},
+  "safety": { "automation_level": "approval_required", "requires_backup": true, "do_not_store": ["firmware", "keys", "account_data", "user_save_data", "rom_payloads"], "notes": ["Treat PS3 firmware, installed packages, licenses, and emulator state as user-managed sensitive/runtime data."] },
+  "quirks": [],
+  "notes": ["Path audits are not compatibility audits for RPCS3."]
+}

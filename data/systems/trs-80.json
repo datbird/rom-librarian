@@ -1,0 +1,13 @@
+{
+  "id": "trs-80",
+  "name": "TRS-80",
+  "category": "computer",
+  "manufacturer": "Tandy / Radio Shack",
+  "sources": [{ "type": "docs", "url": "https://docs.mamedev.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "formats": { "preferred": [".dsk", ".cmd", ".cas"], "supported": [".zip", ".7z", ".dsk", ".cmd", ".cas", ".wav", ".rom", ".bin", ".m3u"], "descriptor_files": [".m3u"], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": true, "common_files": [], "notes": "TRS-80 model ROM requirements vary by machine class and emulator." },
+  "emulation": { "preferred_emulators": ["mame"], "retroarch_cores": ["mame"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": "m3u", "folder_based": false, "playlist_target_preference": "disk, cassette, command file, or playlist", "safe_archive_deletion_requires_launch_test": true },
+  "safety": { "automation_level": "approval_required", "requires_backup": true, "do_not_store": ["machine_roms", "bios_roms", "rom_payloads"], "notes": ["Do not merge TRS-80 model folders without confirmation."] },
+  "notes": ["Static data also contains trs80; keep alias-like IDs from claiming each other's aliases."]
+}

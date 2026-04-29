@@ -1,0 +1,31 @@
+{
+  "id": "genesis",
+  "name": "Sega Genesis / Mega Drive",
+  "category": "console",
+  "manufacturer": "Sega",
+  "sources": [
+    { "type": "docs", "url": "https://docs.libretro.com/library/genesis_plus_gx/", "last_reviewed": "2026-04-29", "confidence": "high" },
+    { "type": "docs", "url": "https://emudeck.github.io/cheat-sheet/", "last_reviewed": "2026-04-29", "confidence": "medium" }
+  ],
+  "aliases": {
+    "folder_ids": ["megadrive"],
+    "frontend_ids": [],
+    "region_ids": [],
+    "equivalent_system_ids": []
+  },
+  "formats": {
+    "preferred": [".md", ".gen", ".bin"],
+    "supported": [".md", ".gen", ".bin", ".smd", ".zip", ".7z"],
+    "descriptor_files": [],
+    "archive_formats": [".zip", ".7z"]
+  },
+  "bios": { "required": false, "common_files": [], "notes": "Genesis/Mega Drive cartridge loading generally does not require BIOS files." },
+  "emulation": { "preferred_emulators": ["genesis-plus-gx", "picodrive", "blastem"], "retroarch_cores": ["genesis-plus-gx", "picodrive"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": null, "playlist_target_preference": "cartridge ROM file", "safe_archive_deletion_requires_launch_test": true },
+  "frontend_notes": { "es-de": "Genesis and Mega Drive folder IDs vary by region/frontend; resolve aliases before moving folders." },
+  "quirks": ["es-folder-alias-mismatch"],
+  "confidence_notes": ["Genesis/Mega Drive aliases are frontend and region naming differences rather than separate hardware families for this normalized record."],
+  "source_map": { "formats": ["https://docs.libretro.com/library/genesis_plus_gx/"], "aliases": ["https://emudeck.github.io/cheat-sheet/"] },
+  "last_verified_with": { "source_review_date": "2026-04-29" },
+  "notes": ["Do not split Genesis and Mega Drive libraries unless the frontend explicitly requires region-specific folders."]
+}

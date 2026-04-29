@@ -355,7 +355,8 @@ These seed the `quirks` section of static.json:
 1. [x] Write `README.md` (install instructions, usage)
 2. [x] Write `docs/` reference pages
 3. [x] Add validation tooling (JSON schema lint)
-4. [ ] Tag v1.0 (requires an explicit commit/tag request)
+4. [x] Commit and push the initial `v1.0` repository baseline
+5. [ ] Tag a release only when explicitly requested
 
 ---
 
@@ -392,7 +393,7 @@ Successfully created and verified:
 Validation completed:
 
 - `jq empty static.json schema/user.schema.json examples/user.example.json` passes.
-- `static.json` currently contains 4 Tier 1 frontends, 14 Tier 1 systems, 15 emulators, 5 scrapers, and 6 seed quirks.
+- At this phase, `static.json` contained 4 Tier 1 frontends, 14 Tier 1 systems, 15 emulators, 5 scrapers, and 6 seed quirks.
 
 Important boundary:
 
@@ -441,6 +442,7 @@ Validation completed:
 - A later coverage expansion increased this to 8 frontends, 71 systems, 54 emulators, 5 scrapers, and 10 quirks.
 - A nontraditional-platform expansion increased this further to 8 frontends, 106 systems/platforms, 96 emulators/runtimes/launchers, 5 scrapers, and 10 quirks. This includes web games, mobile platforms, fantasy consoles, source ports, pinball, laserdisc, launcher ecosystems, and modern arcade PC loaders.
 - A frontend/library-manager source normalization pass increased frontend coverage to 12 and added source-backed normalized records for all aggregate frontends plus Playnite, Steam ROM Manager, RomM, and Daijisho.
+- A later public-reference backfill expanded static recognition to 33 frontends/library managers, 362 systems/platforms, 298 emulators/runtimes/launchers, 21 scrapers/tools/providers, and 24 quirks, prioritizing ES-DE/Batocera folder IDs, Libretro/EmuDeck emulator/core IDs, parser-driven frontends, Android frontends, and metadata-provider tooling.
 
 Important boundary:
 
@@ -548,17 +550,375 @@ Design intent:
 
 Current repository baseline:
 
-- Static coverage: 12 frontends/library managers, 106 systems/platforms, 96 emulators/runtimes/launchers, 5 scrapers, and 10 quirks.
-- Normalized coverage: 12 frontends/library managers, 4 systems, 4 emulators/runtimes, 6 scraper sources, 5 scraper/helper tools, 3 metadata stores, 21 asset types, and 14 metadata fields.
+- Static coverage: 33 frontends/library managers, 362 systems/platforms, 298 emulators/runtimes/launchers, 21 scrapers/tools/providers, and 24 quirks.
+- Normalized coverage has since expanded beyond the original v1 baseline; current validation reports the exact counts.
 - Validation: `npm run validate` and raw `jq empty` checks pass across the repository JSON files.
 - Safety: personal deployment state, scraper/API credentials, OAuth tokens, and console keys are excluded by design and must remain outside the repo.
 
-Remaining useful work after v1.0:
+Immediate post-v1.0 priority:
 
 - Install-test the skill in Claude Code/OpenCode.
 - Test read-only diagnosis and first-run `user.json` creation in a temporary config directory.
+- Add generated fixture libraries and read-only audit workflows before adding write/repair automation.
 - Expand normalized system/emulator records from official project documentation.
 - Add generated/imported datasets only when there is a concrete workflow that needs them.
+
+---
+
+## Post-v1.0 Roadmap
+
+The `v1.0` baseline is usable as a structured knowledge base, but most future value comes from proving the skill in real sessions and enriching the source-backed data that supports safe diagnosis.
+
+Recommended execution order:
+
+- First, stabilize the data model with alias modeling, stronger validation, safety metadata, and source/confidence traceability.
+- Second, add copyright-safe fixtures and read-only audit workflows so the skill can be tested without touching real libraries.
+- Third, deepen normalized records for high-impact systems, emulators, frontends, and metadata providers.
+- Fourth, add repair automation only after audits, fixtures, and backup/rollback patterns are proven.
+
+### 0. Data Model Hardening
+
+Goals:
+
+- Prevent the expanded static layer from becoming a flat list of near-duplicate systems and emulator aliases.
+- Make canonical IDs, folder aliases, frontend aliases, region variants, and equivalent platform IDs explicit.
+- Add safety metadata so agents know when automation should be blocked, approval-gated, or read-only.
+- Improve source traceability so facts can be reviewed and refreshed without guessing where they came from.
+
+Recommended schema additions:
+
+- `aliases.folder_ids`: frontend folder names such as `megadrive`, `genesis`, `tg16`, `pcengine`, `nds`, `ds`, `gc`, and `gamecube`.
+- `aliases.frontend_ids`: names used by specific frontends or parser templates.
+- `aliases.region_ids`: region-specific IDs such as `megacdjp`, `saturnjp`, `sega32xjp`, and `snesna`.
+- `aliases.equivalent_system_ids`: canonical equivalence links where multiple IDs represent the same hardware family.
+- `safety.automation_level`: one of `read_only`, `dry_run_only`, `approval_required`, or `automation_allowed`.
+- `safety.requires_backup`: boolean for metadata stores, XML/database edits, and batch file moves.
+- `safety.do_not_store`: list of sensitive material categories such as BIOS, keys, firmware, tokens, account data, or vault contents.
+- `confidence_notes`: short notes distinguishing official docs, frontend configs, wiki-derived behavior, and inferred aliases.
+- `source_map`: optional mapping from important fields to source URLs or source IDs.
+- `last_verified_with`: frontend/emulator version or source date when a behavior was verified.
+
+High-value alias groups to model first:
+
+- Sega Genesis/Mega Drive: `genesis`, `megadrive`, `megadrivejp`.
+- Sega CD/Mega-CD: `segacd`, `megacd`, `megacdjp`.
+- Sega Master System/Mark III: `sms`, `mastersystem`, `mark3`.
+- NEC PC Engine/TurboGrafx: `turbografx`, `tg16`, `pcengine`, `pcenginecd`, `tg-cd`.
+- Nintendo handhelds: `ds`, `nds`, `3ds`, `n3ds`, `gb`, `gbc`, `wswan`, `wswanc`, `wonderswan`, `wonderswancolor`.
+- Nintendo console aliases: `gamecube`, `gc`, `nes`, `famicom`, `snes`, `sfc`, `snesna`.
+- Atari aliases: `jaguar`, `atarijaguar`, `jaguarcd`, `atarijaguarcd`, `atarilynx`, `lynx`.
+
+Acceptance criteria:
+
+- A canonical system can list all known folder aliases without duplicating deep normalized records.
+- The skill can resolve a user-provided folder name to a canonical system and explain the alias source.
+- High-risk systems such as Switch, Wii U, 3DS encrypted content, MAME/FBNeo, LaunchBox XML, Android scoped storage, and BIOS-heavy systems are marked with conservative automation levels.
+- Validation fails if an alias points to a missing canonical system.
+
+### 1. Install And Runtime Testing
+
+Goals:
+
+- Verify Claude Code/OpenCode can load `rom-librarian.md` and resolve adjacent files such as `static.json`, `data/index.json`, schemas, and docs.
+- Test read-only diagnosis against temporary fixture libraries before touching any real ROM library.
+- Test first-run `user.json` creation in a temporary config directory.
+- Confirm user-specific config remains outside the repository and is ignored when placed near the repo by mistake.
+- Capture any install-specific instructions or limitations in `README.md` and `rom-librarian.md`.
+
+Acceptance criteria:
+
+- A read-only prompt can identify frontend, system, candidate ROM root, metadata files, and likely problems from a fixture folder.
+- No fixture test writes outside a temporary directory.
+- The skill can explain what it would change before any write operation.
+
+### 2. Fixture Libraries
+
+Goals:
+
+- Add small generated, copyright-safe test libraries under a path such as `fixtures/`.
+- Cover representative frontend metadata formats and common failure modes.
+- Use empty placeholder ROM/media files or clearly synthetic text files, never copyrighted game content.
+
+Recommended fixtures:
+
+- EmulationStation-style PS1 multidisc library with `.cue`, `.bin`, `.m3u`, `gamelist.xml`, and duplicate-entry edge cases.
+- EmulationStation-style PS1 multidisc library with broken `.m3u` subfolder suffixes and case-mismatched relative paths.
+- EmulationStation-style orphaned media library with missing images, orphaned images, missing videos, and bad relative paths.
+- LaunchBox `Data/Platforms/*.xml` sample with synthetic games, media paths, favorites, and broken manual/image references.
+- LaunchBox `Data/Platforms/*.xml` sample with stale absolute paths, stale relative paths, and missing media references.
+- Pegasus `metadata.pegasus.txt` sample with assets using aliases like `boxFront`, `logo`, `video`, and `music`.
+- Pegasus `metadata.pegasus.txt` sample with missing assets, unknown fields, and path aliases that should be preserved by parsers.
+- MAME-style sample with zipped ROM names, CHD subfolders, merged/split/non-merged notes, and no real ROM payloads.
+- RomM-style sample with a folder slug that differs from the canonical platform ID.
+
+Acceptance criteria:
+
+- Fixtures validate as JSON/XML/text where applicable.
+- Fixture tests can run without network access or external emulators.
+- Fixture structure is documented clearly enough for future audit scripts.
+
+Current status:
+
+- `fixtures/` now includes EmulationStation PSX multidisc, EmulationStation media paths, LaunchBox stale paths, Pegasus missing assets, MAME ZIP/CHD layout, and RomM slug mismatch samples.
+- Fixture coverage also includes unsupported extension and missing expected BIOS filename samples.
+- `npm run validate` enforces fixture safety guardrails for forbidden BIOS/key filenames and synthetic placeholder markers on ROM/archive/disc-like fixture files.
+- `npm run test:audits` runs fixture-backed expected-output tests without network access or external emulators.
+
+### 3. Read-Only Audit Workflows
+
+Goals:
+
+- Document and/or script read-only checks before any repair workflow exists.
+- Keep audit output actionable: problem, affected path, likely cause, suggested dry-run repair.
+- Prioritize deterministic checks over fuzzy scraping/matching.
+
+Recommended audits:
+
+- Missing media audit: ROMs with no screenshot, box art, logo, video, or manual.
+- Orphaned media audit: media files not referenced by metadata and not matching any ROM stem.
+- Broken metadata path audit: metadata entries pointing to missing ROM/media/manual/video files.
+- Duplicate multidisc entry audit: `.cue`/`.bin` discs exposed alongside `.m3u` playlists.
+- BIOS presence audit: expected BIOS files missing for selected systems.
+- ROM extension mismatch audit: files whose extensions are unsupported for the configured frontend/system.
+- Bad scraper match audit: suspicious title/platform/year/region mismatches after scraping.
+- Case-sensitivity audit: metadata paths that work on Windows but fail on Linux/Steam Deck.
+- MAME layout audit: zipped parent/clone ROMs, CHD folder names, and non-destructive merged/split/non-merged warnings.
+- LaunchBox path audit: stale ROM, image, manual, video, music, and application paths in platform XML.
+- System alias audit: frontend folder IDs that should resolve to a canonical normalized system.
+
+Candidate script names:
+
+- `audit-media-paths.mjs` for missing media, orphaned media, and broken metadata references.
+- `audit-m3u.mjs` for multidisc playlist duplicates, relative path issues, and case mismatches.
+- `audit-mame-layout.mjs` for arcade ZIP/CHD layout checks without ROM validation or DAT redistribution.
+- `audit-launchbox-paths.mjs` for stale LaunchBox XML references.
+- `audit-system-aliases.mjs` for static and normalized alias consistency.
+- `audit-pegasus-assets.mjs` for Pegasus missing asset paths and unknown-field preservation.
+- `audit-romm-slugs.mjs` for RomM platform slugs/folders that differ from canonical normalized system IDs.
+- `audit-extensions.mjs` for unsupported file extensions under a selected normalized system.
+- `audit-bios.mjs` for expected BIOS filename checks without content validation.
+
+Acceptance criteria:
+
+- Audits default to read-only behavior.
+- Bulk writes remain approval-gated and backup-first.
+- Audit output can be used directly to create a dry-run repair plan.
+
+Current status:
+
+- Implemented read-only audits: BIOS expectations, duplicate titles, extension mismatch, M3U, media paths, LaunchBox paths, MAME layout, Pegasus assets, RetroArch playlists, RomM slugs, and normalized system alias summary.
+- Implemented expected-output fixture tests for all real audits via `npm run test:audits`.
+- Added `npm run check` to run validation plus audit fixture tests.
+- Added `plan-repairs.mjs` to convert audit JSON into read-only dry-run repair plans with risk, backup, proposed action, and blocked-action fields.
+- Added `render-dry-run-changes.mjs` to convert repair plans into concrete, schema-validated, non-mutating change lists.
+- Added `--json-out <file>` support to audit scripts and `audit-fixtures.mjs` for aggregate fixture smoke checks.
+
+### 4. Parser And Validator Utilities
+
+Goals:
+
+- Add small dependency-light parsers where they materially improve safe diagnosis.
+- Prefer read-only parse/validate/report utilities before mutation utilities.
+- Keep parsers conservative: preserve unknown fields and avoid lossy rewrites.
+
+Useful parser targets:
+
+- EmulationStation `gamelist.xml`.
+- LaunchBox platform XML under `Data/Platforms/`.
+- Pegasus `metadata.pegasus.txt`.
+- `.m3u` playlists.
+- `.cue` sheets.
+- `.gdi` Dreamcast descriptors.
+- Basic archive/container extension inventory for zipped ROM libraries.
+
+Acceptance criteria:
+
+- Parsers report line/file context for broken references where possible.
+- Parsers do not rewrite files until separate repair flows are designed.
+- Unknown XML/text metadata is preserved or ignored safely.
+
+### 5. Normalized System Data Enrichment
+
+Goals:
+
+- Expand `data/systems/*` from representative seeds to source-backed coverage for high-impact platforms.
+- Capture format rules, BIOS expectations, multidisc behavior, common folder conventions, and frontend-specific path concerns.
+
+High-priority systems:
+
+- Sony: `ps2`, `ps3`, `psp`, `psvita`.
+- Sega: `dreamcast`, `saturn`, `segacd`.
+- Nintendo disc/digital: `gamecube`, `wii`, `wiiu`, `switch`, `3ds`, `ds`.
+- 8-bit and 16-bit alias-heavy systems: `genesis`, `sms`, `nes`, `snes`, `gb`, `gbc`, `gba`, `n64`, `turbografx`.
+- Arcade and board families: `fbneo`, `naomi`, `naomi2`, `atomiswave`, `model2`, `model3`, `cps1`, `cps2`, `cps3`, `neogeo`.
+- Classic computers: `c64`, `amiga`, `msx`, `pc98`, `x68000`, `zx-spectrum`, `amstradcpc`, `apple2`.
+- Arcade/computer/special: `neogeo`, `dos`, `scummvm`, `windows`, `ports`.
+- Existing special cases to deepen: `mame`, `j2me`, `flash`.
+
+Current status:
+
+- Added normalized alias-heavy records for `genesis`, `snes`, `gba`, `nes`, `gb`, `gbc`, `n64`, `sms`, and `turbografx`.
+- Added normalized records for `atari2600`, `cps1`, `cps2`, `cps3`, `model2`, `model3`, `virtualboy`, `ngp`, `xbox`, and `xbox360`.
+- Added normalized records for `atari5200`, `atari7800`, `atarilynx`, `gamegear`, `jaguar`, `jaguarcd`, `sega32x`, `sg1000`, `wonderswan`, and `pcfx`.
+- Added normalized records for `atari800`, `atarist`, `apple2gs`, `msx2`, `amigacd32`, `windows3x`, `windows9x`, `openbor`, `doom`, and `quake`.
+- Added normalized records for `pico8`, `tic80`, `love2d`, `godot`, `easyrpg`, `solarus`, `mugen`, `ikemen`, `build`, and `wine`.
+- Added normalized records for `3do`, `cdi`, `colecovision`, `intellivision`, `odyssey2`, `pokemini`, `daphne`, `singe`, `futurepinball`, and `vpinball`.
+- Added normalized records for `android`, `ios`, `palm`, `symbian`, `macintosh`, `html5`, `steam`, `lutris`, `heroic`, and `teknoparrot`.
+- Added normalized records for `adam`, `bbcmicro`, `c128`, `coco`, `dragon32`, `electron`, `oric`, `plus4`, `samcoupe`, and `thomson`.
+- Added normalized records for `arduboy`, `fm7`, `fmtowns`, `gameandwatch`, `gamecom`, `gamepock`, `gp32`, `lowresnx`, `msx2plus`, `pc88`, `pcengine`, `supergrafx`, `supervision`, `ti99`, `trs-80`, `vic20`, `x1`, `zxspectrum`, `shockwave`, and `ngpc`.
+- Added normalized records for `amigacdtv`, `arcade`, `arcadia`, `astrocde`, `atom`, `c20`, `cavestory`, `channelf`, `cplus4`, `epic`, `famicom`, `fds`, `lcdgames`, `lutro`, `megacd`, `megacdjp`, `megadrive`, `megadrivejp`, `megaduck`, and `neogeocd`.
+
+Acceptance criteria:
+
+- Each record includes official or high-confidence sources with review dates.
+- Each record cross-references known emulator IDs and quirks where applicable.
+- Multidisc and BIOS notes distinguish frontend behavior from emulator behavior.
+
+### 6. Normalized Emulator Data Enrichment
+
+Goals:
+
+- Expand `data/emulators/*` with official-doc-backed records for major emulators/runtimes.
+- Include supported systems, launch/config expectations, BIOS/firmware expectations, and known frontend integration quirks.
+
+High-priority emulators/runtimes:
+
+- RetroArch and common cores.
+- PCSX2, RPCS3, DuckStation, PPSSPP, Vita3K.
+- Dolphin, Cemu, Ryujinx-compatible historical notes if retained in static data.
+- Flycast, Kronos/Mednafen Saturn, Genesis Plus GX, Mesen, mGBA, melonDS.
+- Xemu, DOSBox Staging, ScummVM, OpenBOR, GZDoom, Ruffle, FreeJ2ME.
+- FBNeo, Redream, BigPEmu, DOSBox Pure, DOSBox-X, PrimeHack, Azahar, Panda3DS, and Eden where current public documentation supports stable facts.
+
+Acceptance criteria:
+
+- Records separate standalone emulator behavior from frontend integration behavior.
+- BIOS/firmware data avoids copyrighted content and does not include keys.
+- Launch command examples avoid user-specific paths unless shown as placeholders.
+
+### 7. Frontend Metadata And Media Behavior Enrichment
+
+Goals:
+
+- Deepen frontend records for metadata location, media path resolution, favorites/hidden/kidgame behavior, scraper integration, and safe backup rules.
+- Prioritize frontends where users commonly perform library repairs.
+
+High-priority frontends:
+
+- RetroBat, Batocera, ES-DE, LaunchBox, Pegasus, EmuDeck, RetroPie, Recalbox.
+- EmulationStation, RetroArch, Lakka, ArkOS, ROCKNIX, Onion OS, muOS, DIG, Reset Collection, Attract-Mode, and RomM.
+
+Current status:
+
+- Added normalized frontend records for `emulationstation`, `retroarch`, `lakka`, `arkos`, `rocknix`, `onion-os`, and `muos`.
+
+Research targets:
+
+- Exact metadata file locations and platform override behavior.
+- Media folder conventions and relative vs absolute path handling.
+- Subfolder scanning behavior and duplicate-detection edge cases.
+- Safe shutdown/closed-app requirements before metadata edits.
+- Backup/restore procedures for metadata files and frontend databases.
+
+Acceptance criteria:
+
+- Frontend facts cite official docs/wiki/FAQ where available.
+- Risky operations document backup and approval requirements.
+- Frontend-specific behavior is not generalized unless confirmed across that frontend family.
+
+### 8. Scraper And Asset Mapping Enrichment
+
+Goals:
+
+- Expand `data/metadata/asset-taxonomy.json` and scraper records with source-specific media and metadata mappings.
+- Map provider/tool names into canonical internal asset IDs.
+
+Research targets:
+
+- ScreenScraper media and metadata type names.
+- Skraper output templates and naming behavior.
+- ARRM media naming and frontend export behavior.
+- Skyscraper cache/output behavior.
+- LaunchBox Games Database media categories.
+- TheGamesDB, MobyGames, IGDB, and OpenVGDB field coverage and API constraints.
+- EmuMovies, SteamGridDB, RetroAchievements, Redump, No-Intro/DAT-o-MATIC, Arcade Database, MAME software lists, RAWG, and GiantBomb identity/asset fields.
+
+Current status:
+
+- Added normalized scraper source records for `emumovies`, `steamgriddb`, `retroachievements`, `redump`, `no-intro`, `dat-o-matic`, `arcade-database`, and `mame-software-lists`.
+
+Acceptance criteria:
+
+- Canonical asset IDs remain stable.
+- Aliases are source-backed where possible.
+- Credentials, API keys, OAuth tokens, and account details are never stored in project data.
+
+### 9. Quirk And Compatibility Research
+
+Goals:
+
+- Increase the practical value of the skill by documenting high-impact failure modes and safe fixes.
+- Prefer quirks that directly affect diagnostics, duplicate entries, missing games, missing art, broken metadata, or failed launches.
+
+High-value quirk areas:
+
+- EmulationStation-family subfolder scanning and duplicate multidisc entries.
+- `.m3u` relative path rules across Windows, Linux, Steam Deck, and WSL.
+- Linux case sensitivity vs Windows case insensitivity.
+- MAME merged/split/non-merged set expectations and CHD folder conventions.
+- LaunchBox XML editing while LaunchBox/BigBox is open.
+- Scraper false matches caused by region, revision, clone, hack, demo, beta, or translated ROM names.
+- Archive handling differences: zipped arcade ROMs vs extracted console ROMs.
+
+Acceptance criteria:
+
+- Each quirk includes symptom, cause, safe diagnosis, and conservative repair guidance.
+- Destructive fixes use quarantine/backup patterns rather than deletion by default.
+- Quirks cross-reference affected frontends, systems, or emulators where possible.
+
+### 10. Validation And Release Automation
+
+Goals:
+
+- Keep the repository easy to trust as data grows.
+- Add CI checks once the data model stabilizes.
+
+Recommended automation:
+
+- GitHub Actions workflow for `npm run validate`.
+- Raw JSON syntax checks across all JSON files.
+- Ajv schema validation for normalized record files under `data/systems`, `data/emulators`, `data/frontends`, `data/scrapers`, and `data/metadata`.
+- Optional markdown link check for docs and source URLs.
+- Fixture audit test command once fixtures and parsers exist.
+- Static/normalized alias validation so duplicate shallow IDs cannot drift from canonical records silently.
+- Safety metadata validation so high-risk records cannot omit conservative automation guidance.
+
+Current status:
+
+- Ajv validation is wired into `npm run validate` for normalized frontends, systems, emulators, scraper sources, scraper tools, metadata stores, and asset taxonomy.
+- Alias, high-risk safety metadata, and fixture safety checks are included in validation.
+- `npm run check` is the local pre-release command for data validation, fixture audit regression tests, and repair-plan tests.
+- `.github/workflows/check.yml` runs `npm run check` on pushes to `main` and pull requests without requiring secrets.
+- Local runtime and markdown local-link checks are included in `npm run check`.
+- Audit result and repair plan JSON schemas are present and exercised by fixture tests.
+- Backup manifest and dry-run change JSON schemas are present; dry-run change generation is fixture-tested for no mutation and quarantine-path safety.
+
+Repair workflow status:
+
+- `docs/repair-workflows.md` documents the minimum safety design for future mutating workflows.
+- One narrowly scoped mutating workflow exists: `apply-m3u-case-fixes.mjs`, restricted to `case_mismatch` M3U findings with `--apply`.
+- Fixture targets are allowed with `--apply`; real targets also require `--allow-real-targets` and exact `--confirm-target <absolute-target>`.
+- Rollback exists via `rollback-backup-manifest.mjs` with the same real-target gates; tests verify apply, audit, rollback, and re-audit behavior.
+- `docs/install-testing.md` documents manual skill install/runtime checks against fixtures.
+
+Acceptance criteria:
+
+- Pull requests fail on broken JSON or broken normalized cross-references.
+- Pull requests fail when normalized records do not conform to their JSON schemas.
+- Pull requests fail when aliases point to missing canonical records or circular equivalents.
+- Pull requests should run `npm run check` once CI is added.
+- CI does not require secrets.
+- Network-dependent checks are optional or separated from default CI.
 
 ---
 

@@ -1,0 +1,15 @@
+{
+  "id": "pcfx",
+  "name": "PC-FX",
+  "category": "console",
+  "manufacturer": "NEC",
+  "sources": [{ "type": "docs", "url": "https://mednafen.github.io/documentation/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "aliases": { "folder_ids": ["pcfx", "pc-fx"], "frontend_ids": ["pcfx"], "region_ids": [], "equivalent_system_ids": [] },
+  "formats": { "preferred": [".cue", ".chd"], "supported": [".cue", ".bin", ".chd", ".iso"], "descriptor_files": [".cue"], "archive_formats": [] },
+  "bios": { "required": true, "common_files": ["pcfx.rom"], "notes": "PC-FX emulation requires a user-supplied BIOS; do not store or inspect BIOS contents." },
+  "emulation": { "preferred_emulators": ["mednafen"], "retroarch_cores": ["mednafen_pcfx"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": false, "playlist_target_preference": "CUE or CHD disc descriptor" },
+  "frontend_notes": {},
+  "safety": { "automation_level": "approval_required", "requires_backup": true, "do_not_store": ["bios_roms", "rom_payloads"], "notes": ["Disc descriptor and BIOS-sensitive repairs require backup and explicit approval."] },
+  "notes": ["Prefer descriptor-file audits before proposing any BIN/CUE or CHD layout changes."]
+}

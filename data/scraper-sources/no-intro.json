@@ -1,0 +1,12 @@
+{
+  "id": "no-intro",
+  "name": "No-Intro",
+  "category": "database",
+  "homepage": "https://no-intro.org/",
+  "sources": [{ "type": "homepage", "url": "https://no-intro.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "access": { "public_web": true, "account_required_for_api": false, "api_available": false, "common_clients": [] },
+  "provides": { "metadata": ["title", "system", "region", "revision", "status"], "media": [], "ids": ["hashes", "dat_entries"] },
+  "coverage": { "strengths": ["cartridge/digital set identity", "DAT reference metadata"], "weaker_areas": ["disc media", "artwork"] },
+  "legal_notes": ["DAT/reference data is not ROM content. Do not store ROM payloads."],
+  "notes": ["Useful for identity and naming guidance; keep any DAT use separate from ROM distribution."]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "rawg",
+  "name": "RAWG",
+  "category": "database",
+  "homepage": "https://rawg.io/",
+  "sources": [{ "type": "homepage", "url": "https://rawg.io/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "access": { "public_web": true, "account_required_for_api": true, "api_available": true, "common_clients": [] },
+  "provides": { "metadata": ["title", "description", "platforms", "release_date", "genres", "developers", "publishers"], "media": ["background_image", "screenshots"], "ids": ["rawg_game_id"] },
+  "coverage": { "strengths": ["modern game metadata", "PC/console discovery"], "weaker_areas": ["ROM hash matching", "frontend-specific media names"] },
+  "legal_notes": ["Do not store API keys or account details in project data."],
+  "notes": ["Useful as supplemental metadata; not a ROM identity authority."]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "wonderswan",
+  "name": "WonderSwan / WonderSwan Color",
+  "category": "handheld",
+  "manufacturer": "Bandai",
+  "sources": [
+    { "type": "docs", "url": "https://mednafen.github.io/documentation/", "last_reviewed": "2026-04-29", "confidence": "medium" },
+    { "type": "docs", "url": "https://docs.libretro.com/library/beetle_wswan/", "last_reviewed": "2026-04-29", "confidence": "medium" }
+  ],
+  "aliases": { "folder_ids": ["wonderswan", "wonderswancolor", "wswan", "wswanc"], "frontend_ids": ["wonderswan", "wonderswancolor", "wswan", "wswanc"], "region_ids": [], "equivalent_system_ids": ["wonderswancolor", "wswan", "wswanc"] },
+  "formats": { "preferred": [".ws", ".wsc"], "supported": [".ws", ".wsc", ".pc2", ".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": false, "common_files": [], "notes": "WonderSwan cartridge emulation generally does not require a BIOS file." },
+  "emulation": { "preferred_emulators": ["mednafen"], "retroarch_cores": ["mednafen_wswan", "beetle_wswan"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": false, "playlist_target_preference": "cartridge ROM file" },
+  "frontend_notes": { "es-de": "Some frontend lists split monochrome and Color folders; preserve observed folder identity when auditing." },
+  "safety": { "automation_level": "dry_run_only", "requires_backup": true, "do_not_store": ["rom_payloads"], "notes": ["Do not automatically merge WonderSwan and WonderSwan Color folders without confirmation."] },
+  "notes": ["This normalized record treats WonderSwan and WonderSwan Color as one closely related handheld family while preserving folder aliases."]
+}

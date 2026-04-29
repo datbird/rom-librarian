@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gameList>
+  <game>
+    <path>./Synthetic Platformer.sfc</path>
+    <name>Synthetic Platformer</name>
+    <image>./media/images/Synthetic Platformer.png</image>
+    <video>./media/videos/missing-platformer-video.mp4</video>
+  </game>
+  <game>
+    <path>./Missing Game.sfc</path>
+    <name>Missing Game</name>
+    <image>./media/images/Missing Game.png</image>
+  </game>
+</gameList>

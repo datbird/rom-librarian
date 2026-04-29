@@ -1,0 +1,20 @@
+{
+  "id": "scummvm",
+  "name": "ScummVM",
+  "category": "runtime",
+  "homepage": "https://www.scummvm.org/",
+  "sources": [
+    { "type": "homepage", "url": "https://www.scummvm.org/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://docs.scummvm.org/", "last_reviewed": "2026-04-28", "confidence": "high" }
+  ],
+  "platforms": ["windows", "linux", "macos", "steamdeck"],
+  "systems": ["scummvm"],
+  "paths": {
+    "config": "ScummVM configuration file and game target database",
+    "game_data": "per-game folders containing original data files"
+  },
+  "supported_formats": { "launcher": ["folder", ".scummvm", ".svm"] },
+  "library_behavior": { "supports_m3u": false, "supports_chd": false, "bios_required": false, "folder_based": true },
+  "quirks": ["parser-glob-collision"],
+  "notes": ["Frontend entries usually need a ScummVM target ID or descriptor, not just arbitrary folder names."]
+}

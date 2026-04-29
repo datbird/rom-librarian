@@ -1,0 +1,52 @@
+{
+  "id": "ds",
+  "name": "Nintendo DS",
+  "category": "handheld",
+  "manufacturer": "Nintendo",
+  "sources": [
+    { "type": "homepage", "url": "https://melonds.kuribo64.net/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://docs.libretro.com/library/melonds/", "last_reviewed": "2026-04-28", "confidence": "medium" },
+    { "type": "docs", "url": "https://emudeck.github.io/cheat-sheet/", "last_reviewed": "2026-04-28", "confidence": "medium" }
+  ],
+  "aliases": {
+    "folder_ids": ["nds"],
+    "frontend_ids": [],
+    "region_ids": [],
+    "equivalent_system_ids": []
+  },
+  "formats": {
+    "preferred": [".nds"],
+    "supported": [".nds", ".app", ".zip", ".7z"],
+    "descriptor_files": [],
+    "archive_formats": [".zip", ".7z"]
+  },
+  "bios": {
+    "required": false,
+    "common_files": ["bios7.bin", "bios9.bin", "firmware.bin", "dsi_bios7.bin", "dsi_bios9.bin", "dsi_firmware.bin", "dsi_nand.bin"],
+    "notes": "DS BIOS/firmware are optional for many DS games but required for some accuracy and DSiWare workflows."
+  },
+  "emulation": {
+    "preferred_emulators": ["melonds", "desmume", "noods"],
+    "retroarch_cores": ["melonds", "melonds_ds", "desmume", "desmume_2015"]
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": null,
+    "install_based_content": false,
+    "playlist_target_preference": ".nds",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "frontend_notes": {
+    "es-de": "Most ES-family frontends use nds as the folder ID, while rom-librarian also tracks ds as the canonical static system."
+  },
+  "quirks": ["es-folder-alias-mismatch", "retroarch-system-dir-confusion"],
+  "confidence_notes": ["`nds` is a common frontend folder alias; BIOS/firmware behavior varies by emulator and DSi workflow."],
+  "source_map": {
+    "formats": ["https://melonds.kuribo64.net/", "https://docs.libretro.com/library/melonds/"],
+    "aliases": ["https://emudeck.github.io/cheat-sheet/"]
+  },
+  "last_verified_with": {
+    "source_review_date": "2026-04-28"
+  },
+  "notes": ["DSiWare is a separate install/content workflow even when surfaced under the DS family."]
+}

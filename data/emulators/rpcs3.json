@@ -1,0 +1,14 @@
+{
+  "id": "rpcs3",
+  "name": "RPCS3",
+  "category": "emulator",
+  "homepage": "https://rpcs3.net/",
+  "sources": [{ "type": "homepage", "url": "https://rpcs3.net/", "last_reviewed": "2026-04-29", "confidence": "high" }],
+  "platforms": ["windows", "linux", "macos"],
+  "systems": ["ps3"],
+  "paths": { "firmware": "installed inside RPCS3 user data", "games": "user-added game folders or installed packages" },
+  "supported_formats": { "content": ["folder", ".iso", ".pkg"] },
+  "library_behavior": { "install_based_content": true, "firmware_required": true, "direct_file_launch_may_be_frontend_specific": true },
+  "quirks": [],
+  "notes": ["Do not store firmware, licenses, account data, or installed emulator state in project data."]
+}

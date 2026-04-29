@@ -1,0 +1,15 @@
+{
+  "id": "attract-mode",
+  "name": "Attract-Mode",
+  "category": "frontend",
+  "homepage": "http://attractmode.org/",
+  "sources": [{ "type": "homepage", "url": "http://attractmode.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "platforms": ["windows", "linux", "macos"],
+  "default_paths": { "romlists": "Attract-Mode romlists directory", "layouts": "Attract-Mode layouts directory", "media": "configured per display/emulator" },
+  "config_paths": { "emulators": "emulators/*.cfg", "romlists": "romlists/*.txt" },
+  "structure": { "based_on": null, "metadata_format": "romlist_text", "rom_structure": "user_defined", "media_dirs": ["configured artwork paths"], "multidisc_method": "emulator_specific" },
+  "systems": {},
+  "scraping": { "built_in_scraper": true, "metadata_store": "romlist_text", "compatible_tools": [] },
+  "quirks": ["parser-glob-collision"],
+  "notes": ["Attract-Mode behavior depends heavily on emulator config and romlist generation."]
+}

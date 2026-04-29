@@ -5,7 +5,37 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "validate": "node scripts/validate.mjs"
+    "validate": "node scripts/validate.mjs",
+    "audit:aliases": "node scripts/audit-system-aliases.mjs",
+    "audit:bios": "node scripts/audit-bios.mjs",
+    "audit:duplicates": "node scripts/audit-duplicates.mjs",
+    "audit:extensions": "node scripts/audit-extensions.mjs",
+    "audit:fixtures": "node scripts/audit-fixtures.mjs",
+    "audit:launchbox": "node scripts/audit-launchbox-paths.mjs",
+    "audit:m3u": "node scripts/audit-m3u.mjs",
+    "audit:mame": "node scripts/audit-mame-layout.mjs",
+    "audit:media": "node scripts/audit-media-paths.mjs",
+    "audit:pegasus": "node scripts/audit-pegasus-assets.mjs",
+    "audit:retroarch": "node scripts/audit-retroarch-playlists.mjs",
+    "audit:romm": "node scripts/audit-romm-slugs.mjs",
+    "apply:m3u-case-fixes": "node scripts/apply-m3u-case-fixes.mjs",
+    "check": "npm run validate && npm run test:audits && npm run test:plans && npm run test:changes && npm run test:apply && npm run test:output && npm run test:runtime && npm run check:runtime && npm run check:markdown",
+    "check:markdown": "node scripts/check-markdown-links.mjs",
+    "check:runtime": "node scripts/check-runtime.mjs",
+    "plan:repairs": "node scripts/plan-repairs.mjs",
+    "plan:markdown": "node scripts/render-plan-markdown.mjs",
+    "rollback:manifest": "node scripts/rollback-backup-manifest.mjs",
+    "plan:changes": "node scripts/render-dry-run-changes.mjs",
+    "test": "npm run check",
+    "test:apply": "node scripts/test-apply-m3u-case-fixes.mjs",
+    "test:audits": "node scripts/test-audits.mjs",
+    "test:changes": "node scripts/test-dry-run-changes.mjs",
+    "test:output": "node scripts/test-output-options.mjs",
+    "test:plans": "node scripts/test-repair-plans.mjs",
+    "test:runtime": "node scripts/test-runtime-prompt.mjs"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "ajv": "^8.20.0"
+  }
 }

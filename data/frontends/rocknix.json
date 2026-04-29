@@ -1,0 +1,15 @@
+{
+  "id": "rocknix",
+  "name": "ROCKNIX",
+  "category": "frontend",
+  "homepage": "https://rocknix.org/",
+  "sources": [{ "type": "homepage", "url": "https://rocknix.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "platforms": ["linux", "handheld"],
+  "default_paths": { "rom_root": "device-specific games/roms folder", "bios": "device-specific BIOS folder" },
+  "config_paths": { "emulationstation": "device-specific EmulationStation config" },
+  "structure": { "based_on": "emulationstation", "metadata_format": "es_xml", "rom_structure": "system_subfolders", "media_dirs": ["media", "images", "videos"], "multidisc_method": "m3u_when_supported" },
+  "systems": {},
+  "scraping": { "built_in_scraper": true, "metadata_store": "emulationstation-gamelist", "compatible_tools": [] },
+  "quirks": ["es-folder-alias-mismatch"],
+  "notes": ["ROCKNIX paths and supported systems depend on device build; keep audits read-only by default."]
+}

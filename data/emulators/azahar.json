@@ -1,0 +1,14 @@
+{
+  "id": "azahar",
+  "name": "Azahar",
+  "category": "emulator",
+  "homepage": "https://azahar-emu.org/",
+  "sources": [{ "type": "homepage", "url": "https://azahar-emu.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "platforms": ["windows", "linux", "macos", "android"],
+  "systems": ["3ds", "n3ds"],
+  "paths": { "system": "emulator user data", "content": "3DS ROMs or installed titles" },
+  "supported_formats": { "content": [".3ds", ".cci", ".cxi", ".cia"] },
+  "library_behavior": { "install_based_content": true, "keys_may_be_required_for_encrypted_content": true },
+  "quirks": ["es-folder-alias-mismatch"],
+  "notes": ["Do not handle AES keys or decrypted title data in project files."]
+}

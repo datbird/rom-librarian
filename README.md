@@ -34,6 +34,7 @@ Not included in this repository state:
 - `data/scraper-tools/` - standalone and built-in scraper/helper records
 - `data/metadata-stores/` - frontend metadata storage records
 - `data/metadata/asset-taxonomy.json` - canonical media asset and metadata field taxonomy
+- `fixtures/` - copyright-safe synthetic fixture libraries for read-only diagnosis and audit-script tests
 - `schema/user.schema.json` - schema for deployment-specific `user.json`
 - `schema/frontend.schema.json` - schema for normalized frontend records
 - `schema/system.schema.json` - schema for normalized system/platform records
@@ -42,13 +43,23 @@ Not included in this repository state:
 - `schema/scraper-tool.schema.json` - schema for normalized scraper/helper records
 - `schema/metadata-store.schema.json` - schema for frontend metadata persistence records
 - `schema/asset-taxonomy.schema.json` - schema for canonical media asset and metadata field taxonomy
+- `schema/audit-result.schema.json` - schema for audit JSON output
+- `schema/repair-plan.schema.json` - schema for dry-run repair-plan JSON output
 - `schema/source.schema.json` - schema for source URL/review metadata
 - `examples/user.example.json` - example RetroBat Windows/WSL deployment config
 - `docs/frontends.md` - frontend reference
 - `docs/systems.md` - system reference
 - `docs/quirks.md` - known-quirk reference
 - `docs/scraping.md` - scraper/source/tool/metadata-store reference
+- `docs/audits.md` - read-only audit command reference
+- `docs/repair-plans.md` - repair-plan JSON and Markdown rendering reference
+- `docs/dry-run-changes.md` - concrete non-mutating change-list reference
+- `docs/repair-workflows.md` - future mutating workflow safety design
+- `docs/install-testing.md` - manual install/runtime test checklist
 - `scripts/validate.mjs` - dependency-free validation script
+- `scripts/audit-*.mjs` - read-only audit workflows and scaffolds for fixtures and real libraries
+- `scripts/plan-repairs.mjs` - read-only dry-run repair-plan generator from audit JSON
+- `.github/workflows/check.yml` - CI workflow for `npm run check`
 
 ## Install As A Skill
 
@@ -66,7 +77,7 @@ Then register or copy `rom-librarian.md` according to the target agent's skill s
 For this local workspace, the source lives at:
 
 ```text
-/home/tbird/claudeplayground/rom-librarian
+/home/tbird/aiplayground/rom-librarian
 ```
 
 ## Personal Config
@@ -142,7 +153,15 @@ Preferred approach:
 
 ## Validation
 
-Run all validation checks:
+Run the standard local check suite:
+
+```bash
+npm run check
+```
+
+`npm test` is an alias for the same check suite.
+
+Run data validation only:
 
 ```bash
 npm run validate
@@ -163,6 +182,72 @@ The validation script checks:
 - normalized record IDs and cross-references back to `static.json`
 - normalized scraper source/tool/metadata-store records and cross-references
 - normalized metadata taxonomy source metadata and required asset/field shapes
+- fixture safety guardrails for placeholder ROM/archive/disc-like files and forbidden BIOS/key names
+
+## Read-Only Audits
+
+Audit scripts are intentionally read-only. Run them against `fixtures/` before using any real library path.
+
+```bash
+npm run audit:aliases
+npm run audit:bios -- fixtures/bios-expectations/bios psx
+npm run audit:extensions -- fixtures/extension-mismatch/roms/ds ds
+npm run audit:m3u -- fixtures/es-psx-multidisc/roms/psx
+npm run audit:media -- fixtures/es-media-paths/roms/snes
+npm run audit:mame -- fixtures/mame-layout/roms/mame
+npm run audit:launchbox -- fixtures/launchbox-stale-paths/Data
+npm run audit:pegasus -- fixtures/pegasus-missing-assets
+npm run audit:retroarch -- fixtures/retroarch-playlist
+npm run audit:romm -- fixtures/romm-slug-mismatch
+npm run audit:fixtures
+npm run test:audits
+```
+
+Each audit also supports `--json-out <file>` for agent-friendly output capture.
+
+Generate a read-only repair plan from an audit JSON file or stdin:
+
+```bash
+npm run audit:media -- fixtures/es-media-paths/roms/snes > /tmp/media-audit.json
+npm run plan:repairs -- /tmp/media-audit.json --json-out /tmp/media-plan.json
+npm run plan:changes -- /tmp/media-plan.json --json-out /tmp/media-changes.json
+npm run plan:markdown -- /tmp/media-plan.json
+```
+
+Repair plans are non-mutating. They standardize risk, backup requirements, proposed dry-run steps, and blocked actions; they do not edit metadata or files.
+
+One narrowly scoped mutating applicator exists for proving backup/apply mechanics:
+
+```bash
+npm run apply:m3u-case-fixes -- <m3u-repair-plan.json> --apply
+```
+
+It edits only case-mismatched `.m3u` playlist lines after creating a backup manifest. Fixture targets require `--apply`; real targets also require `--allow-real-targets` and exact `--confirm-target <absolute-target>`.
+
+Rollback is available with:
+
+```bash
+npm run rollback:manifest -- <backup-manifest.json> --apply
+```
+
+Implemented fixture-backed audits currently cover:
+
+- M3U playlist targets, case mismatches, and duplicate loose disc metadata entries.
+- BIOS expected-filename checks that never validate or store BIOS contents.
+- EmulationStation `gamelist.xml` missing ROM/media paths and orphaned media.
+- Unsupported ROM/file extensions for a selected normalized system.
+- LaunchBox platform XML unresolved ROM/media/manual/video/music/additional-application paths.
+- MAME ZIP/CHD layout relationships without ROM-set validation or modification.
+- Pegasus missing asset paths and unknown-field preservation.
+- RetroArch `.lpl` playlist missing content paths and invalid playlist JSON.
+- RomM platform slug/folder differences that resolve through normalized aliases.
+- Duplicate title groups caused by region/revision/demo/beta variants.
+
+Fixture rules:
+
+- Fixtures use synthetic placeholder files only.
+- Broken paths and missing assets are intentional.
+- Do not add BIOS files, keys, firmware, scraped media, real ROMs, or real disc images.
 
 You can also run a raw JSON syntax check with `jq`:
 
@@ -174,17 +259,19 @@ jq empty static.json schema/user.schema.json examples/user.example.json
 
 Static database coverage:
 
-- 12 frontends/library managers
-- 106 systems/platforms
-- 96 emulators/runtimes/launchers
-- 5 scrapers
-- 6 normalized scraper sources
+- 33 frontends/library managers
+- 362 systems/platforms
+- 298 emulators/runtimes/launchers
+- 21 scrapers/tools/providers
+- 16 normalized scraper sources
 - 5 normalized scraper/helper tools
 - 3 normalized metadata stores
 - 21 normalized asset types
 - 14 normalized metadata fields
-- 12 normalized frontend/library-manager records
-- 10 quirks
+- 22 normalized frontend/library-manager records
+- 172 normalized system/platform records
+- 31 normalized emulator/runtime records
+- 24 quirks
 
 See `docs/` for the current lists.
 
@@ -192,7 +279,7 @@ See `docs/` for the current lists.
 
 Before publishing a release tag:
 
-- Run `npm run validate`.
+- Run `npm run check`.
 - Install the skill into the target agent environment.
 - Test a read-only diagnosis prompt.
 - Test first-run `user.json` creation in a temporary config directory.

@@ -1,0 +1,14 @@
+{
+  "id": "ymir",
+  "name": "Ymir",
+  "category": "emulator",
+  "homepage": "https://github.com/StrikerX3/Ymir",
+  "sources": [{ "type": "github", "url": "https://github.com/StrikerX3/Ymir", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "platforms": ["windows", "linux", "macos"],
+  "systems": ["saturn"],
+  "paths": { "config": "Ymir user/config directory", "bios": "configured BIOS path" },
+  "supported_formats": { "disc": [".cue", ".bin", ".iso", ".chd"] },
+  "library_behavior": { "bios_may_be_required": true, "compatibility_varies": true },
+  "quirks": ["multidisc-chd-m3u-edge-cases"],
+  "notes": ["Treat as standalone Saturn emulator context distinct from Libretro cores."]
+}

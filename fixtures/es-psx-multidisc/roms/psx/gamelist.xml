@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gameList>
+  <game>
+    <path>./Synthetic Adventure.m3u</path>
+    <name>Synthetic Adventure</name>
+    <image>./media/images/Synthetic Adventure.png</image>
+  </game>
+  <game>
+    <path>./Synthetic Adventure (Disc 1).cue</path>
+    <name>Synthetic Adventure (Disc 1 duplicate)</name>
+  </game>
+  <game>
+    <path>./Broken Case Playlist.m3u</path>
+    <name>Broken Case Playlist</name>
+  </game>
+</gameList>

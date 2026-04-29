@@ -1,0 +1,15 @@
+{
+  "id": "coco",
+  "name": "TRS-80 Color Computer",
+  "category": "computer",
+  "manufacturer": "Tandy / Radio Shack",
+  "sources": [{ "type": "homepage", "url": "https://www.6809.org.uk/xroar/", "last_reviewed": "2026-04-29", "confidence": "medium" }, { "type": "docs", "url": "https://docs.mamedev.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "aliases": { "folder_ids": ["coco", "trs-80-color-computer", "colorcomputer"], "frontend_ids": ["coco"], "region_ids": [], "equivalent_system_ids": [] },
+  "formats": { "preferred": [".dsk", ".cas", ".ccc"], "supported": [".zip", ".7z", ".dsk", ".hfe", ".m3u", ".tap", ".cas", ".wav", ".rom", ".bin", ".ccc", ".chd", ".iso"], "descriptor_files": [".m3u"], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": true, "common_files": [], "notes": "CoCo/Dragon-family ROM requirements depend on model and emulator configuration." },
+  "emulation": { "preferred_emulators": ["xroar", "mame", "retroarch"], "retroarch_cores": ["mame"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": "m3u", "folder_based": false, "playlist_target_preference": "disk, tape, cartridge, or playlist", "safe_archive_deletion_requires_launch_test": true },
+  "frontend_notes": {},
+  "safety": { "automation_level": "approval_required", "requires_backup": true, "do_not_store": ["machine_roms", "bios_roms", "rom_payloads"], "notes": ["Do not auto-merge CoCo and Dragon libraries; machine compatibility differs."] },
+  "notes": ["CoCo media repairs require model, BASIC/drive ROM, and media slot context."]
+}

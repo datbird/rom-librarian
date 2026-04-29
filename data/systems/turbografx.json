@@ -1,0 +1,15 @@
+{
+  "id": "turbografx",
+  "name": "TurboGrafx-16 / PC Engine",
+  "category": "console",
+  "manufacturer": "NEC",
+  "sources": [{ "type": "docs", "url": "https://docs.libretro.com/library/beetle_pce_fast/", "last_reviewed": "2026-04-29", "confidence": "high" }],
+  "aliases": { "folder_ids": ["pcengine", "tg16"], "frontend_ids": [], "region_ids": [], "equivalent_system_ids": [] },
+  "formats": { "preferred": [".pce"], "supported": [".pce", ".sgx", ".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": false, "common_files": [], "notes": "Cartridge HuCard content generally does not require the CD System Card BIOS." },
+  "emulation": { "preferred_emulators": ["beetle_pce_fast", "mednafen", "geargrafx"], "retroarch_cores": ["beetle_pce_fast", "geargrafx"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": null, "playlist_target_preference": ".pce", "safe_archive_deletion_requires_launch_test": true },
+  "frontend_notes": { "batocera": "PC Engine and TurboGrafx folder names may differ by frontend." },
+  "quirks": ["es-folder-alias-mismatch"],
+  "notes": ["Keep cartridge and CD libraries distinct; PC Engine CD is represented by pcenginecd."]
+}

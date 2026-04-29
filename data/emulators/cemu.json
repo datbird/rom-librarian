@@ -1,0 +1,20 @@
+{
+  "id": "cemu",
+  "name": "Cemu",
+  "category": "emulator",
+  "homepage": "https://cemu.info/",
+  "sources": [
+    { "type": "homepage", "url": "https://cemu.info/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://cemu.cfw.guide/", "last_reviewed": "2026-04-28", "confidence": "high" }
+  ],
+  "platforms": ["windows", "linux", "steamdeck"],
+  "systems": ["wiiu"],
+  "paths": {
+    "config": "platform-specific Cemu settings and mlc path",
+    "mlc": "Cemu mlc01/user data directory"
+  },
+  "supported_formats": { "disc": [".wua", ".wux", ".wud", ".rpx", "folder"] },
+  "library_behavior": { "supports_m3u": false, "supports_chd": false, "bios_required": false, "install_based_content": true },
+  "quirks": ["switch-keys-secrets"],
+  "notes": ["Cemu libraries often involve installed/extracted titles or WUA files; preserve update/DLC/mlc relationships during moves."]
+}

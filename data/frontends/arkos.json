@@ -1,0 +1,15 @@
+{
+  "id": "arkos",
+  "name": "ArkOS",
+  "category": "frontend",
+  "homepage": "https://github.com/christianhaitian/arkos",
+  "sources": [{ "type": "github", "url": "https://github.com/christianhaitian/arkos", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "platforms": ["linux", "handheld"],
+  "default_paths": { "rom_root": "device-specific ROMs partition/folder", "bios": "device-specific BIOS folder" },
+  "config_paths": { "emulationstation": "device-specific EmulationStation config" },
+  "structure": { "based_on": "emulationstation", "metadata_format": "es_xml", "rom_structure": "system_subfolders", "media_dirs": ["media", "images", "videos"], "multidisc_method": "m3u_when_supported" },
+  "systems": {},
+  "scraping": { "built_in_scraper": true, "metadata_store": "emulationstation-gamelist", "compatible_tools": ["skraper", "skyscraper"] },
+  "quirks": ["es-folder-alias-mismatch", "retroarch-system-dir-confusion"],
+  "notes": ["Treat ArkOS as a device-oriented EmulationStation-family distribution; verify device-specific paths before repair planning."]
+}

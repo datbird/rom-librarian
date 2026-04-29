@@ -1,0 +1,12 @@
+{
+  "id": "redump",
+  "name": "Redump",
+  "category": "archive",
+  "homepage": "http://redump.org/",
+  "sources": [{ "type": "homepage", "url": "http://redump.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "access": { "public_web": true, "account_required_for_api": false, "api_available": false, "common_clients": [] },
+  "provides": { "metadata": ["disc_title", "system", "region", "serial", "version"], "media": [], "ids": ["redump_disc_id", "hashes"] },
+  "coverage": { "strengths": ["optical disc identity", "hash/reference metadata"], "weaker_areas": ["box art", "videos", "frontend media"] },
+  "legal_notes": ["Use as reference/identity data only. Do not store disc images or copyrighted payloads."],
+  "notes": ["Useful for validating disc naming and identity, not for repairing files without user-owned dumps."]
+}

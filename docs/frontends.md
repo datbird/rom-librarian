@@ -76,3 +76,8 @@ When accessed from WSL, the same path is usually:
 ```
 
 When a Windows executable is called from WSL, such as `7z.exe`, convert WSL paths with `wslpath -w` before passing paths to the executable.
+
+
+## Additional Frontend Families
+
+Expanded static recognition now includes upstream EmulationStation, RetroArch/Lakka, handheld Linux distributions such as ArkOS/ROCKNIX/JELOS/AmberELEC/OnionOS/muOS/MinUI, parser-driven desktop frontends such as Attract-Mode/HyperSpin/RetroFE/GameEx, and Android frontends such as DIG/Reset Collection/Arc Browser. Treat these entries as recognition and path-risk references until normalized records are added.

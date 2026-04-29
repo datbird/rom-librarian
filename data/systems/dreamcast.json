@@ -1,0 +1,52 @@
+{
+  "id": "dreamcast",
+  "name": "Sega Dreamcast",
+  "category": "console",
+  "manufacturer": "Sega",
+  "sources": [
+    { "type": "homepage", "url": "https://flyinghead.github.io/flycast-builds/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://docs.libretro.com/library/flycast/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://gitlab.com/es-de/emulationstation-de/-/tree/master/resources/systems", "last_reviewed": "2026-04-28", "confidence": "medium" }
+  ],
+  "aliases": {
+    "folder_ids": ["segadreamcast"],
+    "frontend_ids": [],
+    "region_ids": [],
+    "equivalent_system_ids": []
+  },
+  "formats": {
+    "preferred": [".chd", ".gdi", ".m3u"],
+    "supported": [".gdi", ".cdi", ".chd", ".cue", ".bin", ".iso", ".m3u", ".zip", ".7z"],
+    "descriptor_files": [".gdi", ".cue", ".m3u"],
+    "archive_formats": [".zip", ".7z"]
+  },
+  "bios": {
+    "required": false,
+    "common_files": ["dc_boot.bin", "dc_flash.bin"],
+    "notes": "BIOS is optional for some Flycast configurations but may be required for compatibility or boot behavior."
+  },
+  "emulation": {
+    "preferred_emulators": ["flycast", "redream"],
+    "retroarch_cores": ["flycast"]
+  },
+  "library_behavior": {
+    "multidisc": true,
+    "multidisc_format": "m3u",
+    "playlist_target_preference": ".gdi or .chd",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "frontend_notes": {
+    "retrobat": "Seed repair used segadreamcast/Favorite root .m3u files pointing to per-game subfolders.",
+    "emudeck": "Dreamcast folder is normally dreamcast. BIOS, when used, is commonly placed in a dc subfolder under the BIOS path."
+  },
+  "quirks": ["es-m3u-folder-name", "7z-stdin-multidisc", "multidisc-chd-m3u-edge-cases"],
+  "confidence_notes": ["Dreamcast BIOS is optional in some configurations but can affect compatibility; .gdi/.chd handling should be checked before cleanup."],
+  "source_map": {
+    "formats": ["https://flyinghead.github.io/flycast-builds/", "https://docs.libretro.com/library/flycast/"],
+    "aliases": ["https://gitlab.com/es-de/emulationstation-de/-/tree/master/resources/systems"]
+  },
+  "last_verified_with": {
+    "source_review_date": "2026-04-28"
+  },
+  "notes": ["Prefer .gdi or .chd as playlist targets rather than raw .bin tracks."]
+}

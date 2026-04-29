@@ -1,0 +1,18 @@
+{
+  "id": "atari7800",
+  "name": "Atari 7800",
+  "category": "console",
+  "manufacturer": "Atari",
+  "sources": [
+    { "type": "docs", "url": "https://docs.libretro.com/library/prosystem/", "last_reviewed": "2026-04-29", "confidence": "medium" },
+    { "type": "docs", "url": "https://docs.mamedev.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }
+  ],
+  "aliases": { "folder_ids": ["atari7800", "a7800"], "frontend_ids": ["atari7800"], "region_ids": [], "equivalent_system_ids": [] },
+  "formats": { "preferred": [".a78", ".bin"], "supported": [".a78", ".bin", ".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": false, "common_files": ["7800 BIOS (U).rom"], "notes": "Some emulator/core workflows use an optional BIOS for compatibility or authenticity." },
+  "emulation": { "preferred_emulators": ["a7800", "mame", "prosystem"], "retroarch_cores": ["prosystem", "mame"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": false, "playlist_target_preference": "cartridge ROM file" },
+  "frontend_notes": {},
+  "safety": { "automation_level": "dry_run_only", "requires_backup": true, "do_not_store": ["bios_roms", "rom_payloads"], "notes": ["Do not infer missing BIOS contents from filename alone."] },
+  "notes": ["Atari 7800 filename repairs should preserve PAL/NTSC, prototype, and homebrew tags."]
+}

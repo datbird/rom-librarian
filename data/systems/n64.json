@@ -1,0 +1,15 @@
+{
+  "id": "n64",
+  "name": "Nintendo 64",
+  "category": "console",
+  "manufacturer": "Nintendo",
+  "sources": [{ "type": "docs", "url": "https://docs.libretro.com/library/mupen64plus/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "aliases": { "folder_ids": ["nintendo64"], "frontend_ids": [], "region_ids": [], "equivalent_system_ids": [] },
+  "formats": { "preferred": [".z64", ".n64"], "supported": [".z64", ".n64", ".v64", ".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": false, "common_files": [], "notes": "Nintendo 64 game launching generally does not require external BIOS files." },
+  "emulation": { "preferred_emulators": ["mupen64plus"], "retroarch_cores": ["mupen64plus_next"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": null, "playlist_target_preference": "cartridge ROM file", "safe_archive_deletion_requires_launch_test": true },
+  "frontend_notes": {},
+  "quirks": [],
+  "notes": ["Controller profiles and emulator plugin settings can matter more than file layout."]
+}

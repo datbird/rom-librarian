@@ -1,0 +1,18 @@
+{
+  "id": "retroarch",
+  "name": "RetroArch",
+  "category": "frontend",
+  "homepage": "https://www.retroarch.com/",
+  "sources": [
+    { "type": "homepage", "url": "https://www.retroarch.com/", "last_reviewed": "2026-04-29", "confidence": "high" },
+    { "type": "docs", "url": "https://docs.libretro.com/", "last_reviewed": "2026-04-29", "confidence": "high" }
+  ],
+  "platforms": ["windows", "linux", "macos", "android", "ios"],
+  "default_paths": { "system": "system directory", "playlists": "playlists directory", "thumbnails": "thumbnails directory" },
+  "config_paths": { "main_config": "retroarch.cfg" },
+  "structure": { "based_on": "libretro", "metadata_format": "lpl_playlists", "rom_structure": "user_defined", "media_dirs": ["thumbnails"], "multidisc_method": "m3u_for_supported_cores" },
+  "systems": {},
+  "scraping": { "built_in_scraper": true, "metadata_store": "retroarch-playlists", "compatible_tools": [] },
+  "quirks": ["retroarch-system-dir-confusion"],
+  "notes": ["RetroArch core behavior and frontend playlist behavior should be distinguished in diagnostics."]
+}

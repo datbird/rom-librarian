@@ -1,0 +1,15 @@
+{
+  "id": "reset-collection",
+  "name": "RESET Collection",
+  "category": "frontend",
+  "homepage": "https://www.resetcollection.com/",
+  "sources": [{ "type": "homepage", "url": "https://www.resetcollection.com/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "platforms": ["android"],
+  "default_paths": { "rom_root": "Android user-selected storage", "media": "app-managed media/cache" },
+  "config_paths": { "app_data": "Android app-scoped storage" },
+  "structure": { "based_on": null, "metadata_format": "app_database", "rom_structure": "user_defined", "media_dirs": ["app-managed"], "multidisc_method": "emulator_specific" },
+  "systems": {},
+  "scraping": { "built_in_scraper": true, "metadata_store": "app_database", "compatible_tools": [] },
+  "quirks": ["android-scoped-storage"],
+  "notes": ["Treat app databases and scoped storage as approval-gated; do not assume direct filesystem repair access."]
+}

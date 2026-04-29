@@ -1,0 +1,15 @@
+{
+  "id": "apple2gs",
+  "name": "Apple IIGS",
+  "category": "computer",
+  "manufacturer": "Apple",
+  "sources": [{ "type": "docs", "url": "https://docs.mamedev.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "aliases": { "folder_ids": ["apple2gs", "appleiigs"], "frontend_ids": ["apple2gs"], "region_ids": [], "equivalent_system_ids": [] },
+  "formats": { "preferred": [".2mg", ".po", ".dsk"], "supported": [".2mg", ".po", ".dsk", ".hdv", ".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": true, "common_files": ["apple2gs.rom"], "notes": "Many emulator setups require an Apple IIGS ROM image supplied by the user." },
+  "emulation": { "preferred_emulators": ["mame"], "retroarch_cores": ["mame"] },
+  "library_behavior": { "multidisc": true, "multidisc_format": "m3u", "folder_based": false, "playlist_target_preference": "disk image or hard-disk image", "safe_archive_deletion_requires_launch_test": true },
+  "frontend_notes": {},
+  "safety": { "automation_level": "approval_required", "requires_backup": true, "do_not_store": ["machine_roms", "bios_roms", "rom_payloads"], "notes": ["Do not modify disk-side order or hard-disk images without explicit confirmation."] },
+  "notes": ["Apple IIGS launch behavior can depend on ROM version, boot disk order, and machine configuration."]
+}

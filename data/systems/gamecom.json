@@ -1,0 +1,13 @@
+{
+  "id": "gamecom",
+  "name": "Tiger Game.com",
+  "category": "handheld",
+  "manufacturer": "Tiger Electronics",
+  "sources": [{ "type": "docs", "url": "https://docs.mamedev.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "formats": { "preferred": [".bin", ".zip"], "supported": [".bin", ".rom", ".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": true, "common_files": [], "notes": "Game.com emulation is commonly MAME/set dependent." },
+  "emulation": { "preferred_emulators": ["mame"], "retroarch_cores": ["mame"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": false, "playlist_target_preference": "MAME/software-list set or cartridge image", "safe_archive_deletion_requires_launch_test": true },
+  "safety": { "automation_level": "dry_run_only", "requires_backup": true, "do_not_store": ["bios_roms", "rom_payloads"], "notes": ["Do not rename or rebuild MAME software-list sets automatically."] },
+  "notes": ["Prefer read-only set/layout checks before any repair proposal."]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "mame-software-lists",
+  "name": "MAME Software Lists",
+  "category": "database",
+  "homepage": "https://www.mamedev.org/",
+  "sources": [{ "type": "docs", "url": "https://docs.mamedev.org/", "last_reviewed": "2026-04-29", "confidence": "high" }],
+  "access": { "public_web": true, "account_required_for_api": false, "api_available": false, "common_clients": ["mame"] },
+  "provides": { "metadata": ["software_list", "shortname", "description", "year", "publisher"], "media": [], "ids": ["mame_shortname", "software_list_name"] },
+  "coverage": { "strengths": ["MAME-managed software identity", "machine/software list relationships"], "weaker_areas": ["frontend art", "general scraper metadata"] },
+  "legal_notes": ["Reference metadata only. Do not store ROMs, BIOS files, device ROMs, or samples."],
+  "notes": ["Use for identity/layout context; correctness still depends on MAME version and set style."]
+}

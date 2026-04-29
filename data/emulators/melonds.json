@@ -1,0 +1,20 @@
+{
+  "id": "melonds",
+  "name": "melonDS",
+  "category": "emulator",
+  "homepage": "https://melonds.kuribo64.net/",
+  "sources": [
+    { "type": "homepage", "url": "https://melonds.kuribo64.net/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://docs.libretro.com/library/melonds/", "last_reviewed": "2026-04-28", "confidence": "medium" }
+  ],
+  "platforms": ["windows", "linux", "macos", "steamdeck"],
+  "systems": ["ds", "nds"],
+  "paths": {
+    "config": "platform-specific melonDS configuration directory",
+    "bios": "optional DS/DSi BIOS, firmware, and NAND files"
+  },
+  "supported_formats": { "rom": [".nds", ".app"] },
+  "library_behavior": { "supports_m3u": false, "supports_chd": false, "bios_required": false, "install_based_content": false },
+  "quirks": ["retroarch-system-dir-confusion"],
+  "notes": ["DSiWare setup needs additional DSi firmware/NAND files and is not just a normal .nds ROM folder workflow."]
+}

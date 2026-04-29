@@ -1,0 +1,14 @@
+{
+  "id": "fbneo",
+  "name": "FinalBurn Neo",
+  "category": "emulator",
+  "homepage": "https://github.com/finalburnneo/FBNeo",
+  "sources": [{ "type": "github", "url": "https://github.com/finalburnneo/FBNeo", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "platforms": ["windows", "linux", "macos", "retroarch"],
+  "systems": ["fbneo", "neogeo", "atomiswave"],
+  "paths": { "roms": "frontend/core configured arcade ROM path", "bios": "same ROM path or configured system path depending on frontend/core" },
+  "supported_formats": { "arcade": [".zip", ".7z"] },
+  "library_behavior": { "romset_version_sensitive": true, "do_not_unzip_roms": true, "bios_zip_required_for_some_games": true },
+  "quirks": ["mame-romset-version"],
+  "notes": ["Do not assume MAME and FBNeo sets are interchangeable."]
+}

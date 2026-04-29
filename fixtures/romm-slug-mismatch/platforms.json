@@ -1,0 +1,6 @@
+{
+  "platform_slug": "nintendo-gamecube",
+  "canonical_system_id": "gamecube",
+  "folder_name": "Nintendo GameCube",
+  "fixture_note": "Slug and folder intentionally differ from the normalized canonical ID."
+}

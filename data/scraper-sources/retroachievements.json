@@ -1,0 +1,15 @@
+{
+  "id": "retroachievements",
+  "name": "RetroAchievements",
+  "category": "database",
+  "homepage": "https://retroachievements.org/",
+  "sources": [
+    { "type": "homepage", "url": "https://retroachievements.org/", "last_reviewed": "2026-04-29", "confidence": "high" },
+    { "type": "docs", "url": "https://api-docs.retroachievements.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }
+  ],
+  "access": { "public_web": true, "account_required_for_api": true, "api_available": true, "common_clients": ["retroarch"] },
+  "provides": { "metadata": ["title", "platform", "achievement_sets"], "media": ["badge", "icon"], "ids": ["retroachievements_game_id", "hashes"] },
+  "coverage": { "strengths": ["achievement-enabled retro systems", "hash-based identity"], "weaker_areas": ["systems without achievement support", "general media scraping"] },
+  "legal_notes": ["Do not store user API keys or account tokens in project data."],
+  "notes": ["Useful for identity and compatibility hints, not a general replacement for media scrapers."]
+}

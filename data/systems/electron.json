@@ -1,0 +1,15 @@
+{
+  "id": "electron",
+  "name": "Acorn Electron",
+  "category": "computer",
+  "manufacturer": "Acorn",
+  "sources": [{ "type": "docs", "url": "https://docs.mamedev.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "aliases": { "folder_ids": ["electron", "acornelectron"], "frontend_ids": ["electron"], "region_ids": [], "equivalent_system_ids": [] },
+  "formats": { "preferred": [".uef", ".ssd", ".dsk"], "supported": [".zip", ".7z", ".dsk", ".ssd", ".uef", ".hfe", ".m3u", ".tap", ".cas", ".wav", ".rom", ".bin", ".chd", ".iso"], "descriptor_files": [".m3u"], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": true, "common_files": [], "notes": "Acorn Electron machine and expansion ROM expectations vary by emulator setup." },
+  "emulation": { "preferred_emulators": ["mame", "retroarch"], "retroarch_cores": ["mame"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": "m3u", "folder_based": false, "playlist_target_preference": "tape, disk, ROM, or playlist", "safe_archive_deletion_requires_launch_test": true },
+  "frontend_notes": {},
+  "safety": { "automation_level": "approval_required", "requires_backup": true, "do_not_store": ["machine_roms", "bios_roms", "rom_payloads"], "notes": ["Do not rewrite media-slot assumptions automatically."] },
+  "notes": ["Electron and BBC Micro libraries can overlap but should keep distinct folder semantics."]
+}

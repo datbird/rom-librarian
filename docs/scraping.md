@@ -92,3 +92,8 @@ For a request like "for all Japanese-developed games ensure they all have Englis
 - Preserve unknown XML nodes/fields.
 - Treat scraper results as suggestions when matching is fuzzy.
 - Prefer audit reports before media downloads or bulk rewrites.
+
+
+## Expanded Providers
+
+The static scraper/tool layer now includes built-in ES-DE/Batocera/RetroBat scrapers, RomM metadata providers, Playnite plugins, Steam ROM Manager artwork providers, Igir, EmuMovies, RetroAchievements, Redump, No-Intro/DAT-o-MATIC, Arcade Database, MAME software lists, RAWG, and GiantBomb. The normalized provider layer remains intentionally smaller and source-backed.

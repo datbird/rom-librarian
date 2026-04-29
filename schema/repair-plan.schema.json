@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/07/schema",
+  "$id": "https://github.com/datbird/rom-librarian/schema/repair-plan.schema.json",
+  "title": "rom-librarian dry-run repair plan",
+  "type": "object",
+  "required": ["plan_type", "mode", "audit", "status", "summary", "steps", "global_blocked_actions"],
+  "properties": {
+    "plan_type": { "type": "string", "enum": ["dry_run_repair_plan"] },
+    "mode": { "type": "string", "enum": ["read-only"] },
+    "audit": { "type": "string" },
+    "target": { "type": ["string", "null"] },
+    "status": { "type": "string", "enum": ["planned_not_applied"] },
+    "summary": {
+      "type": "object",
+      "required": ["findings", "proposed_steps", "highest_risk", "backup_required", "manual_only_steps"]
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["step", "finding_type", "severity", "risk", "backup_required", "proposed_action", "blocked_actions", "original_finding"]
+      }
+    },
+    "global_blocked_actions": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": true
+}

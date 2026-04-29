@@ -1,0 +1,25 @@
+{
+  "id": "gba",
+  "name": "Nintendo Game Boy Advance",
+  "category": "handheld",
+  "manufacturer": "Nintendo",
+  "sources": [
+    { "type": "docs", "url": "https://docs.libretro.com/library/mgba/", "last_reviewed": "2026-04-29", "confidence": "high" },
+    { "type": "docs", "url": "https://emudeck.github.io/cheat-sheet/", "last_reviewed": "2026-04-29", "confidence": "medium" }
+  ],
+  "formats": {
+    "preferred": [".gba"],
+    "supported": [".gba", ".zip", ".7z"],
+    "descriptor_files": [],
+    "archive_formats": [".zip", ".7z"]
+  },
+  "bios": { "required": false, "common_files": ["gba_bios.bin"], "notes": "GBA BIOS can improve accuracy but is optional in many emulator configurations." },
+  "emulation": { "preferred_emulators": ["mgba", "mesen", "vba-m"], "retroarch_cores": ["mgba", "gpsp"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": null, "playlist_target_preference": ".gba", "safe_archive_deletion_requires_launch_test": true },
+  "frontend_notes": { "emudeck": "GBA usually maps directly to the gba folder ID." },
+  "quirks": ["retroarch-system-dir-confusion"],
+  "confidence_notes": ["BIOS is optional in many setups; do not treat missing gba_bios.bin as a launch blocker without emulator-specific confirmation."],
+  "source_map": { "formats": ["https://docs.libretro.com/library/mgba/"], "bios": ["https://docs.libretro.com/library/mgba/"] },
+  "last_verified_with": { "source_review_date": "2026-04-29" },
+  "notes": ["Keep BIOS handling filename-only and user-managed."]
+}

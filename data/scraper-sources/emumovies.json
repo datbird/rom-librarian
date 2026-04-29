@@ -1,0 +1,14 @@
+{
+  "id": "emumovies",
+  "name": "EmuMovies",
+  "category": "media_source",
+  "homepage": "https://emumovies.com/",
+  "sources": [
+    { "type": "homepage", "url": "https://emumovies.com/", "last_reviewed": "2026-04-29", "confidence": "high" }
+  ],
+  "access": { "public_web": true, "account_required_for_api": true, "api_available": true, "common_clients": ["launchbox", "arrm"] },
+  "provides": { "metadata": [], "media": ["video", "screenshot", "box_front", "cart", "disc", "logo", "manual"], "ids": [] },
+  "coverage": { "strengths": ["frontend media packs", "videos", "artwork"], "weaker_areas": ["non-media metadata normalization"] },
+  "legal_notes": ["Respect account, subscription, and media redistribution terms."],
+  "notes": ["Treat as a media provider; do not store credentials or account-specific download details in project data."]
+}

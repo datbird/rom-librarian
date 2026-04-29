@@ -176,6 +176,68 @@
       "frontend_mappings": { "emulationstation": ["manual"], "launchbox": ["ManualPath", "Manuals"] }
     }
   },
+  "source_mappings": {
+    "emumovies": {
+      "asset_types": {
+        "video": ["Video Snaps", "Gameplay Videos"],
+        "screenshot_gameplay": ["Screenshots", "Game Snap"],
+        "box_front": ["Box - Front", "2D Boxes"],
+        "logo": ["Logos", "Wheels"],
+        "manual": ["Manuals"]
+      },
+      "notes": "Media-source mappings only; credentials and account download details must not be stored."
+    },
+    "steamgriddb": {
+      "asset_types": {
+        "steam_grid": ["grids"],
+        "background": ["heroes"],
+        "logo": ["logos"],
+        "tile": ["icons"]
+      },
+      "notes": "Launcher artwork mappings for Steam-style library presentation."
+    },
+    "retroachievements": {
+      "metadata_fields": {
+        "title": ["Title"],
+        "platform": ["ConsoleName"],
+        "path": ["GameID", "hash identity"]
+      },
+      "notes": "Identity/achievement context, not a general art scraper."
+    },
+    "redump": {
+      "metadata_fields": {
+        "title": ["disc title"],
+        "platform": ["system"],
+        "region": ["region"],
+        "release_date": ["version/date when present"]
+      },
+      "notes": "Reference/identity metadata only; never store disc payloads."
+    },
+    "no-intro": {
+      "metadata_fields": {
+        "title": ["dat name"],
+        "platform": ["system"],
+        "region": ["region"],
+        "language": ["language tags"]
+      },
+      "notes": "DAT/reference metadata only; never store ROM payloads."
+    },
+    "arcade-database": {
+      "asset_types": {
+        "screenshot_gameplay": ["snap"],
+        "poster": ["flyer"],
+        "marquee": ["marquee"],
+        "control_panel": ["control panel"]
+      },
+      "metadata_fields": {
+        "title": ["description"],
+        "developer": ["manufacturer"],
+        "release_date": ["year"],
+        "genre": ["genre"]
+      },
+      "notes": "Arcade machine metadata and media context; not a ROM source."
+    }
+  },
   "metadata_fields": {
     "title": { "label": "Title", "category": "identity", "aliases": ["name", "title", "Title"], "description": "Display title.", "frontend_mappings": { "emulationstation": ["name"], "launchbox": ["Title"], "pegasus": ["game"] } },
     "sort_title": { "label": "Sort title", "category": "identity", "aliases": ["sort_title", "SortTitle", "sortname"], "description": "Title used for sorting." },

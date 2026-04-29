@@ -1,0 +1,20 @@
+{
+  "id": "dolphin",
+  "name": "Dolphin",
+  "category": "emulator",
+  "homepage": "https://dolphin-emu.org/",
+  "sources": [
+    { "type": "homepage", "url": "https://dolphin-emu.org/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://emudeck.github.io/cheat-sheet/", "last_reviewed": "2026-04-28", "confidence": "medium" }
+  ],
+  "platforms": ["windows", "linux", "macos", "steamdeck"],
+  "systems": ["gamecube", "wii", "gc"],
+  "paths": {
+    "config": "platform-specific Dolphin user directory",
+    "bios": "optional GameCube IPL files under region-specific Dolphin GC folders"
+  },
+  "supported_formats": { "disc": [".rvz", ".iso", ".gcm", ".gcz", ".ciso", ".nkit", ".wia", ".wbfs", ".wad", ".m3u"] },
+  "library_behavior": { "supports_m3u": true, "supports_chd": false, "bios_required": false, "rvz_preferred": true },
+  "quirks": ["es-folder-alias-mismatch", "multidisc-chd-m3u-edge-cases"],
+  "notes": ["Dolphin's RVZ format is preferred for compressed GameCube/Wii disc storage. PrimeHack is a fork/workflow for Metroid Prime-oriented setups."]
+}

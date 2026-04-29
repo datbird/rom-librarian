@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LaunchBox>
+  <Game>
+    <Title>Synthetic Adventure</Title>
+    <ApplicationPath>G:\Missing\Sony PlayStation\Synthetic Adventure.cue</ApplicationPath>
+    <ImagePath>G:\Missing\Images\Synthetic Adventure.png</ImagePath>
+    <ManualPath>G:\Missing\Manuals\Synthetic Adventure.pdf</ManualPath>
+    <VideoPath>G:\Missing\Videos\Synthetic Adventure.mp4</VideoPath>
+    <MusicPath>G:\Missing\Music\Synthetic Adventure.mp3</MusicPath>
+    <Favorite>true</Favorite>
+  </Game>
+  <AdditionalApplication>
+    <GameID>synthetic-adventure</GameID>
+    <ApplicationPath>G:\Missing\Patches\Synthetic Adventure Patch.bat</ApplicationPath>
+  </AdditionalApplication>
+</LaunchBox>

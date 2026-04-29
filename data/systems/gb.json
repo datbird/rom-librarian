@@ -1,0 +1,15 @@
+{
+  "id": "gb",
+  "name": "Nintendo Game Boy",
+  "category": "handheld",
+  "manufacturer": "Nintendo",
+  "sources": [{ "type": "docs", "url": "https://docs.libretro.com/library/mgba/", "last_reviewed": "2026-04-29", "confidence": "high" }],
+  "aliases": { "folder_ids": ["gameboy"], "frontend_ids": [], "region_ids": [], "equivalent_system_ids": [] },
+  "formats": { "preferred": [".gb"], "supported": [".gb", ".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": false, "common_files": ["gb_bios.bin"], "notes": "Game Boy BIOS is optional for many emulator configurations." },
+  "emulation": { "preferred_emulators": ["mgba", "gambatte", "sameboy"], "retroarch_cores": ["mgba", "gambatte", "sameboy"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": null, "playlist_target_preference": ".gb", "safe_archive_deletion_requires_launch_test": true },
+  "frontend_notes": {},
+  "quirks": ["retroarch-system-dir-confusion"],
+  "notes": ["Keep BIOS checks filename-only; do not store boot ROM contents."]
+}

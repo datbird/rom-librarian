@@ -30,6 +30,20 @@
     "parent_clone_model": true
   },
   "frontend_notes": {},
+  "safety": {
+    "automation_level": "dry_run_only",
+    "requires_backup": true,
+    "do_not_store": ["bios_roms", "device_roms", "rom_payloads", "sample_payloads"],
+    "notes": ["Do not rename, unzip, rebuild, or delete arcade ROM sets automatically; MAME set correctness depends on DAT/version context."]
+  },
   "quirks": ["mame-romset-version"],
+  "confidence_notes": ["MAME layout guidance is intentionally diagnostic-only because correctness depends on machine shortnames, CHD layout, and romset version."],
+  "source_map": {
+    "formats": ["https://www.mamedev.org/", "https://docs.mamedev.org/"],
+    "safety": ["https://docs.mamedev.org/"]
+  },
+  "last_verified_with": {
+    "source_review_date": "2026-04-28"
+  },
   "notes": ["MAME is a machine database and hardware preservation project, not a single-console emulator. Treat per-machine data as a future generated dataset, not hand-curated static JSON."]
 }

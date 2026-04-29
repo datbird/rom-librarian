@@ -1,0 +1,58 @@
+{
+  "id": "segacd",
+  "name": "Sega CD / Mega-CD",
+  "category": "console",
+  "manufacturer": "Sega",
+  "sources": [
+    { "type": "docs", "url": "https://docs.libretro.com/library/genesis_plus_gx/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://docs.libretro.com/library/picodrive/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://emudeck.github.io/cheat-sheet/", "last_reviewed": "2026-04-28", "confidence": "medium" }
+  ],
+  "aliases": {
+    "folder_ids": ["megacd"],
+    "frontend_ids": [],
+    "region_ids": ["megacdjp"],
+    "equivalent_system_ids": []
+  },
+  "formats": {
+    "preferred": [".chd", ".cue", ".m3u"],
+    "supported": [".cue", ".bin", ".chd", ".iso", ".m3u", ".zip", ".7z"],
+    "descriptor_files": [".cue", ".m3u"],
+    "archive_formats": [".zip", ".7z"]
+  },
+  "bios": {
+    "required": true,
+    "common_files": ["bios_CD_U.bin", "bios_CD_E.bin", "bios_CD_J.bin"],
+    "notes": "BIOS files are region-specific."
+  },
+  "emulation": {
+    "preferred_emulators": ["genesis-plus-gx", "picodrive", "blastem"],
+    "retroarch_cores": ["genesis-plus-gx", "picodrive"]
+  },
+  "library_behavior": {
+    "multidisc": true,
+    "multidisc_format": "m3u",
+    "playlist_target_preference": ".cue or .chd",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "frontend_notes": {
+    "batocera": "Folder aliases may include megacd.",
+    "es-de": "Folder aliases may include segacd, megacd, or megacdjp depending on configuration."
+  },
+  "safety": {
+    "automation_level": "approval_required",
+    "requires_backup": true,
+    "do_not_store": ["bios", "bios_roms", "firmware", "keys", "rom_payloads"],
+    "notes": ["BIOS files are region-specific user-provided files; never store or infer BIOS contents."]
+  },
+  "quirks": ["es-folder-alias-mismatch", "multidisc-chd-m3u-edge-cases", "retroarch-system-dir-confusion"],
+  "confidence_notes": ["Folder and region aliases are frontend configuration aliases; emulator behavior is sourced separately from Libretro documentation."],
+  "source_map": {
+    "formats": ["https://docs.libretro.com/library/genesis_plus_gx/", "https://docs.libretro.com/library/picodrive/"],
+    "aliases": ["https://emudeck.github.io/cheat-sheet/", "https://gitlab.com/es-de/emulationstation-de/-/tree/master/resources/systems"]
+  },
+  "last_verified_with": {
+    "source_review_date": "2026-04-28"
+  },
+  "notes": ["Preserve region-specific BIOS notes without storing BIOS contents."]
+}

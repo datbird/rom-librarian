@@ -1,0 +1,11 @@
+game: Synthetic Kart
+file: Synthetic Kart.zip
+developer: Fictional Studio
+assets.boxFront: media/boxFront/Synthetic Kart.png
+assets.logo: media/logo/Synthetic Kart.png
+assets.video: media/video/Synthetic Kart.mp4
+assets.music: media/music/Synthetic Kart.ogg
+
+game: Synthetic Unknown Fields
+file: Synthetic Unknown Fields.zip
+x-rom-librarian-fixture-note: preserve unknown fields

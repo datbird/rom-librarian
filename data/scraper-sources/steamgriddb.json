@@ -1,0 +1,15 @@
+{
+  "id": "steamgriddb",
+  "name": "SteamGridDB",
+  "category": "media_source",
+  "homepage": "https://www.steamgriddb.com/",
+  "sources": [
+    { "type": "homepage", "url": "https://www.steamgriddb.com/", "last_reviewed": "2026-04-29", "confidence": "high" },
+    { "type": "docs", "url": "https://www.steamgriddb.com/api/v2", "last_reviewed": "2026-04-29", "confidence": "medium" }
+  ],
+  "access": { "public_web": true, "account_required_for_api": true, "api_available": true, "common_clients": ["steam-rom-manager"] },
+  "provides": { "metadata": ["title"], "media": ["grid", "hero", "logo", "icon"], "ids": ["steamgriddb_game_id"] },
+  "coverage": { "strengths": ["Steam library artwork", "launcher grids", "hero images", "logos"], "weaker_areas": ["ROM hash matching", "emulator-specific metadata"] },
+  "legal_notes": ["Respect API terms and contributor media licenses."],
+  "notes": ["Useful for launcher artwork, especially Steam ROM Manager workflows."]
+}

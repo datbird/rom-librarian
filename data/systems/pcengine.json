@@ -1,0 +1,13 @@
+{
+  "id": "pcengine",
+  "name": "PC Engine",
+  "category": "console",
+  "manufacturer": "NEC",
+  "sources": [{ "type": "docs", "url": "https://docs.libretro.com/library/beetle_pce_fast/", "last_reviewed": "2026-04-29", "confidence": "high" }],
+  "formats": { "preferred": [".pce"], "supported": [".pce", ".sgx", ".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": false, "common_files": [], "notes": "HuCard content generally does not require the CD System Card BIOS." },
+  "emulation": { "preferred_emulators": ["beetle_pce_fast", "mednafen"], "retroarch_cores": ["beetle_pce_fast"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": false, "playlist_target_preference": "HuCard ROM file", "safe_archive_deletion_requires_launch_test": true },
+  "safety": { "automation_level": "dry_run_only", "requires_backup": true, "do_not_store": ["rom_payloads"], "notes": ["Keep PC Engine, TurboGrafx, SuperGrafx, and CD folders distinct unless user confirms a merge."] },
+  "notes": ["Alias-like normalized record for frontends that use pcengine as the folder ID; turbografx remains the broader canonical family record."]
+}

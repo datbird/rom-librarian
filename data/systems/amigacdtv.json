@@ -1,0 +1,13 @@
+{
+  "id": "amigacdtv",
+  "name": "Commodore CDTV",
+  "category": "console",
+  "manufacturer": "Commodore",
+  "sources": [{ "type": "homepage", "url": "https://fs-uae.net/", "last_reviewed": "2026-04-29", "confidence": "medium" }, { "type": "docs", "url": "https://docs.libretro.com/library/puae/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "formats": { "preferred": [".cue", ".chd"], "supported": [".cue", ".bin", ".iso", ".chd"], "descriptor_files": [".cue"], "archive_formats": [] },
+  "bios": { "required": true, "common_files": [], "notes": "CDTV/CD32-family Kickstart and extended ROM expectations vary by emulator setup." },
+  "emulation": { "preferred_emulators": ["fs-uae", "puae"], "retroarch_cores": ["puae"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": false, "playlist_target_preference": "CUE, CHD, or ISO disc image", "safe_archive_deletion_requires_launch_test": true },
+  "safety": { "automation_level": "approval_required", "requires_backup": true, "do_not_store": ["kickstart_roms", "bios_roms", "rom_payloads"], "notes": ["Do not merge CDTV and CD32 targets automatically; ROM and launch assumptions can differ."] },
+  "notes": ["Alias-like record for CDTV frontends; preserve observed folder semantics."]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "arcade",
+  "name": "Arcade",
+  "category": "arcade",
+  "manufacturer": "Various",
+  "sources": [{ "type": "docs", "url": "https://docs.mamedev.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }, { "type": "docs", "url": "https://docs.libretro.com/library/fbneo/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "formats": { "preferred": [".zip"], "supported": [".zip", ".7z", ".chd"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": false, "common_files": [], "notes": "Arcade BIOS/device ZIP needs depend on emulator, board, game, and romset version." },
+  "emulation": { "preferred_emulators": ["mame", "fbneo"], "retroarch_cores": ["mame", "fbneo"] },
+  "library_behavior": { "romset_version_sensitive": true, "do_not_unzip_roms_by_default": true, "parent_clone_model": true, "chd_subfolders_expected": true },
+  "safety": { "automation_level": "dry_run_only", "requires_backup": true, "do_not_store": ["bios_roms", "rom_payloads"], "notes": ["Do not rebuild, unzip, or rename arcade sets automatically."] },
+  "quirks": ["mame-romset-version"],
+  "notes": ["Alias-like record for generic arcade folders; mame and fbneo carry deeper canonical behavior."]
+}

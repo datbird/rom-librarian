@@ -1,0 +1,15 @@
+{
+  "id": "onion-os",
+  "name": "Onion OS",
+  "category": "frontend",
+  "homepage": "https://onionui.github.io/",
+  "sources": [{ "type": "docs", "url": "https://onionui.github.io/docs", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "platforms": ["linux", "handheld"],
+  "default_paths": { "rom_root": "SD card Roms folder", "bios": "SD card BIOS folder" },
+  "config_paths": { "apps": "Onion app/config folders" },
+  "structure": { "based_on": "handheld_launcher", "metadata_format": "mixed", "rom_structure": "system_subfolders", "media_dirs": ["Imgs"], "multidisc_method": "system_specific" },
+  "systems": {},
+  "scraping": { "built_in_scraper": false, "metadata_store": "mixed", "compatible_tools": [] },
+  "quirks": ["es-folder-alias-mismatch"],
+  "notes": ["Onion OS uses handheld-specific folder conventions; verify official docs before moving media or ROM folders."]
+}

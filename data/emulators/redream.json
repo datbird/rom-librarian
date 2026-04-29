@@ -1,0 +1,14 @@
+{
+  "id": "redream",
+  "name": "Redream",
+  "category": "emulator",
+  "homepage": "https://redream.io/",
+  "sources": [{ "type": "homepage", "url": "https://redream.io/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "platforms": ["windows", "linux", "macos", "android"],
+  "systems": ["dreamcast"],
+  "paths": { "library": "user-configured Redream library folders" },
+  "supported_formats": { "disc": [".gdi", ".cdi", ".chd"] },
+  "library_behavior": { "bios_required": false, "supports_chd": true, "supports_m3u": false },
+  "quirks": [],
+  "notes": ["For multi-disc workflows, confirm Redream behavior before relying on frontend .m3u conventions."]
+}

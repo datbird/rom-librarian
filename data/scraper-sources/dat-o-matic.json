@@ -1,0 +1,12 @@
+{
+  "id": "dat-o-matic",
+  "name": "DAT-o-MATIC",
+  "category": "database",
+  "homepage": "https://datomatic.no-intro.org/",
+  "sources": [{ "type": "homepage", "url": "https://datomatic.no-intro.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "access": { "public_web": true, "account_required_for_api": false, "api_available": false, "common_clients": [] },
+  "provides": { "metadata": ["dat_entries", "system", "region", "revision", "hashes"], "media": [], "ids": ["dat_entries", "hashes"] },
+  "coverage": { "strengths": ["No-Intro DAT access", "hash reference metadata"], "weaker_areas": ["media assets", "frontend metadata"] },
+  "legal_notes": ["Reference metadata only; do not store copyrighted payloads or use DATs to imply download sources."],
+  "notes": ["Useful for audit context and identity matching, not a repair source for missing ROM content."]
+}

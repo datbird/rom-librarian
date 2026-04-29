@@ -10,11 +10,35 @@
     "category": { "type": "string", "enum": ["console", "handheld", "computer", "arcade", "mobile", "web", "engine", "launcher", "pinball", "laserdisc", "fantasy_console"] },
     "manufacturer": { "type": ["string", "null"] },
     "sources": { "type": "array", "items": { "$ref": "source.schema.json" } },
+    "aliases": {
+      "type": "object",
+      "properties": {
+        "folder_ids": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "frontend_ids": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "region_ids": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "equivalent_system_ids": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+      },
+      "additionalProperties": false
+    },
     "formats": { "type": "object" },
     "bios": { "type": "object" },
     "emulation": { "type": "object" },
     "library_behavior": { "type": "object" },
     "frontend_notes": { "type": "object" },
+    "safety": {
+      "type": "object",
+      "required": ["automation_level", "requires_backup", "do_not_store"],
+      "properties": {
+        "automation_level": { "type": "string", "enum": ["read_only", "dry_run_only", "approval_required", "automation_allowed"] },
+        "requires_backup": { "type": "boolean" },
+        "do_not_store": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "notes": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "confidence_notes": { "type": "array", "items": { "type": "string" } },
+    "source_map": { "type": "object" },
+    "last_verified_with": { "type": "object" },
     "quirks": { "type": "array", "items": { "type": "string" } },
     "notes": { "type": "array", "items": { "type": "string" } }
   }

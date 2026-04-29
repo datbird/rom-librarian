@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/07/schema",
+  "$id": "https://github.com/datbird/rom-librarian/schema/backup-manifest.schema.json",
+  "title": "rom-librarian backup manifest",
+  "type": "object",
+  "required": ["operation_id", "created_at", "audit", "target", "planned_changes", "backup_paths", "rollback_notes"],
+  "properties": {
+    "operation_id": { "type": "string" },
+    "created_at": { "type": "string" },
+    "audit": { "type": "string" },
+    "target": { "type": ["string", "null"] },
+    "planned_changes": { "type": "array", "items": { "type": "object" } },
+    "backup_paths": { "type": "array", "items": { "type": "string" } },
+    "rollback_notes": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": true
+}

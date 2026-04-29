@@ -1,0 +1,15 @@
+{
+  "id": "sms",
+  "name": "Sega Master System / Mark III",
+  "category": "console",
+  "manufacturer": "Sega",
+  "sources": [{ "type": "docs", "url": "https://docs.libretro.com/library/genesis_plus_gx/", "last_reviewed": "2026-04-29", "confidence": "high" }],
+  "aliases": { "folder_ids": ["mastersystem", "mark3"], "frontend_ids": [], "region_ids": [], "equivalent_system_ids": [] },
+  "formats": { "preferred": [".sms"], "supported": [".sms", ".bin", ".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": false, "common_files": [], "notes": "Master System cartridge loading usually does not require external BIOS files." },
+  "emulation": { "preferred_emulators": ["genesis-plus-gx", "picodrive"], "retroarch_cores": ["genesis-plus-gx", "picodrive"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": null, "playlist_target_preference": "cartridge ROM file", "safe_archive_deletion_requires_launch_test": true },
+  "frontend_notes": { "es-de": "Master System and Mark III naming varies by frontend and region." },
+  "quirks": ["es-folder-alias-mismatch"],
+  "notes": ["Resolve SMS/Master System/Mark III aliases before suggesting folder moves."]
+}

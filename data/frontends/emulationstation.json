@@ -1,0 +1,18 @@
+{
+  "id": "emulationstation",
+  "name": "EmulationStation",
+  "category": "frontend",
+  "homepage": "https://emulationstation.org/",
+  "sources": [
+    { "type": "homepage", "url": "https://emulationstation.org/", "last_reviewed": "2026-04-29", "confidence": "medium" },
+    { "type": "github", "url": "https://github.com/Aloshi/EmulationStation", "last_reviewed": "2026-04-29", "confidence": "medium" }
+  ],
+  "platforms": ["linux", "windows"],
+  "default_paths": { "rom_root": "frontend/distribution-specific", "metadata": "gamelist.xml near system folders" },
+  "config_paths": { "systems": "es_systems.cfg" },
+  "structure": { "based_on": null, "metadata_format": "es_xml", "rom_structure": "system_subfolders", "media_dirs": ["media", "images", "videos"], "multidisc_method": "m3u_when_supported" },
+  "systems": {},
+  "scraping": { "built_in_scraper": true, "metadata_store": "emulationstation-gamelist", "compatible_tools": ["skyscraper", "skraper"] },
+  "quirks": ["es-folder-alias-mismatch", "es-loose-images"],
+  "notes": ["Treat EmulationStation as a family baseline; distribution-specific forks can differ in paths and supported system IDs."]
+}

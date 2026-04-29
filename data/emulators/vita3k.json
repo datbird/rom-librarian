@@ -1,0 +1,14 @@
+{
+  "id": "vita3k",
+  "name": "Vita3K",
+  "category": "emulator",
+  "homepage": "https://vita3k.org/",
+  "sources": [{ "type": "homepage", "url": "https://vita3k.org/", "last_reviewed": "2026-04-29", "confidence": "high" }],
+  "platforms": ["windows", "linux", "macos", "android"],
+  "systems": ["psvita"],
+  "paths": { "firmware": "installed into Vita3K user data", "content": "installed emulator library" },
+  "supported_formats": { "packages": [".pkg", ".vpk", "folder"] },
+  "library_behavior": { "install_based_content": true, "firmware_required": true, "direct_file_launch_may_be_frontend_specific": true },
+  "quirks": [],
+  "notes": ["Keep firmware, licenses, and installed content state user-managed and outside project data."]
+}

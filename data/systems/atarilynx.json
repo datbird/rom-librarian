@@ -1,0 +1,18 @@
+{
+  "id": "atarilynx",
+  "name": "Atari Lynx",
+  "category": "handheld",
+  "manufacturer": "Atari",
+  "sources": [
+    { "type": "docs", "url": "https://mednafen.github.io/documentation/", "last_reviewed": "2026-04-29", "confidence": "medium" },
+    { "type": "docs", "url": "https://docs.libretro.com/library/handy/", "last_reviewed": "2026-04-29", "confidence": "medium" }
+  ],
+  "aliases": { "folder_ids": ["atarilynx", "lynx"], "frontend_ids": ["atarilynx"], "region_ids": [], "equivalent_system_ids": [] },
+  "formats": { "preferred": [".lnx", ".lyx"], "supported": [".lnx", ".lyx", ".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": false, "common_files": ["lynxboot.img"], "notes": "Some Lynx emulator/core configurations require a boot ROM; treat it as user-supplied sensitive data." },
+  "emulation": { "preferred_emulators": ["mednafen", "handy"], "retroarch_cores": ["mednafen_lynx", "handy"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": false, "playlist_target_preference": "cartridge ROM file" },
+  "frontend_notes": {},
+  "safety": { "automation_level": "dry_run_only", "requires_backup": true, "do_not_store": ["bios_roms", "rom_payloads"], "notes": ["Audit boot ROM filename presence only; do not inspect boot ROM contents."] },
+  "notes": ["Lynx libraries are simple cartridge sets, but BIOS expectations vary by emulator."]
+}

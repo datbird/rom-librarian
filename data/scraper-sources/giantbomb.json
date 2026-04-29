@@ -1,0 +1,12 @@
+{
+  "id": "giantbomb",
+  "name": "Giant Bomb",
+  "category": "database",
+  "homepage": "https://www.giantbomb.com/",
+  "sources": [{ "type": "homepage", "url": "https://www.giantbomb.com/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "access": { "public_web": true, "account_required_for_api": true, "api_available": true, "common_clients": [] },
+  "provides": { "metadata": ["title", "description", "platforms", "release_date", "developers", "publishers", "genres"], "media": ["image"], "ids": ["giantbomb_guid"] },
+  "coverage": { "strengths": ["editorial game database metadata", "cross-platform identity"], "weaker_areas": ["ROM hash matching", "emulation frontend media conventions"] },
+  "legal_notes": ["Do not store API keys or account details in project data."],
+  "notes": ["Useful for supplemental metadata and disambiguation, not deterministic ROM matching."]
+}

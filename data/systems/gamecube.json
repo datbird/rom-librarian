@@ -1,0 +1,52 @@
+{
+  "id": "gamecube",
+  "name": "Nintendo GameCube",
+  "category": "console",
+  "manufacturer": "Nintendo",
+  "sources": [
+    { "type": "homepage", "url": "https://dolphin-emu.org/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://emudeck.github.io/cheat-sheet/", "last_reviewed": "2026-04-28", "confidence": "medium" },
+    { "type": "docs", "url": "https://gitlab.com/es-de/emulationstation-de/-/tree/master/resources/systems", "last_reviewed": "2026-04-28", "confidence": "medium" }
+  ],
+  "aliases": {
+    "folder_ids": ["gc"],
+    "frontend_ids": [],
+    "region_ids": [],
+    "equivalent_system_ids": []
+  },
+  "formats": {
+    "preferred": [".rvz", ".iso", ".m3u"],
+    "supported": [".rvz", ".iso", ".gcm", ".gcz", ".ciso", ".nkit", ".wia", ".wad", ".dol", ".elf", ".m3u"],
+    "descriptor_files": [".m3u"],
+    "archive_formats": [".zip", ".7z"]
+  },
+  "bios": {
+    "required": false,
+    "common_files": ["IPL.bin"],
+    "notes": "GameCube IPL BIOS is optional in Dolphin and region-specific when used."
+  },
+  "emulation": {
+    "preferred_emulators": ["dolphin", "primehack"],
+    "retroarch_cores": ["dolphin"]
+  },
+  "library_behavior": {
+    "multidisc": true,
+    "multidisc_format": "m3u",
+    "playlist_target_preference": ".rvz or .iso",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "frontend_notes": {
+    "es-de": "ES-DE commonly uses gc as the folder ID, while other frontends may use gamecube.",
+    "emudeck": "EmuDeck commonly maps GameCube to gc."
+  },
+  "quirks": ["es-folder-alias-mismatch", "multidisc-chd-m3u-edge-cases"],
+  "confidence_notes": ["`gc` is a frontend folder alias; Dolphin format behavior is sourced independently."],
+  "source_map": {
+    "formats": ["https://dolphin-emu.org/"],
+    "aliases": ["https://emudeck.github.io/cheat-sheet/", "https://gitlab.com/es-de/emulationstation-de/-/tree/master/resources/systems"]
+  },
+  "last_verified_with": {
+    "source_review_date": "2026-04-28"
+  },
+  "notes": ["RVZ is preferred for Dolphin-managed compressed disc images."]
+}

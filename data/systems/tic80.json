@@ -1,0 +1,15 @@
+{
+  "id": "tic80",
+  "name": "TIC-80",
+  "category": "fantasy_console",
+  "manufacturer": "Nesbox",
+  "sources": [{ "type": "homepage", "url": "https://tic80.com/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "aliases": { "folder_ids": ["tic80", "tic-80"], "frontend_ids": ["tic80"], "region_ids": [], "equivalent_system_ids": [] },
+  "formats": { "preferred": [".tic"], "supported": [".tic"], "descriptor_files": [], "archive_formats": [] },
+  "bios": { "required": false, "common_files": [], "notes": "TIC-80 cartridges do not require BIOS files." },
+  "emulation": { "preferred_emulators": ["tic80"], "retroarch_cores": ["tic80"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": false, "playlist_target_preference": "TIC cartridge file", "safe_archive_deletion_requires_launch_test": true },
+  "frontend_notes": {},
+  "safety": { "automation_level": "dry_run_only", "requires_backup": true, "do_not_store": ["rom_payloads"], "notes": ["Keep cartridge metadata and filename changes dry-run until display title is confirmed."] },
+  "notes": ["TIC-80 libraries are simple, but runtime version can affect behavior for some carts."]
+}

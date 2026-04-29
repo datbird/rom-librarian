@@ -1,0 +1,12 @@
+{
+  "id": "arcade-database",
+  "name": "Arcade Database",
+  "category": "database",
+  "homepage": "http://adb.arcadeitalia.net/",
+  "sources": [{ "type": "homepage", "url": "http://adb.arcadeitalia.net/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "access": { "public_web": true, "account_required_for_api": false, "api_available": false, "common_clients": [] },
+  "provides": { "metadata": ["machine", "title", "year", "manufacturer", "genre"], "media": ["snapshots", "cabinet", "flyer"], "ids": ["mame_shortname"] },
+  "coverage": { "strengths": ["arcade machine metadata", "MAME shortnames"], "weaker_areas": ["console libraries"] },
+  "legal_notes": ["Respect site terms and media rights. Do not store ROM payloads."],
+  "notes": ["Useful for MAME shortname context in read-only arcade audits."]
+}

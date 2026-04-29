@@ -1,0 +1,43 @@
+{
+  "id": "wii",
+  "name": "Nintendo Wii",
+  "category": "console",
+  "manufacturer": "Nintendo",
+  "sources": [
+    { "type": "homepage", "url": "https://dolphin-emu.org/", "last_reviewed": "2026-04-28", "confidence": "high" },
+    { "type": "docs", "url": "https://emudeck.github.io/cheat-sheet/", "last_reviewed": "2026-04-28", "confidence": "medium" }
+  ],
+  "formats": {
+    "preferred": [".rvz", ".wbfs", ".iso"],
+    "supported": [".rvz", ".wbfs", ".iso", ".wia", ".ciso", ".nkit", ".wad", ".dol", ".elf"],
+    "descriptor_files": [],
+    "archive_formats": [".zip", ".7z"]
+  },
+  "bios": {
+    "required": false,
+    "common_files": [],
+    "notes": "Dolphin does not require a Wii BIOS for normal game launching."
+  },
+  "emulation": {
+    "preferred_emulators": ["dolphin", "primehack"],
+    "retroarch_cores": ["dolphin"]
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": null,
+    "playlist_target_preference": ".rvz, .wbfs, or .iso",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "frontend_notes": {
+    "emudeck": "PrimeHack may be selected for Metroid Prime Trilogy-specific workflows; do not assume all Wii games use PrimeHack."
+  },
+  "quirks": [],
+  "confidence_notes": ["Wii file layout is less BIOS-sensitive than many disc systems, but Dolphin/PrimeHack parser selection can change launch behavior."],
+  "source_map": {
+    "formats": ["https://dolphin-emu.org/", "https://emudeck.github.io/cheat-sheet/"]
+  },
+  "last_verified_with": {
+    "source_review_date": "2026-04-28"
+  },
+  "notes": ["Motion controls, sensor bar assumptions, and controller profiles can matter more than file layout."]
+}
