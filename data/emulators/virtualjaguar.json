@@ -1,0 +1,13 @@
+{
+  "id": "virtualjaguar",
+  "name": "Virtual Jaguar",
+  "category": "emulator",
+  "homepage": "https://icculus.org/virtualjaguar/",
+  "sources": [{ "type": "homepage", "url": "https://icculus.org/virtualjaguar/", "last_reviewed": "2026-04-29", "confidence": "medium" }, { "type": "docs", "url": "https://docs.libretro.com/library/virtual_jaguar/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "platforms": ["windows", "linux", "macos", "steamdeck"],
+  "systems": ["jaguar", "atarijaguar", "jaguarcd", "atarijaguarcd"],
+  "paths": { "bios": "Jaguar CD boot ROM path when CD support is used" },
+  "supported_formats": { "cartridge": [".j64", ".jag", ".rom", ".abs"], "disc": [".cue", ".cdi", ".chd"] },
+  "library_behavior": { "cartridge_primary": true, "jaguar_cd_bios_required": true, "safe_archive_deletion_requires_launch_test": true },
+  "notes": ["Jaguar and Jaguar CD compatibility differs; do not merge cartridge/CD folders automatically."]
+}

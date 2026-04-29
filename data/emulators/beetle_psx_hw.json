@@ -1,0 +1,14 @@
+{
+  "id": "beetle_psx_hw",
+  "name": "Beetle PSX HW",
+  "category": "emulator",
+  "homepage": "https://docs.libretro.com/library/beetle_psx_hw/",
+  "sources": [{ "type": "docs", "url": "https://docs.libretro.com/library/beetle_psx_hw/", "last_reviewed": "2026-04-29", "confidence": "high" }],
+  "platforms": ["windows", "linux", "macos", "steamdeck"],
+  "systems": ["psx"],
+  "paths": { "bios": "RetroArch system directory", "config": "RetroArch core options" },
+  "supported_formats": { "disc": [".cue", ".chd", ".m3u", ".pbp"] },
+  "library_behavior": { "supports_m3u": true, "supports_chd": true, "bios_required": true, "safe_archive_deletion_requires_launch_test": true },
+  "quirks": ["retroarch-system-dir-confusion", "multidisc-chd-m3u-edge-cases"],
+  "notes": ["Hardware-rendered Mednafen PSX core; BIOS and renderer settings are important."]
+}

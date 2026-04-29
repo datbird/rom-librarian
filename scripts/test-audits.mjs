@@ -50,6 +50,17 @@ const tests = [
     }
   },
   {
+    label: "audit-cue",
+    script: "scripts/audit-cue.mjs",
+    target: "fixtures/cue-issues/roms/psx",
+    assert(result) {
+      assert(result.status === "completed", "audit-cue did not complete");
+      assert(result.summary.cue_files === 5, "audit-cue expected 5 CUE files");
+      assert(result.findings.length === 4, "audit-cue expected 4 findings");
+      assertFindingTypes(result, ["cue_case_mismatch", "missing_cue_file_reference", "absolute_cue_file_reference", "multiple_cues_same_title"], "audit-cue");
+    }
+  },
+  {
     label: "audit-media-paths",
     script: "scripts/audit-media-paths.mjs",
     target: "fixtures/es-media-paths/roms/snes",

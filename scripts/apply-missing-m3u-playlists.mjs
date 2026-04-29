@@ -46,6 +46,7 @@ if (!isFixtureTarget) {
 const operationId = `missing-m3u-playlists-${new Date().toISOString().replace(/[:.]/g, "-")}`;
 const manifestRoot = path.join(target, ".rom-librarian-backups", operationId);
 const changes = [];
+const verification = [];
 
 for (const step of plan.steps || []) {
   const finding = step.original_finding;
@@ -65,6 +66,12 @@ for (const step of plan.steps || []) {
 
   const content = `${finding.entries.join("\n")}\n`;
   fs.writeFileSync(playlistPath, content, { encoding: "utf8", flag: "wx" });
+
+  const verifiedContent = fs.readFileSync(playlistPath, "utf8");
+  const verifiedEntries = finding.entries.every((entry) => fs.existsSync(path.resolve(playlistDirectory, entry)));
+  if (verifiedContent !== content || !verifiedEntries) fail(`Post-apply verification failed for ${finding.playlist}`);
+
+  verification.push({ playlist: relativeFromTarget(target, playlistPath), verified: true, check: "created_content_matches_and_entries_resolve" });
 
   changes.push({
     operation: "create_m3u_playlist",
@@ -100,6 +107,7 @@ emitJson({
   target,
   real_target: !isFixtureTarget,
   changes,
+  verification,
   backup_manifest: manifestPath,
   notes: ["Only new .m3u playlist files were created. No ROM, disc image, media, or metadata files were moved, edited, or deleted."]
 });

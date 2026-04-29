@@ -1,0 +1,14 @@
+{
+  "id": "freeintv",
+  "name": "FreeIntv",
+  "category": "emulator",
+  "homepage": "https://docs.libretro.com/library/freeintv/",
+  "sources": [{ "type": "docs", "url": "https://docs.libretro.com/library/freeintv/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "platforms": ["windows", "linux", "macos", "steamdeck"],
+  "systems": ["intellivision"],
+  "paths": { "bios": "RetroArch system directory for Intellivision exec/grom files" },
+  "supported_formats": { "rom": [".int", ".bin", ".rom", ".zip", ".7z"] },
+  "library_behavior": { "bios_required": true, "cartridge_only": true, "safe_archive_deletion_requires_launch_test": true },
+  "quirks": ["retroarch-system-dir-confusion"],
+  "notes": ["Intellivision BIOS files are user-managed and must not be stored in project config."]
+}

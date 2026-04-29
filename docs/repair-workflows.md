@@ -1,6 +1,6 @@
 # Repair Workflows
 
-Two narrow mutating workflows are implemented for `.m3u` maintenance: case-mismatch fixes and additive missing-playlist generation. General library repair workflows are not implemented yet.
+Three narrow mutating workflows are implemented for playlist/disc-descriptor maintenance: `.m3u` case-mismatch fixes, `.cue` case-mismatch fixes, and additive missing-`.m3u` generation. General library repair workflows are not implemented yet.
 
 Any future mutating workflow should use this minimum design:
 
@@ -85,12 +85,36 @@ The missing-playlist applicator:
 - never edits, deletes, or moves ROM/disc/media/metadata files
 - rolls back by deleting a generated playlist only if its current contents exactly match the manifest
 
+`scripts/apply-cue-case-fixes.mjs` can replace case-mismatched CUE `FILE` entries when all of these are true:
+
+- Input is a dry-run repair plan generated from `audit:cue`.
+- The finding type is `cue_case_mismatch`.
+- `--apply` is present.
+- Exactly one matching CUE `FILE` line is replaced.
+
+For non-fixture targets, this applicator also requires:
+
+- `--allow-real-targets`
+- `--confirm-target <absolute-target>` matching the repair plan target exactly
+
+The CUE case-fix applicator:
+
+- backs up the CUE file first
+- writes `backup-manifest.json`
+- edits only CUE text entries
+- never deletes, moves, or modifies BIN/WAV/disc/media files
+
 Example:
 
 ```bash
 npm run audit:m3u -- fixtures/es-psx-multidisc/roms/psx --json-out /tmp/m3u-audit.json
 npm run plan:repairs -- /tmp/m3u-audit.json --severity warning --json-out /tmp/m3u-plan.json
 npm run apply:m3u-case-fixes -- /tmp/m3u-plan.json --apply
+npm run rollback:manifest -- <backup-manifest.json> --apply
+
+npm run audit:cue -- fixtures/cue-issues/roms/psx --json-out /tmp/cue-audit.json
+npm run plan:repairs -- /tmp/cue-audit.json --severity warning --json-out /tmp/cue-plan.json
+npm run apply:cue-case-fixes -- /tmp/cue-plan.json --apply
 npm run rollback:manifest -- <backup-manifest.json> --apply
 
 npm run audit:m3u -- fixtures/missing-m3u/roms/psx --json-out /tmp/missing-m3u-audit.json
@@ -103,6 +127,7 @@ Real target example:
 
 ```bash
 npm run apply:m3u-case-fixes -- /tmp/m3u-plan.json --apply --allow-real-targets --confirm-target /absolute/library/path
+npm run apply:cue-case-fixes -- /tmp/cue-plan.json --apply --allow-real-targets --confirm-target /absolute/library/path
 npm run apply:missing-m3u-playlists -- /tmp/missing-m3u-plan.json --apply --allow-real-targets --confirm-target /absolute/library/path
 npm run rollback:manifest -- <backup-manifest.json> --apply --allow-real-targets --confirm-target /absolute/library/path
 ```

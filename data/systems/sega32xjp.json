@@ -1,0 +1,13 @@
+{
+  "id": "sega32xjp",
+  "name": "Sega 32X Japan (folder alias)",
+  "category": "console",
+  "manufacturer": "Sega",
+  "sources": [{ "type": "docs", "url": "https://docs.libretro.com/library/picodrive/", "last_reviewed": "2026-04-29", "confidence": "high" }],
+  "formats": { "preferred": [".32x"], "supported": [".32x", ".bin", ".md", ".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": false, "common_files": [], "notes": "Most 32X cartridge workflows do not require user-managed BIOS files." },
+  "emulation": { "preferred_emulators": ["picodrive"], "retroarch_cores": ["picodrive"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": false, "playlist_target_preference": "cartridge ROM file", "safe_archive_deletion_requires_launch_test": true },
+  "safety": { "automation_level": "dry_run_only", "requires_backup": true, "do_not_store": ["rom_payloads"], "notes": ["Region-specific folder; keep separate unless frontend config confirms aliases."] },
+  "notes": ["Alias-like record for Japanese 32X folders."]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "yabasanshiro",
+  "name": "Yaba Sanshiro",
+  "category": "emulator",
+  "homepage": "https://www.uoyabause.org/",
+  "sources": [{ "type": "homepage", "url": "https://www.uoyabause.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "platforms": ["windows", "linux", "macos", "steamdeck"],
+  "systems": ["saturn", "saturnjp"],
+  "paths": { "bios": "optional/user-managed Saturn BIOS path", "config": "Yaba Sanshiro settings" },
+  "supported_formats": { "disc": [".cue", ".bin", ".iso", ".chd", ".m3u"] },
+  "library_behavior": { "compatibility_varies_by_title": true, "safe_archive_deletion_requires_launch_test": true },
+  "quirks": ["multidisc-chd-m3u-edge-cases"],
+  "notes": ["Saturn emulator with standalone and historical core usage; verify frontend command behavior."]
+}

@@ -73,7 +73,7 @@ function blockedActions(finding) {
     blocked.push("Do not unzip, rebuild, rename, or delete arcade sets without MAME version/DAT context.");
   }
 
-  if (["stale_path", "missing_media_path", "missing_game_path", "duplicate_disc_entry", "case_mismatch", "missing_playlist_target", "missing_m3u_playlist"].includes(finding.type)) {
+  if (["stale_path", "missing_media_path", "missing_game_path", "duplicate_disc_entry", "case_mismatch", "missing_playlist_target", "missing_m3u_playlist", "cue_case_mismatch", "missing_cue_file_reference", "absolute_cue_file_reference"].includes(finding.type)) {
     blocked.push("Do not edit metadata, playlists, move files, or delete files without backup and explicit approval.");
   }
 
@@ -103,7 +103,7 @@ const steps = plannedFindings.map((finding, index) => ({
   severity: finding.severity || "info",
   risk: riskForFinding(finding),
   backup_required: backupRequired(finding),
-  context: finding.game || finding.context || finding.file || finding.entry || finding.expected_file || finding.metadata || finding.xml_file || finding.chd || null,
+  context: finding.game || finding.context || finding.file || finding.cue || finding.entry || finding.expected_file || finding.metadata || finding.xml_file || finding.chd || null,
   safety: safetyMarkers(audit, finding),
   proposed_action: actionForFinding(finding),
   blocked_actions: blockedActions(finding),

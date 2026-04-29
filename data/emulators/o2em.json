@@ -1,0 +1,14 @@
+{
+  "id": "o2em",
+  "name": "O2EM",
+  "category": "emulator",
+  "homepage": "https://docs.libretro.com/library/o2em/",
+  "sources": [{ "type": "docs", "url": "https://docs.libretro.com/library/o2em/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "platforms": ["windows", "linux", "macos", "steamdeck"],
+  "systems": ["odyssey2", "videopac"],
+  "paths": { "bios": "RetroArch system directory or standalone emulator path" },
+  "supported_formats": { "rom": [".bin", ".rom", ".zip", ".7z"] },
+  "library_behavior": { "bios_required": true, "cartridge_only": true, "safe_archive_deletion_requires_launch_test": true },
+  "quirks": ["retroarch-system-dir-confusion"],
+  "notes": ["Odyssey2/Videopac BIOS handling is emulator-specific and user-managed."]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "yabause",
+  "name": "Yabause",
+  "category": "emulator",
+  "homepage": "https://yabause.org/",
+  "sources": [{ "type": "homepage", "url": "https://yabause.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "platforms": ["windows", "linux", "macos", "steamdeck"],
+  "systems": ["saturn", "saturnjp"],
+  "paths": { "bios": "user-managed Saturn BIOS path", "config": "Yabause or RetroArch core settings" },
+  "supported_formats": { "disc": [".cue", ".bin", ".iso", ".chd", ".m3u"] },
+  "library_behavior": { "supports_m3u": true, "bios_required_for_compatibility": true, "safe_archive_deletion_requires_launch_test": true },
+  "quirks": ["multidisc-chd-m3u-edge-cases", "retroarch-system-dir-confusion"],
+  "notes": ["Older Saturn emulator/core; compatibility varies by title."]
+}

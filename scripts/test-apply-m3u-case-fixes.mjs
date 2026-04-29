@@ -46,6 +46,7 @@ fs.writeFileSync(planPath, JSON.stringify(plan), "utf8");
 const result = runJson(["scripts/apply-m3u-case-fixes.mjs", planPath, "--apply"]);
 assert(result.status === "applied", "M3U case fix applicator did not apply");
 assert(result.changes.length === 1, "M3U case fix expected one applied change");
+assert(result.verification.length === 1, "M3U case fix expected one verification result");
 assert(fs.existsSync(result.backup_manifest), "backup manifest was not written");
 
 const manifest = JSON.parse(fs.readFileSync(result.backup_manifest, "utf8"));
@@ -103,6 +104,7 @@ fs.writeFileSync(missingPlanPath, JSON.stringify(missingPlan), "utf8");
 const missingResult = runJson(["scripts/apply-missing-m3u-playlists.mjs", missingPlanPath, "--apply"]);
 assert(missingResult.status === "applied", "missing M3U applicator did not apply");
 assert(missingResult.changes.length === 1, "missing M3U applicator expected one created playlist");
+assert(missingResult.verification.length === 1, "missing M3U applicator expected one verification result");
 assert(fs.existsSync(missingResult.changes[0].created_path), "generated playlist should exist");
 assert(countFindings(runJson(["scripts/audit-m3u.mjs", missingTarget]), "missing_m3u_playlist") === 0, "missing playlist finding should be fixed after apply");
 
@@ -131,4 +133,23 @@ fs.appendFileSync(changedPlaylist, "# user edit\n", "utf8");
 const changedRollbackRefusal = runExpectFailure(["scripts/rollback-backup-manifest.mjs", realMissingResult.backup_manifest, "--apply", "--allow-real-targets", "--confirm-target", realMissingTarget]);
 assert(changedRollbackRefusal.includes("Refusing to delete changed generated playlist"), "rollback should refuse deleting changed generated playlist");
 
-console.log("apply and rollback M3U fixture tests passed");
+const cueFixtureRoot = path.join(tempRoot, "fixtures", "cue-issues");
+copyFixture("fixtures/cue-issues", cueFixtureRoot);
+const cueTarget = path.join(cueFixtureRoot, "roms", "psx");
+const cueAudit = runJson(["scripts/audit-cue.mjs", cueTarget]);
+assert(countFindings(cueAudit, "cue_case_mismatch") === 1, "cue fixture should start with one case mismatch");
+
+const cuePlan = runJson(["scripts/plan-repairs.mjs", "-", "--severity", "warning"], JSON.stringify(cueAudit));
+const cuePlanPath = path.join(tempRoot, "cue-plan.json");
+fs.writeFileSync(cuePlanPath, JSON.stringify(cuePlan), "utf8");
+
+const cueResult = runJson(["scripts/apply-cue-case-fixes.mjs", cuePlanPath, "--apply"]);
+assert(cueResult.status === "applied", "CUE case fix applicator did not apply");
+assert(cueResult.verification.length === 1, "CUE case fix expected one verification result");
+assert(countFindings(runJson(["scripts/audit-cue.mjs", cueTarget]), "cue_case_mismatch") === 0, "CUE case mismatch should be fixed after apply");
+
+const cueRollback = runJson(["scripts/rollback-backup-manifest.mjs", cueResult.backup_manifest, "--apply"]);
+assert(cueRollback.restored.length === 1, "CUE rollback expected one restored file");
+assert(countFindings(runJson(["scripts/audit-cue.mjs", cueTarget]), "cue_case_mismatch") === 1, "CUE case mismatch should return after rollback");
+
+console.log("apply and rollback M3U/CUE fixture tests passed");

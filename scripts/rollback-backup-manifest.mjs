@@ -41,16 +41,17 @@ if (!isFixtureTarget) {
 const restored = [];
 
 for (const change of manifest.planned_changes) {
-  if (!change.playlist) fail("Rollback change missing playlist");
+  const relativeDestination = change.playlist || change.path;
+  if (!relativeDestination) fail("Rollback change missing playlist/path");
 
-  const destination = path.resolve(target, change.playlist);
+  const destination = path.resolve(target, relativeDestination);
 
-  if (!destination.startsWith(target + path.sep)) fail(`Restore destination escapes target: ${change.playlist}`);
+  if (!destination.startsWith(target + path.sep)) fail(`Restore destination escapes target: ${relativeDestination}`);
 
   if (change.operation === "create_m3u_playlist") {
-    if (!fs.existsSync(destination)) fail(`Generated playlist does not exist: ${change.playlist}`);
+    if (!fs.existsSync(destination)) fail(`Generated playlist does not exist: ${relativeDestination}`);
     const currentContent = fs.readFileSync(destination, "utf8");
-    if (currentContent !== change.created_content) fail(`Refusing to delete changed generated playlist: ${change.playlist}`);
+    if (currentContent !== change.created_content) fail(`Refusing to delete changed generated playlist: ${relativeDestination}`);
     fs.unlinkSync(destination);
     restored.push({
       operation: "delete_generated_file",

@@ -1,0 +1,14 @@
+{
+  "id": "swanstation",
+  "name": "SwanStation",
+  "category": "emulator",
+  "homepage": "https://github.com/libretro/swanstation",
+  "sources": [{ "type": "github", "url": "https://github.com/libretro/swanstation", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "platforms": ["windows", "linux", "macos", "steamdeck"],
+  "systems": ["psx"],
+  "paths": { "bios": "RetroArch system directory", "config": "RetroArch core options" },
+  "supported_formats": { "disc": [".cue", ".chd", ".m3u", ".iso", ".pbp"] },
+  "library_behavior": { "supports_m3u": true, "supports_chd": true, "bios_required": true, "safe_archive_deletion_requires_launch_test": true },
+  "quirks": ["retroarch-system-dir-confusion", "multidisc-chd-m3u-edge-cases"],
+  "notes": ["Legacy/alternate PlayStation core; DuckStation is generally preferred where available."]
+}

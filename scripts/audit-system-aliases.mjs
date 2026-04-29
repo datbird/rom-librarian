@@ -22,17 +22,7 @@ if (!fs.existsSync(indexPath)) {
 const index = readJson("data/index.json");
 const aliases = [];
 const aliasOwnerById = new Map();
-
-const expectedAliasGroups = [
-  { canonical: "jaguar", aliases: ["atarijaguar"], reason: "Atari Jaguar folders vary by frontend." },
-  { canonical: "jaguarcd", aliases: ["atarijaguarcd"], reason: "Atari Jaguar CD folders vary by frontend." },
-  { canonical: "astrocde", aliases: ["astrocade"], reason: "Bally Astrocade is commonly spelled as both astrocde and astrocade." },
-  { canonical: "turbografx", aliases: ["pcengine", "tg16"], reason: "NEC HuCard folder names vary by region/frontend." },
-  { canonical: "genesis", aliases: ["megadrive"], reason: "Sega 16-bit folder names vary by region/frontend." },
-  { canonical: "zx-spectrum", aliases: ["zxspectrum"], reason: "ZX Spectrum folders may omit punctuation." },
-  { canonical: "pico8", aliases: ["pico"], reason: "Some frontends shorten PICO-8 folder IDs to pico." },
-  { canonical: "openbor", aliases: ["ports"], reason: "Ports folders are sometimes used as an OpenBOR or native-port bucket." }
-];
+const expectedAliasGroups = (index.alias_groups || []).flatMap((relativePath) => readJson(relativePath).groups || []);
 
 function recordAliasOwner(aliasId, ownerId, sourceField) {
   const owners = aliasOwnerById.get(aliasId) || [];

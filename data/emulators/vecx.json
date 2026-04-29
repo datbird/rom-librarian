@@ -1,0 +1,13 @@
+{
+  "id": "vecx",
+  "name": "VecX",
+  "category": "emulator",
+  "homepage": "https://github.com/libretro/libretro-vecx",
+  "sources": [{ "type": "github", "url": "https://github.com/libretro/libretro-vecx", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "platforms": ["windows", "linux", "macos", "steamdeck"],
+  "systems": ["vectrex"],
+  "paths": { "overlays": "frontend or RetroArch overlay/artwork paths" },
+  "supported_formats": { "rom": [".vec", ".bin", ".rom", ".zip", ".7z"] },
+  "library_behavior": { "overlay_artwork_common": true, "safe_archive_deletion_requires_launch_test": true },
+  "notes": ["Vectrex libraries may depend on overlays/artwork outside the ROM file."]
+}

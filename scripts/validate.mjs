@@ -212,6 +212,7 @@ if (normalizedIndex) {
   const normalizedScraperSources = new Set();
   const normalizedScraperTools = new Set();
   const normalizedMetadataStores = new Set();
+  const normalizedAliasGroups = new Set();
   const normalizedSystemAliasOwners = new Map();
   const highRiskSystemIds = new Set(["3do", "3ds", "adam", "amigacd32", "amigacdtv", "android", "apple2gs", "arcade", "arcadia", "astrocde", "atari5200", "atari800", "atarilynx", "atarist", "atom", "bbcmicro", "build", "c128", "c20", "cavestory", "cdi", "channelf", "coco", "colecovision", "cplus4", "cps1", "cps2", "cps3", "daphne", "doom", "dragon32", "easyrpg", "electron", "epic", "fds", "fm7", "fmtowns", "futurepinball", "gamecom", "gamepock", "godot", "gp32", "heroic", "html5", "ikemen", "intellivision", "ios", "jaguarcd", "lcdgames", "lutris", "macintosh", "mame", "megacd", "megacdjp", "model2", "model3", "msx2", "msx2plus", "mugen", "neogeocd", "odyssey2", "oric", "palm", "pc88", "pcenginecd", "pcfx", "plus4", "ps2", "psx", "quake", "samcoupe", "saturn", "segacd", "shockwave", "singe", "steam", "switch", "symbian", "teknoparrot", "thomson", "ti99", "trs-80", "vic20", "vpinball", "wiiu", "windows3x", "windows9x", "wine", "x1", "xbox", "xbox360"]);
   const validateFrontendSchema = compileSchema(normalizedIndex.schema_files?.frontend || "schema/frontend.schema.json");
@@ -221,6 +222,7 @@ if (normalizedIndex) {
   const validateScraperToolSchema = compileSchema(normalizedIndex.schema_files?.scraper_tool || "schema/scraper-tool.schema.json");
   const validateMetadataStoreSchema = compileSchema(normalizedIndex.schema_files?.metadata_store || "schema/metadata-store.schema.json");
   const validateAssetTaxonomySchema = compileSchema(normalizedIndex.schema_files?.asset_taxonomy || "schema/asset-taxonomy.schema.json");
+  const validateAliasGroupsSchema = compileSchema(normalizedIndex.schema_files?.alias_groups || "schema/alias-groups.schema.json");
   let normalizedAssetTypes = 0;
   let normalizedMetadataFields = 0;
 
@@ -330,7 +332,24 @@ if (normalizedIndex) {
     }
   }
 
-  console.log(`normalized frontends=${normalizedFrontends.size} systems=${normalizedSystems.size} emulators=${normalizedEmulators.size} scraper_sources=${normalizedScraperSources.size} scraper_tools=${normalizedScraperTools.size} metadata_stores=${normalizedMetadataStores.size} asset_types=${normalizedAssetTypes} metadata_fields=${normalizedMetadataFields}`);
+  for (const relativePath of normalizedIndex.alias_groups || []) {
+    assert(fileExists(relativePath), `data/index.json references missing alias groups file: ${relativePath}`);
+    const record = readJson(relativePath);
+    validateJsonSchema(validateAliasGroupsSchema, record, relativePath);
+    requireArray(record.sources, `${relativePath}.sources`);
+    for (const source of record.sources) validateSource(source, relativePath);
+    requireArray(record.groups, `${relativePath}.groups`);
+    for (const group of record.groups) {
+      assert(systemIds.has(group.canonical), `${relativePath} references missing canonical system: ${group.canonical}`);
+      normalizedAliasGroups.add(group.canonical);
+      for (const aliasId of group.aliases) {
+        assert(systemIds.has(aliasId), `${relativePath} references missing alias system: ${aliasId}`);
+        normalizedAliasGroups.add(aliasId);
+      }
+    }
+  }
+
+  console.log(`normalized frontends=${normalizedFrontends.size} systems=${normalizedSystems.size} emulators=${normalizedEmulators.size} scraper_sources=${normalizedScraperSources.size} scraper_tools=${normalizedScraperTools.size} metadata_stores=${normalizedMetadataStores.size} alias_group_systems=${normalizedAliasGroups.size} asset_types=${normalizedAssetTypes} metadata_fields=${normalizedMetadataFields}`);
 }
 
 validateFixtures();

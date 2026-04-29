@@ -1,0 +1,13 @@
+{
+  "id": "wonderswancolor",
+  "name": "WonderSwan Color (folder alias)",
+  "category": "handheld",
+  "manufacturer": "Bandai",
+  "sources": [{ "type": "docs", "url": "https://docs.libretro.com/library/beetle_cygne/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "formats": { "preferred": [".wsc"], "supported": [".wsc", ".ws", ".pc2", ".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
+  "bios": { "required": false, "common_files": [], "notes": "Typical WonderSwan Color cartridge workflows do not require BIOS files." },
+  "emulation": { "preferred_emulators": ["mednafen", "ares"], "retroarch_cores": ["beetle_cygne"] },
+  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": false, "playlist_target_preference": "cartridge ROM file", "safe_archive_deletion_requires_launch_test": true },
+  "safety": { "automation_level": "dry_run_only", "requires_backup": true, "do_not_store": ["rom_payloads"], "notes": ["Alias-like record; monochrome/color folders may be separate in some frontends."] },
+  "notes": ["Alias-like record for WonderSwan Color folder IDs."]
+}

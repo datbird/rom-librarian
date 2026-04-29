@@ -1,0 +1,13 @@
+{
+  "id": "n3ds",
+  "name": "Nintendo 3DS (folder alias)",
+  "category": "handheld",
+  "manufacturer": "Nintendo",
+  "sources": [{ "type": "docs", "url": "https://azahar-emu.org/wiki/user-directory/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "formats": { "preferred": [".3ds", ".cia"], "supported": [".3ds", ".cci", ".cxi", ".cia", ".app"], "descriptor_files": [], "archive_formats": [] },
+  "bios": { "required": false, "common_files": [], "notes": "Encrypted content and keys are out of scope for storage/validation." },
+  "emulation": { "preferred_emulators": ["azahar", "lime3ds", "panda3ds"], "retroarch_cores": [] },
+  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": true, "playlist_target_preference": "decrypted image or installed title entry", "safe_archive_deletion_requires_launch_test": true },
+  "safety": { "automation_level": "approval_required", "requires_backup": true, "do_not_store": ["keys", "firmware", "nand", "rom_payloads", "save_data"], "notes": ["Alias-like record; never request or store 3DS keys."] },
+  "notes": ["Alias-like record for frontends that use n3ds instead of 3ds."]
+}
