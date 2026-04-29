@@ -62,6 +62,8 @@ npm run report:summary -- --format markdown
 npm run report:summary -- --json-out /tmp/summary.json
 ```
 
+JSON summary output is validated by `schema/summary-report.schema.json` in the output test suite.
+
 ## Format Matrix
 
 | Command | JSON stdout | `--json-out` | Markdown | HTML |

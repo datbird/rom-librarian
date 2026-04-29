@@ -38,7 +38,7 @@
     "rollback:manifest": "node scripts/rollback-backup-manifest.mjs",
     "plan:changes": "node scripts/render-dry-run-changes.mjs",
     "test": "npm run check",
-    "test:apply": "node scripts/test-apply-m3u-case-fixes.mjs",
+    "test:apply": "node scripts/test-apply-workflows.mjs",
     "test:audits": "node scripts/test-audits.mjs",
     "test:changes": "node scripts/test-dry-run-changes.mjs",
     "test:output": "node scripts/test-output-options.mjs",
