@@ -84,11 +84,11 @@ const tests = [
   {
     label: "audit-descriptor-relationships",
     script: "scripts/audit-descriptor-relationships.mjs",
-    target: "fixtures/descriptor-relationships/roms/psx",
+    target: "fixtures/descriptor-relationships/roms",
     assert(result) {
       assert(result.status === "completed", "audit-descriptor-relationships did not complete");
-      assert(result.findings.length === 2, "audit-descriptor-relationships expected 2 findings");
-      assertFindingTypes(result, ["payload_referenced_by_descriptor", "descriptor_targeted_by_m3u"], "audit-descriptor-relationships");
+      assert(result.findings.length === 5, "audit-descriptor-relationships expected 5 findings");
+      assertFindingTypes(result, ["payload_referenced_by_descriptor", "descriptor_targeted_by_m3u", "duplicate_launch_target_group", "iso_disc_group_without_playlist"], "audit-descriptor-relationships");
     }
   },
   {
@@ -102,6 +102,49 @@ const tests = [
       assert(countFindings(result, "missing_media_path") === 2, "audit-media-paths expected 2 missing media findings");
       assert(countFindings(result, "missing_game_path") === 1, "audit-media-paths expected 1 missing game finding");
       assert(countFindings(result, "orphaned_media") === 1, "audit-media-paths expected 1 orphaned media finding");
+    }
+  },
+  {
+    label: "audit-frontend-smoke-es-de",
+    script: "scripts/audit-descriptor-relationships.mjs",
+    target: "fixtures/frontend-smoke/es-de/roms/psx",
+    assert(result) {
+      assert(result.status === "completed", "frontend smoke ES-DE descriptor audit did not complete");
+      assert(result.findings.length === 5, "frontend smoke ES-DE expected 5 findings");
+      assertFindingTypes(result, ["payload_referenced_by_descriptor", "descriptor_targeted_by_m3u", "duplicate_launch_target_group"], "frontend-smoke-es-de");
+    }
+  },
+  {
+    label: "audit-frontend-smoke-launchbox",
+    script: "scripts/audit-launchbox-paths.mjs",
+    target: "fixtures/frontend-smoke/launchbox/Data",
+    assert(result) {
+      assert(result.status === "completed", "frontend smoke LaunchBox audit did not complete");
+      assert(result.summary.xml_files === 1, "frontend smoke LaunchBox expected 1 XML file");
+      assert(result.findings.length === 2, "frontend smoke LaunchBox expected 2 findings");
+      assert(countFindings(result, "stale_path") === 2, "frontend smoke LaunchBox expected stale path findings");
+    }
+  },
+  {
+    label: "audit-frontend-smoke-romm",
+    script: "scripts/audit-romm-slugs.mjs",
+    target: "fixtures/frontend-smoke/romm",
+    assert(result) {
+      assert(result.status === "completed", "frontend smoke RomM audit did not complete");
+      assert(result.summary.platform_files === 1, "frontend smoke RomM expected 1 platform file");
+      assert(result.findings.length === 2, "frontend smoke RomM expected 2 findings");
+      assert(countFindings(result, "known_alias_match") === 2, "frontend smoke RomM expected known alias matches");
+    }
+  },
+  {
+    label: "audit-frontend-smoke-pegasus",
+    script: "scripts/audit-pegasus-assets.mjs",
+    target: "fixtures/frontend-smoke/pegasus",
+    assert(result) {
+      assert(result.status === "completed", "frontend smoke Pegasus audit did not complete");
+      assert(result.summary.metadata_files === 1, "frontend smoke Pegasus expected 1 metadata file");
+      assert(result.findings.length === 2, "frontend smoke Pegasus expected 2 findings");
+      assertFindingTypes(result, ["missing_game_path", "missing_asset_path"], "frontend-smoke-pegasus");
     }
   },
   {

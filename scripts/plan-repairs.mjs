@@ -2,10 +2,36 @@ import fs from "node:fs";
 import { emitJson } from "./lib/audit-utils.mjs";
 
 const inputPath = process.argv[2];
-const severityFilter = getSeverityFilter(process.argv.slice(2));
+const args = process.argv.slice(2);
+
+const profileGuidance = {
+  "es-de": {
+    name: "ES-DE / EmulationStation",
+    blocked_actions: ["Do not expose both playlists/descriptors and their payload tracks to ES-DE parsers without confirming parser extensions.", "Keep gamelist paths relative to the system folder unless the frontend already uses absolute paths."],
+    descriptor_guidance: "For disc systems, prefer one visible playlist/descriptor target such as M3U, CUE, GDI, CHD, or ISO; hide descriptor-owned BIN/RAW/WAV payloads from parser extensions."
+  },
+  launchbox: {
+    name: "LaunchBox",
+    blocked_actions: ["Close LaunchBox/Big Box before editing platform XML files.", "Do not rewrite platform XML outside a backup-backed applicator."],
+    descriptor_guidance: "LaunchBox platform XML should point at the intended launch artifact only; avoid duplicate Game entries for both playlists/descriptors and their payload tracks."
+  },
+  romm: {
+    name: "RomM",
+    blocked_actions: ["Do not change platform slugs without confirming RomM's configured platform mapping.", "Avoid file moves that would orphan existing RomM metadata or saves."],
+    descriptor_guidance: "Review RomM platform parser behavior before hiding payload extensions; file moves can orphan metadata, saves, and existing platform mappings."
+  },
+  pegasus: {
+    name: "Pegasus",
+    blocked_actions: ["Preserve unknown metadata.pegasus.txt fields during any future rewrite.", "Do not infer missing assets should be deleted from asset references alone."],
+    descriptor_guidance: "Pegasus metadata should reference one launch file per game; preserve custom fields while reviewing whether M3U or descriptor paths should replace payload entries."
+  }
+};
+
+const severityFilter = getSeverityFilter(args);
+const frontendProfile = getProfile(args);
 
 if (inputPath === "--help" || inputPath === "-h") {
-  console.log("Usage: node scripts/plan-repairs.mjs <audit-output.json|-> [--severity info|warning|error] [--json-out <file>]");
+  console.log("Usage: node scripts/plan-repairs.mjs <audit-output.json|-> [--severity info|warning|error] [--profile es-de|launchbox|romm|pegasus] [--json-out <file>]");
   process.exit(0);
 }
 
@@ -35,6 +61,14 @@ function getSeverityFilter(args) {
   return value;
 }
 
+function getProfile(args) {
+  const index = args.indexOf("--profile");
+  if (index === -1) return null;
+  const value = args[index + 1];
+  if (!profileGuidance[value]) fail("--profile must be one of: es-de, launchbox, romm, pegasus");
+  return value;
+}
+
 function severityAllowed(finding) {
   if (!severityFilter) return true;
   const order = { info: 0, warning: 1, error: 2 };
@@ -59,6 +93,9 @@ function actionForFinding(finding) {
   if (finding.type === "archive_with_chd_folder") return "No layout repair proposed; keep as informational compatibility context.";
   if (finding.type === "known_alias_match") return "No repair proposed; preserve as an observed alias mapping.";
   if (finding.type === "unknown_field_preserved") return "Preserve this unknown field during any future metadata rewrite.";
+  if (frontendProfile && ["descriptor_targeted_by_m3u", "payload_referenced_by_descriptor", "duplicate_launch_target_group", "iso_disc_group_without_playlist", "m3u_non_descriptor_target"].includes(finding.type)) {
+    return `${finding.suggested_dry_run_repair || "Review descriptor relationship manually."} ${profileGuidance[frontendProfile].descriptor_guidance}`;
+  }
   return finding.suggested_dry_run_repair || "Review manually before proposing any repair.";
 }
 
@@ -80,6 +117,8 @@ function blockedActions(finding) {
   if (finding.type === "unsupported_extension") {
     blocked.push("Do not convert, rename, quarantine, or delete unsupported files until system selection is verified.");
   }
+
+  if (frontendProfile) blocked.push(...profileGuidance[frontendProfile].blocked_actions);
 
   return blocked;
 }
@@ -118,6 +157,7 @@ const plan = {
   mode: "read-only",
   audit: audit.audit || "unknown",
   target: audit.target || null,
+  frontend_profile: frontendProfile ? { id: frontendProfile, name: profileGuidance[frontendProfile].name } : null,
   status: "planned_not_applied",
   summary: {
     findings: audit.findings.length,
@@ -131,7 +171,8 @@ const plan = {
   global_blocked_actions: [
     "No files are modified by this plan generator.",
     "Do not apply bulk or destructive changes without explicit approval.",
-    "Prefer backup, quarantine, and sample-based verification before any future repair workflow."
+    "Prefer backup, quarantine, and sample-based verification before any future repair workflow.",
+    ...(frontendProfile ? profileGuidance[frontendProfile].blocked_actions : [])
   ]
 };
 

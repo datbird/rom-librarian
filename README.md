@@ -210,11 +210,15 @@ Generate a read-only repair plan from an audit JSON file or stdin:
 ```bash
 npm run audit:media -- fixtures/es-media-paths/roms/snes > /tmp/media-audit.json
 npm run plan:repairs -- /tmp/media-audit.json --json-out /tmp/media-plan.json
+npm run plan:repairs -- /tmp/media-audit.json --profile es-de --json-out /tmp/media-es-de-plan.json
 npm run plan:changes -- /tmp/media-plan.json --json-out /tmp/media-changes.json
 npm run plan:markdown -- /tmp/media-plan.json
+npm run report:audit -- /tmp/media-audit.json --format markdown
+npm run report:coverage-gaps -- --json-out /tmp/coverage-gaps.json
 ```
 
 Repair plans are non-mutating. They standardize risk, backup requirements, proposed dry-run steps, and blocked actions; they do not edit metadata or files.
+Coverage-gap reports are also read-only. They compare broad static recognition IDs with source-backed normalized records so data backfill can be prioritized.
 
 Two narrowly scoped mutating applicators exist for proving backup/apply mechanics:
 
@@ -238,7 +242,8 @@ Implemented fixture-backed audits currently cover:
 - M3U playlist targets, case mismatches, missing multi-disc playlists, and duplicate loose disc metadata entries.
 - CUE payload references, case mismatches, absolute paths, and same-title CUE groups.
 - GDI track references, case mismatches, malformed lines, and unreferenced track payloads.
-- CHD conversion candidates and descriptor relationship checks, both read-only only.
+- CHD conversion candidates, review-only command previews, and descriptor relationship checks, all read-only only.
+- Descriptor duplicate launch target groups and multi-ISO disc groups that may need frontend parser/profile review.
 - BIOS expected-filename checks that never validate or store BIOS contents.
 - EmulationStation `gamelist.xml` missing ROM/media paths and orphaned media.
 - Unsupported ROM/file extensions for a selected normalized system.
@@ -275,8 +280,8 @@ Static database coverage:
 - 21 normalized asset types
 - 14 normalized metadata fields
 - 22 normalized frontend/library-manager records
-- 222 normalized system/platform records
-- 82 normalized emulator/runtime records
+- 226 normalized system/platform records
+- 88 normalized emulator/runtime records
 - 24 quirks
 
 See `docs/` for the current lists.

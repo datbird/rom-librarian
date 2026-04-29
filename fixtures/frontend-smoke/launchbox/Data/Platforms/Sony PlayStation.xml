@@ -1,0 +1,10 @@
+<LaunchBox>
+  <Game>
+    <Title>Smoke RPG</Title>
+    <ApplicationPath>..\..\Games\Sony PlayStation\Smoke RPG.m3u</ApplicationPath>
+  </Game>
+  <Game>
+    <Title>Stale Smoke</Title>
+    <ApplicationPath>..\..\Games\Sony PlayStation\Missing Smoke.cue</ApplicationPath>
+  </Game>
+</LaunchBox>

@@ -12,6 +12,17 @@ Any future mutating workflow should use this minimum design:
 - Re-run the relevant audit after applying changes.
 - Never mutate BIOS, firmware, keys, account data, saves, or emulator installation state.
 
+Dry-run plans can be profiled for frontend-specific review context:
+
+```bash
+npm run plan:repairs -- /tmp/audit.json --profile es-de --json-out /tmp/es-de-plan.json
+npm run plan:repairs -- /tmp/audit.json --profile launchbox --json-out /tmp/launchbox-plan.json
+npm run plan:repairs -- /tmp/audit.json --profile romm --json-out /tmp/romm-plan.json
+npm run plan:repairs -- /tmp/audit.json --profile pegasus --json-out /tmp/pegasus-plan.json
+```
+
+Profiles add blocked actions, frontend parser context, and descriptor guidance only. They do not authorize mutation.
+
 Backup manifest fields:
 
 - `created_at`

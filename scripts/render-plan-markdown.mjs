@@ -25,6 +25,7 @@ lines.push(`- Audit: ${plan.audit}`);
 lines.push(`- Target: ${plan.target || "unknown"}`);
 lines.push(`- Mode: ${plan.mode}`);
 lines.push(`- Status: ${plan.status}`);
+if (plan.frontend_profile) lines.push(`- Frontend profile: ${plan.frontend_profile.name}`);
 lines.push(`- Findings: ${plan.summary.findings}`);
 lines.push(`- Highest risk: ${plan.summary.highest_risk}`);
 lines.push(`- Backup required: ${plan.summary.backup_required ? "yes" : "no"}`);

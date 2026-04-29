@@ -8,6 +8,15 @@ const files = walk(absoluteTarget);
 const byPath = new Set(files.map((filePath) => path.normalize(filePath)));
 const findings = [];
 
+function shellQuote(value) {
+  return `'${value.replaceAll("'", "'\\''")}'`;
+}
+
+function commandPreview(source, chdPath, extension) {
+  const inputFlag = extension === ".iso" ? "-i" : "-i";
+  return `chdman createcd ${inputFlag} ${shellQuote(source)} -o ${shellQuote(chdPath)}`;
+}
+
 function cuePayloads(cuePath) {
   const text = fs.readFileSync(cuePath, "utf8");
   return [...text.matchAll(/^\s*FILE\s+"([^"]+)"\s+\S+/gim)].map((match) => path.resolve(path.dirname(cuePath), match[1]));
@@ -31,9 +40,16 @@ for (const filePath of files) {
     expected_chd: toRelative(absoluteTarget, chdPath),
     payloads: payloads.map((payload) => toRelative(absoluteTarget, payload)),
     missing_payloads: missingPayloads.map((payload) => toRelative(absoluteTarget, payload)),
+    review_only_command: commandPreview(toRelative(absoluteTarget, filePath), toRelative(absoluteTarget, chdPath), extension),
+    conversion_family: extension.slice(1),
     likely_cause: missingPayloads.length > 0 ? "Descriptor payloads are missing, so conversion would fail or produce incomplete output." : fs.existsSync(chdPath) ? "A CHD with the same basename already exists beside the descriptor/source." : "Descriptor/source appears structurally eligible for CHD conversion review.",
     suggested_dry_run_repair: "Read-only candidate only. Do not convert or delete sources without emulator support, backups, and launch verification."
   });
 }
 
-emitJson({ audit: "chdman-candidates", target: absoluteTarget, mode: "read-only", status: "completed", checks: ["cue_candidates", "gdi_candidates", "iso_candidates", "existing_chd", "missing_payloads"], summary: { candidates: findings.length, findings: findings.length }, findings, notes: ["Read-only audit. No CHD conversion, deletion, or source modification was performed."] });
+const byType = findings.reduce((summary, finding) => {
+  summary[finding.conversion_family] = (summary[finding.conversion_family] || 0) + 1;
+  return summary;
+}, {});
+
+emitJson({ audit: "chdman-candidates", target: absoluteTarget, mode: "read-only", status: "completed", checks: ["cue_candidates", "gdi_candidates", "iso_candidates", "existing_chd", "missing_payloads"], summary: { candidates: findings.length, findings: findings.length, by_type: byType }, findings, notes: ["Read-only audit. No CHD conversion, deletion, or source modification was performed.", "review_only_command values are examples for human review, not an authorization to convert or delete source media."] });

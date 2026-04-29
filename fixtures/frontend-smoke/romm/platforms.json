@@ -1,0 +1,6 @@
+{
+  "platform_slug": "sony-playstation",
+  "canonical_system_id": "psx",
+  "folder_name": "Sony PlayStation",
+  "fixture_note": "Slug and folder intentionally differ from psx but should resolve through known aliases."
+}

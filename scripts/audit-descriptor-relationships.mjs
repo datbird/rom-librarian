@@ -10,6 +10,11 @@ const descriptorExtensions = new Set([".cue", ".gdi", ".chd", ".iso"]);
 const payloadExtensions = new Set([".bin", ".raw", ".wav"]);
 const playlistTargets = new Set();
 const payloadTargets = new Set();
+const launchExtensions = new Set([".m3u", ".cue", ".gdi", ".chd", ".iso"]);
+
+function titleKey(filePath) {
+  return path.basename(filePath, path.extname(filePath)).replace(/\s*\((disc|disk|cd)\s*\d+\)\s*$/i, "").toLowerCase();
+}
 
 for (const m3uPath of files.filter((filePath) => path.extname(filePath).toLowerCase() === ".m3u")) {
   for (const entry of readLines(m3uPath)) {
@@ -43,6 +48,27 @@ for (const filePath of files) {
   if (payloadExtensions.has(extension) && payloadTargets.has(normalized) && !playlistTargets.has(normalized)) {
     const siblingDescriptor = files.some((candidate) => path.dirname(candidate) === path.dirname(filePath) && descriptorExtensions.has(path.extname(candidate).toLowerCase()));
     if (siblingDescriptor) findings.push({ severity: "info", type: "payload_referenced_by_descriptor", file: toRelative(absoluteTarget, filePath), likely_cause: "Payload track is referenced by a descriptor; frontends should usually launch the descriptor, not this payload.", suggested_dry_run_repair: "Do not delete referenced payloads. Exclude payload extensions from frontend parsers when descriptor/playlist launch targets exist." });
+  }
+}
+
+const launchGroups = new Map();
+for (const filePath of files) {
+  const extension = path.extname(filePath).toLowerCase();
+  if (!launchExtensions.has(extension)) continue;
+  const key = `${path.dirname(filePath)}\0${titleKey(filePath)}`;
+  const entries = launchGroups.get(key) || [];
+  entries.push(filePath);
+  launchGroups.set(key, entries);
+}
+
+for (const entries of launchGroups.values()) {
+  const extensions = new Set(entries.map((entry) => path.extname(entry).toLowerCase()));
+  if (entries.length > 1 && (extensions.has(".m3u") || extensions.has(".chd") || extensions.has(".iso"))) {
+    findings.push({ severity: "warning", type: "duplicate_launch_target_group", launch_targets: entries.map((entry) => toRelative(absoluteTarget, entry)), likely_cause: "Multiple frontend-visible launch targets share a title stem; this can duplicate games in scanners.", suggested_dry_run_repair: "Review frontend parser extensions and prefer one launch target per game before hiding or moving files." });
+  }
+  const isoEntries = entries.filter((entry) => path.extname(entry).toLowerCase() === ".iso");
+  if (isoEntries.length > 1 && !entries.some((entry) => path.extname(entry).toLowerCase() === ".m3u")) {
+    findings.push({ severity: "warning", type: "iso_disc_group_without_playlist", launch_targets: isoEntries.map((entry) => toRelative(absoluteTarget, entry)), likely_cause: "Multiple ISO discs appear to belong to one title without a playlist or frontend grouping descriptor.", suggested_dry_run_repair: "For frontends that support playlists, review whether an M3U or collection-level grouping should be the visible launch target." });
   }
 }
 

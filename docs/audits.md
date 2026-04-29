@@ -32,3 +32,10 @@ Safety limits:
 - Do not convert to CHD from candidate findings alone.
 - Do not download, paste, checksum, store, or validate BIOS/key/firmware contents.
 - Use repair plans as review artifacts, not as authorization to mutate files.
+
+Report rendering:
+
+- `npm run report:audit -- <audit-output.json>` renders an audit JSON file as Markdown.
+- `npm run report:audit -- <audit-output.json> --format html` renders the same data as a simple HTML table.
+- `npm run report:coverage-gaps` compares broad static system/emulator IDs with source-backed normalized records.
+- `npm run plan:repairs -- <audit-output.json> --profile es-de|launchbox|romm|pegasus` adds frontend-specific blocked actions to a dry-run plan.

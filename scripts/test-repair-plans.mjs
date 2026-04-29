@@ -55,11 +55,26 @@ const warningOnlyPlan = runJson(process.execPath, ["scripts/plan-repairs.mjs", "
 assert(warningOnlyPlan.summary.planned_findings === 3, "repair plan severity filter expected 3 warning/error findings");
 assert(warningOnlyPlan.steps.every((step) => step.severity !== "info"), "repair plan severity filter should remove info findings");
 
+const profiledPlan = runJson(process.execPath, ["scripts/plan-repairs.mjs", "-", "--profile", "launchbox"], JSON.stringify(audit));
+assert(profiledPlan.frontend_profile.id === "launchbox", "repair plan profile id mismatch");
+assert(profiledPlan.global_blocked_actions.some((action) => action.includes("Close LaunchBox")), "repair plan missing profile guidance");
+
+const descriptorAudit = runJson(process.execPath, ["scripts/audit-descriptor-relationships.mjs", "fixtures/descriptor-relationships/roms"]);
+const esDescriptorPlan = runJson(process.execPath, ["scripts/plan-repairs.mjs", "-", "--profile", "es-de"], JSON.stringify(descriptorAudit));
+assert(esDescriptorPlan.steps.some((step) => step.proposed_action.includes("hide descriptor-owned")), "descriptor profile guidance missing from ES-DE plan");
+
 const tempDirectory = fs.mkdtempSync(path.join(os.tmpdir(), "rom-librarian-plan-"));
 const planPath = path.join(tempDirectory, "plan.json");
 fs.writeFileSync(planPath, JSON.stringify(plan), "utf8");
 const markdown = execFileSync(process.execPath, ["scripts/render-plan-markdown.mjs", planPath], { cwd: root, encoding: "utf8" });
 assert(markdown.includes("# Dry-Run Repair Plan"), "markdown render missing title");
 assert(markdown.includes("## Proposed Steps"), "markdown render missing steps section");
+
+const auditPath = path.join(tempDirectory, "audit.json");
+fs.writeFileSync(auditPath, JSON.stringify(audit), "utf8");
+const auditMarkdown = execFileSync(process.execPath, ["scripts/render-audit-report.mjs", auditPath], { cwd: root, encoding: "utf8" });
+assert(auditMarkdown.includes("# rom-librarian Audit Report"), "audit markdown render missing title");
+const auditHtml = execFileSync(process.execPath, ["scripts/render-audit-report.mjs", auditPath, "--format", "html"], { cwd: root, encoding: "utf8" });
+assert(auditHtml.includes("<table>"), "audit HTML render missing table");
 
 console.log("repair plan fixture tests passed");

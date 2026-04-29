@@ -31,6 +31,8 @@
     "check:runtime": "node scripts/check-runtime.mjs",
     "examples:outputs": "node scripts/generate-example-outputs.mjs",
     "plan:repairs": "node scripts/plan-repairs.mjs",
+    "report:audit": "node scripts/render-audit-report.mjs",
+    "report:coverage-gaps": "node scripts/report-coverage-gaps.mjs",
     "plan:markdown": "node scripts/render-plan-markdown.mjs",
     "rollback:manifest": "node scripts/rollback-backup-manifest.mjs",
     "plan:changes": "node scripts/render-dry-run-changes.mjs",

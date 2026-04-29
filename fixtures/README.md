@@ -21,3 +21,4 @@ Rules:
 - `bios-expectations/` covers missing expected BIOS filenames without adding BIOS content.
 - `duplicate-titles/` covers duplicate display titles caused by region/revision variants.
 - `retroarch-playlist/` covers RetroArch `.lpl` playlist entries with missing content paths.
+- `frontend-smoke/` covers mixed ES-DE, LaunchBox, RomM, and Pegasus-style layouts for path/parser smoke checks.

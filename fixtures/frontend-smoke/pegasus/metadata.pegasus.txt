@@ -1,0 +1,8 @@
+collection: Smoke Collection
+game: Smoke RPG
+file: Smoke RPG.m3u
+assets.boxFront: media/box/Smoke RPG.png
+
+game: Missing Art
+file: Missing Art.zip
+assets.boxFront: media/box/Missing Art.png
