@@ -3,13 +3,17 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import process from "node:process";
+import Ajv from "ajv";
 
 const root = process.cwd();
+const ajv = new Ajv({ allErrors: true, strict: false, validateSchema: false });
+const validateApplicatorResult = ajv.compile(JSON.parse(fs.readFileSync(path.join(root, "schema/applicator-result.schema.json"), "utf8")));
 function assert(condition, message) { if (!condition) throw new Error(message); }
 function runJson(args, input) { return JSON.parse(execFileSync(process.execPath, args, { cwd: root, encoding: "utf8", input })); }
 function runExpectFailure(args) { try { execFileSync(process.execPath, args, { cwd: root, encoding: "utf8", stdio: "pipe" }); } catch (error) { return String(error.stderr || error.stdout || ""); } throw new Error(`Expected command to fail: ${args.join(" ")}`); }
 function copyFixture(source, destination) { fs.cpSync(path.join(root, source), destination, { recursive: true }); }
 function countFindings(result, type) { return result.findings.filter((finding) => finding.type === type).length; }
+function assertApplicatorResult(result, label) { assert(validateApplicatorResult(result), `${label} failed applicator result schema validation: ${ajv.errorsText(validateApplicatorResult.errors)}`); }
 
 const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "rom-librarian-disc-case-"));
 const cueFixtureRoot = path.join(tempRoot, "fixtures", "cue-issues");
@@ -21,6 +25,7 @@ const cuePlan = runJson(["scripts/plan-repairs.mjs", "-", "--severity", "warning
 const cuePlanPath = path.join(tempRoot, "cue-plan.json");
 fs.writeFileSync(cuePlanPath, JSON.stringify(cuePlan), "utf8");
 const cueResult = runJson(["scripts/apply-cue-case-fixes.mjs", cuePlanPath, "--apply"]);
+assertApplicatorResult(cueResult, "CUE result");
 assert(cueResult.status === "applied", "CUE case fix applicator did not apply");
 assert(countFindings(runJson(["scripts/audit-cue.mjs", cueTarget]), "cue_case_mismatch") === 0, "CUE case mismatch should be fixed after apply");
 const cueRollback = runJson(["scripts/rollback-backup-manifest.mjs", cueResult.backup_manifest, "--apply"]);
@@ -45,6 +50,7 @@ const gdiPlan = runJson(["scripts/plan-repairs.mjs", "-", "--severity", "warning
 const gdiPlanPath = path.join(tempRoot, "gdi-plan.json");
 fs.writeFileSync(gdiPlanPath, JSON.stringify(gdiPlan), "utf8");
 const gdiResult = runJson(["scripts/apply-gdi-case-fixes.mjs", gdiPlanPath, "--apply"]);
+assertApplicatorResult(gdiResult, "GDI result");
 assert(gdiResult.status === "applied", "GDI case fix applicator did not apply");
 assert(countFindings(runJson(["scripts/audit-gdi.mjs", gdiTarget]), "gdi_case_mismatch") === 0, "GDI case mismatch should be fixed after apply");
 const gdiRollback = runJson(["scripts/rollback-backup-manifest.mjs", gdiResult.backup_manifest, "--apply"]);

@@ -33,7 +33,19 @@
         "alias_covered_count": { "type": "integer", "minimum": 0 },
         "missing_count": { "type": "integer", "minimum": 0 },
         "normalized_percent": { "type": "number", "minimum": 0, "maximum": 100 },
-        "buckets": { "type": "object", "additionalProperties": { "type": "integer", "minimum": 0 } },
+        "buckets": {
+          "type": "object",
+          "properties": {
+            "engine_or_source_port": { "type": "integer", "minimum": 0 },
+            "launcher_or_runtime": { "type": "integer", "minimum": 0 },
+            "arcade_or_dat_sensitive": { "type": "integer", "minimum": 0 },
+            "disc_or_multidisc": { "type": "integer", "minimum": 0 },
+            "bios_or_firmware_sensitive": { "type": "integer", "minimum": 0 },
+            "launcher_or_installed_app": { "type": "integer", "minimum": 0 },
+            "standard_media": { "type": "integer", "minimum": 0 }
+          },
+          "additionalProperties": false
+        },
         "recommended_next": {
           "type": "array",
           "items": {
@@ -41,7 +53,7 @@
             "required": ["id", "bucket", "priority_reason"],
             "properties": {
               "id": { "type": "string" },
-              "bucket": { "type": "string" },
+              "bucket": { "$ref": "#/definitions/bucket" },
               "priority_reason": { "type": "string" }
             },
             "additionalProperties": false
@@ -50,6 +62,10 @@
         "alias_covered": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
         "missing": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
       }
+    },
+    "bucket": {
+      "type": "string",
+      "enum": ["engine_or_source_port", "launcher_or_runtime", "arcade_or_dat_sensitive", "disc_or_multidisc", "bios_or_firmware_sensitive", "launcher_or_installed_app", "standard_media"]
     }
   },
   "additionalProperties": false

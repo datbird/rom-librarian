@@ -3,8 +3,11 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import process from "node:process";
+import Ajv from "ajv";
 
 const root = process.cwd();
+const ajv = new Ajv({ allErrors: true, strict: false, validateSchema: false });
+const validateApplicatorResult = ajv.compile(JSON.parse(fs.readFileSync(path.join(root, "schema/applicator-result.schema.json"), "utf8")));
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -31,6 +34,10 @@ function countFindings(result, type) {
   return result.findings.filter((finding) => finding.type === type).length;
 }
 
+function assertApplicatorResult(result, label) {
+  assert(validateApplicatorResult(result), `${label} failed applicator result schema validation: ${ajv.errorsText(validateApplicatorResult.errors)}`);
+}
+
 const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "rom-librarian-fixtures-"));
 const fixtureRoot = path.join(tempRoot, "fixtures", "es-psx-multidisc");
 copyFixture("fixtures/es-psx-multidisc", fixtureRoot);
@@ -47,6 +54,7 @@ const dryApplyRefusal = runExpectFailure(["scripts/apply-m3u-case-fixes.mjs", pl
 assert(dryApplyRefusal.includes("--apply"), "M3U applicator should require explicit --apply");
 
 const result = runJson(["scripts/apply-m3u-case-fixes.mjs", planPath, "--apply"]);
+assertApplicatorResult(result, "M3U case fix result");
 assert(result.status === "applied", "M3U case fix applicator did not apply");
 assert(result.changes.length === 1, "M3U case fix expected one applied change");
 assert(result.verification.length === 1, "M3U case fix expected one verification result");
@@ -84,6 +92,7 @@ const confirmRefusal = runExpectFailure(["scripts/apply-m3u-case-fixes.mjs", rea
 assert(confirmRefusal.includes("--confirm-target"), "real target apply should require exact target confirmation");
 
 const realResult = runJson(["scripts/apply-m3u-case-fixes.mjs", realPlanPath, "--apply", "--allow-real-targets", "--confirm-target", realTarget]);
+assertApplicatorResult(realResult, "real M3U case fix result");
 assert(realResult.real_target === true, "real target apply should mark real_target true");
 assert(countFindings(runJson(["scripts/audit-m3u.mjs", realTarget]), "case_mismatch") === 0, "real target case mismatch should be fixed");
 

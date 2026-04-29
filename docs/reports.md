@@ -74,6 +74,19 @@ JSON summary output is validated by `schema/summary-report.schema.json` in the o
 | `npm run report:coverage-gaps` | default | supported | `--format markdown` | no |
 | `npm run report:summary` | default | supported | `--format markdown` | no |
 
+## JSON Schemas
+
+| Artifact | Schema |
+| --- | --- |
+| Audit result JSON | `schema/audit-result.schema.json` |
+| Repair plan JSON | `schema/repair-plan.schema.json` |
+| Dry-run change JSON | `schema/dry-run-change.schema.json` |
+| Coverage-gap report JSON | `schema/coverage-gap-report.schema.json` |
+| Summary report JSON | `schema/summary-report.schema.json` |
+| Mutating applicator result JSON | `schema/applicator-result.schema.json` |
+
+Coverage-gap bucket names are schema-constrained so newly introduced prioritization categories must be added intentionally. Applicator result validation covers the JSON emitted by the M3U, missing-M3U, CUE, and GDI applicators; rollback output is separate from applicator output.
+
 ## CI Artifacts
 
 The Check workflow runs `npm run examples:outputs -- tmp/examples` and uploads example audit outputs. The artifact includes audit JSON, repair plans, dry-run changes, Markdown reports, HTML reports, coverage-gap reports, and summary reports for representative fixtures.
