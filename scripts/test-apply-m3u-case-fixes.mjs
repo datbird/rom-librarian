@@ -43,6 +43,9 @@ const plan = runJson(["scripts/plan-repairs.mjs", "-", "--severity", "warning"],
 const planPath = path.join(tempRoot, "plan.json");
 fs.writeFileSync(planPath, JSON.stringify(plan), "utf8");
 
+const dryApplyRefusal = runExpectFailure(["scripts/apply-m3u-case-fixes.mjs", planPath]);
+assert(dryApplyRefusal.includes("--apply"), "M3U applicator should require explicit --apply");
+
 const result = runJson(["scripts/apply-m3u-case-fixes.mjs", planPath, "--apply"]);
 assert(result.status === "applied", "M3U case fix applicator did not apply");
 assert(result.changes.length === 1, "M3U case fix expected one applied change");
@@ -123,6 +126,8 @@ fs.writeFileSync(realMissingPlanPath, JSON.stringify(realMissingPlan), "utf8");
 
 const missingRefusal = runExpectFailure(["scripts/apply-missing-m3u-playlists.mjs", realMissingPlanPath, "--apply"]);
 assert(missingRefusal.includes("--allow-real-targets"), "real target missing M3U apply should require --allow-real-targets");
+const missingConfirmRefusal = runExpectFailure(["scripts/apply-missing-m3u-playlists.mjs", realMissingPlanPath, "--apply", "--allow-real-targets", "--confirm-target", realMissingRoot]);
+assert(missingConfirmRefusal.includes("--confirm-target"), "real target missing M3U apply should require exact target confirmation");
 
 const realMissingResult = runJson(["scripts/apply-missing-m3u-playlists.mjs", realMissingPlanPath, "--apply", "--allow-real-targets", "--confirm-target", realMissingTarget]);
 assert(realMissingResult.real_target === true, "real target missing M3U apply should mark real_target true");
@@ -152,6 +157,18 @@ const cueRollback = runJson(["scripts/rollback-backup-manifest.mjs", cueResult.b
 assert(cueRollback.restored.length === 1, "CUE rollback expected one restored file");
 assert(countFindings(runJson(["scripts/audit-cue.mjs", cueTarget]), "cue_case_mismatch") === 1, "CUE case mismatch should return after rollback");
 
+const realCueRoot = fs.mkdtempSync(path.join(os.tmpdir(), "rom-librarian-real-cue-"));
+copyFixture("fixtures/cue-issues", realCueRoot);
+const realCueTarget = path.join(realCueRoot, "roms", "psx");
+const realCueAudit = runJson(["scripts/audit-cue.mjs", realCueTarget]);
+const realCuePlan = runJson(["scripts/plan-repairs.mjs", "-", "--severity", "warning"], JSON.stringify(realCueAudit));
+const realCuePlanPath = path.join(realCueRoot, "cue-plan.json");
+fs.writeFileSync(realCuePlanPath, JSON.stringify(realCuePlan), "utf8");
+const cueRefusal = runExpectFailure(["scripts/apply-cue-case-fixes.mjs", realCuePlanPath, "--apply"]);
+assert(cueRefusal.includes("--allow-real-targets"), "real target CUE apply should require --allow-real-targets");
+const cueConfirmRefusal = runExpectFailure(["scripts/apply-cue-case-fixes.mjs", realCuePlanPath, "--apply", "--allow-real-targets", "--confirm-target", realCueRoot]);
+assert(cueConfirmRefusal.includes("--confirm-target"), "real target CUE apply should require exact target confirmation");
+
 const gdiFixtureRoot = path.join(tempRoot, "fixtures", "gdi-issues");
 copyFixture("fixtures/gdi-issues", gdiFixtureRoot);
 const gdiTarget = path.join(gdiFixtureRoot, "roms", "dreamcast");
@@ -167,5 +184,17 @@ assert(countFindings(runJson(["scripts/audit-gdi.mjs", gdiTarget]), "gdi_case_mi
 const gdiRollback = runJson(["scripts/rollback-backup-manifest.mjs", gdiResult.backup_manifest, "--apply"]);
 assert(gdiRollback.restored.length === 1, "GDI rollback expected one restored file");
 assert(countFindings(runJson(["scripts/audit-gdi.mjs", gdiTarget]), "gdi_case_mismatch") === 1, "GDI case mismatch should return after rollback");
+
+const realGdiRoot = fs.mkdtempSync(path.join(os.tmpdir(), "rom-librarian-real-gdi-"));
+copyFixture("fixtures/gdi-issues", realGdiRoot);
+const realGdiTarget = path.join(realGdiRoot, "roms", "dreamcast");
+const realGdiAudit = runJson(["scripts/audit-gdi.mjs", realGdiTarget]);
+const realGdiPlan = runJson(["scripts/plan-repairs.mjs", "-", "--severity", "warning"], JSON.stringify(realGdiAudit));
+const realGdiPlanPath = path.join(realGdiRoot, "gdi-plan.json");
+fs.writeFileSync(realGdiPlanPath, JSON.stringify(realGdiPlan), "utf8");
+const gdiRefusal = runExpectFailure(["scripts/apply-gdi-case-fixes.mjs", realGdiPlanPath, "--apply"]);
+assert(gdiRefusal.includes("--allow-real-targets"), "real target GDI apply should require --allow-real-targets");
+const gdiConfirmRefusal = runExpectFailure(["scripts/apply-gdi-case-fixes.mjs", realGdiPlanPath, "--apply", "--allow-real-targets", "--confirm-target", realGdiRoot]);
+assert(gdiConfirmRefusal.includes("--confirm-target"), "real target GDI apply should require exact target confirmation");
 
 console.log("apply and rollback M3U/CUE/GDI fixture tests passed");

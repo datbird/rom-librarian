@@ -8,6 +8,7 @@ import Ajv from "ajv";
 const root = process.cwd();
 const ajv = new Ajv({ allErrors: true, strict: false, validateSchema: false });
 const validateCoverageGapReport = ajv.compile(JSON.parse(fs.readFileSync(path.join(root, "schema/coverage-gap-report.schema.json"), "utf8")));
+const validateSummaryReport = ajv.compile(JSON.parse(fs.readFileSync(path.join(root, "schema/summary-report.schema.json"), "utf8")));
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -57,11 +58,15 @@ assert(limitedCoverage.systems.recommended_next.every((item) => item.id && item.
 const coverageMarkdown = execFileSync(process.execPath, ["scripts/report-coverage-gaps.mjs", "--section", "systems", "--limit", "5", "--format", "markdown"], { cwd: root, encoding: "utf8" });
 assert(coverageMarkdown.includes("# Coverage Gaps"), "coverage markdown missing title");
 assert(coverageMarkdown.includes("Recommended Next"), "coverage markdown missing recommendations");
+assert(coverageMarkdown.includes("Bucket Totals"), "coverage markdown missing bucket totals");
 const summary = JSON.parse(execFileSync(process.execPath, ["scripts/report-summary.mjs"], { cwd: root, encoding: "utf8" }));
 assert(summary.report === "summary", "summary report should identify itself");
+assert(validateSummaryReport(summary), `summary report failed schema validation: ${ajv.errorsText(validateSummaryReport.errors)}`);
 assert(summary.normalized_counts.systems > 0, "summary report missing normalized counts");
 const summaryMarkdown = execFileSync(process.execPath, ["scripts/report-summary.mjs", "--format", "markdown"], { cwd: root, encoding: "utf8" });
 assert(summaryMarkdown.includes("# rom-librarian Summary"), "summary markdown missing title");
+assert(summaryMarkdown.includes(summary.recommended_next.systems[0].priority_reason), "summary markdown missing system priority reasons");
+assert(summaryMarkdown.includes(summary.recommended_next.emulators[0].priority_reason), "summary markdown missing emulator priority reasons");
 
 const reportMatrix = [
   ["cue", "scripts/audit-cue.mjs", "fixtures/cue-issues/roms/psx"],
@@ -91,5 +96,11 @@ assert(fs.existsSync(path.join(exampleDirectory, "coverage-gaps.json")), "exampl
 assert(fs.existsSync(path.join(exampleDirectory, "coverage-gaps.md")), "example generation missing coverage markdown");
 assert(fs.existsSync(path.join(exampleDirectory, "summary.json")), "example generation missing summary JSON");
 assert(fs.existsSync(path.join(exampleDirectory, "summary.md")), "example generation missing summary markdown");
+const generatedCoverage = JSON.parse(fs.readFileSync(path.join(exampleDirectory, "coverage-gaps.json"), "utf8"));
+assert(validateCoverageGapReport(generatedCoverage), `generated coverage report failed schema validation: ${ajv.errorsText(validateCoverageGapReport.errors)}`);
+const generatedSummary = JSON.parse(fs.readFileSync(path.join(exampleDirectory, "summary.json"), "utf8"));
+assert(validateSummaryReport(generatedSummary), `generated summary report failed schema validation: ${ajv.errorsText(validateSummaryReport.errors)}`);
+assert(fs.readFileSync(path.join(exampleDirectory, "coverage-gaps.md"), "utf8").includes("# Coverage Gaps"), "generated coverage markdown missing title");
+assert(fs.readFileSync(path.join(exampleDirectory, "summary.md"), "utf8").includes("# rom-librarian Summary"), "generated summary markdown missing title");
 
 console.log("audit output option test passed");

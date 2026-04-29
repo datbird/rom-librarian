@@ -65,6 +65,17 @@ Until these guardrails are implemented and tested, audits and repair plans must 
 | CHD candidates | read-only | none | none | CHD files, source descriptors, conversion output |
 | Arcade/MAME/FBNeo checks | read-only | none | none | zipped sets, DAT rebuilds, merged/split sets |
 
+## Rollback Matrix
+
+| Applicator | Manifest backup model | Rollback behavior | Refusal behavior |
+| --- | --- | --- | --- |
+| `apply:m3u-case-fixes` | Copies each edited `.m3u` file under `.rom-librarian-backups/<operation>/` | Restores the backed-up playlist over the edited playlist | Real-target rollback requires `--allow-real-targets --confirm-target <absolute-target>` |
+| `apply:cue-case-fixes` | Copies each edited `.cue` file under `.rom-librarian-backups/<operation>/` | Restores the backed-up CUE over the edited CUE | Real-target rollback requires `--allow-real-targets --confirm-target <absolute-target>` |
+| `apply:gdi-case-fixes` | Copies each edited `.gdi` file under `.rom-librarian-backups/<operation>/` | Restores the backed-up GDI over the edited GDI | Real-target rollback requires `--allow-real-targets --confirm-target <absolute-target>` |
+| `apply:missing-m3u-playlists` | Stores generated playlist path and exact generated content in the manifest | Deletes the generated playlist only if its current content still exactly matches the manifest | Refuses to delete if the generated playlist was edited after creation; real-target rollback requires exact confirmation |
+
+Rollback never deletes backup files. A rollback operation is itself mutating and requires `--apply`.
+
 ## Implemented M3U Applicators
 
 `scripts/apply-m3u-case-fixes.mjs` can replace case-mismatched `.m3u` playlist entries when all of these are true:

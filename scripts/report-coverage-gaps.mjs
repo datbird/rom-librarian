@@ -157,6 +157,8 @@ function renderMarkdown(report) {
     lines.push(`- Covered IDs: ${data.covered_count}`);
     lines.push(`- Missing IDs: ${data.missing_count}`);
     lines.push(`- Coverage: ${data.normalized_percent}%`);
+    lines.push("", "### Bucket Totals", "");
+    for (const [bucket, count] of Object.entries(data.buckets).sort((a, b) => a[0].localeCompare(b[0]))) lines.push(`- ${bucket}: ${count}`);
     lines.push("", "### Recommended Next", "");
     for (const item of data.recommended_next) lines.push(`- ${item.id} (${item.bucket}): ${item.priority_reason}`);
   }

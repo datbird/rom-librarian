@@ -57,9 +57,9 @@ function renderMarkdown(report) {
   lines.push(`- Emulator coverage: ${report.coverage.emulators_percent}%`);
   lines.push(`- Fixture audits: ${report.fixture_audits}`);
   lines.push("", "## Recommended Systems", "");
-  for (const item of report.recommended_next.systems) lines.push(`- ${item.id} (${item.bucket})`);
+  for (const item of report.recommended_next.systems) lines.push(`- ${item.id} (${item.bucket}): ${item.priority_reason}`);
   lines.push("", "## Recommended Emulators", "");
-  for (const item of report.recommended_next.emulators) lines.push(`- ${item.id} (${item.bucket})`);
+  for (const item of report.recommended_next.emulators) lines.push(`- ${item.id} (${item.bucket}): ${item.priority_reason}`);
   lines.push("", "## Mutating Applicators", "");
   for (const command of report.mutating_applicators) lines.push(`- ${command}`);
   return `${lines.join("\n")}\n`;
