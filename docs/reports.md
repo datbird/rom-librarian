@@ -26,6 +26,8 @@ npm run plan:markdown -- /tmp/m3u-plan.json
 
 Profiles currently support `es-de`, `launchbox`, `romm`, and `pegasus`. Profiles add frontend-specific blocked actions and descriptor guidance only; they do not authorize mutation.
 
+See `planner-profiles.md` for the assumptions behind each profile.
+
 ## Dry-Run Change Lists
 
 Dry-run change lists map plan steps into hypothetical operations:

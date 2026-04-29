@@ -4,6 +4,7 @@
   "category": "computer",
   "manufacturer": "Tandy / Radio Shack",
   "sources": [{ "type": "docs", "url": "https://docs.mamedev.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "aliases": { "folder_ids": ["trs80"], "frontend_ids": [], "region_ids": [], "equivalent_system_ids": [] },
   "formats": { "preferred": [".dsk", ".cmd", ".cas"], "supported": [".zip", ".7z", ".dsk", ".cmd", ".cas", ".wav", ".rom", ".bin", ".m3u"], "descriptor_files": [".m3u"], "archive_formats": [".zip", ".7z"] },
   "bios": { "required": true, "common_files": [], "notes": "TRS-80 model ROM requirements vary by machine class and emulator." },
   "emulation": { "preferred_emulators": ["mame"], "retroarch_cores": ["mame"] },

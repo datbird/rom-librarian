@@ -251,6 +251,46 @@ const tests = [
       assert(result.findings.length === 1, "audit-retroarch-playlists expected 1 finding");
       assert(countFindings(result, "missing_playlist_path") === 1, "audit-retroarch-playlists expected missing path finding");
     }
+  },
+  {
+    label: "audit-descriptor-profile-es-de-fixture",
+    script: "scripts/audit-descriptor-relationships.mjs",
+    target: "fixtures/descriptor-profiles/es-de",
+    args: ["--profile", "es-de"],
+    assert(result) {
+      assert(result.frontend_profile.id === "es-de", "ES-DE descriptor fixture expected profile context");
+      assertFindingTypes(result, ["descriptor_targeted_by_m3u", "payload_referenced_by_descriptor", "duplicate_launch_target_group"], "descriptor-profile-es-de");
+    }
+  },
+  {
+    label: "audit-descriptor-profile-launchbox-fixture",
+    script: "scripts/audit-descriptor-relationships.mjs",
+    target: "fixtures/descriptor-profiles/launchbox",
+    args: ["--profile", "launchbox"],
+    assert(result) {
+      assert(result.frontend_profile.id === "launchbox", "LaunchBox descriptor fixture expected profile context");
+      assertFindingTypes(result, ["duplicate_launch_target_group"], "descriptor-profile-launchbox");
+    }
+  },
+  {
+    label: "audit-descriptor-profile-romm-fixture",
+    script: "scripts/audit-descriptor-relationships.mjs",
+    target: "fixtures/descriptor-profiles/romm",
+    args: ["--profile", "romm"],
+    assert(result) {
+      assert(result.frontend_profile.id === "romm", "RomM descriptor fixture expected profile context");
+      assertFindingTypes(result, ["payload_referenced_by_descriptor"], "descriptor-profile-romm");
+    }
+  },
+  {
+    label: "audit-descriptor-profile-pegasus-fixture",
+    script: "scripts/audit-descriptor-relationships.mjs",
+    target: "fixtures/descriptor-profiles/pegasus",
+    args: ["--profile", "pegasus"],
+    assert(result) {
+      assert(result.frontend_profile.id === "pegasus", "Pegasus descriptor fixture expected profile context");
+      assertFindingTypes(result, ["m3u_non_descriptor_target", "duplicate_launch_target_group"], "descriptor-profile-pegasus");
+    }
   }
 ];
 

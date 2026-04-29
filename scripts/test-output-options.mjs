@@ -48,6 +48,32 @@ assert(validateCoverageGapReport(coverage), `coverage gap report failed schema v
 assert(coverage.systems.missing_count > 0, "coverage report should list missing normalized systems");
 assert(coverage.emulators.missing_count > 0, "coverage report should list missing normalized emulators");
 
+const limitedCoverage = JSON.parse(execFileSync(process.execPath, ["scripts/report-coverage-gaps.mjs", "--section", "systems", "--limit", "5"], { cwd: root, encoding: "utf8" }));
+assert(validateCoverageGapReport(limitedCoverage), `limited coverage gap report failed schema validation: ${ajv.errorsText(validateCoverageGapReport.errors)}`);
+assert(limitedCoverage.filters.section === "systems", "coverage section filter was not recorded");
+assert(limitedCoverage.systems.missing.length <= 5, "coverage --limit should limit system missing list");
+assert(limitedCoverage.emulators.active === false, "coverage --section systems should mark emulators inactive");
+
+const reportMatrix = [
+  ["cue", "scripts/audit-cue.mjs", "fixtures/cue-issues/roms/psx"],
+  ["gdi", "scripts/audit-gdi.mjs", "fixtures/gdi-issues/roms/dreamcast"],
+  ["chd", "scripts/audit-chdman-candidates.mjs", "fixtures/chd-candidates/roms/psx"],
+  ["descriptors", "scripts/audit-descriptor-relationships.mjs", "fixtures/descriptor-relationships/roms"],
+  ["media", "scripts/audit-media-paths.mjs", "fixtures/es-media-paths/roms/snes"],
+  ["launchbox", "scripts/audit-launchbox-paths.mjs", "fixtures/launchbox-stale-paths/Data"],
+  ["pegasus", "scripts/audit-pegasus-assets.mjs", "fixtures/pegasus-missing-assets"],
+  ["romm", "scripts/audit-romm-slugs.mjs", "fixtures/romm-slug-mismatch"]
+];
+
+for (const [label, script, target] of reportMatrix) {
+  const auditPath = path.join(tempDirectory, `${label}-audit.json`);
+  execFileSync(process.execPath, [script, target, "--json-out", auditPath], { cwd: root, encoding: "utf8" });
+  const markdown = execFileSync(process.execPath, ["scripts/render-audit-report.mjs", auditPath], { cwd: root, encoding: "utf8" });
+  const html = execFileSync(process.execPath, ["scripts/render-audit-report.mjs", auditPath, "--format", "html"], { cwd: root, encoding: "utf8" });
+  assert(markdown.includes("# rom-librarian Audit Report"), `${label} markdown report missing title`);
+  assert(html.includes("<table>"), `${label} HTML report missing table`);
+}
+
 const exampleDirectory = path.join(tempDirectory, "examples");
 execFileSync(process.execPath, ["scripts/generate-example-outputs.mjs", exampleDirectory], { cwd: root, encoding: "utf8" });
 assert(fs.existsSync(path.join(exampleDirectory, "m3u-report.md")), "example generation missing markdown report");

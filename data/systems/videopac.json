@@ -4,6 +4,7 @@
   "category": "console",
   "manufacturer": "Philips / Magnavox",
   "sources": [{ "type": "docs", "url": "https://docs.libretro.com/library/o2em/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
+  "aliases": { "folder_ids": ["videopacplus"], "frontend_ids": [], "region_ids": [], "equivalent_system_ids": [] },
   "formats": { "preferred": [".bin"], "supported": [".bin", ".rom", ".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
   "bios": { "required": true, "common_files": ["o2rom.bin"], "notes": "BIOS requirements depend on emulator/core setup." },
   "emulation": { "preferred_emulators": ["o2em", "mame"], "retroarch_cores": ["o2em", "mame"] },

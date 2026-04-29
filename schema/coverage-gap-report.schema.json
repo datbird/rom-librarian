@@ -3,11 +3,20 @@
   "$id": "https://github.com/datbird/rom-librarian/schema/coverage-gap-report.schema.json",
   "title": "rom-librarian coverage gap report",
   "type": "object",
-  "required": ["report", "mode", "status", "systems", "emulators", "notes"],
+  "required": ["report", "mode", "status", "filters", "systems", "emulators", "notes"],
   "properties": {
     "report": { "type": "string", "enum": ["coverage-gaps"] },
     "mode": { "type": "string", "enum": ["read-only"] },
     "status": { "type": "string", "enum": ["completed"] },
+    "filters": {
+      "type": "object",
+      "required": ["section", "limit"],
+      "properties": {
+        "section": { "type": ["string", "null"], "enum": ["systems", "emulators", null] },
+        "limit": { "type": ["integer", "null"], "minimum": 1 }
+      },
+      "additionalProperties": false
+    },
     "systems": { "$ref": "#/definitions/coverageSection" },
     "emulators": { "$ref": "#/definitions/coverageSection" },
     "notes": { "type": "array", "items": { "type": "string" } }
@@ -15,14 +24,17 @@
   "definitions": {
     "coverageSection": {
       "type": "object",
-      "required": ["static_count", "normalized_count", "covered_count", "alias_covered_count", "missing_count", "normalized_percent", "alias_covered", "missing"],
+      "required": ["active", "static_count", "normalized_count", "covered_count", "alias_covered_count", "missing_count", "normalized_percent", "buckets", "recommended_next", "alias_covered", "missing"],
       "properties": {
+        "active": { "type": "boolean" },
         "static_count": { "type": "integer", "minimum": 0 },
         "normalized_count": { "type": "integer", "minimum": 0 },
         "covered_count": { "type": "integer", "minimum": 0 },
         "alias_covered_count": { "type": "integer", "minimum": 0 },
         "missing_count": { "type": "integer", "minimum": 0 },
         "normalized_percent": { "type": "number", "minimum": 0, "maximum": 100 },
+        "buckets": { "type": "object", "additionalProperties": { "type": "integer", "minimum": 0 } },
+        "recommended_next": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
         "alias_covered": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
         "missing": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
       }
