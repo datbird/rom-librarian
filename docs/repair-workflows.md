@@ -1,6 +1,6 @@
 # Repair Workflows
 
-Three narrow mutating workflows are implemented for playlist/disc-descriptor maintenance: `.m3u` case-mismatch fixes, `.cue` case-mismatch fixes, and additive missing-`.m3u` generation. General library repair workflows are not implemented yet.
+Four narrow mutating workflows are implemented for playlist/disc-descriptor maintenance: `.m3u` case-mismatch fixes, `.cue` case-mismatch fixes, `.gdi` case-mismatch fixes, and additive missing-`.m3u` generation. General library repair workflows are not implemented yet.
 
 Any future mutating workflow should use this minimum design:
 
@@ -104,6 +104,8 @@ The CUE case-fix applicator:
 - edits only CUE text entries
 - never deletes, moves, or modifies BIN/WAV/disc/media files
 
+`scripts/apply-gdi-case-fixes.mjs` follows the same gate/backup/rollback model for `gdi_case_mismatch` findings from `audit:gdi`. It edits only GDI track filename text and never moves, deletes, or converts track payloads.
+
 Example:
 
 ```bash
@@ -117,6 +119,11 @@ npm run plan:repairs -- /tmp/cue-audit.json --severity warning --json-out /tmp/c
 npm run apply:cue-case-fixes -- /tmp/cue-plan.json --apply
 npm run rollback:manifest -- <backup-manifest.json> --apply
 
+npm run audit:gdi -- fixtures/gdi-issues/roms/dreamcast --json-out /tmp/gdi-audit.json
+npm run plan:repairs -- /tmp/gdi-audit.json --severity warning --json-out /tmp/gdi-plan.json
+npm run apply:gdi-case-fixes -- /tmp/gdi-plan.json --apply
+npm run rollback:manifest -- <backup-manifest.json> --apply
+
 npm run audit:m3u -- fixtures/missing-m3u/roms/psx --json-out /tmp/missing-m3u-audit.json
 npm run plan:repairs -- /tmp/missing-m3u-audit.json --severity warning --json-out /tmp/missing-m3u-plan.json
 npm run apply:missing-m3u-playlists -- /tmp/missing-m3u-plan.json --apply
@@ -128,6 +135,7 @@ Real target example:
 ```bash
 npm run apply:m3u-case-fixes -- /tmp/m3u-plan.json --apply --allow-real-targets --confirm-target /absolute/library/path
 npm run apply:cue-case-fixes -- /tmp/cue-plan.json --apply --allow-real-targets --confirm-target /absolute/library/path
+npm run apply:gdi-case-fixes -- /tmp/gdi-plan.json --apply --allow-real-targets --confirm-target /absolute/library/path
 npm run apply:missing-m3u-playlists -- /tmp/missing-m3u-plan.json --apply --allow-real-targets --confirm-target /absolute/library/path
 npm run rollback:manifest -- <backup-manifest.json> --apply --allow-real-targets --confirm-target /absolute/library/path
 ```

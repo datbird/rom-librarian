@@ -152,4 +152,20 @@ const cueRollback = runJson(["scripts/rollback-backup-manifest.mjs", cueResult.b
 assert(cueRollback.restored.length === 1, "CUE rollback expected one restored file");
 assert(countFindings(runJson(["scripts/audit-cue.mjs", cueTarget]), "cue_case_mismatch") === 1, "CUE case mismatch should return after rollback");
 
-console.log("apply and rollback M3U/CUE fixture tests passed");
+const gdiFixtureRoot = path.join(tempRoot, "fixtures", "gdi-issues");
+copyFixture("fixtures/gdi-issues", gdiFixtureRoot);
+const gdiTarget = path.join(gdiFixtureRoot, "roms", "dreamcast");
+const gdiAudit = runJson(["scripts/audit-gdi.mjs", gdiTarget]);
+assert(countFindings(gdiAudit, "gdi_case_mismatch") === 1, "gdi fixture should start with one case mismatch");
+const gdiPlan = runJson(["scripts/plan-repairs.mjs", "-", "--severity", "warning"], JSON.stringify(gdiAudit));
+const gdiPlanPath = path.join(tempRoot, "gdi-plan.json");
+fs.writeFileSync(gdiPlanPath, JSON.stringify(gdiPlan), "utf8");
+const gdiResult = runJson(["scripts/apply-gdi-case-fixes.mjs", gdiPlanPath, "--apply"]);
+assert(gdiResult.status === "applied", "GDI case fix applicator did not apply");
+assert(gdiResult.verification.length === 1, "GDI case fix expected one verification result");
+assert(countFindings(runJson(["scripts/audit-gdi.mjs", gdiTarget]), "gdi_case_mismatch") === 0, "GDI case mismatch should be fixed after apply");
+const gdiRollback = runJson(["scripts/rollback-backup-manifest.mjs", gdiResult.backup_manifest, "--apply"]);
+assert(gdiRollback.restored.length === 1, "GDI rollback expected one restored file");
+assert(countFindings(runJson(["scripts/audit-gdi.mjs", gdiTarget]), "gdi_case_mismatch") === 1, "GDI case mismatch should return after rollback");
+
+console.log("apply and rollback M3U/CUE/GDI fixture tests passed");

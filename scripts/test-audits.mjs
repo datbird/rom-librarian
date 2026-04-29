@@ -61,6 +61,37 @@ const tests = [
     }
   },
   {
+    label: "audit-gdi",
+    script: "scripts/audit-gdi.mjs",
+    target: "fixtures/gdi-issues/roms/dreamcast",
+    assert(result) {
+      assert(result.status === "completed", "audit-gdi did not complete");
+      assert(result.summary.gdi_files === 2, "audit-gdi expected 2 GDI files");
+      assert(result.findings.length === 6, "audit-gdi expected 6 findings");
+      assertFindingTypes(result, ["gdi_case_mismatch", "missing_gdi_track", "malformed_gdi_track_line", "gdi_track_count_mismatch", "unreferenced_gdi_track_payload"], "audit-gdi");
+    }
+  },
+  {
+    label: "audit-chdman-candidates",
+    script: "scripts/audit-chdman-candidates.mjs",
+    target: "fixtures/chd-candidates/roms/psx",
+    assert(result) {
+      assert(result.status === "completed", "audit-chdman-candidates did not complete");
+      assert(result.findings.length === 3, "audit-chdman-candidates expected 3 findings");
+      assertFindingTypes(result, ["chd_conversion_candidate", "chd_conversion_blocked_missing_payload", "existing_chd_duplicate_candidate"], "audit-chdman-candidates");
+    }
+  },
+  {
+    label: "audit-descriptor-relationships",
+    script: "scripts/audit-descriptor-relationships.mjs",
+    target: "fixtures/descriptor-relationships/roms/psx",
+    assert(result) {
+      assert(result.status === "completed", "audit-descriptor-relationships did not complete");
+      assert(result.findings.length === 2, "audit-descriptor-relationships expected 2 findings");
+      assertFindingTypes(result, ["payload_referenced_by_descriptor", "descriptor_targeted_by_m3u"], "audit-descriptor-relationships");
+    }
+  },
+  {
     label: "audit-media-paths",
     script: "scripts/audit-media-paths.mjs",
     target: "fixtures/es-media-paths/roms/snes",

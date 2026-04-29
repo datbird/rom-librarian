@@ -221,10 +221,11 @@ Two narrowly scoped mutating applicators exist for proving backup/apply mechanic
 ```bash
 npm run apply:m3u-case-fixes -- <m3u-repair-plan.json> --apply
 npm run apply:cue-case-fixes -- <cue-repair-plan.json> --apply
+npm run apply:gdi-case-fixes -- <gdi-repair-plan.json> --apply
 npm run apply:missing-m3u-playlists -- <m3u-repair-plan.json> --apply
 ```
 
-They edit only case-mismatched `.m3u`/`.cue` text lines after backup or add missing `.m3u` playlists without moving source files. Fixture targets require `--apply`; real targets also require `--allow-real-targets` and exact `--confirm-target <absolute-target>`.
+They edit only case-mismatched `.m3u`/`.cue`/`.gdi` text lines after backup or add missing `.m3u` playlists without moving source files. Fixture targets require `--apply`; real targets also require `--allow-real-targets` and exact `--confirm-target <absolute-target>`.
 
 Rollback is available with:
 
@@ -236,6 +237,8 @@ Implemented fixture-backed audits currently cover:
 
 - M3U playlist targets, case mismatches, missing multi-disc playlists, and duplicate loose disc metadata entries.
 - CUE payload references, case mismatches, absolute paths, and same-title CUE groups.
+- GDI track references, case mismatches, malformed lines, and unreferenced track payloads.
+- CHD conversion candidates and descriptor relationship checks, both read-only only.
 - BIOS expected-filename checks that never validate or store BIOS contents.
 - EmulationStation `gamelist.xml` missing ROM/media paths and orphaned media.
 - Unsupported ROM/file extensions for a selected normalized system.
@@ -272,8 +275,8 @@ Static database coverage:
 - 21 normalized asset types
 - 14 normalized metadata fields
 - 22 normalized frontend/library-manager records
-- 194 normalized system/platform records
-- 60 normalized emulator/runtime records
+- 222 normalized system/platform records
+- 82 normalized emulator/runtime records
 - 24 quirks
 
 See `docs/` for the current lists.

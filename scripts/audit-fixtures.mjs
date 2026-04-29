@@ -9,6 +9,9 @@ if (process.argv.includes("--help") || process.argv.includes("-h")) {
 const fixtures = [
   ["m3u", "scripts/audit-m3u.mjs", "fixtures/es-psx-multidisc/roms/psx"],
   ["cue", "scripts/audit-cue.mjs", "fixtures/cue-issues/roms/psx"],
+  ["gdi", "scripts/audit-gdi.mjs", "fixtures/gdi-issues/roms/dreamcast"],
+  ["chdman-candidates", "scripts/audit-chdman-candidates.mjs", "fixtures/chd-candidates/roms/psx"],
+  ["descriptor-relationships", "scripts/audit-descriptor-relationships.mjs", "fixtures/descriptor-relationships/roms/psx"],
   ["media-paths", "scripts/audit-media-paths.mjs", "fixtures/es-media-paths/roms/snes"],
   ["launchbox-paths", "scripts/audit-launchbox-paths.mjs", "fixtures/launchbox-stale-paths/Data"],
   ["mame-layout", "scripts/audit-mame-layout.mjs", "fixtures/mame-layout/roms/mame"],

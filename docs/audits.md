@@ -11,6 +11,9 @@ Implemented audits:
 
 - `npm run audit:m3u -- <path>` checks `.m3u` targets, case mismatches, missing multi-disc `.m3u` playlists, and duplicate loose disc entries in `gamelist.xml`.
 - `npm run audit:cue -- <path>` checks CUE `FILE` references, case mismatches, absolute paths, missing payloads, and same-title CUE groups.
+- `npm run audit:gdi -- <path>` checks GDI track references, case mismatches, malformed track lines, and unreferenced track payloads.
+- `npm run audit:chdman-candidates -- <path>` identifies CHD conversion candidates, missing payload blockers, and existing CHD duplicates without converting anything.
+- `npm run audit:descriptors -- <path>` cross-checks M3U, CUE, GDI, CHD, ISO, and payload relationships for likely duplicate launch targets.
 - `npm run audit:media -- <path>` checks EmulationStation `gamelist.xml` game/media paths and orphaned media.
 - `npm run audit:launchbox -- <path>` checks LaunchBox platform XML stale paths.
 - `npm run audit:mame -- <path>` checks MAME ZIP/CHD layout relationships without set validation.
@@ -26,5 +29,6 @@ Safety limits:
 
 - Do not infer that missing files should be deleted.
 - Do not unzip, rebuild, or rename MAME/arcade sets from layout findings alone.
+- Do not convert to CHD from candidate findings alone.
 - Do not download, paste, checksum, store, or validate BIOS/key/firmware contents.
 - Use repair plans as review artifacts, not as authorization to mutate files.

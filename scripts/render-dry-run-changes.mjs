@@ -20,6 +20,8 @@ function operationForStep(step) {
   if (["case_mismatch", "missing_playlist_target"].includes(step.finding_type)) return "playlist_path_review";
   if (step.finding_type === "missing_m3u_playlist") return "playlist_create_review";
   if (["cue_case_mismatch", "missing_cue_file_reference", "absolute_cue_file_reference"].includes(step.finding_type)) return "cue_path_review";
+  if (["gdi_case_mismatch", "missing_gdi_track", "absolute_gdi_track_reference", "malformed_gdi_track_line"].includes(step.finding_type)) return "gdi_path_review";
+  if (["chd_conversion_candidate", "chd_conversion_blocked_missing_payload", "existing_chd_duplicate_candidate"].includes(step.finding_type)) return "chd_conversion_review";
   if (["unsupported_extension", "orphaned_media"].includes(step.finding_type)) return "quarantine_candidate_review";
   return "manual_review";
 }
