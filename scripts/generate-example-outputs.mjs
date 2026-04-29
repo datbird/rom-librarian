@@ -28,4 +28,9 @@ for (const [name, script, target] of examples) {
   fs.writeFileSync(htmlReportPath, execFileSync(process.execPath, ["scripts/render-audit-report.mjs", auditPath, "--format", "html"], { cwd: process.cwd(), encoding: "utf8" }), "utf8");
 }
 
+const coverageJsonPath = path.join(outputRoot, "coverage-gaps.json");
+const coverageMarkdownPath = path.join(outputRoot, "coverage-gaps.md");
+execFileSync(process.execPath, ["scripts/report-coverage-gaps.mjs", "--limit", "25", "--json-out", coverageJsonPath], { cwd: process.cwd(), stdio: "inherit" });
+fs.writeFileSync(coverageMarkdownPath, execFileSync(process.execPath, ["scripts/report-coverage-gaps.mjs", "--limit", "25", "--format", "markdown"], { cwd: process.cwd(), encoding: "utf8" }), "utf8");
+
 console.log(JSON.stringify({ status: "completed", output_root: outputRoot, examples: examples.length }, null, 2));

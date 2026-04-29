@@ -6,6 +6,7 @@ const root = process.cwd();
 const args = process.argv.slice(2);
 const limit = getLimit(args);
 const sectionFilter = getSection(args);
+const format = getFormat(args);
 const staticDb = JSON.parse(fs.readFileSync(path.join(root, "static.json"), "utf8"));
 const index = JSON.parse(fs.readFileSync(path.join(root, "data/index.json"), "utf8"));
 
@@ -35,6 +36,15 @@ function getSection(args) {
   return value;
 }
 
+function getFormat(args) {
+  const value = getOptionValue(args, "--format") || "json";
+  if (!["json", "markdown"].includes(value)) {
+    console.error("--format must be one of: json, markdown");
+    process.exit(1);
+  }
+  return value;
+}
+
 function readRecord(relativePath) {
   return JSON.parse(fs.readFileSync(path.join(root, relativePath), "utf8"));
 }
@@ -57,6 +67,14 @@ function bucketForStaticEntry(id, entry) {
   return "standard_media";
 }
 
+function priorityReason(bucket) {
+  if (bucket === "engine_or_source_port") return "Engine/source-port entries have launcher arguments, commercial data ownership, and save-location risks that benefit from source-backed normalization.";
+  if (bucket === "disc_or_multidisc") return "Disc and multi-disc entries need descriptor, playlist, CHD, and payload-safety behavior documented before repair planning.";
+  if (bucket === "bios_or_firmware_sensitive") return "BIOS/firmware-sensitive entries need explicit do-not-store and manual-handling guidance.";
+  if (bucket === "launcher_or_installed_app") return "Launcher/installed-app entries can contain account data, prefixes, shortcuts, and working-directory assumptions.";
+  return "Standard media entry without stronger safety signals; useful after higher-risk gaps are covered.";
+}
+
 function summarizeBuckets(section, ids) {
   const buckets = {};
   for (const id of ids) {
@@ -70,7 +88,11 @@ function recommendedNext(section, missing) {
   const preferredBuckets = ["engine_or_source_port", "disc_or_multidisc", "bios_or_firmware_sensitive", "launcher_or_installed_app", "standard_media"];
   return [...missing]
     .sort((a, b) => preferredBuckets.indexOf(bucketForStaticEntry(a, staticDb[section]?.[a] || {})) - preferredBuckets.indexOf(bucketForStaticEntry(b, staticDb[section]?.[b] || {})) || a.localeCompare(b))
-    .slice(0, limit || 10);
+    .slice(0, limit || 10)
+    .map((id) => {
+      const bucket = bucketForStaticEntry(id, staticDb[section]?.[id] || {});
+      return { id, bucket, priority_reason: priorityReason(bucket) };
+    });
 }
 
 function maybeLimit(values) {
@@ -112,4 +134,28 @@ const result = {
   notes: ["Static entries are broad recognition records. Missing normalized records should be backfilled only when source-backed behavior can be documented."]
 };
 
-emitJson(result);
+function renderMarkdown(report) {
+  const lines = ["# Coverage Gaps", ""];
+  lines.push(`- Mode: ${report.mode}`);
+  lines.push(`- Status: ${report.status}`);
+  lines.push(`- Section filter: ${report.filters.section || "none"}`);
+  lines.push(`- Limit: ${report.filters.limit || "none"}`);
+  for (const section of ["systems", "emulators"]) {
+    const data = report[section];
+    lines.push("", `## ${section[0].toUpperCase()}${section.slice(1)}`);
+    lines.push(`- Active: ${data.active ? "yes" : "no"}`);
+    lines.push(`- Static IDs: ${data.static_count}`);
+    lines.push(`- Normalized records: ${data.normalized_count}`);
+    lines.push(`- Covered IDs: ${data.covered_count}`);
+    lines.push(`- Missing IDs: ${data.missing_count}`);
+    lines.push(`- Coverage: ${data.normalized_percent}%`);
+    lines.push("", "### Recommended Next", "");
+    for (const item of data.recommended_next) lines.push(`- ${item.id} (${item.bucket}): ${item.priority_reason}`);
+  }
+  lines.push("", "## Notes", "");
+  for (const note of report.notes) lines.push(`- ${note}`);
+  return `${lines.join("\n")}\n`;
+}
+
+if (format === "markdown") process.stdout.write(renderMarkdown(result));
+else emitJson(result);

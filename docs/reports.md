@@ -44,10 +44,14 @@ Coverage-gap reports compare broad static IDs with source-backed normalized reco
 
 ```bash
 npm run report:coverage-gaps -- --json-out /tmp/coverage-gaps.json
+npm run report:coverage-gaps -- --section systems --limit 25
+npm run report:coverage-gaps -- --format markdown --limit 25
 ```
 
-Use this report to prioritize normalized data backfill. Alias-covered IDs are already represented by another normalized record, while missing IDs have no direct or alias coverage. Missing static entries should not be added to `data/*` unless source-backed behavior can be documented.
+Use this report to prioritize normalized data backfill. Alias-covered IDs are already represented by another normalized record, while missing IDs have no direct or alias coverage. `recommended_next` entries include a bucket and priority reason. Missing static entries should not be added to `data/*` unless source-backed behavior can be documented.
+
+See `alias-intent.md` before turning a missing ID into a new normalized record.
 
 ## CI Artifacts
 
-The Check workflow runs `npm run examples:outputs -- tmp/examples` and uploads example audit outputs. The artifact includes audit JSON, repair plans, dry-run changes, Markdown reports, and HTML reports for representative fixtures.
+The Check workflow runs `npm run examples:outputs -- tmp/examples` and uploads example audit outputs. The artifact includes audit JSON, repair plans, dry-run changes, Markdown reports, HTML reports, and coverage-gap reports for representative fixtures.

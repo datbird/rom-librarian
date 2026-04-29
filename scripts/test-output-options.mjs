@@ -53,6 +53,10 @@ assert(validateCoverageGapReport(limitedCoverage), `limited coverage gap report 
 assert(limitedCoverage.filters.section === "systems", "coverage section filter was not recorded");
 assert(limitedCoverage.systems.missing.length <= 5, "coverage --limit should limit system missing list");
 assert(limitedCoverage.emulators.active === false, "coverage --section systems should mark emulators inactive");
+assert(limitedCoverage.systems.recommended_next.every((item) => item.id && item.bucket && item.priority_reason), "coverage recommended_next entries must explain priority");
+const coverageMarkdown = execFileSync(process.execPath, ["scripts/report-coverage-gaps.mjs", "--section", "systems", "--limit", "5", "--format", "markdown"], { cwd: root, encoding: "utf8" });
+assert(coverageMarkdown.includes("# Coverage Gaps"), "coverage markdown missing title");
+assert(coverageMarkdown.includes("Recommended Next"), "coverage markdown missing recommendations");
 
 const reportMatrix = [
   ["cue", "scripts/audit-cue.mjs", "fixtures/cue-issues/roms/psx"],
@@ -78,5 +82,7 @@ const exampleDirectory = path.join(tempDirectory, "examples");
 execFileSync(process.execPath, ["scripts/generate-example-outputs.mjs", exampleDirectory], { cwd: root, encoding: "utf8" });
 assert(fs.existsSync(path.join(exampleDirectory, "m3u-report.md")), "example generation missing markdown report");
 assert(fs.existsSync(path.join(exampleDirectory, "m3u-report.html")), "example generation missing HTML report");
+assert(fs.existsSync(path.join(exampleDirectory, "coverage-gaps.json")), "example generation missing coverage JSON");
+assert(fs.existsSync(path.join(exampleDirectory, "coverage-gaps.md")), "example generation missing coverage markdown");
 
 console.log("audit output option test passed");

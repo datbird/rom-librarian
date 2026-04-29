@@ -103,4 +103,4 @@ The static database now tracks 362 system/platform IDs, including ES-DE and Bato
 
 ## Normalized Deep Records
 
-Source-backed deep records now cover 244 normalized systems/platforms, including major consoles, handhelds, arcade boards, classic computers, launcher ecosystems, web runtimes, fantasy consoles, pinball/laserdisc targets, and engine/source-port libraries. These records should be preferred over shallow static entries when diagnosing repair behavior for those platforms.
+Source-backed deep records now cover 254 normalized systems/platforms, including major consoles, handhelds, arcade boards, classic computers, launcher ecosystems, web runtimes, fantasy consoles, pinball/laserdisc targets, and engine/source-port libraries. These records should be preferred over shallow static entries when diagnosing repair behavior for those platforms.

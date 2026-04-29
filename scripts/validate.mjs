@@ -68,7 +68,11 @@ function validateSystemAliases(record, label, aliasOwners) {
 }
 
 function validateSystemSafety(record, label, highRiskSystemIds) {
-  const requiresSafety = highRiskSystemIds.has(record.id);
+  const biosRequired = record.bios?.required === true;
+  const safetyText = JSON.stringify(record.safety || {}).toLowerCase();
+  const biosText = JSON.stringify(record.bios || {}).toLowerCase();
+  const sensitiveByText = /firmware|key|keys|nand|machine_rom/.test(biosText + safetyText);
+  const requiresSafety = highRiskSystemIds.has(record.id) || biosRequired || sensitiveByText;
   if (!record.safety) {
     assert(!requiresSafety, `${label} missing safety metadata for high-risk system: ${record.id}`);
     return;
@@ -80,6 +84,25 @@ function validateSystemSafety(record, label, highRiskSystemIds) {
   requireStringArray(record.safety.do_not_store, `${label}.safety.do_not_store`);
   if (record.safety.notes) requireStringArray(record.safety.notes, `${label}.safety.notes`);
   if (requiresSafety) assert(record.safety.automation_level !== "automation_allowed", `${label}.safety.automation_level is too permissive for high-risk system: ${record.id}`);
+  if (biosRequired || sensitiveByText) {
+    const doNotStoreText = record.safety.do_not_store.join(" ").toLowerCase();
+    const hasProtection = biosRequired ? /bios|firmware|key|keys|nand|machine_rom/.test(doNotStoreText) : /firmware|key|keys|nand|machine_rom/.test(doNotStoreText);
+    assert(hasProtection, `${label}.safety.do_not_store must include BIOS/firmware/key/NAND protection for sensitive system: ${record.id}`);
+  }
+}
+
+function validateEmulatorAliases(record, label, aliasOwners) {
+  if (!record.aliases) return;
+  requireObject(record.aliases, `${label}.aliases`);
+  const values = record.aliases.equivalent_emulator_ids || [];
+  requireStringArray(values, `${label}.aliases.equivalent_emulator_ids`);
+  for (const emulatorId of values) {
+    assert(emulatorIds.has(emulatorId), `${label}.aliases.equivalent_emulator_ids references missing static emulator: ${emulatorId}`);
+    assert(emulatorId !== record.id, `${label}.aliases.equivalent_emulator_ids must not reference itself: ${emulatorId}`);
+    const previousOwner = aliasOwners.get(emulatorId);
+    assert(!previousOwner || previousOwner === record.id, `${label}.aliases.equivalent_emulator_ids ${emulatorId} is already owned by ${previousOwner}`);
+    aliasOwners.set(emulatorId, record.id);
+  }
 }
 
 const staticDb = readJson("static.json");
@@ -214,6 +237,7 @@ if (normalizedIndex) {
   const normalizedMetadataStores = new Set();
   const normalizedAliasGroups = new Set();
   const normalizedSystemAliasOwners = new Map();
+  const normalizedEmulatorAliasOwners = new Map();
   const highRiskSystemIds = new Set(["3do", "3ds", "adam", "amigacd32", "amigacdtv", "android", "apple2gs", "arcade", "arcadia", "astrocde", "atari5200", "atari800", "atarilynx", "atarist", "atom", "bbcmicro", "build", "c128", "c20", "cavestory", "cdi", "channelf", "coco", "colecovision", "cplus4", "cps1", "cps2", "cps3", "daphne", "doom", "dragon32", "easyrpg", "electron", "epic", "fds", "fm7", "fmtowns", "futurepinball", "gamecom", "gamepock", "godot", "gp32", "heroic", "html5", "ikemen", "intellivision", "ios", "jaguarcd", "lcdgames", "lutris", "macintosh", "mame", "megacd", "megacdjp", "model2", "model3", "msx2", "msx2plus", "mugen", "neogeocd", "odyssey2", "oric", "palm", "pc88", "pcenginecd", "pcfx", "plus4", "ps2", "psx", "quake", "samcoupe", "saturn", "segacd", "shockwave", "singe", "steam", "switch", "symbian", "teknoparrot", "thomson", "ti99", "trs-80", "vic20", "vpinball", "wiiu", "windows3x", "windows9x", "wine", "x1", "xbox", "xbox360"]);
   const validateFrontendSchema = compileSchema(normalizedIndex.schema_files?.frontend || "schema/frontend.schema.json");
   const validateSystemSchema = compileSchema(normalizedIndex.schema_files?.system || "schema/system.schema.json");
@@ -262,6 +286,7 @@ if (normalizedIndex) {
     assert(emulatorIds.has(record.id), `${relativePath} id is not present in static.json emulators: ${record.id}`);
     requireArray(record.sources, `${relativePath}.sources`);
     for (const source of record.sources) validateSource(source, relativePath);
+    validateEmulatorAliases(record, relativePath, normalizedEmulatorAliasOwners);
     for (const systemId of record.systems || []) assert(systemIds.has(systemId), `${relativePath} references missing system: ${systemId}`);
     for (const quirkId of record.quirks || []) assert(quirkIds.has(quirkId), `${relativePath} references missing quirk: ${quirkId}`);
     normalizedEmulators.add(record.id);

@@ -39,6 +39,12 @@
   "frontend_notes": {
     "es-de": "Most ES-family frontends use nds as the folder ID, while rom-librarian also tracks ds as the canonical static system."
   },
+  "safety": {
+    "automation_level": "dry_run_only",
+    "requires_backup": true,
+    "do_not_store": ["bios_roms", "firmware", "nand", "rom_payloads"],
+    "notes": ["DS and DSi BIOS, firmware, and NAND files are user-provided setup material and must not be stored."]
+  },
   "quirks": ["es-folder-alias-mismatch", "retroarch-system-dir-confusion"],
   "confidence_notes": ["`nds` is a common frontend folder alias; BIOS/firmware behavior varies by emulator and DSi workflow."],
   "source_map": {
