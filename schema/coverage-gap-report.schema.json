@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/07/schema",
+  "$id": "https://github.com/datbird/rom-librarian/schema/coverage-gap-report.schema.json",
+  "title": "rom-librarian coverage gap report",
+  "type": "object",
+  "required": ["report", "mode", "status", "systems", "emulators", "notes"],
+  "properties": {
+    "report": { "type": "string", "enum": ["coverage-gaps"] },
+    "mode": { "type": "string", "enum": ["read-only"] },
+    "status": { "type": "string", "enum": ["completed"] },
+    "systems": { "$ref": "#/definitions/coverageSection" },
+    "emulators": { "$ref": "#/definitions/coverageSection" },
+    "notes": { "type": "array", "items": { "type": "string" } }
+  },
+  "definitions": {
+    "coverageSection": {
+      "type": "object",
+      "required": ["static_count", "normalized_count", "covered_count", "alias_covered_count", "missing_count", "normalized_percent", "alias_covered", "missing"],
+      "properties": {
+        "static_count": { "type": "integer", "minimum": 0 },
+        "normalized_count": { "type": "integer", "minimum": 0 },
+        "covered_count": { "type": "integer", "minimum": 0 },
+        "alias_covered_count": { "type": "integer", "minimum": 0 },
+        "missing_count": { "type": "integer", "minimum": 0 },
+        "normalized_percent": { "type": "number", "minimum": 0, "maximum": 100 },
+        "alias_covered": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "missing": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+      }
+    }
+  },
+  "additionalProperties": false
+}

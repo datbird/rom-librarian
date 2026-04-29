@@ -3,7 +3,15 @@ import path from "node:path";
 import { emitJson, ensureDirectoryArg, readLines, toRelative, walk } from "./lib/audit-utils.mjs";
 
 const target = process.argv[2];
-const absoluteTarget = ensureDirectoryArg(target, "Usage: node scripts/audit-descriptor-relationships.mjs <library-path>");
+const profileGuidance = {
+  "es-de": "ES-DE typically benefits from one visible playlist/descriptor launch target while parser extensions hide descriptor-owned BIN/RAW/WAV payloads.",
+  launchbox: "LaunchBox should normally have one platform XML Game entry for the intended launch artifact, not duplicate entries for descriptors and payloads.",
+  romm: "RomM parser behavior and platform mappings should be confirmed before moving or hiding payloads because metadata and saves can be tied to existing paths.",
+  pegasus: "Pegasus metadata should reference the intended single launch file while preserving unknown metadata.pegasus.txt fields during any future rewrite."
+};
+
+const profile = getProfile(process.argv.slice(2));
+const absoluteTarget = ensureDirectoryArg(target, "Usage: node scripts/audit-descriptor-relationships.mjs <library-path> [--profile es-de|launchbox|romm|pegasus]");
 const files = walk(absoluteTarget);
 const findings = [];
 const descriptorExtensions = new Set([".cue", ".gdi", ".chd", ".iso"]);
@@ -11,6 +19,22 @@ const payloadExtensions = new Set([".bin", ".raw", ".wav"]);
 const playlistTargets = new Set();
 const payloadTargets = new Set();
 const launchExtensions = new Set([".m3u", ".cue", ".gdi", ".chd", ".iso"]);
+
+function getProfile(args) {
+  const index = args.indexOf("--profile");
+  if (index === -1) return null;
+  const value = args[index + 1];
+  if (!profileGuidance[value]) {
+    console.error("--profile must be one of: es-de, launchbox, romm, pegasus");
+    process.exit(1);
+  }
+  return value;
+}
+
+function addFinding(finding) {
+  if (profile) finding.frontend_profile = { id: profile, guidance: profileGuidance[profile] };
+  findings.push(finding);
+}
 
 function titleKey(filePath) {
   return path.basename(filePath, path.extname(filePath)).replace(/\s*\((disc|disk|cd)\s*\d+\)\s*$/i, "").toLowerCase();
@@ -22,7 +46,7 @@ for (const m3uPath of files.filter((filePath) => path.extname(filePath).toLowerC
     playlistTargets.add(path.normalize(resolved));
     const extension = path.extname(entry).toLowerCase();
     if (!descriptorExtensions.has(extension)) {
-      findings.push({ severity: "warning", type: "m3u_non_descriptor_target", playlist: toRelative(absoluteTarget, m3uPath), entry, likely_cause: "M3U entries usually target CUE/GDI/CHD/ISO descriptors rather than payload tracks.", suggested_dry_run_repair: "Review playlist target type before changing frontend-visible files." });
+      addFinding({ severity: "warning", type: "m3u_non_descriptor_target", playlist: toRelative(absoluteTarget, m3uPath), entry, likely_cause: "M3U entries usually target CUE/GDI/CHD/ISO descriptors rather than payload tracks.", suggested_dry_run_repair: "Review playlist target type before changing frontend-visible files." });
     }
   }
 }
@@ -43,11 +67,11 @@ for (const filePath of files) {
   const extension = path.extname(filePath).toLowerCase();
   const normalized = path.normalize(filePath);
   if (descriptorExtensions.has(extension) && playlistTargets.has(normalized)) {
-    findings.push({ severity: "info", type: "descriptor_targeted_by_m3u", descriptor: toRelative(absoluteTarget, filePath), likely_cause: "Descriptor is referenced by an M3U playlist and may be intentionally hidden from frontend scans.", suggested_dry_run_repair: "Prefer exposing the M3U as the launch target when the frontend supports it." });
+    addFinding({ severity: "info", type: "descriptor_targeted_by_m3u", descriptor: toRelative(absoluteTarget, filePath), likely_cause: "Descriptor is referenced by an M3U playlist and may be intentionally hidden from frontend scans.", suggested_dry_run_repair: "Prefer exposing the M3U as the launch target when the frontend supports it." });
   }
   if (payloadExtensions.has(extension) && payloadTargets.has(normalized) && !playlistTargets.has(normalized)) {
     const siblingDescriptor = files.some((candidate) => path.dirname(candidate) === path.dirname(filePath) && descriptorExtensions.has(path.extname(candidate).toLowerCase()));
-    if (siblingDescriptor) findings.push({ severity: "info", type: "payload_referenced_by_descriptor", file: toRelative(absoluteTarget, filePath), likely_cause: "Payload track is referenced by a descriptor; frontends should usually launch the descriptor, not this payload.", suggested_dry_run_repair: "Do not delete referenced payloads. Exclude payload extensions from frontend parsers when descriptor/playlist launch targets exist." });
+    if (siblingDescriptor) addFinding({ severity: "info", type: "payload_referenced_by_descriptor", file: toRelative(absoluteTarget, filePath), likely_cause: "Payload track is referenced by a descriptor; frontends should usually launch the descriptor, not this payload.", suggested_dry_run_repair: "Do not delete referenced payloads. Exclude payload extensions from frontend parsers when descriptor/playlist launch targets exist." });
   }
 }
 
@@ -64,12 +88,12 @@ for (const filePath of files) {
 for (const entries of launchGroups.values()) {
   const extensions = new Set(entries.map((entry) => path.extname(entry).toLowerCase()));
   if (entries.length > 1 && (extensions.has(".m3u") || extensions.has(".chd") || extensions.has(".iso"))) {
-    findings.push({ severity: "warning", type: "duplicate_launch_target_group", launch_targets: entries.map((entry) => toRelative(absoluteTarget, entry)), likely_cause: "Multiple frontend-visible launch targets share a title stem; this can duplicate games in scanners.", suggested_dry_run_repair: "Review frontend parser extensions and prefer one launch target per game before hiding or moving files." });
+    addFinding({ severity: "warning", type: "duplicate_launch_target_group", launch_targets: entries.map((entry) => toRelative(absoluteTarget, entry)), likely_cause: "Multiple frontend-visible launch targets share a title stem; this can duplicate games in scanners.", suggested_dry_run_repair: "Review frontend parser extensions and prefer one launch target per game before hiding or moving files." });
   }
   const isoEntries = entries.filter((entry) => path.extname(entry).toLowerCase() === ".iso");
   if (isoEntries.length > 1 && !entries.some((entry) => path.extname(entry).toLowerCase() === ".m3u")) {
-    findings.push({ severity: "warning", type: "iso_disc_group_without_playlist", launch_targets: isoEntries.map((entry) => toRelative(absoluteTarget, entry)), likely_cause: "Multiple ISO discs appear to belong to one title without a playlist or frontend grouping descriptor.", suggested_dry_run_repair: "For frontends that support playlists, review whether an M3U or collection-level grouping should be the visible launch target." });
+    addFinding({ severity: "warning", type: "iso_disc_group_without_playlist", launch_targets: isoEntries.map((entry) => toRelative(absoluteTarget, entry)), likely_cause: "Multiple ISO discs appear to belong to one title without a playlist or frontend grouping descriptor.", suggested_dry_run_repair: "For frontends that support playlists, review whether an M3U or collection-level grouping should be the visible launch target." });
   }
 }
 
-emitJson({ audit: "descriptor-relationships", target: absoluteTarget, mode: "read-only", status: "completed", checks: ["m3u_targets", "descriptor_payloads", "duplicate_launch_targets"], summary: { findings: findings.length }, findings, notes: ["Read-only audit. No descriptors, payloads, playlists, or metadata files were modified."] });
+emitJson({ audit: "descriptor-relationships", target: absoluteTarget, mode: "read-only", status: "completed", frontend_profile: profile ? { id: profile, guidance: profileGuidance[profile] } : null, checks: ["m3u_targets", "descriptor_payloads", "duplicate_launch_targets"], summary: { findings: findings.length }, findings, notes: ["Read-only audit. No descriptors, payloads, playlists, or metadata files were modified."] });

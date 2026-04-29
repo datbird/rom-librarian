@@ -6,22 +6,36 @@ const root = process.cwd();
 const staticDb = JSON.parse(fs.readFileSync(path.join(root, "static.json"), "utf8"));
 const index = JSON.parse(fs.readFileSync(path.join(root, "data/index.json"), "utf8"));
 
-function idFromRecord(relativePath) {
-  const record = JSON.parse(fs.readFileSync(path.join(root, relativePath), "utf8"));
-  return record.id;
+function readRecord(relativePath) {
+  return JSON.parse(fs.readFileSync(path.join(root, relativePath), "utf8"));
+}
+
+function coveredIds(record) {
+  const ids = new Set([record.id]);
+  for (const field of ["folder_ids", "frontend_ids", "region_ids", "equivalent_system_ids"]) {
+    for (const value of record.aliases?.[field] || []) ids.add(value);
+  }
+  return ids;
 }
 
 function compare(section, normalizedPaths) {
   const staticIds = Object.keys(staticDb[section] || {}).sort();
-  const normalizedIds = normalizedPaths.map(idFromRecord).sort();
-  const normalizedSet = new Set(normalizedIds);
-  const missing = staticIds.filter((id) => !normalizedSet.has(id));
+  const records = normalizedPaths.map(readRecord);
+  const normalizedIds = records.map((record) => record.id).sort();
+  const directlyNormalized = new Set(normalizedIds);
+  const coveredSet = new Set();
+  for (const record of records) for (const id of coveredIds(record)) coveredSet.add(id);
+  const aliasCovered = staticIds.filter((id) => !directlyNormalized.has(id) && coveredSet.has(id));
+  const missing = staticIds.filter((id) => !coveredSet.has(id));
 
   return {
     static_count: staticIds.length,
     normalized_count: normalizedIds.length,
+    covered_count: staticIds.length - missing.length,
+    alias_covered_count: aliasCovered.length,
     missing_count: missing.length,
-    normalized_percent: Number(((normalizedIds.length / staticIds.length) * 100).toFixed(1)),
+    normalized_percent: Number((((staticIds.length - missing.length) / staticIds.length) * 100).toFixed(1)),
+    alias_covered: aliasCovered,
     missing
   };
 }

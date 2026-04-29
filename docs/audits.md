@@ -13,7 +13,7 @@ Implemented audits:
 - `npm run audit:cue -- <path>` checks CUE `FILE` references, case mismatches, absolute paths, missing payloads, and same-title CUE groups.
 - `npm run audit:gdi -- <path>` checks GDI track references, case mismatches, malformed track lines, and unreferenced track payloads.
 - `npm run audit:chdman-candidates -- <path>` identifies CHD conversion candidates, missing payload blockers, and existing CHD duplicates without converting anything.
-- `npm run audit:descriptors -- <path>` cross-checks M3U, CUE, GDI, CHD, ISO, and payload relationships for likely duplicate launch targets.
+- `npm run audit:descriptors -- <path>` cross-checks M3U, CUE, GDI, CHD, ISO, and payload relationships for likely duplicate launch targets. Add `--profile es-de|launchbox|romm|pegasus` to include frontend-specific context in findings.
 - `npm run audit:media -- <path>` checks EmulationStation `gamelist.xml` game/media paths and orphaned media.
 - `npm run audit:launchbox -- <path>` checks LaunchBox platform XML stale paths.
 - `npm run audit:mame -- <path>` checks MAME ZIP/CHD layout relationships without set validation.
@@ -39,3 +39,5 @@ Report rendering:
 - `npm run report:audit -- <audit-output.json> --format html` renders the same data as a simple HTML table.
 - `npm run report:coverage-gaps` compares broad static system/emulator IDs with source-backed normalized records.
 - `npm run plan:repairs -- <audit-output.json> --profile es-de|launchbox|romm|pegasus` adds frontend-specific blocked actions to a dry-run plan.
+
+See `reports.md` for report formats and CI artifact details.

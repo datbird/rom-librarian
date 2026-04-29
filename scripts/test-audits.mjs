@@ -78,7 +78,9 @@ const tests = [
     assert(result) {
       assert(result.status === "completed", "audit-chdman-candidates did not complete");
       assert(result.findings.length === 3, "audit-chdman-candidates expected 3 findings");
+      assert(result.summary.by_safety.blocked_missing_payload === 1, "audit-chdman-candidates expected blocked safety summary");
       assertFindingTypes(result, ["chd_conversion_candidate", "chd_conversion_blocked_missing_payload", "existing_chd_duplicate_candidate"], "audit-chdman-candidates");
+      assert(result.findings.every((finding) => finding.safety_classification && finding.safety_guidance), "audit-chdman-candidates findings missing safety classification");
     }
   },
   {
@@ -89,6 +91,17 @@ const tests = [
       assert(result.status === "completed", "audit-descriptor-relationships did not complete");
       assert(result.findings.length === 5, "audit-descriptor-relationships expected 5 findings");
       assertFindingTypes(result, ["payload_referenced_by_descriptor", "descriptor_targeted_by_m3u", "duplicate_launch_target_group", "iso_disc_group_without_playlist"], "audit-descriptor-relationships");
+    }
+  },
+  {
+    label: "audit-descriptor-relationships-profile",
+    script: "scripts/audit-descriptor-relationships.mjs",
+    target: "fixtures/descriptor-relationships/roms",
+    args: ["--profile", "es-de"],
+    assert(result) {
+      assert(result.status === "completed", "profiled descriptor audit did not complete");
+      assert(result.frontend_profile.id === "es-de", "profiled descriptor audit expected ES-DE profile");
+      assert(result.findings.every((finding) => finding.frontend_profile?.id === "es-de"), "profiled descriptor findings missing profile context");
     }
   },
   {
