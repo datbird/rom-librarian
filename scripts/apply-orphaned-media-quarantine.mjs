@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { execFileSync } from "node:child_process";
 import { emitJson } from "./lib/audit-utils.mjs";
 
 const planPath = process.argv[2];
@@ -26,10 +27,6 @@ function getOptionValue(name) {
   return index === -1 ? null : process.argv[index + 1] || null;
 }
 
-function relativeFromTarget(target, filePath) {
-  return path.relative(target, filePath).split(path.sep).join("/");
-}
-
 const plan = JSON.parse(fs.readFileSync(planPath, "utf8"));
 if (plan.plan_type !== "dry_run_repair_plan") fail("Input must be a dry-run repair plan");
 if (plan.audit !== "media-paths") fail("This applicator only accepts plans generated from the media-paths audit");
@@ -45,65 +42,49 @@ if (!isFixtureTarget) {
 }
 
 const operationId = `orphaned-media-quarantine-${new Date().toISOString().replace(/[:.]/g, "-")}`;
-const quarantineRoot = path.join(target, ".rom-librarian-quarantine", operationId);
-const manifestRoot = path.join(target, ".rom-librarian-backups", operationId);
-const changes = [];
-const verification = [];
+const operations = [];
 
 for (const step of plan.steps || []) {
   const finding = step.original_finding;
   if (!finding || finding.type !== "orphaned_media") continue;
   if (!finding.media_path) fail(`Missing orphaned media path for step ${step.step}`);
-
-  const sourcePath = path.resolve(target, finding.media_path);
-  if (!sourcePath.startsWith(target + path.sep)) fail(`Orphaned media path escapes target: ${finding.media_path}`);
-  if (!fs.existsSync(sourcePath) || !fs.statSync(sourcePath).isFile()) fail(`Refusing to quarantine missing or non-file path: ${finding.media_path}`);
-
-  const quarantinePath = path.join(quarantineRoot, finding.media_path);
-  if (fs.existsSync(quarantinePath)) fail(`Refusing to overwrite quarantine path: ${relativeFromTarget(target, quarantinePath)}`);
-  if (apply) {
-    fs.mkdirSync(path.dirname(quarantinePath), { recursive: true });
-    fs.renameSync(sourcePath, quarantinePath);
-    if (fs.existsSync(sourcePath) || !fs.existsSync(quarantinePath)) fail(`Post-apply verification failed for ${finding.media_path}`);
-  }
-
-  changes.push({
-    operation: "quarantine_orphaned_media",
+  operations.push({
+    op: "move_to_quarantine",
     path: finding.media_path,
-    quarantine_path: quarantinePath,
-    applied: apply
+    quarantine_path: path.posix.join(".rom-librarian-quarantine", operationId, finding.media_path)
   });
-  verification.push({ media_path: finding.media_path, verified: true, check: apply ? "source_removed_and_quarantine_exists" : "source_exists_and_quarantine_path_available" });
 }
 
-if (changes.length === 0) fail("No orphaned_media findings were eligible for this applicator");
+if (operations.length === 0) fail("No orphaned_media findings were eligible for this applicator");
 
-let manifestPath = null;
-if (apply) {
-  fs.mkdirSync(manifestRoot, { recursive: true });
-  const manifest = {
+const fileOpsPlan = {
+  plan_type: "file_operations",
   operation_id: operationId,
-  created_at: new Date().toISOString(),
   audit: plan.audit,
   target,
-  real_target: !isFixtureTarget,
-  planned_changes: changes,
-  backup_paths: [],
+  operations,
   rollback_notes: ["Rollback moves quarantined orphaned media back only when the original path is still absent."]
-  };
+};
 
-  manifestPath = path.join(manifestRoot, "backup-manifest.json");
-  fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2), "utf8");
+const fileOpsArgs = ["tools/fileops.py", apply ? "apply" : "dry-run", "-"];
+if (allowRealTargets) fileOpsArgs.push("--allow-real-targets");
+if (confirmTarget) fileOpsArgs.push("--confirm-target", confirmTarget);
+let fileOpsResult;
+try {
+  fileOpsResult = JSON.parse(execFileSync("python3", fileOpsArgs, { cwd: process.cwd(), encoding: "utf8", input: JSON.stringify(fileOpsPlan) }));
+} catch (error) {
+  process.stderr.write(String(error.stderr || error.stdout || error.message || error));
+  process.exit(1);
 }
 
 emitJson({
   operation: "apply-orphaned-media-quarantine",
-  mode: apply ? "mutating" : "dry-run",
-  status: apply ? "applied" : "planned",
-  target,
+  mode: fileOpsResult.mode,
+  status: fileOpsResult.status,
+  target: fileOpsResult.target,
   real_target: !isFixtureTarget,
-  changes,
-  verification,
-  backup_manifest: manifestPath,
+  changes: fileOpsResult.changes,
+  verification: fileOpsResult.verification,
+  backup_manifest: fileOpsResult.backup_manifest,
   notes: [apply ? "Only orphaned media files were moved to .rom-librarian-quarantine. No ROM, metadata, BIOS, firmware, key, or save files were modified." : "Dry run only. Orphaned media files were verified but not moved."]
 });

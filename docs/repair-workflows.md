@@ -185,6 +185,8 @@ The orphaned-media applicator:
 - never edits metadata or deletes media permanently
 - rolls back by moving quarantined files back only if the original path is still absent
 
+The empty-folder and orphaned-media applicators translate repair-plan findings into `schema/file-operations.schema.json` and execute those primitives through `tools/fileops.py`. The helper is intentionally narrow: it supports `delete_empty_dir`, `move_to_quarantine`, and manifest rollback primitives only; domain-specific decisions stay in audits and repair plans.
+
 Example:
 
 ```bash

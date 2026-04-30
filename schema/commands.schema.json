@@ -14,7 +14,7 @@
         "properties": {
           "id": { "type": "string" },
           "command": { "type": "string" },
-          "category": { "type": "string", "enum": ["audit", "plan", "report", "apply", "rollback"] },
+          "category": { "type": "string", "enum": ["audit", "plan", "report", "apply", "rollback", "tool"] },
           "mutates": { "type": "boolean" },
           "inputs": { "type": "array", "items": { "type": "string" } },
           "outputs": { "type": "array", "items": { "type": "string" } },

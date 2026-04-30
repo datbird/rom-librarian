@@ -109,12 +109,13 @@ Quality findings are advisory and do not affect coverage completeness.
 | Data-quality report JSON | `schema/data-quality-report.schema.json` |
 | Data-quality budget JSON | `schema/data-quality-budget.schema.json` |
 | Advisor report JSON | `schema/advisor-report.schema.json` |
+| File operations plan JSON | `schema/file-operations.schema.json` |
 | Summary report JSON | `schema/summary-report.schema.json` |
 | Backup manifest JSON | `schema/backup-manifest.schema.json` |
 | Mutating applicator result JSON | `schema/applicator-result.schema.json` |
 | Rollback result JSON | `schema/rollback-result.schema.json` |
 
-Coverage-gap bucket names are schema-constrained so newly introduced prioritization categories must be added intentionally. Applicator result validation covers the JSON emitted by the M3U, missing-M3U, CUE, and GDI applicators. Rollback result validation covers manifest-backed file restores and generated-playlist deletion rollbacks.
+Coverage-gap bucket names are schema-constrained so newly introduced prioritization categories must be added intentionally. Applicator result validation covers the JSON emitted by the M3U, missing-M3U, CUE, GDI, empty-folder, and orphaned-media applicators. Rollback result validation covers manifest-backed file restores, generated-playlist deletion rollbacks, empty-folder recreation, and quarantined-media restores.
 Rollback supports `--dry-run` for planned restore/delete output with `applied: false`; real targets still require `--allow-real-targets --confirm-target <absolute-target>`.
 `npm run check:coverage` fails when any static system or emulator ID is not normalized directly or intentionally alias-covered.
 

@@ -5,7 +5,7 @@
   "type": "object",
   "required": ["operation", "mode", "status", "target", "real_target", "manifest", "restored", "notes"],
   "properties": {
-    "operation": { "type": "string", "enum": ["rollback-backup-manifest"] },
+    "operation": { "type": "string", "enum": ["rollback-backup-manifest", "fileops-rollback"] },
     "mode": { "type": "string", "enum": ["mutating", "dry-run"] },
     "status": { "type": "string", "enum": ["restored", "planned"] },
     "target": { "type": "string" },

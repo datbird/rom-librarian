@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { execFileSync } from "node:child_process";
 import { emitJson } from "./lib/audit-utils.mjs";
 
 const planPath = process.argv[2];
@@ -26,14 +27,6 @@ function getOptionValue(name) {
   return index === -1 ? null : process.argv[index + 1] || null;
 }
 
-function relativeFromTarget(target, filePath) {
-  return path.relative(target, filePath).split(path.sep).join("/");
-}
-
-function isEmptyDirectory(directory) {
-  return fs.existsSync(directory) && fs.statSync(directory).isDirectory() && fs.readdirSync(directory).length === 0;
-}
-
 const plan = JSON.parse(fs.readFileSync(planPath, "utf8"));
 if (plan.plan_type !== "dry_run_repair_plan") fail("Input must be a dry-run repair plan");
 if (plan.audit !== "empty-folders") fail("This applicator only accepts plans generated from the empty-folders audit");
@@ -49,55 +42,45 @@ if (!isFixtureTarget) {
 }
 
 const operationId = `empty-folder-cleanup-${new Date().toISOString().replace(/[:.]/g, "-")}`;
-const manifestRoot = path.join(target, ".rom-librarian-backups", operationId);
-const changes = [];
-const verification = [];
+const operations = [];
 
 for (const step of plan.steps || []) {
   const finding = step.original_finding;
   if (!finding || finding.type !== "empty_folder") continue;
   if (!finding.folder) fail(`Missing empty folder path for step ${step.step}`);
-  const folderPath = path.resolve(target, finding.folder);
-  if (!folderPath.startsWith(target + path.sep)) fail(`Empty folder path escapes target: ${finding.folder}`);
-  if (!isEmptyDirectory(folderPath)) fail(`Refusing to delete non-empty or missing folder: ${finding.folder}`);
-
-  if (apply) {
-    fs.rmdirSync(folderPath);
-    if (fs.existsSync(folderPath)) fail(`Post-apply verification failed for ${finding.folder}`);
-  }
-
-  changes.push({ operation: "delete_empty_folder", path: relativeFromTarget(target, folderPath), deleted_path: folderPath, applied: apply });
-  verification.push({ folder: relativeFromTarget(target, folderPath), verified: true, check: apply ? "empty_folder_removed" : "empty_folder_exists_and_is_empty" });
+  operations.push({ op: "delete_empty_dir", path: finding.folder });
 }
 
-if (changes.length === 0) fail("No empty_folder findings were eligible for this applicator");
+if (operations.length === 0) fail("No empty_folder findings were eligible for this applicator");
 
-let manifestPath = null;
-if (apply) {
-  fs.mkdirSync(manifestRoot, { recursive: true });
-  const manifest = {
+const fileOpsPlan = {
+  plan_type: "file_operations",
   operation_id: operationId,
-  created_at: new Date().toISOString(),
   audit: plan.audit,
   target,
-  real_target: !isFixtureTarget,
-  planned_changes: changes,
-  backup_paths: [],
+  operations,
   rollback_notes: ["Rollback recreates deleted empty folders only when the destination path is still absent."]
-  };
+};
 
-  manifestPath = path.join(manifestRoot, "backup-manifest.json");
-  fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2), "utf8");
+const fileOpsArgs = ["tools/fileops.py", apply ? "apply" : "dry-run", "-"];
+if (allowRealTargets) fileOpsArgs.push("--allow-real-targets");
+if (confirmTarget) fileOpsArgs.push("--confirm-target", confirmTarget);
+let fileOpsResult;
+try {
+  fileOpsResult = JSON.parse(execFileSync("python3", fileOpsArgs, { cwd: process.cwd(), encoding: "utf8", input: JSON.stringify(fileOpsPlan) }));
+} catch (error) {
+  process.stderr.write(String(error.stderr || error.stdout || error.message || error));
+  process.exit(1);
 }
 
 emitJson({
   operation: "apply-empty-folder-cleanup",
-  mode: apply ? "mutating" : "dry-run",
-  status: apply ? "applied" : "planned",
-  target,
+  mode: fileOpsResult.mode,
+  status: fileOpsResult.status,
+  target: fileOpsResult.target,
   real_target: !isFixtureTarget,
-  changes,
-  verification,
-  backup_manifest: manifestPath,
+  changes: fileOpsResult.changes,
+  verification: fileOpsResult.verification,
+  backup_manifest: fileOpsResult.backup_manifest,
   notes: [apply ? "Only empty leaf folders were deleted. No ROM, disc image, media, metadata, save, BIOS, firmware, or key files were modified." : "Dry run only. Empty folders were verified but not deleted."]
 });

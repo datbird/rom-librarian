@@ -56,6 +56,7 @@ Not included in this repository state:
 - `docs/repair-plans.md` - repair-plan JSON and Markdown rendering reference
 - `docs/dry-run-changes.md` - concrete non-mutating change-list reference
 - `docs/repair-workflows.md` - future mutating workflow safety design
+- `docs/safety-model.md` - read-only defaults, mutation gates, rollback model, and explicit non-goals
 - `docs/install-testing.md` - manual install/runtime test checklist
 - `scripts/validate.mjs` - dependency-free validation script
 - `scripts/audit-*.mjs` - read-only audit workflows and scaffolds for fixtures and real libraries
@@ -135,7 +136,7 @@ Use rom-librarian to initialize ~/.config/rom-librarian/user.json for my Windows
 
 ## Safety Model
 
-The skill prompt requires dry-run planning before bulk or destructive changes.
+The skill prompt requires inspection and dry-run planning before mutation. See `docs/safety-model.md` for the full 1.0 safety boundary.
 
 Destructive operations include:
 
@@ -151,6 +152,15 @@ Preferred approach:
 - process a sample game when a pattern is unproven
 - move to quarantine instead of deleting when possible
 - update `user.json` only with factual deployment notes
+
+1.0 non-goals:
+
+- no BIOS, firmware, NAND, or key content storage or validation
+- no archive extraction over real libraries
+- no CHD conversion applicator
+- no DAT-based arcade rebuild, merge, split, unzip, or ROM-set repair
+- no generic file deletion, rename, move, copy-tree, or shell-command primitive
+- no metadata rewrite applicator for frontend databases or XML files
 
 ## Validation
 
@@ -239,10 +249,24 @@ npm run apply:orphaned-media-quarantine -- <media-repair-plan.json> --apply
 ```
 
 They edit only case-mismatched `.m3u`/`.cue`/`.gdi` text lines after backup or add missing `.m3u` playlists without moving source files. Fixture targets require `--apply`; real targets also require `--allow-real-targets` and exact `--confirm-target <absolute-target>`.
+Empty-folder cleanup and orphaned-media quarantine route their filesystem primitives through `npm run fileops`, a constrained Python helper that accepts only manifest-backed delete-empty-directory and quarantine-move operations.
 
 Rollback is available with:
 
 ```bash
+npm run rollback:manifest -- <backup-manifest.json> --apply
+```
+
+Fixture smoke workflow:
+
+```bash
+mkdir -p tmp/smoke
+cp -R fixtures/es-media-paths tmp/smoke/
+npm run audit:media -- tmp/smoke/es-media-paths/roms/snes --json-out /tmp/rom-librarian-media-audit.json
+npm run plan:repairs -- /tmp/rom-librarian-media-audit.json --json-out /tmp/rom-librarian-media-plan.json
+npm run apply:orphaned-media-quarantine -- /tmp/rom-librarian-media-plan.json --dry-run
+npm run apply:orphaned-media-quarantine -- /tmp/rom-librarian-media-plan.json --apply
+npm run rollback:manifest -- <backup-manifest.json> --dry-run
 npm run rollback:manifest -- <backup-manifest.json> --apply
 ```
 

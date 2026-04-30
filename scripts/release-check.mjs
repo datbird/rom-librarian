@@ -11,6 +11,12 @@ for (const file of requiredFiles) {
   }
 }
 
+const changelog = fs.readFileSync("CHANGELOG.md", "utf8");
+if (/##\s+1\.0\.0\s+-\s+Unreleased/i.test(changelog)) {
+  console.error("release check requires CHANGELOG.md to use a dated 1.0.0 release entry");
+  process.exit(1);
+}
+
 execFileSync("npm", ["run", "check"], { stdio: "inherit" });
 execFileSync("npm", ["run", "examples:outputs", "--", "tmp/examples"], { stdio: "inherit" });
 console.log("release readiness check passed (no tag created)");
