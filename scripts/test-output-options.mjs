@@ -8,6 +8,7 @@ import Ajv from "ajv";
 const root = process.cwd();
 const ajv = new Ajv({ allErrors: true, strict: false, validateSchema: false });
 const validateCoverageGapReport = ajv.compile(JSON.parse(fs.readFileSync(path.join(root, "schema/coverage-gap-report.schema.json"), "utf8")));
+const validateDataQualityReport = ajv.compile(JSON.parse(fs.readFileSync(path.join(root, "schema/data-quality-report.schema.json"), "utf8")));
 const validateSummaryReport = ajv.compile(JSON.parse(fs.readFileSync(path.join(root, "schema/summary-report.schema.json"), "utf8")));
 
 function assert(condition, message) {
@@ -69,6 +70,7 @@ assert(summary.coverage.systems_percent === 100, "summary report should show com
 assert(summary.coverage.emulators_percent === 100, "summary report should show complete emulator coverage");
 const dataQuality = JSON.parse(execFileSync(process.execPath, ["scripts/report-data-quality.mjs"], { cwd: root, encoding: "utf8" }));
 assert(dataQuality.report === "data-quality", "data quality report should identify itself");
+assert(validateDataQualityReport(dataQuality), `data quality report failed schema validation: ${ajv.errorsText(validateDataQualityReport.errors)}`);
 assert(Array.isArray(dataQuality.findings), "data quality report should include findings array");
 const dataQualityMarkdown = execFileSync(process.execPath, ["scripts/report-data-quality.mjs", "--format", "markdown"], { cwd: root, encoding: "utf8" });
 assert(dataQualityMarkdown.includes("# Data Quality"), "data quality markdown missing title");
@@ -97,6 +99,8 @@ const exampleDirectory = path.join(tempDirectory, "examples");
 execFileSync(process.execPath, ["scripts/generate-example-outputs.mjs", exampleDirectory], { cwd: root, encoding: "utf8" });
 assert(fs.existsSync(path.join(exampleDirectory, "m3u-report.md")), "example generation missing markdown report");
 assert(fs.existsSync(path.join(exampleDirectory, "m3u-report.html")), "example generation missing HTML report");
+assert(fs.existsSync(path.join(exampleDirectory, "empty-folders-audit.json")), "example generation missing empty folder audit JSON");
+assert(fs.existsSync(path.join(exampleDirectory, "empty-folders-plan.json")), "example generation missing empty folder repair plan JSON");
 assert(fs.existsSync(path.join(exampleDirectory, "coverage-gaps.json")), "example generation missing coverage JSON");
 assert(fs.existsSync(path.join(exampleDirectory, "coverage-gaps.md")), "example generation missing coverage markdown");
 assert(fs.existsSync(path.join(exampleDirectory, "data-quality.json")), "example generation missing data quality JSON");
@@ -107,6 +111,7 @@ const generatedCoverage = JSON.parse(fs.readFileSync(path.join(exampleDirectory,
 assert(validateCoverageGapReport(generatedCoverage), `generated coverage report failed schema validation: ${ajv.errorsText(validateCoverageGapReport.errors)}`);
 const generatedDataQuality = JSON.parse(fs.readFileSync(path.join(exampleDirectory, "data-quality.json"), "utf8"));
 assert(generatedDataQuality.report === "data-quality", "generated data quality report has wrong type");
+assert(validateDataQualityReport(generatedDataQuality), `generated data quality report failed schema validation: ${ajv.errorsText(validateDataQualityReport.errors)}`);
 const generatedSummary = JSON.parse(fs.readFileSync(path.join(exampleDirectory, "summary.json"), "utf8"));
 assert(validateSummaryReport(generatedSummary), `generated summary report failed schema validation: ${ajv.errorsText(validateSummaryReport.errors)}`);
 assert(fs.readFileSync(path.join(exampleDirectory, "coverage-gaps.md"), "utf8").includes("# Coverage Gaps"), "generated coverage markdown missing title");

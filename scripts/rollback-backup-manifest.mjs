@@ -68,6 +68,18 @@ for (const change of manifest.planned_changes) {
     continue;
   }
 
+  if (change.operation === "delete_empty_folder") {
+    if (fs.existsSync(destination)) fail(`Refusing to recreate existing folder: ${relativeDestination}`);
+    if (apply) fs.mkdirSync(destination, { recursive: true });
+    restored.push({
+      operation: "restore_empty_folder",
+      destination,
+      restored: apply,
+      applied: apply
+    });
+    continue;
+  }
+
   if (!change.backup_path) fail("Rollback change missing backup_path");
   const backupPath = path.resolve(change.backup_path);
   if (!fs.existsSync(backupPath)) fail(`Backup file does not exist: ${backupPath}`);

@@ -232,6 +232,7 @@ npm run apply:m3u-case-fixes -- <m3u-repair-plan.json> --apply
 npm run apply:cue-case-fixes -- <cue-repair-plan.json> --apply
 npm run apply:gdi-case-fixes -- <gdi-repair-plan.json> --apply
 npm run apply:missing-m3u-playlists -- <m3u-repair-plan.json> --apply
+npm run apply:empty-folder-cleanup -- <empty-folder-repair-plan.json> --apply
 ```
 
 They edit only case-mismatched `.m3u`/`.cue`/`.gdi` text lines after backup or add missing `.m3u` playlists without moving source files. Fixture targets require `--apply`; real targets also require `--allow-real-targets` and exact `--confirm-target <absolute-target>`.
@@ -290,6 +291,7 @@ Static database coverage:
 - 24 quirks
 
 Coverage completeness is enforced by `npm run check:coverage` and included in `npm run check`. New static system or emulator IDs must be normalized directly or covered by an intentional alias group.
+Data-quality budgets are reported by `npm run check:data-quality`; they are non-blocking while source-confidence cleanup continues.
 
 See `docs/` for the current lists. `docs/reports.md` summarizes audit reports, repair plans, dry-run changes, coverage gaps, and CI artifacts. `docs/alias-intent.md` explains direct records versus alias-covered IDs.
 

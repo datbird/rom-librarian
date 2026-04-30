@@ -7,12 +7,16 @@ const outputRoot = path.resolve(process.argv[2] || "tmp/examples");
 fs.rmSync(outputRoot, { recursive: true, force: true });
 fs.mkdirSync(outputRoot, { recursive: true });
 
+const emptyFolderFixture = path.join(outputRoot, "empty-folder-fixture");
+fs.mkdirSync(path.join(emptyFolderFixture, "roms", "snes", "empty"), { recursive: true });
+
 const examples = [
   ["m3u", "scripts/audit-m3u.mjs", "fixtures/es-psx-multidisc/roms/psx"],
   ["cue", "scripts/audit-cue.mjs", "fixtures/cue-issues/roms/psx"],
   ["gdi", "scripts/audit-gdi.mjs", "fixtures/gdi-issues/roms/dreamcast"],
   ["chdman-candidates", "scripts/audit-chdman-candidates.mjs", "fixtures/chd-candidates/roms/psx"],
-  ["descriptor-relationships", "scripts/audit-descriptor-relationships.mjs", "fixtures/descriptor-relationships/roms"]
+  ["descriptor-relationships", "scripts/audit-descriptor-relationships.mjs", "fixtures/descriptor-relationships/roms"],
+  ["empty-folders", "scripts/audit-empty-folders.mjs", path.join(emptyFolderFixture, "roms")]
 ];
 
 for (const [name, script, target] of examples) {

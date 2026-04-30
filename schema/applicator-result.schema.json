@@ -7,7 +7,7 @@
   "properties": {
     "operation": {
       "type": "string",
-      "enum": ["apply-m3u-case-fixes", "apply-cue-case-fixes", "apply-gdi-case-fixes", "apply-missing-m3u-playlists"]
+      "enum": ["apply-m3u-case-fixes", "apply-cue-case-fixes", "apply-gdi-case-fixes", "apply-missing-m3u-playlists", "apply-empty-folder-cleanup"]
     },
     "mode": { "type": "string", "enum": ["mutating"] },
     "status": { "type": "string", "enum": ["applied"] },

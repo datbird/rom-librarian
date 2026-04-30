@@ -74,6 +74,7 @@ npm run report:data-quality -- --format markdown
 ```
 
 Quality findings are advisory and do not affect coverage completeness.
+`npm run check:data-quality` compares current finding totals with explicit budget values and currently reports `enforced: false`, so it tracks quality drift without blocking development.
 
 ## Format Matrix
 
@@ -94,6 +95,7 @@ Quality findings are advisory and do not affect coverage completeness.
 | Repair plan JSON | `schema/repair-plan.schema.json` |
 | Dry-run change JSON | `schema/dry-run-change.schema.json` |
 | Coverage-gap report JSON | `schema/coverage-gap-report.schema.json` |
+| Data-quality report JSON | `schema/data-quality-report.schema.json` |
 | Summary report JSON | `schema/summary-report.schema.json` |
 | Backup manifest JSON | `schema/backup-manifest.schema.json` |
 | Mutating applicator result JSON | `schema/applicator-result.schema.json` |

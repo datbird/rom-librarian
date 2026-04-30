@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/07/schema",
+  "$id": "https://github.com/datbird/rom-librarian/schema/data-quality-report.schema.json",
+  "title": "rom-librarian data quality report",
+  "type": "object",
+  "required": ["report", "mode", "status", "summary", "findings", "notes"],
+  "properties": {
+    "report": { "type": "string", "enum": ["data-quality"] },
+    "mode": { "type": "string", "enum": ["read-only"] },
+    "status": { "type": "string", "enum": ["completed"] },
+    "summary": {
+      "type": "object",
+      "required": ["findings", "by_type"],
+      "properties": {
+        "findings": { "type": "integer", "minimum": 0 },
+        "by_type": {
+          "type": "object",
+          "properties": {
+            "low_confidence_source": { "type": "integer", "minimum": 0 },
+            "generic_source_url": { "type": "integer", "minimum": 0 },
+            "placeholder_supported_formats": { "type": "integer", "minimum": 0 },
+            "automation_allowed_review": { "type": "integer", "minimum": 0 }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "severity", "section", "id", "path"],
+        "properties": {
+          "type": { "type": "string", "enum": ["low_confidence_source", "generic_source_url", "placeholder_supported_formats", "automation_allowed_review"] },
+          "severity": { "type": "string", "enum": ["info", "warning", "error"] },
+          "section": { "type": "string", "enum": ["systems", "emulators"] },
+          "id": { "type": "string" },
+          "path": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "notes": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false
+}

@@ -45,7 +45,7 @@ const summary = {
     emulators: coverage.emulators.recommended_next
   },
   fixture_audits: 24,
-  mutating_applicators: ["apply:m3u-case-fixes", "apply:cue-case-fixes", "apply:gdi-case-fixes", "apply:missing-m3u-playlists"],
+  mutating_applicators: ["apply:m3u-case-fixes", "apply:cue-case-fixes", "apply:gdi-case-fixes", "apply:missing-m3u-playlists", "apply:empty-folder-cleanup"],
   notes: ["Summary report is read-only and generated from normalized index plus coverage-gap report data."]
 };
 

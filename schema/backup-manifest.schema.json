@@ -7,7 +7,7 @@
   "properties": {
     "operation_id": { "type": "string" },
     "created_at": { "type": "string" },
-    "audit": { "type": "string", "enum": ["m3u", "cue", "gdi"] },
+    "audit": { "type": "string", "enum": ["m3u", "cue", "gdi", "empty-folders"] },
     "target": { "type": "string" },
     "real_target": { "type": "boolean" },
     "files_before": { "type": "array", "items": { "type": "string" } },
