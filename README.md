@@ -57,6 +57,7 @@ Not included in this repository state:
 - `docs/dry-run-changes.md` - concrete non-mutating change-list reference
 - `docs/repair-workflows.md` - future mutating workflow safety design
 - `docs/safety-model.md` - read-only defaults, mutation gates, rollback model, and explicit non-goals
+- `docs/post-1.0-upgrade-docket.md` - planned post-1.0 upgrades, sequencing, and acceptance criteria
 - `docs/install-testing.md` - manual install/runtime test checklist
 - `scripts/validate.mjs` - dependency-free validation script
 - `scripts/audit-*.mjs` - read-only audit workflows and scaffolds for fixtures and real libraries
@@ -321,6 +322,7 @@ Coverage completeness is enforced by `npm run check:coverage` and included in `n
 Data-quality budgets are reported by `npm run check:data-quality`; they are non-blocking while source-confidence cleanup continues. Current budgets are `184` total findings, `105` low-confidence sources, and `79` generic source URLs.
 
 See `docs/` for the current lists. `docs/reports.md` summarizes audit reports, repair plans, dry-run changes, coverage gaps, and CI artifacts. `docs/alias-intent.md` explains direct records versus alias-covered IDs.
+Post-1.0 planning lives in `docs/post-1.0-upgrade-docket.md`; new features should start there before implementation.
 
 ## Release Checklist
 
