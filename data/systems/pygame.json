@@ -1,1 +1,84 @@
-{"id":"pygame","name":"Pygame","category":"engine","manufacturer":"Pygame community","sources":[{"type":"docs","url":"https://www.pygame.org/docs/","last_reviewed":"2026-04-29","confidence":"medium"}],"formats":{"preferred":["folder",".py",".sh",".desktop"],"supported":["folder",".py",".pyz",".sh",".desktop",".bat",".cmd",".lnk",".url",".exe",".zip",".7z"],"descriptor_files":[".py",".pyz",".sh",".desktop",".bat",".cmd",".lnk",".url"],"archive_formats":[".zip",".7z"]},"bios":{"required":false,"common_files":[],"notes":"Python/Pygame runtime content; no BIOS files."},"emulation":{"preferred_emulators":["os-shell","retroarch"],"retroarch_cores":[]},"library_behavior":{"multidisc":false,"multidisc_format":null,"folder_based":true,"playlist_target_preference":"launcher script, Python entry point, or game folder","safe_archive_deletion_requires_launch_test":true},"safety":{"automation_level":"approval_required","requires_backup":true,"do_not_store":["save_data","user_config","account_data"],"notes":["Preserve virtualenv assumptions, working directories, and writable data folders."]},"notes":["Repair automation should not rewrite Python launch commands without confirming interpreter/runtime assumptions."]}
+{
+  "id": "pygame",
+  "name": "Pygame",
+  "category": "engine",
+  "manufacturer": "Pygame community",
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://www.pygame.org/docs/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "formats": {
+    "preferred": [
+      "folder",
+      ".py",
+      ".sh",
+      ".desktop"
+    ],
+    "supported": [
+      "folder",
+      ".py",
+      ".pyz",
+      ".sh",
+      ".desktop",
+      ".bat",
+      ".cmd",
+      ".lnk",
+      ".url",
+      ".exe",
+      ".zip",
+      ".7z"
+    ],
+    "descriptor_files": [
+      ".py",
+      ".pyz",
+      ".sh",
+      ".desktop",
+      ".bat",
+      ".cmd",
+      ".lnk",
+      ".url"
+    ],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "bios": {
+    "required": false,
+    "common_files": [],
+    "notes": "Python/Pygame runtime content; no BIOS files."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "os-shell",
+      "retroarch"
+    ],
+    "retroarch_cores": []
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": null,
+    "folder_based": true,
+    "playlist_target_preference": "launcher script, Python entry point, or game folder",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "safety": {
+    "automation_level": "approval_required",
+    "requires_backup": true,
+    "do_not_store": [
+      "save_data",
+      "user_config",
+      "account_data"
+    ],
+    "notes": [
+      "Preserve virtualenv assumptions, working directories, and writable data folders."
+    ]
+  },
+  "notes": [
+    "Repair automation should not rewrite Python launch commands without confirming interpreter/runtime assumptions."
+  ]
+}

@@ -4,14 +4,42 @@
   "category": "runtime",
   "homepage": "https://ruffle.rs/",
   "sources": [
-    { "type": "homepage", "url": "https://ruffle.rs/", "last_reviewed": "2026-04-28", "confidence": "high" },
-    { "type": "github", "url": "https://github.com/ruffle-rs/ruffle", "last_reviewed": "2026-04-28", "confidence": "high" }
+    {
+      "type": "homepage",
+      "url": "https://ruffle.rs/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "high"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/ruffle-rs/ruffle",
+      "last_reviewed": "2026-04-28",
+      "confidence": "high"
+    }
   ],
-  "platforms": ["windows", "linux", "macos", "steamdeck"],
-  "systems": ["flash"],
-  "paths": { "config": "platform-specific Ruffle config/cache directory" },
-  "supported_formats": { "web": [".swf"] },
-  "library_behavior": { "standalone_swf_supported": true, "complex_web_dependencies_may_need_flashpoint": true },
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "flash"
+  ],
+  "paths": {
+    "config": "platform-specific Ruffle config/cache directory"
+  },
+  "supported_formats": {
+    "web": [
+      ".swf"
+    ]
+  },
+  "library_behavior": {
+    "standalone_swf_supported": true,
+    "complex_web_dependencies_may_need_flashpoint": true
+  },
   "quirks": [],
-  "notes": ["Ruffle is appropriate for many standalone SWFs, but not a complete replacement for all Flashpoint-style web-game archives."]
+  "notes": [
+    "Ruffle is appropriate for many standalone SWFs, but not a complete replacement for all Flashpoint-style web-game archives."
+  ]
 }

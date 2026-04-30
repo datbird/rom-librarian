@@ -63,6 +63,14 @@ const descriptorAudit = runJson(process.execPath, ["scripts/audit-descriptor-rel
 const esDescriptorPlan = runJson(process.execPath, ["scripts/plan-repairs.mjs", "-", "--profile", "es-de"], JSON.stringify(descriptorAudit));
 assert(esDescriptorPlan.steps.some((step) => step.proposed_action.includes("hide descriptor-owned")), "descriptor profile guidance missing from ES-DE plan");
 
+const emptyFolderRoot = fs.mkdtempSync(path.join(os.tmpdir(), "rom-librarian-empty-plan-"));
+fs.mkdirSync(path.join(emptyFolderRoot, "orphaned", "empty"), { recursive: true });
+const emptyFolderAudit = runJson(process.execPath, ["scripts/audit-empty-folders.mjs", emptyFolderRoot]);
+const emptyFolderPlan = runJson(process.execPath, ["scripts/plan-repairs.mjs", "-"], JSON.stringify(emptyFolderAudit));
+assert(validateRepairPlan(emptyFolderPlan), `empty folder repair plan failed schema validation: ${ajv.errorsText(validateRepairPlan.errors)}`);
+assert(emptyFolderPlan.steps.length === 1, "empty folder repair plan expected one step");
+assert(emptyFolderPlan.steps[0].blocked_actions.some((action) => action.includes("Do not delete empty folders")), "empty folder plan missing deletion safety guidance");
+
 const tempDirectory = fs.mkdtempSync(path.join(os.tmpdir(), "rom-librarian-plan-"));
 const planPath = path.join(tempDirectory, "plan.json");
 fs.writeFileSync(planPath, JSON.stringify(plan), "utf8");

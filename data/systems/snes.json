@@ -4,28 +4,89 @@
   "category": "console",
   "manufacturer": "Nintendo",
   "sources": [
-    { "type": "docs", "url": "https://docs.libretro.com/library/snes9x/", "last_reviewed": "2026-04-29", "confidence": "high" },
-    { "type": "docs", "url": "https://emudeck.github.io/cheat-sheet/", "last_reviewed": "2026-04-29", "confidence": "medium" }
+    {
+      "type": "docs",
+      "url": "https://docs.libretro.com/library/snes9x/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "high"
+    },
+    {
+      "type": "docs",
+      "url": "https://emudeck.github.io/cheat-sheet/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
   ],
   "aliases": {
-    "folder_ids": ["sfc"],
+    "folder_ids": [
+      "sfc"
+    ],
     "frontend_ids": [],
     "region_ids": [],
     "equivalent_system_ids": []
   },
   "formats": {
-    "preferred": [".sfc", ".smc"],
-    "supported": [".sfc", ".smc", ".fig", ".swc", ".zip", ".7z"],
+    "preferred": [
+      ".sfc",
+      ".smc"
+    ],
+    "supported": [
+      ".sfc",
+      ".smc",
+      ".fig",
+      ".swc",
+      ".zip",
+      ".7z"
+    ],
     "descriptor_files": [],
-    "archive_formats": [".zip", ".7z"]
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
   },
-  "bios": { "required": false, "common_files": [], "notes": "Most SNES/SFC cartridges do not require external BIOS files." },
-  "emulation": { "preferred_emulators": ["snes9x", "mesen", "bsnes"], "retroarch_cores": ["snes9x", "mesen-s"] },
-  "library_behavior": { "multidisc": false, "multidisc_format": null, "playlist_target_preference": "cartridge ROM file", "safe_archive_deletion_requires_launch_test": true },
-  "frontend_notes": { "es-de": "SNES and SFC aliases may both appear in frontend system lists." },
-  "quirks": ["es-folder-alias-mismatch"],
-  "confidence_notes": ["SNES/SFC aliases are naming aliases; enhancement-chip edge cases are emulator behavior, not library layout."],
-  "source_map": { "formats": ["https://docs.libretro.com/library/snes9x/"], "aliases": ["https://emudeck.github.io/cheat-sheet/"] },
-  "last_verified_with": { "source_review_date": "2026-04-29" },
-  "notes": ["Preserve original ROM extensions unless a frontend-specific parser requires otherwise."]
+  "bios": {
+    "required": false,
+    "common_files": [],
+    "notes": "Most SNES/SFC cartridges do not require external BIOS files."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "snes9x",
+      "mesen",
+      "bsnes"
+    ],
+    "retroarch_cores": [
+      "snes9x",
+      "mesen-s"
+    ]
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": null,
+    "playlist_target_preference": "cartridge ROM file",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "frontend_notes": {
+    "es-de": "SNES and SFC aliases may both appear in frontend system lists."
+  },
+  "quirks": [
+    "es-folder-alias-mismatch"
+  ],
+  "confidence_notes": [
+    "SNES/SFC aliases are naming aliases; enhancement-chip edge cases are emulator behavior, not library layout."
+  ],
+  "source_map": {
+    "formats": [
+      "https://docs.libretro.com/library/snes9x/"
+    ],
+    "aliases": [
+      "https://emudeck.github.io/cheat-sheet/"
+    ]
+  },
+  "last_verified_with": {
+    "source_review_date": "2026-04-29"
+  },
+  "notes": [
+    "Preserve original ROM extensions unless a frontend-specific parser requires otherwise."
+  ]
 }

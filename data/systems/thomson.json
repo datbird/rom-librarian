@@ -3,13 +3,102 @@
   "name": "Thomson Computers",
   "category": "computer",
   "manufacturer": "Thomson",
-  "sources": [{ "type": "docs", "url": "https://docs.mamedev.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }, { "type": "homepage", "url": "https://sourceforge.net/projects/theodore/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
-  "aliases": { "folder_ids": ["thomson", "to7", "to8", "mo5", "mo6"], "frontend_ids": ["thomson"], "region_ids": [], "equivalent_system_ids": [] },
-  "formats": { "preferred": [".fd", ".k7", ".sap"], "supported": [".zip", ".7z", ".dsk", ".fd", ".sap", ".hfe", ".m3u", ".tap", ".k7", ".cas", ".wav", ".rom", ".bin", ".chd", ".iso"], "descriptor_files": [".m3u"], "archive_formats": [".zip", ".7z"] },
-  "bios": { "required": true, "common_files": [], "notes": "Thomson machine ROMs and model selection vary across TO/MO families." },
-  "emulation": { "preferred_emulators": ["theodore", "mame", "retroarch"], "retroarch_cores": ["theodore", "mame"] },
-  "library_behavior": { "multidisc": false, "multidisc_format": "m3u", "folder_based": false, "playlist_target_preference": "disk, tape, cartridge, or playlist", "safe_archive_deletion_requires_launch_test": true },
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://docs.mamedev.org/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    },
+    {
+      "type": "homepage",
+      "url": "https://sourceforge.net/projects/theodore/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "aliases": {
+    "folder_ids": [
+      "thomson",
+      "to7",
+      "to8",
+      "mo5",
+      "mo6"
+    ],
+    "frontend_ids": [
+      "thomson"
+    ],
+    "region_ids": [],
+    "equivalent_system_ids": []
+  },
+  "formats": {
+    "preferred": [
+      ".fd",
+      ".k7",
+      ".sap"
+    ],
+    "supported": [
+      ".zip",
+      ".7z",
+      ".dsk",
+      ".fd",
+      ".sap",
+      ".hfe",
+      ".m3u",
+      ".tap",
+      ".k7",
+      ".cas",
+      ".wav",
+      ".rom",
+      ".bin",
+      ".chd",
+      ".iso"
+    ],
+    "descriptor_files": [
+      ".m3u"
+    ],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "bios": {
+    "required": true,
+    "common_files": [],
+    "notes": "Thomson machine ROMs and model selection vary across TO/MO families."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "theodore",
+      "mame",
+      "retroarch"
+    ],
+    "retroarch_cores": [
+      "theodore",
+      "mame"
+    ]
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": "m3u",
+    "folder_based": false,
+    "playlist_target_preference": "disk, tape, cartridge, or playlist",
+    "safe_archive_deletion_requires_launch_test": true
+  },
   "frontend_notes": {},
-  "safety": { "automation_level": "approval_required", "requires_backup": true, "do_not_store": ["machine_roms", "bios_roms", "rom_payloads"], "notes": ["Do not merge TO/MO model folders without explicit confirmation."] },
-  "notes": ["Thomson platform IDs are often model-family aliases; preserve observed folder semantics."]
+  "safety": {
+    "automation_level": "approval_required",
+    "requires_backup": true,
+    "do_not_store": [
+      "machine_roms",
+      "bios_roms",
+      "rom_payloads"
+    ],
+    "notes": [
+      "Do not merge TO/MO model folders without explicit confirmation."
+    ]
+  },
+  "notes": [
+    "Thomson platform IDs are often model-family aliases; preserve observed folder semantics."
+  ]
 }

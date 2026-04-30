@@ -1,1 +1,41 @@
-{"id":"arduous","name":"Arduous","category":"emulator","homepage":"https://github.com/filmote/arduous","sources":[{"type":"homepage","url":"https://github.com/filmote/arduous","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows","linux","macos"],"systems":["arduboy"],"paths":{"content":"Arduboy HEX/package path","config":"Standalone emulator configuration"},"supported_formats":{"roms":[".hex",".arduboy",".zip",".7z"]},"library_behavior":{"folder_based_package_sensitive":true,"save_state_sensitive":true},"notes":["Standalone Arduboy emulator/player. Preserve package metadata and emulator config."]}
+{
+  "id": "arduous",
+  "name": "Arduous",
+  "category": "emulator",
+  "homepage": "https://github.com/filmote/arduous",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://github.com/filmote/arduous",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos"
+  ],
+  "systems": [
+    "arduboy"
+  ],
+  "paths": {
+    "content": "Arduboy HEX/package path",
+    "config": "Standalone emulator configuration"
+  },
+  "supported_formats": {
+    "roms": [
+      ".hex",
+      ".arduboy",
+      ".zip",
+      ".7z"
+    ]
+  },
+  "library_behavior": {
+    "folder_based_package_sensitive": true,
+    "save_state_sensitive": true
+  },
+  "notes": [
+    "Standalone Arduboy emulator/player. Preserve package metadata and emulator config."
+  ]
+}

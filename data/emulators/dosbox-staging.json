@@ -4,16 +4,48 @@
   "category": "emulator",
   "homepage": "https://dosbox-staging.github.io/",
   "sources": [
-    { "type": "homepage", "url": "https://dosbox-staging.github.io/", "last_reviewed": "2026-04-28", "confidence": "high" }
+    {
+      "type": "homepage",
+      "url": "https://dosbox-staging.github.io/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "high"
+    }
   ],
-  "platforms": ["windows", "linux", "macos", "steamdeck"],
-  "systems": ["dos"],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "dos"
+  ],
   "paths": {
     "config": "DOSBox Staging config file and per-game .conf files",
     "game_data": "mounted game folders or disc images"
   },
-  "supported_formats": { "launcher": ["folder", ".conf", ".bat", ".exe", ".com", ".cue", ".iso", ".img"] },
-  "library_behavior": { "supports_m3u": false, "supports_chd": false, "bios_required": false, "folder_based": true },
-  "quirks": ["parser-glob-collision"],
-  "notes": ["Preserve working directory and mount assumptions when repairing paths."]
+  "supported_formats": {
+    "launcher": [
+      "folder",
+      ".conf",
+      ".bat",
+      ".exe",
+      ".com",
+      ".cue",
+      ".iso",
+      ".img"
+    ]
+  },
+  "library_behavior": {
+    "supports_m3u": false,
+    "supports_chd": false,
+    "bios_required": false,
+    "folder_based": true
+  },
+  "quirks": [
+    "parser-glob-collision"
+  ],
+  "notes": [
+    "Preserve working directory and mount assumptions when repairing paths."
+  ]
 }

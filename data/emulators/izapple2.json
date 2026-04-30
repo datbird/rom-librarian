@@ -1,1 +1,48 @@
-{"id":"izapple2","name":"izapple2","category":"emulator","homepage":"https://github.com/ivanizag/izapple2","sources":[{"type":"homepage","url":"https://github.com/ivanizag/izapple2","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows","linux","macos","steamdeck"],"systems":["apple2"],"paths":{"content":"Apple II disk/tape/image path","roms":"Machine ROM path where configured","config":"Emulator configuration"},"supported_formats":{"media":[".dsk",".do",".po",".nib",".woz",".2mg",".zip",".7z"]},"library_behavior":{"machine_firmware_sensitive":true,"disk_sides_sensitive":true,"boot_order_sensitive":true},"notes":["Apple II machine ROMs/firmware must not be stored. Preserve disk order and boot assumptions."]}
+{
+  "id": "izapple2",
+  "name": "izapple2",
+  "category": "emulator",
+  "homepage": "https://github.com/ivanizag/izapple2",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://github.com/ivanizag/izapple2",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "apple2"
+  ],
+  "paths": {
+    "content": "Apple II disk/tape/image path",
+    "roms": "Machine ROM path where configured",
+    "config": "Emulator configuration"
+  },
+  "supported_formats": {
+    "media": [
+      ".dsk",
+      ".do",
+      ".po",
+      ".nib",
+      ".woz",
+      ".2mg",
+      ".zip",
+      ".7z"
+    ]
+  },
+  "library_behavior": {
+    "machine_firmware_sensitive": true,
+    "disk_sides_sensitive": true,
+    "boot_order_sensitive": true
+  },
+  "notes": [
+    "Apple II machine ROMs/firmware must not be stored. Preserve disk order and boot assumptions."
+  ]
+}

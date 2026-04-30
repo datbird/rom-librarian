@@ -3,13 +3,67 @@
   "name": "OpenBOR",
   "category": "engine",
   "manufacturer": "OpenBOR community",
-  "sources": [{ "type": "github", "url": "https://github.com/DCurrent/openbor", "last_reviewed": "2026-04-29", "confidence": "medium" }],
-  "aliases": { "folder_ids": ["openbor"], "frontend_ids": ["openbor"], "region_ids": [], "equivalent_system_ids": [] },
-  "formats": { "preferred": [".pak"], "supported": [".pak", ".zip"], "descriptor_files": [], "archive_formats": [".zip"] },
-  "bios": { "required": false, "common_files": [], "notes": "OpenBOR does not use BIOS files, but runtime version compatibility can matter." },
-  "emulation": { "preferred_emulators": ["openbor"], "retroarch_cores": [] },
-  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": false, "playlist_target_preference": "PAK package", "safe_archive_deletion_requires_launch_test": true },
+  "sources": [
+    {
+      "type": "github",
+      "url": "https://github.com/DCurrent/openbor",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "aliases": {
+    "folder_ids": [
+      "openbor"
+    ],
+    "frontend_ids": [
+      "openbor"
+    ],
+    "region_ids": [],
+    "equivalent_system_ids": []
+  },
+  "formats": {
+    "preferred": [
+      ".pak"
+    ],
+    "supported": [
+      ".pak",
+      ".zip"
+    ],
+    "descriptor_files": [],
+    "archive_formats": [
+      ".zip"
+    ]
+  },
+  "bios": {
+    "required": false,
+    "common_files": [],
+    "notes": "OpenBOR does not use BIOS files, but runtime version compatibility can matter."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "openbor"
+    ],
+    "retroarch_cores": []
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": null,
+    "folder_based": false,
+    "playlist_target_preference": "PAK package",
+    "safe_archive_deletion_requires_launch_test": true
+  },
   "frontend_notes": {},
-  "safety": { "automation_level": "dry_run_only", "requires_backup": true, "do_not_store": ["rom_payloads"], "notes": ["Do not unpack or repack PAK files automatically; runtime compatibility may be version-specific."] },
-  "notes": ["Treat OpenBOR packages as engine content rather than conventional ROMs."]
+  "safety": {
+    "automation_level": "dry_run_only",
+    "requires_backup": true,
+    "do_not_store": [
+      "rom_payloads"
+    ],
+    "notes": [
+      "Do not unpack or repack PAK files automatically; runtime compatibility may be version-specific."
+    ]
+  },
+  "notes": [
+    "Treat OpenBOR packages as engine content rather than conventional ROMs."
+  ]
 }

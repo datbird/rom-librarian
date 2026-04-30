@@ -1,1 +1,68 @@
-{"id":"lynx","name":"Atari Lynx (folder alias)","category":"handheld","manufacturer":"Atari","sources":[{"type":"docs","url":"https://docs.libretro.com/library/handy/","last_reviewed":"2026-04-29","confidence":"medium"}],"formats":{"preferred":[".lnx"],"supported":[".lnx",".lyx",".o",".bin",".zip",".7z"],"descriptor_files":[],"archive_formats":[".zip",".7z"]},"bios":{"required":false,"common_files":[],"notes":"Some workflows use lynxboot.img; user-managed if needed."},"emulation":{"preferred_emulators":["handy","mednafen"],"retroarch_cores":["handy","beetle_lynx"]},"library_behavior":{"multidisc":false,"multidisc_format":null,"folder_based":false,"playlist_target_preference":"cartridge ROM file","safe_archive_deletion_requires_launch_test":true},"safety":{"automation_level":"dry_run_only","requires_backup":true,"do_not_store":["bios_roms","rom_payloads"],"notes":["Alias-like record for atarilynx/lynx folder variants."]},"notes":["Alias-like record; atarilynx remains canonical in normalized data."]}
+{
+  "id": "lynx",
+  "name": "Atari Lynx (folder alias)",
+  "category": "handheld",
+  "manufacturer": "Atari",
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://docs.libretro.com/library/handy/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "formats": {
+    "preferred": [
+      ".lnx"
+    ],
+    "supported": [
+      ".lnx",
+      ".lyx",
+      ".o",
+      ".bin",
+      ".zip",
+      ".7z"
+    ],
+    "descriptor_files": [],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "bios": {
+    "required": false,
+    "common_files": [],
+    "notes": "Some workflows use lynxboot.img; user-managed if needed."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "handy",
+      "mednafen"
+    ],
+    "retroarch_cores": [
+      "handy",
+      "beetle_lynx"
+    ]
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": null,
+    "folder_based": false,
+    "playlist_target_preference": "cartridge ROM file",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "safety": {
+    "automation_level": "dry_run_only",
+    "requires_backup": true,
+    "do_not_store": [
+      "bios_roms",
+      "rom_payloads"
+    ],
+    "notes": [
+      "Alias-like record for atarilynx/lynx folder variants."
+    ]
+  },
+  "notes": [
+    "Alias-like record; atarilynx remains canonical in normalized data."
+  ]
+}

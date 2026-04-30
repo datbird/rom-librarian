@@ -4,15 +4,44 @@
   "category": "console",
   "manufacturer": "Nintendo",
   "sources": [
-    { "type": "homepage", "url": "https://cemu.info/", "last_reviewed": "2026-04-28", "confidence": "high" },
-    { "type": "docs", "url": "https://cemu.cfw.guide/", "last_reviewed": "2026-04-28", "confidence": "high" },
-    { "type": "docs", "url": "https://emudeck.github.io/cheat-sheet/", "last_reviewed": "2026-04-28", "confidence": "medium" }
+    {
+      "type": "homepage",
+      "url": "https://cemu.info/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "high"
+    },
+    {
+      "type": "docs",
+      "url": "https://cemu.cfw.guide/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "high"
+    },
+    {
+      "type": "docs",
+      "url": "https://emudeck.github.io/cheat-sheet/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "medium"
+    }
   ],
   "formats": {
-    "preferred": [".wua", "folder"],
-    "supported": [".wua", ".wux", ".wud", ".rpx", "folder"],
-    "descriptor_files": [".rpx"],
-    "archive_formats": [".zip", ".7z"]
+    "preferred": [
+      ".wua",
+      "folder"
+    ],
+    "supported": [
+      ".wua",
+      ".wux",
+      ".wud",
+      ".rpx",
+      "folder"
+    ],
+    "descriptor_files": [
+      ".rpx"
+    ],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
   },
   "bios": {
     "required": false,
@@ -20,7 +49,9 @@
     "notes": "Wii U title keys, account files, and dumped system files are user-managed sensitive artifacts when needed."
   },
   "emulation": {
-    "preferred_emulators": ["cemu"],
+    "preferred_emulators": [
+      "cemu"
+    ],
     "retroarch_cores": []
   },
   "library_behavior": {
@@ -36,17 +67,37 @@
   "safety": {
     "automation_level": "approval_required",
     "requires_backup": true,
-    "do_not_store": ["account_data", "keys", "tickets", "title_keys", "user_save_data"],
-    "notes": ["Installed titles, account files, tickets, and keys are user-managed sensitive artifacts; only perform read-only diagnosis by default."]
+    "do_not_store": [
+      "account_data",
+      "keys",
+      "tickets",
+      "title_keys",
+      "user_save_data"
+    ],
+    "notes": [
+      "Installed titles, account files, tickets, and keys are user-managed sensitive artifacts; only perform read-only diagnosis by default."
+    ]
   },
-  "quirks": ["switch-keys-secrets"],
-  "confidence_notes": ["Wii U frontend library behavior depends on whether games are WUA files, extracted folders, or installed Cemu entries."],
+  "quirks": [
+    "switch-keys-secrets"
+  ],
+  "confidence_notes": [
+    "Wii U frontend library behavior depends on whether games are WUA files, extracted folders, or installed Cemu entries."
+  ],
   "source_map": {
-    "formats": ["https://cemu.info/", "https://cemu.cfw.guide/", "https://emudeck.github.io/cheat-sheet/"],
-    "safety": ["https://cemu.cfw.guide/"]
+    "formats": [
+      "https://cemu.info/",
+      "https://cemu.cfw.guide/",
+      "https://emudeck.github.io/cheat-sheet/"
+    ],
+    "safety": [
+      "https://cemu.cfw.guide/"
+    ]
   },
   "last_verified_with": {
     "source_review_date": "2026-04-28"
   },
-  "notes": ["Do not store keys, tickets, account files, or dumped console secrets in rom-librarian configs."]
+  "notes": [
+    "Do not store keys, tickets, account files, or dumped console secrets in rom-librarian configs."
+  ]
 }

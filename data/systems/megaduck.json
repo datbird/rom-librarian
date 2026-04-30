@@ -3,11 +3,61 @@
   "name": "Mega Duck / Cougar Boy",
   "category": "handheld",
   "manufacturer": "Creatronic / Welback",
-  "sources": [{ "type": "docs", "url": "https://docs.mamedev.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
-  "formats": { "preferred": [".bin"], "supported": [".bin", ".rom", ".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
-  "bios": { "required": false, "common_files": [], "notes": "Mega Duck emulation is generally cartridge-oriented; emulator support varies." },
-  "emulation": { "preferred_emulators": ["mame"], "retroarch_cores": ["mame"] },
-  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": false, "playlist_target_preference": "cartridge image", "safe_archive_deletion_requires_launch_test": true },
-  "safety": { "automation_level": "dry_run_only", "requires_backup": true, "do_not_store": ["rom_payloads"], "notes": ["Keep rare handheld filename cleanup dry-run."] },
-  "notes": ["Low-volume handheld target; prefer conservative metadata-only proposals."]
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://docs.mamedev.org/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "formats": {
+    "preferred": [
+      ".bin"
+    ],
+    "supported": [
+      ".bin",
+      ".rom",
+      ".zip",
+      ".7z"
+    ],
+    "descriptor_files": [],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "bios": {
+    "required": false,
+    "common_files": [],
+    "notes": "Mega Duck emulation is generally cartridge-oriented; emulator support varies."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "mame"
+    ],
+    "retroarch_cores": [
+      "mame"
+    ]
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": null,
+    "folder_based": false,
+    "playlist_target_preference": "cartridge image",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "safety": {
+    "automation_level": "dry_run_only",
+    "requires_backup": true,
+    "do_not_store": [
+      "rom_payloads"
+    ],
+    "notes": [
+      "Keep rare handheld filename cleanup dry-run."
+    ]
+  },
+  "notes": [
+    "Low-volume handheld target; prefer conservative metadata-only proposals."
+  ]
 }

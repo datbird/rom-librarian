@@ -3,11 +3,63 @@
   "name": "Neo Geo CD",
   "category": "console",
   "manufacturer": "SNK",
-  "sources": [{ "type": "docs", "url": "https://docs.libretro.com/library/neocd/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
-  "formats": { "preferred": [".cue", ".chd"], "supported": [".cue", ".bin", ".chd", ".iso"], "descriptor_files": [".cue"], "archive_formats": [] },
-  "bios": { "required": true, "common_files": [], "notes": "Neo Geo CD BIOS files are user-managed and emulator-specific." },
-  "emulation": { "preferred_emulators": ["fbneo"], "retroarch_cores": ["neocd", "fbneo"] },
-  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": false, "playlist_target_preference": "CUE or CHD disc descriptor", "safe_archive_deletion_requires_launch_test": true },
-  "safety": { "automation_level": "approval_required", "requires_backup": true, "do_not_store": ["bios_roms", "rom_payloads"], "notes": ["Do not convert or rewrite disc descriptors automatically."] },
-  "notes": ["Keep Neo Geo cartridge and Neo Geo CD libraries distinct."]
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://docs.libretro.com/library/neocd/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "formats": {
+    "preferred": [
+      ".cue",
+      ".chd"
+    ],
+    "supported": [
+      ".cue",
+      ".bin",
+      ".chd",
+      ".iso"
+    ],
+    "descriptor_files": [
+      ".cue"
+    ],
+    "archive_formats": []
+  },
+  "bios": {
+    "required": true,
+    "common_files": [],
+    "notes": "Neo Geo CD BIOS files are user-managed and emulator-specific."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "fbneo"
+    ],
+    "retroarch_cores": [
+      "neocd",
+      "fbneo"
+    ]
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": null,
+    "folder_based": false,
+    "playlist_target_preference": "CUE or CHD disc descriptor",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "safety": {
+    "automation_level": "approval_required",
+    "requires_backup": true,
+    "do_not_store": [
+      "bios_roms",
+      "rom_payloads"
+    ],
+    "notes": [
+      "Do not convert or rewrite disc descriptors automatically."
+    ]
+  },
+  "notes": [
+    "Keep Neo Geo cartridge and Neo Geo CD libraries distinct."
+  ]
 }

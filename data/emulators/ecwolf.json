@@ -1,1 +1,44 @@
-{"id":"ecwolf","name":"ECWolf","category":"source_port","homepage":"https://maniacsvault.net/ecwolf/","sources":[{"type":"homepage","url":"https://maniacsvault.net/ecwolf/","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows","linux","macos"],"systems":["ecwolf"],"paths":{"game_data":"Wolfenstein 3D/Spear of Destiny data directory","config":"ECWolf configuration directory"},"supported_formats":{"game_data":[".wl6",".sod",".sdm",".pk3",".zip"]},"library_behavior":{"supports_m3u":false,"bios_required_for_disc_systems":false,"cli_or_frontend_wrapper_common":true},"quirks":[],"notes":["Source port for Wolfenstein 3D-family data. Commercial data must not be bundled."]}
+{
+  "id": "ecwolf",
+  "name": "ECWolf",
+  "category": "source_port",
+  "homepage": "https://maniacsvault.net/ecwolf/",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://maniacsvault.net/ecwolf/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos"
+  ],
+  "systems": [
+    "ecwolf"
+  ],
+  "paths": {
+    "game_data": "Wolfenstein 3D/Spear of Destiny data directory",
+    "config": "ECWolf configuration directory"
+  },
+  "supported_formats": {
+    "game_data": [
+      ".wl6",
+      ".sod",
+      ".sdm",
+      ".pk3",
+      ".zip"
+    ]
+  },
+  "library_behavior": {
+    "supports_m3u": false,
+    "bios_required_for_disc_systems": false,
+    "cli_or_frontend_wrapper_common": true
+  },
+  "quirks": [],
+  "notes": [
+    "Source port for Wolfenstein 3D-family data. Commercial data must not be bundled."
+  ]
+}

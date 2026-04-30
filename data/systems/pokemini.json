@@ -3,13 +3,71 @@
   "name": "Pokemon Mini",
   "category": "handheld",
   "manufacturer": "Nintendo",
-  "sources": [{ "type": "docs", "url": "https://docs.libretro.com/library/pokemini/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
-  "aliases": { "folder_ids": ["pokemini", "pokemon-mini"], "frontend_ids": ["pokemini"], "region_ids": [], "equivalent_system_ids": [] },
-  "formats": { "preferred": [".min"], "supported": [".min", ".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
-  "bios": { "required": false, "common_files": [], "notes": "Pokemon Mini cartridge emulation generally does not require a BIOS file." },
-  "emulation": { "preferred_emulators": ["pokemini"], "retroarch_cores": ["pokemini"] },
-  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": false, "playlist_target_preference": "cartridge ROM file" },
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://docs.libretro.com/library/pokemini/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "aliases": {
+    "folder_ids": [
+      "pokemini",
+      "pokemon-mini"
+    ],
+    "frontend_ids": [
+      "pokemini"
+    ],
+    "region_ids": [],
+    "equivalent_system_ids": []
+  },
+  "formats": {
+    "preferred": [
+      ".min"
+    ],
+    "supported": [
+      ".min",
+      ".zip",
+      ".7z"
+    ],
+    "descriptor_files": [],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "bios": {
+    "required": false,
+    "common_files": [],
+    "notes": "Pokemon Mini cartridge emulation generally does not require a BIOS file."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "pokemini"
+    ],
+    "retroarch_cores": [
+      "pokemini"
+    ]
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": null,
+    "folder_based": false,
+    "playlist_target_preference": "cartridge ROM file"
+  },
   "frontend_notes": {},
-  "safety": { "automation_level": "dry_run_only", "requires_backup": true, "do_not_store": ["rom_payloads"], "notes": ["Keep title/region cleanup dry-run until metadata identity is confirmed."] },
-  "notes": ["Small handheld library with simple extension checks and low repair complexity."]
+  "safety": {
+    "automation_level": "dry_run_only",
+    "requires_backup": true,
+    "do_not_store": [
+      "rom_payloads"
+    ],
+    "notes": [
+      "Keep title/region cleanup dry-run until metadata identity is confirmed."
+    ]
+  },
+  "notes": [
+    "Small handheld library with simple extension checks and low repair complexity."
+  ]
 }

@@ -1,1 +1,44 @@
-{"id":"azaharplus","name":"Azahar Plus","category":"emulator","homepage":"https://github.com/libretro","sources":[{"type":"homepage","url":"https://github.com/libretro","last_reviewed":"2026-04-29","confidence":"low"}],"platforms":["windows","linux","macos","steamdeck"],"systems":["html5"],"paths":{"content":"Frontend content path or launcher placeholder","config":"Runtime configuration"},"supported_formats":{"content":[".zip",".7z","folder",".sh",".desktop"]},"library_behavior":{"runtime_context_sensitive":true,"frontend_target_preference":"launcher or content folder","safe_archive_deletion_requires_launch_test":true},"notes":["Low-confidence static runtime bucket. Verify exact launch/content requirements before automated repair."]}
+{
+  "id": "azaharplus",
+  "name": "Azahar Plus",
+  "category": "emulator",
+  "homepage": "https://github.com/libretro",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://github.com/libretro",
+      "last_reviewed": "2026-04-29",
+      "confidence": "low"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "html5"
+  ],
+  "paths": {
+    "content": "Frontend content path or launcher placeholder",
+    "config": "Runtime configuration"
+  },
+  "supported_formats": {
+    "content": [
+      ".zip",
+      ".7z",
+      "folder",
+      ".sh",
+      ".desktop"
+    ]
+  },
+  "library_behavior": {
+    "runtime_context_sensitive": true,
+    "frontend_target_preference": "launcher or content folder",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "notes": [
+    "Low-confidence static runtime bucket. Verify exact launch/content requirements before automated repair."
+  ]
+}

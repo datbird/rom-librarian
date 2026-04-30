@@ -3,11 +3,50 @@
   "name": "Xenia",
   "category": "emulator",
   "homepage": "https://xenia.jp/",
-  "sources": [{ "type": "homepage", "url": "https://xenia.jp/", "last_reviewed": "2026-04-29", "confidence": "high" }, { "type": "github", "url": "https://github.com/xenia-project/xenia", "last_reviewed": "2026-04-29", "confidence": "high" }],
-  "platforms": ["windows", "linux", "steamdeck"],
-  "systems": ["xbox360"],
-  "paths": { "config": "Xenia configuration directory", "content": "installed XBLA/GOD/content folders where used" },
-  "supported_formats": { "disc": [".iso"], "executables": [".xex"], "containers": [".god", "folder"] },
-  "library_behavior": { "compatibility_varies_by_title": true, "install_based_content_common": true, "safe_archive_deletion_requires_launch_test": true },
-  "notes": ["Xbox 360 libraries may be ISO, XEX, GOD, or content-folder based; inspect before reorganizing."]
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://xenia.jp/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "high"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/xenia-project/xenia",
+      "last_reviewed": "2026-04-29",
+      "confidence": "high"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "steamdeck"
+  ],
+  "systems": [
+    "xbox360"
+  ],
+  "paths": {
+    "config": "Xenia configuration directory",
+    "content": "installed XBLA/GOD/content folders where used"
+  },
+  "supported_formats": {
+    "disc": [
+      ".iso"
+    ],
+    "executables": [
+      ".xex"
+    ],
+    "containers": [
+      ".god",
+      "folder"
+    ]
+  },
+  "library_behavior": {
+    "compatibility_varies_by_title": true,
+    "install_based_content_common": true,
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "notes": [
+    "Xbox 360 libraries may be ISO, XEX, GOD, or content-folder based; inspect before reorganizing."
+  ]
 }

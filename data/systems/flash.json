@@ -4,17 +4,44 @@
   "category": "web",
   "manufacturer": "Adobe/Macromedia",
   "sources": [
-    { "type": "homepage", "url": "https://ruffle.rs/", "last_reviewed": "2026-04-28", "confidence": "high" },
-    { "type": "homepage", "url": "https://flashpointarchive.org/", "last_reviewed": "2026-04-28", "confidence": "high" }
+    {
+      "type": "homepage",
+      "url": "https://ruffle.rs/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "high"
+    },
+    {
+      "type": "homepage",
+      "url": "https://flashpointarchive.org/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "high"
+    }
   ],
   "formats": {
-    "preferred": [".swf"],
-    "supported": [".swf", ".spl", ".zip"],
+    "preferred": [
+      ".swf"
+    ],
+    "supported": [
+      ".swf",
+      ".spl",
+      ".zip"
+    ],
     "descriptor_files": [],
-    "archive_formats": [".zip"]
+    "archive_formats": [
+      ".zip"
+    ]
   },
-  "bios": { "required": false, "common_files": [] },
-  "emulation": { "preferred_emulators": ["ruffle", "flashpoint"], "retroarch_cores": [] },
+  "bios": {
+    "required": false,
+    "common_files": []
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "ruffle",
+      "flashpoint"
+    ],
+    "retroarch_cores": []
+  },
   "library_behavior": {
     "sidecar_assets_possible": true,
     "network_dependencies_possible": true,
@@ -22,5 +49,7 @@
   },
   "frontend_notes": {},
   "quirks": [],
-  "notes": ["Do not assume every SWF is self-contained. Flashpoint-style metadata may be required for web requests, external files, or launch parameters."]
+  "notes": [
+    "Do not assume every SWF is self-contained. Flashpoint-style metadata may be required for web requests, external files, or launch parameters."
+  ]
 }

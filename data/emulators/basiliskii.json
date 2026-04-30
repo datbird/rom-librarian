@@ -1,1 +1,47 @@
-{"id":"basiliskii","name":"Basilisk II","category":"emulator","homepage":"https://basilisk.cebix.net","sources":[{"type":"homepage","url":"https://basilisk.cebix.net","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows","linux","macos","steamdeck"],"systems":["macintosh"],"paths":{"disk_images":"Classic Mac disk-image paths","rom":"68k Macintosh ROM path","config":"Basilisk II preferences/config"},"supported_formats":{"media":[".hfv",".dsk",".img",".iso",".toast",".zip",".7z"]},"library_behavior":{"machine_rom_required":true,"disk_image_sensitive":true,"config_path_sensitive":true},"notes":["Requires compatible Macintosh ROMs that must not be stored or validated by content. Preserve disk images and emulator preferences."]}
+{
+  "id": "basiliskii",
+  "name": "Basilisk II",
+  "category": "emulator",
+  "homepage": "https://basilisk.cebix.net",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://basilisk.cebix.net",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "macintosh"
+  ],
+  "paths": {
+    "disk_images": "Classic Mac disk-image paths",
+    "rom": "68k Macintosh ROM path",
+    "config": "Basilisk II preferences/config"
+  },
+  "supported_formats": {
+    "media": [
+      ".hfv",
+      ".dsk",
+      ".img",
+      ".iso",
+      ".toast",
+      ".zip",
+      ".7z"
+    ]
+  },
+  "library_behavior": {
+    "machine_rom_required": true,
+    "disk_image_sensitive": true,
+    "config_path_sensitive": true
+  },
+  "notes": [
+    "Requires compatible Macintosh ROMs that must not be stored or validated by content. Preserve disk images and emulator preferences."
+  ]
+}

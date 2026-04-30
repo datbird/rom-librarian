@@ -1,1 +1,44 @@
-{"id":"boom3","name":"boom3","category":"source_port","homepage":"https://github.com/libretro","sources":[{"type":"homepage","url":"https://github.com/libretro","last_reviewed":"2026-04-29","confidence":"low"}],"platforms":["windows","linux","macos","steamdeck"],"systems":["doom3"],"paths":{"content":"Doom 3 game-data folder","config":"Runtime/core configuration"},"supported_formats":{"game_data":["folder",".pk4",".zip",".7z"]},"library_behavior":{"commercial_data_required":true,"folder_based":true,"working_directory_sensitive":true,"safe_archive_deletion_requires_launch_test":true},"notes":["Source-port/runtime style entry. Preserve Doom 3 data files, mods, configs, and saves."]}
+{
+  "id": "boom3",
+  "name": "boom3",
+  "category": "source_port",
+  "homepage": "https://github.com/libretro",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://github.com/libretro",
+      "last_reviewed": "2026-04-29",
+      "confidence": "low"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "doom3"
+  ],
+  "paths": {
+    "content": "Doom 3 game-data folder",
+    "config": "Runtime/core configuration"
+  },
+  "supported_formats": {
+    "game_data": [
+      "folder",
+      ".pk4",
+      ".zip",
+      ".7z"
+    ]
+  },
+  "library_behavior": {
+    "commercial_data_required": true,
+    "folder_based": true,
+    "working_directory_sensitive": true,
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "notes": [
+    "Source-port/runtime style entry. Preserve Doom 3 data files, mods, configs, and saves."
+  ]
+}

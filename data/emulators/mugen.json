@@ -1,1 +1,44 @@
-{"id":"mugen","name":"M.U.G.E.N","category":"runtime","homepage":"https://mugenarchive.com/","sources":[{"type":"homepage","url":"https://mugenarchive.com/","last_reviewed":"2026-04-29","confidence":"low"}],"platforms":["windows","linux"],"systems":["mugen"],"paths":{"data":"MUGEN installation/data directory","config":"mugen.cfg and save/config files"},"supported_formats":{"launcher":[".exe",".bat",".cmd",".lnk",".sh",".desktop"]},"library_behavior":{"supports_m3u":false,"bios_required_for_disc_systems":false,"cli_or_frontend_wrapper_common":true},"quirks":[],"notes":["Engine/runtime with user-managed characters, stages, screenpacks, and saves."]}
+{
+  "id": "mugen",
+  "name": "M.U.G.E.N",
+  "category": "runtime",
+  "homepage": "https://mugenarchive.com/",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://mugenarchive.com/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "low"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux"
+  ],
+  "systems": [
+    "mugen"
+  ],
+  "paths": {
+    "data": "MUGEN installation/data directory",
+    "config": "mugen.cfg and save/config files"
+  },
+  "supported_formats": {
+    "launcher": [
+      ".exe",
+      ".bat",
+      ".cmd",
+      ".lnk",
+      ".sh",
+      ".desktop"
+    ]
+  },
+  "library_behavior": {
+    "supports_m3u": false,
+    "bios_required_for_disc_systems": false,
+    "cli_or_frontend_wrapper_common": true
+  },
+  "quirks": [],
+  "notes": [
+    "Engine/runtime with user-managed characters, stages, screenpacks, and saves."
+  ]
+}

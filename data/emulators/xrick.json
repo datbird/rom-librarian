@@ -1,1 +1,47 @@
-{"id":"xrick","name":"XRick","category":"source_port","homepage":"https://github.com/libretro/xrick-libretro","sources":[{"type":"homepage","url":"https://github.com/libretro/xrick-libretro","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows","linux","macos","steamdeck"],"systems":["xrick"],"paths":{"content":"Rick Dangerous data folder or launcher","config":"Runtime/core configuration"},"supported_formats":{"game_data":["folder",".zip",".7z"],"launchers":[".sh",".desktop"]},"library_behavior":{"commercial_data_required":true,"folder_based":true,"working_directory_sensitive":true,"safe_archive_deletion_requires_launch_test":true},"notes":["Source-port/runtime behavior. Preserve data files, config, saves, and launch arguments."]}
+{
+  "id": "xrick",
+  "name": "XRick",
+  "category": "source_port",
+  "homepage": "https://github.com/libretro/xrick-libretro",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://github.com/libretro/xrick-libretro",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "xrick"
+  ],
+  "paths": {
+    "content": "Rick Dangerous data folder or launcher",
+    "config": "Runtime/core configuration"
+  },
+  "supported_formats": {
+    "game_data": [
+      "folder",
+      ".zip",
+      ".7z"
+    ],
+    "launchers": [
+      ".sh",
+      ".desktop"
+    ]
+  },
+  "library_behavior": {
+    "commercial_data_required": true,
+    "folder_based": true,
+    "working_directory_sensitive": true,
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "notes": [
+    "Source-port/runtime behavior. Preserve data files, config, saves, and launch arguments."
+  ]
+}

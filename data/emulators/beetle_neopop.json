@@ -1,1 +1,43 @@
-{"id":"beetle_neopop","name":"Beetle NeoPop","category":"emulator","homepage":"https://docs.libretro.com/library/beetle_neopop/","sources":[{"type":"docs","url":"https://docs.libretro.com/library/beetle_neopop/","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows","linux","macos","steamdeck"],"systems":["ngp","ngpc"],"paths":{"config":"RetroArch core options"},"supported_formats":{"rom":[".ngp",".ngc",".ngpc",".zip",".7z"]},"library_behavior":{"cartridge_only":true,"safe_archive_deletion_requires_launch_test":true},"notes":["Neo Geo Pocket/Color libretro core."]}
+{
+  "id": "beetle_neopop",
+  "name": "Beetle NeoPop",
+  "category": "emulator",
+  "homepage": "https://docs.libretro.com/library/beetle_neopop/",
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://docs.libretro.com/library/beetle_neopop/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "ngp",
+    "ngpc"
+  ],
+  "paths": {
+    "config": "RetroArch core options"
+  },
+  "supported_formats": {
+    "rom": [
+      ".ngp",
+      ".ngc",
+      ".ngpc",
+      ".zip",
+      ".7z"
+    ]
+  },
+  "library_behavior": {
+    "cartridge_only": true,
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "notes": [
+    "Neo Geo Pocket/Color libretro core."
+  ]
+}

@@ -3,12 +3,38 @@
   "name": "SSF",
   "category": "emulator",
   "homepage": null,
-  "sources": [{ "type": "other", "url": "https://emulation.gametechwiki.com/index.php/SSF", "last_reviewed": "2026-04-29", "confidence": "low" }],
-  "platforms": ["windows"],
-  "systems": ["saturn"],
-  "paths": { "config": "SSF user/config directory", "bios": "emulator configured BIOS path" },
-  "supported_formats": { "disc": [".cue", ".bin", ".iso", ".ccd"] },
-  "library_behavior": { "bios_may_be_required": true, "standalone_windows_workflow": true },
+  "sources": [
+    {
+      "type": "other",
+      "url": "https://emulation.gametechwiki.com/index.php/SSF",
+      "last_reviewed": "2026-04-29",
+      "confidence": "low"
+    }
+  ],
+  "platforms": [
+    "windows"
+  ],
+  "systems": [
+    "saturn"
+  ],
+  "paths": {
+    "config": "SSF user/config directory",
+    "bios": "emulator configured BIOS path"
+  },
+  "supported_formats": {
+    "disc": [
+      ".cue",
+      ".bin",
+      ".iso",
+      ".ccd"
+    ]
+  },
+  "library_behavior": {
+    "bios_may_be_required": true,
+    "standalone_windows_workflow": true
+  },
   "quirks": [],
-  "notes": ["Kept as lower-confidence static integration context; verify current SSF behavior before use."]
+  "notes": [
+    "Kept as lower-confidence static integration context; verify current SSF behavior before use."
+  ]
 }

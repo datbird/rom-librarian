@@ -3,12 +3,45 @@
   "name": "PrimeHack",
   "category": "emulator",
   "homepage": "https://github.com/shiiion/dolphin",
-  "sources": [{ "type": "github", "url": "https://github.com/shiiion/dolphin", "last_reviewed": "2026-04-29", "confidence": "medium" }],
-  "platforms": ["windows", "linux"],
-  "systems": ["gamecube", "wii", "gc"],
-  "paths": { "config": "PrimeHack/Dolphin user directory", "content": "GameCube/Wii disc images" },
-  "supported_formats": { "disc": [".rvz", ".iso", ".gcm", ".wbfs", ".wia"] },
-  "library_behavior": { "dolphin_fork": true, "game_specific_workflow": true, "supports_m3u": true },
-  "quirks": ["es-folder-alias-mismatch"],
-  "notes": ["Do not assume PrimeHack should launch every GameCube/Wii title; verify parser selection."]
+  "sources": [
+    {
+      "type": "github",
+      "url": "https://github.com/shiiion/dolphin",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux"
+  ],
+  "systems": [
+    "gamecube",
+    "wii",
+    "gc"
+  ],
+  "paths": {
+    "config": "PrimeHack/Dolphin user directory",
+    "content": "GameCube/Wii disc images"
+  },
+  "supported_formats": {
+    "disc": [
+      ".rvz",
+      ".iso",
+      ".gcm",
+      ".wbfs",
+      ".wia"
+    ]
+  },
+  "library_behavior": {
+    "dolphin_fork": true,
+    "game_specific_workflow": true,
+    "supports_m3u": true
+  },
+  "quirks": [
+    "es-folder-alias-mismatch"
+  ],
+  "notes": [
+    "Do not assume PrimeHack should launch every GameCube/Wii title; verify parser selection."
+  ]
 }

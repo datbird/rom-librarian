@@ -10,6 +10,13 @@ npm run plan:repairs -- /tmp/audit.json --json-out /tmp/plan.json
 npm run plan:markdown -- /tmp/plan.json
 ```
 
+Empty-folder cleanup can also be planned from the read-only audit:
+
+```bash
+npm run audit:empty-folders -- /path/to/roms --json-out /tmp/empty-folders.json
+npm run plan:repairs -- /tmp/empty-folders.json --json-out /tmp/empty-folders-plan.json
+```
+
 Plan fields:
 
 - `plan_type`: always `dry_run_repair_plan`.
@@ -29,3 +36,4 @@ npm run plan:repairs -- /tmp/audit.json --severity warning --json-out /tmp/plan.
 `--severity warning` includes `warning` and `error` findings. `--severity error` includes only `error` findings.
 
 Repair plans are deliberately conservative. Any future write workflow should require backup, explicit approval, and sample-based verification.
+Empty-folder findings are low-risk review candidates, but plans explicitly block deletion until frontend, scraper, sync, and placeholder-folder expectations are checked.

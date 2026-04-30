@@ -4,17 +4,27 @@ import { spawnSync } from "node:child_process";
 import process from "node:process";
 
 const root = process.cwd();
-const result = spawnSync(process.execPath, ["scripts/report-coverage-gaps.mjs"], {
-  cwd: root,
-  encoding: "utf8"
-});
+const reportPath = getOptionValue("--report");
+const report = reportPath ? JSON.parse(fs.readFileSync(path.resolve(reportPath), "utf8")) : readCurrentReport();
 
-if (result.status !== 0) {
-  process.stderr.write(result.stderr || result.stdout);
-  process.exit(result.status || 1);
+function getOptionValue(name) {
+  const index = process.argv.indexOf(name);
+  return index === -1 ? null : process.argv[index + 1] || null;
 }
 
-const report = JSON.parse(result.stdout);
+function readCurrentReport() {
+  const result = spawnSync(process.execPath, ["scripts/report-coverage-gaps.mjs"], {
+    cwd: root,
+    encoding: "utf8"
+  });
+
+  if (result.status !== 0) {
+    process.stderr.write(result.stderr || result.stdout);
+    process.exit(result.status || 1);
+  }
+
+  return JSON.parse(result.stdout);
+}
 const failures = [];
 
 for (const section of ["systems", "emulators"]) {

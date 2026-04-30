@@ -4,27 +4,66 @@
   "category": "console",
   "manufacturer": "Sony",
   "sources": [
-    { "type": "docs", "url": "https://github.com/stenzek/duckstation", "last_reviewed": "2026-04-28", "confidence": "high" }
+    {
+      "type": "docs",
+      "url": "https://github.com/stenzek/duckstation",
+      "last_reviewed": "2026-04-28",
+      "confidence": "high"
+    }
   ],
   "aliases": {
-    "folder_ids": ["sonyplaystation"],
+    "folder_ids": [
+      "sonyplaystation"
+    ],
     "frontend_ids": [],
     "region_ids": [],
     "equivalent_system_ids": []
   },
   "formats": {
-    "preferred": [".chd", ".cue", ".m3u"],
-    "supported": [".bin", ".cue", ".img", ".iso", ".mdf", ".pbp", ".ecm", ".chd", ".m3u"],
-    "descriptor_files": [".cue", ".m3u"],
-    "archive_formats": [".zip", ".7z"]
+    "preferred": [
+      ".chd",
+      ".cue",
+      ".m3u"
+    ],
+    "supported": [
+      ".bin",
+      ".cue",
+      ".img",
+      ".iso",
+      ".mdf",
+      ".pbp",
+      ".ecm",
+      ".chd",
+      ".m3u"
+    ],
+    "descriptor_files": [
+      ".cue",
+      ".m3u"
+    ],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
   },
   "bios": {
     "required": true,
-    "common_files": ["scph5500.bin", "scph5501.bin", "scph5502.bin", "scph1001.bin"]
+    "common_files": [
+      "scph5500.bin",
+      "scph5501.bin",
+      "scph5502.bin",
+      "scph1001.bin"
+    ]
   },
   "emulation": {
-    "preferred_emulators": ["duckstation", "mednafen"],
-    "retroarch_cores": ["duckstation", "mednafen_psx_hw", "pcsx_rearmed"]
+    "preferred_emulators": [
+      "duckstation",
+      "mednafen"
+    ],
+    "retroarch_cores": [
+      "duckstation",
+      "mednafen_psx_hw",
+      "pcsx_rearmed"
+    ]
   },
   "library_behavior": {
     "multidisc": true,
@@ -38,18 +77,40 @@
   "safety": {
     "automation_level": "approval_required",
     "requires_backup": true,
-    "do_not_store": ["bios", "bios_roms", "firmware", "rom_payloads"],
-    "notes": ["BIOS files are user-provided and region-specific; audits may report missing names but must not store BIOS contents."]
+    "do_not_store": [
+      "bios",
+      "bios_roms",
+      "firmware",
+      "rom_payloads"
+    ],
+    "notes": [
+      "BIOS files are user-provided and region-specific; audits may report missing names but must not store BIOS contents."
+    ]
   },
-  "quirks": ["es-loose-images", "es-m3u-folder-name", "7z-stdin-multidisc", "wsl-path-7zip"],
-  "confidence_notes": ["PlayStation folder aliases vary by frontend; multidisc behavior is frontend-sensitive and should be validated with .m3u fixtures."],
+  "quirks": [
+    "es-loose-images",
+    "es-m3u-folder-name",
+    "7z-stdin-multidisc",
+    "wsl-path-7zip"
+  ],
+  "confidence_notes": [
+    "PlayStation folder aliases vary by frontend; multidisc behavior is frontend-sensitive and should be validated with .m3u fixtures."
+  ],
   "source_map": {
-    "formats": ["https://github.com/stenzek/duckstation"],
-    "aliases": ["static.json frontend parser mappings"],
-    "safety": ["https://github.com/stenzek/duckstation"]
+    "formats": [
+      "https://github.com/stenzek/duckstation"
+    ],
+    "aliases": [
+      "static.json frontend parser mappings"
+    ],
+    "safety": [
+      "https://github.com/stenzek/duckstation"
+    ]
   },
   "last_verified_with": {
     "source_review_date": "2026-04-28"
   },
-  "notes": ["For BIN/CUE sets, target .cue files from .m3u playlists rather than .bin files."]
+  "notes": [
+    "For BIN/CUE sets, target .cue files from .m3u playlists rather than .bin files."
+  ]
 }

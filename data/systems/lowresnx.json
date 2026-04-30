@@ -3,11 +3,56 @@
   "name": "LowRes NX",
   "category": "fantasy_console",
   "manufacturer": "Timo Kloss",
-  "sources": [{ "type": "homepage", "url": "https://lowresnx.inutilis.com/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
-  "formats": { "preferred": [".nx"], "supported": [".nx", ".zip"], "descriptor_files": [], "archive_formats": [".zip"] },
-  "bios": { "required": false, "common_files": [], "notes": "LowRes NX cartridges do not require BIOS files." },
-  "emulation": { "preferred_emulators": ["lowresnx"], "retroarch_cores": [] },
-  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": false, "playlist_target_preference": "NX cartridge file", "safe_archive_deletion_requires_launch_test": true },
-  "safety": { "automation_level": "dry_run_only", "requires_backup": true, "do_not_store": ["rom_payloads"], "notes": ["Keep title cleanup dry-run until cartridge identity is confirmed."] },
-  "notes": ["Fantasy-console target with simple extension rules."]
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://lowresnx.inutilis.com/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "formats": {
+    "preferred": [
+      ".nx"
+    ],
+    "supported": [
+      ".nx",
+      ".zip"
+    ],
+    "descriptor_files": [],
+    "archive_formats": [
+      ".zip"
+    ]
+  },
+  "bios": {
+    "required": false,
+    "common_files": [],
+    "notes": "LowRes NX cartridges do not require BIOS files."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "lowresnx"
+    ],
+    "retroarch_cores": []
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": null,
+    "folder_based": false,
+    "playlist_target_preference": "NX cartridge file",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "safety": {
+    "automation_level": "dry_run_only",
+    "requires_backup": true,
+    "do_not_store": [
+      "rom_payloads"
+    ],
+    "notes": [
+      "Keep title cleanup dry-run until cartridge identity is confirmed."
+    ]
+  },
+  "notes": [
+    "Fantasy-console target with simple extension rules."
+  ]
 }

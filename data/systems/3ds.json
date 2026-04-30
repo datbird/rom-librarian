@@ -4,30 +4,73 @@
   "category": "handheld",
   "manufacturer": "Nintendo",
   "sources": [
-    { "type": "docs", "url": "https://docs.libretro.com/library/citra/", "last_reviewed": "2026-04-28", "confidence": "medium" },
-    { "type": "docs", "url": "https://emudeck.github.io/cheat-sheet/", "last_reviewed": "2026-04-28", "confidence": "medium" },
-    { "type": "docs", "url": "https://gitlab.com/es-de/emulationstation-de/-/tree/master/resources/systems", "last_reviewed": "2026-04-28", "confidence": "medium" }
+    {
+      "type": "docs",
+      "url": "https://docs.libretro.com/library/citra/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "medium"
+    },
+    {
+      "type": "docs",
+      "url": "https://emudeck.github.io/cheat-sheet/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "medium"
+    },
+    {
+      "type": "docs",
+      "url": "https://gitlab.com/es-de/emulationstation-de/-/tree/master/resources/systems",
+      "last_reviewed": "2026-04-28",
+      "confidence": "medium"
+    }
   ],
   "aliases": {
-    "folder_ids": ["n3ds"],
+    "folder_ids": [
+      "n3ds"
+    ],
     "frontend_ids": [],
     "region_ids": [],
     "equivalent_system_ids": []
   },
   "formats": {
-    "preferred": [".3ds", ".cci", ".cxi"],
-    "supported": [".3ds", ".3dsx", ".app", ".axf", ".cci", ".cxi", ".elf", ".cia"],
+    "preferred": [
+      ".3ds",
+      ".cci",
+      ".cxi"
+    ],
+    "supported": [
+      ".3ds",
+      ".3dsx",
+      ".app",
+      ".axf",
+      ".cci",
+      ".cxi",
+      ".elf",
+      ".cia"
+    ],
     "descriptor_files": [],
-    "archive_formats": [".zip", ".7z"]
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
   },
   "bios": {
     "required": false,
-    "common_files": ["aes_keys.txt"],
+    "common_files": [
+      "aes_keys.txt"
+    ],
     "notes": "Encrypted content may need user-dumped AES keys. CIA files are usually install-based and may not work as direct frontend launch targets."
   },
   "emulation": {
-    "preferred_emulators": ["lime3ds", "citra", "azahar", "panda3ds", "mandarine"],
-    "retroarch_cores": ["citra"]
+    "preferred_emulators": [
+      "lime3ds",
+      "citra",
+      "azahar",
+      "panda3ds",
+      "mandarine"
+    ],
+    "retroarch_cores": [
+      "citra"
+    ]
   },
   "library_behavior": {
     "multidisc": false,
@@ -43,18 +86,38 @@
   "safety": {
     "automation_level": "approval_required",
     "requires_backup": true,
-    "do_not_store": ["aes_keys", "decrypted_titles", "keys", "user_save_data"],
-    "notes": ["Encrypted content and CIA install workflows require user-managed keys or emulator state; do not automate conversion or key handling."]
+    "do_not_store": [
+      "aes_keys",
+      "decrypted_titles",
+      "keys",
+      "user_save_data"
+    ],
+    "notes": [
+      "Encrypted content and CIA install workflows require user-managed keys or emulator state; do not automate conversion or key handling."
+    ]
   },
-  "quirks": ["es-folder-alias-mismatch"],
-  "confidence_notes": ["3DS folder aliases are frontend-specific. Encrypted-content behavior is intentionally conservative and should be verified against the active emulator setup."],
+  "quirks": [
+    "es-folder-alias-mismatch"
+  ],
+  "confidence_notes": [
+    "3DS folder aliases are frontend-specific. Encrypted-content behavior is intentionally conservative and should be verified against the active emulator setup."
+  ],
   "source_map": {
-    "formats": ["https://docs.libretro.com/library/citra/"],
-    "aliases": ["https://emudeck.github.io/cheat-sheet/", "https://gitlab.com/es-de/emulationstation-de/-/tree/master/resources/systems"],
-    "safety": ["https://docs.libretro.com/library/citra/"]
+    "formats": [
+      "https://docs.libretro.com/library/citra/"
+    ],
+    "aliases": [
+      "https://emudeck.github.io/cheat-sheet/",
+      "https://gitlab.com/es-de/emulationstation-de/-/tree/master/resources/systems"
+    ],
+    "safety": [
+      "https://docs.libretro.com/library/citra/"
+    ]
   },
   "last_verified_with": {
     "source_review_date": "2026-04-28"
   },
-  "notes": ["Do not store AES keys or decrypted title metadata in rom-librarian configs."]
+  "notes": [
+    "Do not store AES keys or decrypted title metadata in rom-librarian configs."
+  ]
 }

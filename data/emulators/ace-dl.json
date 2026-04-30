@@ -1,1 +1,43 @@
-{"id":"ace-dl","name":"ACE-DL","category":"emulator","homepage":"https://github.com/libretro","sources":[{"type":"homepage","url":"https://github.com/libretro","last_reviewed":"2026-04-29","confidence":"low"}],"platforms":["windows","linux","macos","steamdeck"],"systems":["html5"],"paths":{"content":"Frontend content path or launcher placeholder"},"supported_formats":{"content":[".zip",".7z","folder",".sh",".desktop"]},"library_behavior":{"runtime_context_sensitive":true,"frontend_target_preference":"launcher or content folder","safe_archive_deletion_requires_launch_test":true},"notes":["Low-confidence static runtime bucket. Keep diagnostics read-only until exact content model is sourced."]}
+{
+  "id": "ace-dl",
+  "name": "ACE-DL",
+  "category": "emulator",
+  "homepage": "https://github.com/libretro",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://github.com/libretro",
+      "last_reviewed": "2026-04-29",
+      "confidence": "low"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "html5"
+  ],
+  "paths": {
+    "content": "Frontend content path or launcher placeholder"
+  },
+  "supported_formats": {
+    "content": [
+      ".zip",
+      ".7z",
+      "folder",
+      ".sh",
+      ".desktop"
+    ]
+  },
+  "library_behavior": {
+    "runtime_context_sensitive": true,
+    "frontend_target_preference": "launcher or content folder",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "notes": [
+    "Low-confidence static runtime bucket. Keep diagnostics read-only until exact content model is sourced."
+  ]
+}

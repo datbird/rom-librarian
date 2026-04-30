@@ -3,12 +3,57 @@
   "name": "Atari800",
   "category": "emulator",
   "homepage": "https://atari800.github.io/",
-  "sources": [{ "type": "homepage", "url": "https://atari800.github.io/", "last_reviewed": "2026-04-29", "confidence": "high" }, { "type": "docs", "url": "https://docs.libretro.com/library/atari800/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
-  "platforms": ["windows", "linux", "macos", "steamdeck"],
-  "systems": ["atari800", "atarixe"],
-  "paths": { "bios": "emulator or RetroArch system directory", "config": "Atari800 config file or RetroArch core options" },
-  "supported_formats": { "rom": [".atr", ".xfd", ".dcm", ".cas", ".xex", ".com", ".rom", ".bin", ".zip", ".7z"] },
-  "library_behavior": { "requires_machine_profile": true, "bios_required_for_accuracy": true, "safe_archive_deletion_requires_launch_test": true },
-  "quirks": ["retroarch-system-dir-confusion"],
-  "notes": ["Atari 8-bit launches depend on machine type, BASIC/OS ROMs, and media type."]
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://atari800.github.io/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "high"
+    },
+    {
+      "type": "docs",
+      "url": "https://docs.libretro.com/library/atari800/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "atari800",
+    "atarixe"
+  ],
+  "paths": {
+    "bios": "emulator or RetroArch system directory",
+    "config": "Atari800 config file or RetroArch core options"
+  },
+  "supported_formats": {
+    "rom": [
+      ".atr",
+      ".xfd",
+      ".dcm",
+      ".cas",
+      ".xex",
+      ".com",
+      ".rom",
+      ".bin",
+      ".zip",
+      ".7z"
+    ]
+  },
+  "library_behavior": {
+    "requires_machine_profile": true,
+    "bios_required_for_accuracy": true,
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "quirks": [
+    "retroarch-system-dir-confusion"
+  ],
+  "notes": [
+    "Atari 8-bit launches depend on machine type, BASIC/OS ROMs, and media type."
+  ]
 }

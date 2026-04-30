@@ -1,1 +1,72 @@
-{"id":"vgmplay","name":"VGMPlay","category":"engine","manufacturer":"VGMPlay community","sources":[{"type":"homepage","url":"https://github.com/vgmrips/vgmplay","last_reviewed":"2026-04-29","confidence":"medium"}],"formats":{"preferred":[".vgm",".vgz"],"supported":[".vgm",".vgz",".gym",".spc",".nsf",".zip",".7z",".sh",".desktop"],"descriptor_files":[".sh",".desktop"],"archive_formats":[".zip",".7z"]},"bios":{"required":false,"common_files":[],"notes":"Music playback/runtime entry; no BIOS files."},"emulation":{"preferred_emulators":["os-shell","retroarch"],"retroarch_cores":[]},"library_behavior":{"multidisc":false,"multidisc_format":null,"folder_based":false,"playlist_target_preference":"music file or launcher playlist","safe_archive_deletion_requires_launch_test":true},"safety":{"automation_level":"approval_required","requires_backup":true,"do_not_store":["commercial_audio","user_playlists"],"notes":["Preserve playlists, tags, and adjacent artwork/audio sidecars."]},"notes":["Music library behavior differs from ROM launch behavior; avoid sidecar cleanup without review."]}
+{
+  "id": "vgmplay",
+  "name": "VGMPlay",
+  "category": "engine",
+  "manufacturer": "VGMPlay community",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://github.com/vgmrips/vgmplay",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "formats": {
+    "preferred": [
+      ".vgm",
+      ".vgz"
+    ],
+    "supported": [
+      ".vgm",
+      ".vgz",
+      ".gym",
+      ".spc",
+      ".nsf",
+      ".zip",
+      ".7z",
+      ".sh",
+      ".desktop"
+    ],
+    "descriptor_files": [
+      ".sh",
+      ".desktop"
+    ],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "bios": {
+    "required": false,
+    "common_files": [],
+    "notes": "Music playback/runtime entry; no BIOS files."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "os-shell",
+      "retroarch"
+    ],
+    "retroarch_cores": []
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": null,
+    "folder_based": false,
+    "playlist_target_preference": "music file or launcher playlist",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "safety": {
+    "automation_level": "approval_required",
+    "requires_backup": true,
+    "do_not_store": [
+      "commercial_audio",
+      "user_playlists"
+    ],
+    "notes": [
+      "Preserve playlists, tags, and adjacent artwork/audio sidecars."
+    ]
+  },
+  "notes": [
+    "Music library behavior differs from ROM launch behavior; avoid sidecar cleanup without review."
+  ]
+}

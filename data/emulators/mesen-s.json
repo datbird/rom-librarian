@@ -1,1 +1,40 @@
-{"id":"mesen-s","name":"Mesen-S","category":"emulator","homepage":"https://www.mesen.ca/","sources":[{"type":"homepage","url":"https://www.mesen.ca/","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows","linux"],"systems":["snes","sfc"],"paths":{"config":"Mesen-S settings directory"},"supported_formats":{"rom":[".sfc",".smc",".zip",".7z"]},"library_behavior":{"cartridge_only":true,"safe_archive_deletion_requires_launch_test":true},"notes":["Legacy SNES-focused Mesen emulator variant."]}
+{
+  "id": "mesen-s",
+  "name": "Mesen-S",
+  "category": "emulator",
+  "homepage": "https://www.mesen.ca/",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://www.mesen.ca/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux"
+  ],
+  "systems": [
+    "snes",
+    "sfc"
+  ],
+  "paths": {
+    "config": "Mesen-S settings directory"
+  },
+  "supported_formats": {
+    "rom": [
+      ".sfc",
+      ".smc",
+      ".zip",
+      ".7z"
+    ]
+  },
+  "library_behavior": {
+    "cartridge_only": true,
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "notes": [
+    "Legacy SNES-focused Mesen emulator variant."
+  ]
+}

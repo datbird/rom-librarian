@@ -4,15 +4,44 @@
   "category": "engine",
   "manufacturer": "ScummVM Team",
   "sources": [
-    { "type": "homepage", "url": "https://www.scummvm.org/", "last_reviewed": "2026-04-28", "confidence": "high" },
-    { "type": "docs", "url": "https://docs.scummvm.org/", "last_reviewed": "2026-04-28", "confidence": "high" },
-    { "type": "docs", "url": "https://emudeck.github.io/cheat-sheet/", "last_reviewed": "2026-04-28", "confidence": "medium" }
+    {
+      "type": "homepage",
+      "url": "https://www.scummvm.org/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "high"
+    },
+    {
+      "type": "docs",
+      "url": "https://docs.scummvm.org/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "high"
+    },
+    {
+      "type": "docs",
+      "url": "https://emudeck.github.io/cheat-sheet/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "medium"
+    }
   ],
   "formats": {
-    "preferred": ["folder", ".scummvm"],
-    "supported": ["folder", ".scummvm", ".svm", ".zip"],
-    "descriptor_files": [".scummvm", ".svm"],
-    "archive_formats": [".zip", ".7z"]
+    "preferred": [
+      "folder",
+      ".scummvm"
+    ],
+    "supported": [
+      "folder",
+      ".scummvm",
+      ".svm",
+      ".zip"
+    ],
+    "descriptor_files": [
+      ".scummvm",
+      ".svm"
+    ],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
   },
   "bios": {
     "required": false,
@@ -20,8 +49,12 @@
     "notes": "Game data files are required; ScummVM game IDs and detection databases drive launch behavior."
   },
   "emulation": {
-    "preferred_emulators": ["scummvm"],
-    "retroarch_cores": ["scummvm"]
+    "preferred_emulators": [
+      "scummvm"
+    ],
+    "retroarch_cores": [
+      "scummvm"
+    ]
   },
   "library_behavior": {
     "multidisc": false,
@@ -34,6 +67,10 @@
     "emudeck": "Steam ROM Manager and ES-DE may require ScummVM games to be imported into ScummVM first or represented by launcher files.",
     "pegasus": "Pegasus launch commands need the ScummVM target ID, not just a folder path."
   },
-  "quirks": ["parser-glob-collision"],
-  "notes": ["Do not rename internal game data files to match frontend display names; ScummVM detection can depend on original files."]
+  "quirks": [
+    "parser-glob-collision"
+  ],
+  "notes": [
+    "Do not rename internal game data files to match frontend display names; ScummVM detection can depend on original files."
+  ]
 }

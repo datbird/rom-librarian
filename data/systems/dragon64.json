@@ -3,11 +3,78 @@
   "name": "Dragon 64",
   "category": "computer",
   "manufacturer": "Dragon Data",
-  "sources": [{ "type": "docs", "url": "https://docs.mamedev.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }, { "type": "homepage", "url": "https://www.6809.org.uk/xroar/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
-  "formats": { "preferred": [".cas", ".dsk"], "supported": [".cas", ".wav", ".dsk", ".hfe", ".rom", ".bin", ".m3u", ".zip", ".7z"], "descriptor_files": [".m3u"], "archive_formats": [".zip", ".7z"] },
-  "bios": { "required": true, "common_files": [], "notes": "Machine ROM requirements depend on emulator and Dragon/CoCo model profile." },
-  "emulation": { "preferred_emulators": ["mame", "xroar"], "retroarch_cores": ["mame"] },
-  "library_behavior": { "multidisc": false, "multidisc_format": "m3u", "folder_based": false, "playlist_target_preference": "tape, disk, cartridge, or playlist", "safe_archive_deletion_requires_launch_test": true },
-  "safety": { "automation_level": "approval_required", "requires_backup": true, "do_not_store": ["machine_roms", "bios_roms", "rom_payloads"], "notes": ["Model, memory, and media-slot assumptions affect launch behavior."] },
-  "notes": ["Dragon 64 is related to but not interchangeable with all Tandy Color Computer folders."]
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://docs.mamedev.org/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    },
+    {
+      "type": "homepage",
+      "url": "https://www.6809.org.uk/xroar/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "formats": {
+    "preferred": [
+      ".cas",
+      ".dsk"
+    ],
+    "supported": [
+      ".cas",
+      ".wav",
+      ".dsk",
+      ".hfe",
+      ".rom",
+      ".bin",
+      ".m3u",
+      ".zip",
+      ".7z"
+    ],
+    "descriptor_files": [
+      ".m3u"
+    ],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "bios": {
+    "required": true,
+    "common_files": [],
+    "notes": "Machine ROM requirements depend on emulator and Dragon/CoCo model profile."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "mame",
+      "xroar"
+    ],
+    "retroarch_cores": [
+      "mame"
+    ]
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": "m3u",
+    "folder_based": false,
+    "playlist_target_preference": "tape, disk, cartridge, or playlist",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "safety": {
+    "automation_level": "approval_required",
+    "requires_backup": true,
+    "do_not_store": [
+      "machine_roms",
+      "bios_roms",
+      "rom_payloads"
+    ],
+    "notes": [
+      "Model, memory, and media-slot assumptions affect launch behavior."
+    ]
+  },
+  "notes": [
+    "Dragon 64 is related to but not interchangeable with all Tandy Color Computer folders."
+  ]
 }

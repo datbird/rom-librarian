@@ -4,16 +4,56 @@
   "category": "emulator",
   "homepage": "https://docs.libretro.com/library/genesis_plus_gx/",
   "sources": [
-    { "type": "docs", "url": "https://docs.libretro.com/library/genesis_plus_gx/", "last_reviewed": "2026-04-28", "confidence": "high" }
+    {
+      "type": "docs",
+      "url": "https://docs.libretro.com/library/genesis_plus_gx/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "high"
+    }
   ],
-  "platforms": ["windows", "linux", "macos", "steamdeck"],
-  "systems": ["genesis", "megadrive", "segacd", "megacd", "sms", "mastersystem", "gamegear", "sg1000"],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "genesis",
+    "megadrive",
+    "segacd",
+    "megacd",
+    "sms",
+    "mastersystem",
+    "gamegear",
+    "sg1000"
+  ],
   "paths": {
     "config": "RetroArch core options or frontend-specific standalone config",
     "bios": "RetroArch/system BIOS path for Sega CD when required"
   },
-  "supported_formats": { "rom": [".md", ".gen", ".smd", ".sms", ".gg", ".sg", ".cue", ".chd", ".m3u"] },
-  "library_behavior": { "supports_m3u": true, "supports_chd": true, "bios_required": true },
-  "quirks": ["es-folder-alias-mismatch", "retroarch-system-dir-confusion"],
-  "notes": ["A multi-system Sega core; folder aliases vary heavily across ES-family frontends."]
+  "supported_formats": {
+    "rom": [
+      ".md",
+      ".gen",
+      ".smd",
+      ".sms",
+      ".gg",
+      ".sg",
+      ".cue",
+      ".chd",
+      ".m3u"
+    ]
+  },
+  "library_behavior": {
+    "supports_m3u": true,
+    "supports_chd": true,
+    "bios_required": true
+  },
+  "quirks": [
+    "es-folder-alias-mismatch",
+    "retroarch-system-dir-confusion"
+  ],
+  "notes": [
+    "A multi-system Sega core; folder aliases vary heavily across ES-family frontends."
+  ]
 }

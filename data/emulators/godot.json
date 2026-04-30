@@ -1,1 +1,45 @@
-{"id":"godot","name":"Godot Engine","category":"runtime","homepage":"https://godotengine.org/","sources":[{"type":"homepage","url":"https://godotengine.org/","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows","linux","macos","android"],"systems":["godot"],"paths":{"project":"Godot project or exported executable","config":"project-specific user data directory"},"supported_formats":{"launcher":[".pck",".exe",".x86_64",".desktop",".sh"]},"library_behavior":{"supports_m3u":false,"bios_required_for_disc_systems":false,"cli_or_frontend_wrapper_common":true},"quirks":[],"notes":["Runtime/native game launcher. Preserve project data and user save paths."]}
+{
+  "id": "godot",
+  "name": "Godot Engine",
+  "category": "runtime",
+  "homepage": "https://godotengine.org/",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://godotengine.org/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "android"
+  ],
+  "systems": [
+    "godot"
+  ],
+  "paths": {
+    "project": "Godot project or exported executable",
+    "config": "project-specific user data directory"
+  },
+  "supported_formats": {
+    "launcher": [
+      ".pck",
+      ".exe",
+      ".x86_64",
+      ".desktop",
+      ".sh"
+    ]
+  },
+  "library_behavior": {
+    "supports_m3u": false,
+    "bios_required_for_disc_systems": false,
+    "cli_or_frontend_wrapper_common": true
+  },
+  "quirks": [],
+  "notes": [
+    "Runtime/native game launcher. Preserve project data and user save paths."
+  ]
+}

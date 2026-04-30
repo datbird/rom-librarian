@@ -1,1 +1,49 @@
-{"id":"gearsystem","name":"Gearsystem","category":"emulator","homepage":"https://github.com/drhelius/Gearsystem","sources":[{"type":"homepage","url":"https://github.com/drhelius/Gearsystem","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows","linux","macos"],"systems":["mastersystem","sms","mark3","gamegear","sg1000"],"paths":{"config":"frontend or standalone emulator config"},"supported_formats":{"cartridge":[".sms",".gg",".sg",".bin",".rom",".zip",".7z"]},"library_behavior":{"supports_m3u":false,"bios_required_for_disc_systems":false,"cli_or_frontend_wrapper_common":true},"quirks":[],"notes":["Sega 8-bit emulator often available as standalone and Libretro core."]}
+{
+  "id": "gearsystem",
+  "name": "Gearsystem",
+  "category": "emulator",
+  "homepage": "https://github.com/drhelius/Gearsystem",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://github.com/drhelius/Gearsystem",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos"
+  ],
+  "systems": [
+    "mastersystem",
+    "sms",
+    "mark3",
+    "gamegear",
+    "sg1000"
+  ],
+  "paths": {
+    "config": "frontend or standalone emulator config"
+  },
+  "supported_formats": {
+    "cartridge": [
+      ".sms",
+      ".gg",
+      ".sg",
+      ".bin",
+      ".rom",
+      ".zip",
+      ".7z"
+    ]
+  },
+  "library_behavior": {
+    "supports_m3u": false,
+    "bios_required_for_disc_systems": false,
+    "cli_or_frontend_wrapper_common": true
+  },
+  "quirks": [],
+  "notes": [
+    "Sega 8-bit emulator often available as standalone and Libretro core."
+  ]
+}

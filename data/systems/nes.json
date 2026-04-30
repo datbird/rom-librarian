@@ -3,16 +3,80 @@
   "name": "Nintendo Entertainment System / Famicom",
   "category": "console",
   "manufacturer": "Nintendo",
-  "sources": [{ "type": "docs", "url": "https://docs.libretro.com/library/mesen/", "last_reviewed": "2026-04-29", "confidence": "high" }],
-  "aliases": { "folder_ids": ["famicom"], "frontend_ids": [], "region_ids": [], "equivalent_system_ids": [] },
-  "formats": { "preferred": [".nes"], "supported": [".nes", ".fds", ".unf", ".unif", ".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
-  "bios": { "required": false, "common_files": ["disksys.rom"], "notes": "Famicom Disk System content may require a user-provided disk system BIOS; cartridge games generally do not." },
-  "emulation": { "preferred_emulators": ["mesen"], "retroarch_cores": ["mesen"] },
-  "library_behavior": { "multidisc": false, "multidisc_format": null, "playlist_target_preference": "cartridge or FDS image", "safe_archive_deletion_requires_launch_test": true },
-  "frontend_notes": { "es-de": "NES and Famicom aliases may appear separately in some frontend lists." },
-  "quirks": ["es-folder-alias-mismatch", "retroarch-system-dir-confusion"],
-  "confidence_notes": ["Famicom is modeled as a folder/region naming alias; FDS BIOS behavior should remain filename-only and user-managed."],
-  "source_map": { "formats": ["https://docs.libretro.com/library/mesen/"] },
-  "last_verified_with": { "source_review_date": "2026-04-29" },
-  "notes": ["Do not treat missing FDS BIOS as relevant for ordinary NES cartridge libraries."]
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://docs.libretro.com/library/mesen/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "high"
+    }
+  ],
+  "aliases": {
+    "folder_ids": [
+      "famicom"
+    ],
+    "frontend_ids": [],
+    "region_ids": [],
+    "equivalent_system_ids": []
+  },
+  "formats": {
+    "preferred": [
+      ".nes"
+    ],
+    "supported": [
+      ".nes",
+      ".fds",
+      ".unf",
+      ".unif",
+      ".zip",
+      ".7z"
+    ],
+    "descriptor_files": [],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "bios": {
+    "required": false,
+    "common_files": [
+      "disksys.rom"
+    ],
+    "notes": "Famicom Disk System content may require a user-provided disk system BIOS; cartridge games generally do not."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "mesen"
+    ],
+    "retroarch_cores": [
+      "mesen"
+    ]
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": null,
+    "playlist_target_preference": "cartridge or FDS image",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "frontend_notes": {
+    "es-de": "NES and Famicom aliases may appear separately in some frontend lists."
+  },
+  "quirks": [
+    "es-folder-alias-mismatch",
+    "retroarch-system-dir-confusion"
+  ],
+  "confidence_notes": [
+    "Famicom is modeled as a folder/region naming alias; FDS BIOS behavior should remain filename-only and user-managed."
+  ],
+  "source_map": {
+    "formats": [
+      "https://docs.libretro.com/library/mesen/"
+    ]
+  },
+  "last_verified_with": {
+    "source_review_date": "2026-04-29"
+  },
+  "notes": [
+    "Do not treat missing FDS BIOS as relevant for ordinary NES cartridge libraries."
+  ]
 }

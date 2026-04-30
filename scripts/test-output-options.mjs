@@ -67,6 +67,11 @@ const summaryMarkdown = execFileSync(process.execPath, ["scripts/report-summary.
 assert(summaryMarkdown.includes("# rom-librarian Summary"), "summary markdown missing title");
 assert(summary.coverage.systems_percent === 100, "summary report should show complete system coverage");
 assert(summary.coverage.emulators_percent === 100, "summary report should show complete emulator coverage");
+const dataQuality = JSON.parse(execFileSync(process.execPath, ["scripts/report-data-quality.mjs"], { cwd: root, encoding: "utf8" }));
+assert(dataQuality.report === "data-quality", "data quality report should identify itself");
+assert(Array.isArray(dataQuality.findings), "data quality report should include findings array");
+const dataQualityMarkdown = execFileSync(process.execPath, ["scripts/report-data-quality.mjs", "--format", "markdown"], { cwd: root, encoding: "utf8" });
+assert(dataQualityMarkdown.includes("# Data Quality"), "data quality markdown missing title");
 
 const reportMatrix = [
   ["cue", "scripts/audit-cue.mjs", "fixtures/cue-issues/roms/psx"],
@@ -94,13 +99,18 @@ assert(fs.existsSync(path.join(exampleDirectory, "m3u-report.md")), "example gen
 assert(fs.existsSync(path.join(exampleDirectory, "m3u-report.html")), "example generation missing HTML report");
 assert(fs.existsSync(path.join(exampleDirectory, "coverage-gaps.json")), "example generation missing coverage JSON");
 assert(fs.existsSync(path.join(exampleDirectory, "coverage-gaps.md")), "example generation missing coverage markdown");
+assert(fs.existsSync(path.join(exampleDirectory, "data-quality.json")), "example generation missing data quality JSON");
+assert(fs.existsSync(path.join(exampleDirectory, "data-quality.md")), "example generation missing data quality markdown");
 assert(fs.existsSync(path.join(exampleDirectory, "summary.json")), "example generation missing summary JSON");
 assert(fs.existsSync(path.join(exampleDirectory, "summary.md")), "example generation missing summary markdown");
 const generatedCoverage = JSON.parse(fs.readFileSync(path.join(exampleDirectory, "coverage-gaps.json"), "utf8"));
 assert(validateCoverageGapReport(generatedCoverage), `generated coverage report failed schema validation: ${ajv.errorsText(validateCoverageGapReport.errors)}`);
+const generatedDataQuality = JSON.parse(fs.readFileSync(path.join(exampleDirectory, "data-quality.json"), "utf8"));
+assert(generatedDataQuality.report === "data-quality", "generated data quality report has wrong type");
 const generatedSummary = JSON.parse(fs.readFileSync(path.join(exampleDirectory, "summary.json"), "utf8"));
 assert(validateSummaryReport(generatedSummary), `generated summary report failed schema validation: ${ajv.errorsText(validateSummaryReport.errors)}`);
 assert(fs.readFileSync(path.join(exampleDirectory, "coverage-gaps.md"), "utf8").includes("# Coverage Gaps"), "generated coverage markdown missing title");
+assert(fs.readFileSync(path.join(exampleDirectory, "data-quality.md"), "utf8").includes("# Data Quality"), "generated data quality markdown missing title");
 assert(fs.readFileSync(path.join(exampleDirectory, "summary.md"), "utf8").includes("# rom-librarian Summary"), "generated summary markdown missing title");
 
 console.log("audit output option test passed");

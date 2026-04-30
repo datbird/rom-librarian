@@ -1,1 +1,71 @@
-{"id":"zc210","name":"Zc210","category":"console","manufacturer":"Various","sources":[{"type":"docs","url":"https://gitlab.com/es-de/emulationstation-de/-/blob/master/USERGUIDE.md","last_reviewed":"2026-04-29","confidence":"low"}],"formats":{"preferred":[".zip",".7z",".bin"],"supported":[".zip",".7z",".bin",".rom",".iso",".chd"],"descriptor_files":[],"disc_formats":[".iso",".chd"],"archive_formats":[".zip",".7z"]},"bios":{"required":false,"common_files":[],"notes":"No BIOS file is tracked by this normalized record."},"emulation":{"preferred_emulators":["retroarch"],"retroarch_cores":["retroarch"]},"library_behavior":{"multidisc":false,"multidisc_format":null,"romset_version_sensitive":false,"do_not_unzip_roms_by_default":true,"safe_archive_deletion_requires_launch_test":true},"safety":{"automation_level":"dry_run_only","requires_backup":true,"do_not_store":["rom_payloads"],"notes":["Disc/archive conversion should remain report-only unless a dedicated verified workflow exists."]},"notes":["Static recognition entry added from ES-DE/Batocera/EmuDeck coverage. Normalize with a deeper sourced record before automating repairs."]}
+{
+  "id": "zc210",
+  "name": "Zc210",
+  "category": "console",
+  "manufacturer": "Various",
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://gitlab.com/es-de/emulationstation-de/-/blob/master/USERGUIDE.md",
+      "last_reviewed": "2026-04-30",
+      "confidence": "low"
+    }
+  ],
+  "formats": {
+    "preferred": [
+      ".zip",
+      ".7z",
+      ".bin"
+    ],
+    "supported": [
+      ".zip",
+      ".7z",
+      ".bin",
+      ".rom",
+      ".iso",
+      ".chd"
+    ],
+    "descriptor_files": [],
+    "disc_formats": [
+      ".iso",
+      ".chd"
+    ],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "bios": {
+    "required": false,
+    "common_files": [],
+    "notes": "No BIOS file is tracked by this normalized record."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "retroarch"
+    ],
+    "retroarch_cores": [
+      "retroarch"
+    ]
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": null,
+    "romset_version_sensitive": false,
+    "do_not_unzip_roms_by_default": true,
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "safety": {
+    "automation_level": "dry_run_only",
+    "requires_backup": true,
+    "do_not_store": [
+      "rom_payloads"
+    ],
+    "notes": [
+      "Disc/archive conversion should remain report-only unless a dedicated verified workflow exists."
+    ]
+  },
+  "notes": [
+    "Static recognition entry added from ES-DE/Batocera/EmuDeck coverage. Normalize with a deeper sourced record before automating repairs."
+  ]
+}

@@ -4,13 +4,37 @@
   "category": "emulator",
   "homepage": "https://github.com/hex007/freej2me",
   "sources": [
-    { "type": "github", "url": "https://github.com/hex007/freej2me", "last_reviewed": "2026-04-28", "confidence": "high" }
+    {
+      "type": "github",
+      "url": "https://github.com/hex007/freej2me",
+      "last_reviewed": "2026-04-28",
+      "confidence": "high"
+    }
   ],
-  "platforms": ["windows", "linux", "macos", "steamdeck"],
-  "systems": ["j2me"],
-  "paths": { "config": "FreeJ2ME user config directory" },
-  "supported_formats": { "mobile": [".jar", ".jad"] },
-  "library_behavior": { "device_profile_matters": true, "screen_size_matters": true },
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "j2me"
+  ],
+  "paths": {
+    "config": "FreeJ2ME user config directory"
+  },
+  "supported_formats": {
+    "mobile": [
+      ".jar",
+      ".jad"
+    ]
+  },
+  "library_behavior": {
+    "device_profile_matters": true,
+    "screen_size_matters": true
+  },
   "quirks": [],
-  "notes": ["Good first normalized record for Java phone-game support."]
+  "notes": [
+    "Good first normalized record for Java phone-game support."
+  ]
 }

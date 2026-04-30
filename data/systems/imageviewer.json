@@ -1,1 +1,61 @@
-{"id":"imageviewer","name":"Image Viewer","category":"launcher","manufacturer":"Frontend/runtime dependent","sources":[{"type":"docs","url":"https://docs.libretro.com/","last_reviewed":"2026-04-29","confidence":"low"}],"formats":{"preferred":[".png"],"supported":[".png",".jpg",".jpeg",".bmp",".gif",".webp"],"descriptor_files":[],"archive_formats":[]},"bios":{"required":false,"common_files":[],"notes":"Media viewer target; no BIOS files."},"emulation":{"preferred_emulators":["imageviewer","os-shell"],"retroarch_cores":[]},"library_behavior":{"multidisc":false,"multidisc_format":null,"folder_based":false,"playlist_target_preference":"image file","safe_archive_deletion_requires_launch_test":true},"safety":{"automation_level":"dry_run_only","requires_backup":true,"do_not_store":["personal_media"],"notes":["Do not delete or rewrite user image media from audit findings alone."]},"notes":["Image viewing pseudo-system."]}
+{
+  "id": "imageviewer",
+  "name": "Image Viewer",
+  "category": "launcher",
+  "manufacturer": "Frontend/runtime dependent",
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://docs.libretro.com/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "low"
+    }
+  ],
+  "formats": {
+    "preferred": [
+      ".png"
+    ],
+    "supported": [
+      ".png",
+      ".jpg",
+      ".jpeg",
+      ".bmp",
+      ".gif",
+      ".webp"
+    ],
+    "descriptor_files": [],
+    "archive_formats": []
+  },
+  "bios": {
+    "required": false,
+    "common_files": [],
+    "notes": "Media viewer target; no BIOS files."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "imageviewer",
+      "os-shell"
+    ],
+    "retroarch_cores": []
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": null,
+    "folder_based": false,
+    "playlist_target_preference": "image file",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "safety": {
+    "automation_level": "dry_run_only",
+    "requires_backup": true,
+    "do_not_store": [
+      "personal_media"
+    ],
+    "notes": [
+      "Do not delete or rewrite user image media from audit findings alone."
+    ]
+  },
+  "notes": [
+    "Image viewing pseudo-system."
+  ]
+}

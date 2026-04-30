@@ -3,12 +3,46 @@
   "name": "DOSBox-X",
   "category": "emulator",
   "homepage": "https://dosbox-x.com/",
-  "sources": [{ "type": "homepage", "url": "https://dosbox-x.com/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
-  "platforms": ["windows", "linux", "macos"],
-  "systems": ["dos"],
-  "paths": { "config": "dosbox-x.conf and user-selected mount paths" },
-  "supported_formats": { "content": ["folder", ".conf", ".bat", ".exe", ".com", ".img", ".iso", ".cue"] },
-  "library_behavior": { "folder_based": true, "working_directory_matters": true, "config_driven_launches": true },
-  "quirks": ["parser-glob-collision"],
-  "notes": ["Repair plans should preserve config files and mount paths."]
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://dosbox-x.com/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos"
+  ],
+  "systems": [
+    "dos"
+  ],
+  "paths": {
+    "config": "dosbox-x.conf and user-selected mount paths"
+  },
+  "supported_formats": {
+    "content": [
+      "folder",
+      ".conf",
+      ".bat",
+      ".exe",
+      ".com",
+      ".img",
+      ".iso",
+      ".cue"
+    ]
+  },
+  "library_behavior": {
+    "folder_based": true,
+    "working_directory_matters": true,
+    "config_driven_launches": true
+  },
+  "quirks": [
+    "parser-glob-collision"
+  ],
+  "notes": [
+    "Repair plans should preserve config files and mount paths."
+  ]
 }

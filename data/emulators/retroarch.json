@@ -1,1 +1,59 @@
-{"id":"retroarch","name":"RetroArch","category":"emulator","homepage":"https://www.retroarch.com/","sources":[{"type":"homepage","url":"https://www.retroarch.com/","last_reviewed":"2026-04-29","confidence":"high"}],"platforms":["windows","linux","macos","android","ios","steamdeck"],"systems":["nes","snes","gb","gbc","gba","psx","saturn","dreamcast","arcade","doom"],"paths":{"system":"RetroArch system directory","playlists":"RetroArch playlists directory","config":"retroarch.cfg and core options"},"supported_formats":{"playlist":[".lpl"],"content":["varies_by_core"]},"library_behavior":{"supports_m3u":true,"bios_required_for_disc_systems":true,"cli_or_frontend_wrapper_common":true},"quirks":["retroarch-system-dir-confusion","multidisc-chd-m3u-edge-cases"],"notes":["Multi-system frontend/runtime. Diagnose selected core behavior rather than assuming global format support."]}
+{
+  "id": "retroarch",
+  "name": "RetroArch",
+  "category": "emulator",
+  "homepage": "https://www.retroarch.com/",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://www.retroarch.com/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "high"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "android",
+    "ios",
+    "steamdeck"
+  ],
+  "systems": [
+    "nes",
+    "snes",
+    "gb",
+    "gbc",
+    "gba",
+    "psx",
+    "saturn",
+    "dreamcast",
+    "arcade",
+    "doom"
+  ],
+  "paths": {
+    "system": "RetroArch system directory",
+    "playlists": "RetroArch playlists directory",
+    "config": "retroarch.cfg and core options"
+  },
+  "supported_formats": {
+    "playlist": [
+      ".lpl"
+    ],
+    "content": [
+      "varies_by_core"
+    ]
+  },
+  "library_behavior": {
+    "supports_m3u": true,
+    "bios_required_for_disc_systems": true,
+    "cli_or_frontend_wrapper_common": true
+  },
+  "quirks": [
+    "retroarch-system-dir-confusion",
+    "multidisc-chd-m3u-edge-cases"
+  ],
+  "notes": [
+    "Multi-system frontend/runtime. Diagnose selected core behavior rather than assuming global format support."
+  ]
+}

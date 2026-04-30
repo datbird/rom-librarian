@@ -4,16 +4,54 @@
   "category": "emulator",
   "homepage": "https://docs.libretro.com/library/beetle_pce_fast/",
   "sources": [
-    { "type": "docs", "url": "https://docs.libretro.com/library/beetle_pce_fast/", "last_reviewed": "2026-04-28", "confidence": "high" }
+    {
+      "type": "docs",
+      "url": "https://docs.libretro.com/library/beetle_pce_fast/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "high"
+    }
   ],
-  "platforms": ["windows", "linux", "macos", "steamdeck"],
-  "systems": ["turbografx", "pcengine", "pcenginecd", "tg16", "tg-cd", "supergrafx"],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "turbografx",
+    "pcengine",
+    "pcenginecd",
+    "tg16",
+    "tg-cd",
+    "supergrafx"
+  ],
   "paths": {
     "config": "RetroArch core options",
     "bios": "RetroArch/system path for System Card BIOS files"
   },
-  "supported_formats": { "rom": [".pce", ".cue", ".bin", ".ccd", ".chd", ".img", ".iso", ".m3u"] },
-  "library_behavior": { "supports_m3u": true, "supports_chd": true, "bios_required": true },
-  "quirks": ["es-folder-alias-mismatch", "retroarch-system-dir-confusion", "multidisc-chd-m3u-edge-cases"],
-  "notes": ["System Card BIOS selection affects CD compatibility. Folder aliases include PC Engine and TurboGrafx naming variants."]
+  "supported_formats": {
+    "rom": [
+      ".pce",
+      ".cue",
+      ".bin",
+      ".ccd",
+      ".chd",
+      ".img",
+      ".iso",
+      ".m3u"
+    ]
+  },
+  "library_behavior": {
+    "supports_m3u": true,
+    "supports_chd": true,
+    "bios_required": true
+  },
+  "quirks": [
+    "es-folder-alias-mismatch",
+    "retroarch-system-dir-confusion",
+    "multidisc-chd-m3u-edge-cases"
+  ],
+  "notes": [
+    "System Card BIOS selection affects CD compatibility. Folder aliases include PC Engine and TurboGrafx naming variants."
+  ]
 }

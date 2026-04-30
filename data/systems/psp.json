@@ -3,12 +3,59 @@
   "name": "Sony PlayStation Portable",
   "category": "handheld",
   "manufacturer": "Sony",
-  "sources": [{ "type": "homepage", "url": "https://www.ppsspp.org/", "last_reviewed": "2026-04-29", "confidence": "high" }],
-  "formats": { "preferred": [".chd", ".iso", ".cso"], "supported": [".iso", ".cso", ".chd", ".pbp", ".elf", ".prx", ".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
-  "bios": { "required": false, "common_files": [], "notes": "PPSSPP generally does not require a PSP BIOS for game launching." },
-  "emulation": { "preferred_emulators": ["ppsspp"], "retroarch_cores": ["ppsspp"] },
-  "library_behavior": { "multidisc": false, "multidisc_format": null, "install_based_content": false, "playlist_target_preference": ".iso, .cso, .chd, or .pbp", "safe_archive_deletion_requires_launch_test": true },
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://www.ppsspp.org/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "high"
+    }
+  ],
+  "formats": {
+    "preferred": [
+      ".chd",
+      ".iso",
+      ".cso"
+    ],
+    "supported": [
+      ".iso",
+      ".cso",
+      ".chd",
+      ".pbp",
+      ".elf",
+      ".prx",
+      ".zip",
+      ".7z"
+    ],
+    "descriptor_files": [],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "bios": {
+    "required": false,
+    "common_files": [],
+    "notes": "PPSSPP generally does not require a PSP BIOS for game launching."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "ppsspp"
+    ],
+    "retroarch_cores": [
+      "ppsspp"
+    ]
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": null,
+    "install_based_content": false,
+    "playlist_target_preference": ".iso, .cso, .chd, or .pbp",
+    "safe_archive_deletion_requires_launch_test": true
+  },
   "frontend_notes": {},
   "quirks": [],
-  "notes": ["DLC and savedata are emulator/user-state concerns, not ROM-library metadata."]
+  "notes": [
+    "DLC and savedata are emulator/user-state concerns, not ROM-library metadata."
+  ]
 }

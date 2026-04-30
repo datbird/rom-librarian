@@ -30,10 +30,14 @@ for (const [name, script, target] of examples) {
 
 const coverageJsonPath = path.join(outputRoot, "coverage-gaps.json");
 const coverageMarkdownPath = path.join(outputRoot, "coverage-gaps.md");
+const dataQualityJsonPath = path.join(outputRoot, "data-quality.json");
+const dataQualityMarkdownPath = path.join(outputRoot, "data-quality.md");
 const summaryJsonPath = path.join(outputRoot, "summary.json");
 const summaryMarkdownPath = path.join(outputRoot, "summary.md");
 execFileSync(process.execPath, ["scripts/report-coverage-gaps.mjs", "--limit", "25", "--json-out", coverageJsonPath], { cwd: process.cwd(), stdio: "inherit" });
 fs.writeFileSync(coverageMarkdownPath, execFileSync(process.execPath, ["scripts/report-coverage-gaps.mjs", "--limit", "25", "--format", "markdown"], { cwd: process.cwd(), encoding: "utf8" }), "utf8");
+execFileSync(process.execPath, ["scripts/report-data-quality.mjs", "--json-out", dataQualityJsonPath], { cwd: process.cwd(), stdio: "inherit" });
+fs.writeFileSync(dataQualityMarkdownPath, execFileSync(process.execPath, ["scripts/report-data-quality.mjs", "--format", "markdown"], { cwd: process.cwd(), encoding: "utf8" }), "utf8");
 execFileSync(process.execPath, ["scripts/report-summary.mjs", "--json-out", summaryJsonPath], { cwd: process.cwd(), stdio: "inherit" });
 fs.writeFileSync(summaryMarkdownPath, execFileSync(process.execPath, ["scripts/report-summary.mjs", "--format", "markdown"], { cwd: process.cwd(), encoding: "utf8" }), "utf8");
 

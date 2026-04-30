@@ -1,1 +1,47 @@
-{"id":"daphne","name":"Daphne","category":"emulator","homepage":"https://www.daphne-emu.com","sources":[{"type":"docs","url":"https://www.daphne-emu.com","last_reviewed":"2026-04-30","confidence":"medium"}],"platforms":["windows","linux"],"systems":["daphne"],"paths":{"content":"Content path or launcher target managed by the selected frontend","saves":"Emulator-specific save/config location; do not assume a portable default"},"supported_formats":{"content":[".daphne",".zip",".m2v",".ogg",".dat"],"disc":[".m2v"],"descriptors":[]},"library_behavior":{"retroarch_core":false,"standalone":true,"safe_archive_deletion_requires_launch_test":true,"launch_target_sensitive":false},"notes":["Legacy laserdisc emulator. Hypseus Singe is usually preferred now."]}
+{
+  "id": "daphne",
+  "name": "Daphne",
+  "category": "emulator",
+  "homepage": "https://www.daphne-emu.com",
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://www.daphne-emu.com",
+      "last_reviewed": "2026-04-30",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux"
+  ],
+  "systems": [
+    "daphne"
+  ],
+  "paths": {
+    "content": "Content path or launcher target managed by the selected frontend",
+    "saves": "Emulator-specific save/config location; do not assume a portable default"
+  },
+  "supported_formats": {
+    "content": [
+      ".daphne",
+      ".zip",
+      ".m2v",
+      ".ogg",
+      ".dat"
+    ],
+    "disc": [
+      ".m2v"
+    ],
+    "descriptors": []
+  },
+  "library_behavior": {
+    "retroarch_core": false,
+    "standalone": true,
+    "safe_archive_deletion_requires_launch_test": true,
+    "launch_target_sensitive": false
+  },
+  "notes": [
+    "Legacy laserdisc emulator. Hypseus Singe is usually preferred now."
+  ]
+}

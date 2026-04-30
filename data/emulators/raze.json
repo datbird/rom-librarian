@@ -3,11 +3,45 @@
   "name": "Raze",
   "category": "source_port",
   "homepage": "https://raze.zdoom.org/",
-  "sources": [{ "type": "homepage", "url": "https://raze.zdoom.org/", "last_reviewed": "2026-04-29", "confidence": "high" }],
-  "platforms": ["windows", "linux", "macos", "steamdeck"],
-  "systems": ["build", "raze"],
-  "paths": { "game_data": "user-managed Build-engine game data", "launchers": "per-game command scripts" },
-  "supported_formats": { "content": ["folder", ".grp", ".zip", ".7z", ".sh", ".bat", ".desktop"] },
-  "library_behavior": { "requires_base_game_data": true, "launcher_arguments_matter": true, "safe_archive_deletion_requires_launch_test": true },
-  "notes": ["Build-engine source port; game data and command-line arguments define the target game."]
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://raze.zdoom.org/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "high"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "build",
+    "raze"
+  ],
+  "paths": {
+    "game_data": "user-managed Build-engine game data",
+    "launchers": "per-game command scripts"
+  },
+  "supported_formats": {
+    "content": [
+      "folder",
+      ".grp",
+      ".zip",
+      ".7z",
+      ".sh",
+      ".bat",
+      ".desktop"
+    ]
+  },
+  "library_behavior": {
+    "requires_base_game_data": true,
+    "launcher_arguments_matter": true,
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "notes": [
+    "Build-engine source port; game data and command-line arguments define the target game."
+  ]
 }

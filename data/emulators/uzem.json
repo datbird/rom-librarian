@@ -1,1 +1,43 @@
-{"id":"uzem","name":"Uzem","category":"emulator","homepage":"https://github.com/Uzebox/uzebox","sources":[{"type":"github","url":"https://github.com/Uzebox/uzebox","last_reviewed":"2026-04-30","confidence":"medium"}],"platforms":["windows","linux","macos"],"systems":["uzebox"],"paths":{"content":"Content path or launcher target managed by the selected frontend","saves":"Emulator-specific save/config location; do not assume a portable default"},"supported_formats":{"content":[".uze",".hex"],"disc":[],"descriptors":[]},"library_behavior":{"retroarch_core":false,"standalone":true,"safe_archive_deletion_requires_launch_test":true,"launch_target_sensitive":false},"notes":["Uzebox emulator."]}
+{
+  "id": "uzem",
+  "name": "Uzem",
+  "category": "emulator",
+  "homepage": "https://github.com/Uzebox/uzebox",
+  "sources": [
+    {
+      "type": "github",
+      "url": "https://github.com/Uzebox/uzebox",
+      "last_reviewed": "2026-04-30",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos"
+  ],
+  "systems": [
+    "uzebox"
+  ],
+  "paths": {
+    "content": "Content path or launcher target managed by the selected frontend",
+    "saves": "Emulator-specific save/config location; do not assume a portable default"
+  },
+  "supported_formats": {
+    "content": [
+      ".uze",
+      ".hex"
+    ],
+    "disc": [],
+    "descriptors": []
+  },
+  "library_behavior": {
+    "retroarch_core": false,
+    "standalone": true,
+    "safe_archive_deletion_requires_launch_test": true,
+    "launch_target_sensitive": false
+  },
+  "notes": [
+    "Uzebox emulator."
+  ]
+}

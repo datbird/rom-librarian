@@ -1,1 +1,48 @@
-{"id":"cxbx-reloaded","name":"Cxbx Reloaded","category":"emulator","homepage":"https://github.com/libretro","sources":[{"type":"docs","url":"https://cxbx-reloaded.co.uk/","last_reviewed":"2026-04-30","confidence":"medium"}],"platforms":["windows","linux","macos","steamdeck"],"systems":["xbox"],"paths":{"content":"Content path or launcher target managed by the selected frontend","saves":"Emulator-specific save/config location; do not assume a portable default"},"supported_formats":{"content":[".iso",".xiso",".xbe"],"disc":[".iso",".xiso"],"descriptors":[]},"library_behavior":{"retroarch_core":false,"standalone":true,"safe_archive_deletion_requires_launch_test":true,"launch_target_sensitive":false},"notes":["Static recognition entry added from public frontend/core coverage. Verify exact launch behavior for the target frontend before repair automation."]}
+{
+  "id": "cxbx-reloaded",
+  "name": "Cxbx Reloaded",
+  "category": "emulator",
+  "homepage": "https://github.com/libretro",
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://cxbx-reloaded.co.uk/",
+      "last_reviewed": "2026-04-30",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "xbox"
+  ],
+  "paths": {
+    "content": "Content path or launcher target managed by the selected frontend",
+    "saves": "Emulator-specific save/config location; do not assume a portable default"
+  },
+  "supported_formats": {
+    "content": [
+      ".iso",
+      ".xiso",
+      ".xbe"
+    ],
+    "disc": [
+      ".iso",
+      ".xiso"
+    ],
+    "descriptors": []
+  },
+  "library_behavior": {
+    "retroarch_core": false,
+    "standalone": true,
+    "safe_archive_deletion_requires_launch_test": true,
+    "launch_target_sensitive": false
+  },
+  "notes": [
+    "Static recognition entry added from public frontend/core coverage. Verify exact launch behavior for the target frontend before repair automation."
+  ]
+}

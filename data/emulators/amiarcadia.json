@@ -1,1 +1,43 @@
-{"id":"amiarcadia","name":"AmiArcadia","category":"emulator","homepage":"https://amigan.1emu.net/releases/","sources":[{"type":"homepage","url":"https://amigan.1emu.net/releases/","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows","linux","macos","steamdeck"],"systems":["arcadia"],"paths":{"roms":"Arcadia-family ROM paths","bios":"Machine ROM path where required by target machine"},"supported_formats":{"roms":[".bin",".rom",".zip",".7z"]},"library_behavior":{"machine_firmware_sensitive":true,"multi_machine_emulator":true,"save_state_sensitive":true},"notes":["Multi-machine emulator. Do not store machine ROMs/firmware; keep machine-specific fixes review-only."]}
+{
+  "id": "amiarcadia",
+  "name": "AmiArcadia",
+  "category": "emulator",
+  "homepage": "https://amigan.1emu.net/releases/",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://amigan.1emu.net/releases/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "arcadia"
+  ],
+  "paths": {
+    "roms": "Arcadia-family ROM paths",
+    "bios": "Machine ROM path where required by target machine"
+  },
+  "supported_formats": {
+    "roms": [
+      ".bin",
+      ".rom",
+      ".zip",
+      ".7z"
+    ]
+  },
+  "library_behavior": {
+    "machine_firmware_sensitive": true,
+    "multi_machine_emulator": true,
+    "save_state_sensitive": true
+  },
+  "notes": [
+    "Multi-machine emulator. Do not store machine ROMs/firmware; keep machine-specific fixes review-only."
+  ]
+}

@@ -1,1 +1,44 @@
-{"id":"teknoparrot","name":"TeknoParrot","category":"emulator","homepage":"https://teknoparrot.com","sources":[{"type":"docs","url":"https://teknoparrot.com/","last_reviewed":"2026-04-30","confidence":"medium"}],"platforms":["windows"],"systems":["teknoparrot"],"paths":{"content":"Content path or launcher target managed by the selected frontend","saves":"Emulator-specific save/config location; do not assume a portable default"},"supported_formats":{"content":[".xml",".exe",".bat",".lnk",".zip"],"disc":[],"descriptors":[]},"library_behavior":{"retroarch_core":false,"standalone":true,"safe_archive_deletion_requires_launch_test":true,"launch_target_sensitive":false},"notes":["Modern arcade PC loader. Profiles and install folders are key."]}
+{
+  "id": "teknoparrot",
+  "name": "TeknoParrot",
+  "category": "emulator",
+  "homepage": "https://teknoparrot.com",
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://teknoparrot.com/",
+      "last_reviewed": "2026-04-30",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows"
+  ],
+  "systems": [
+    "teknoparrot"
+  ],
+  "paths": {
+    "content": "Content path or launcher target managed by the selected frontend",
+    "saves": "Emulator-specific save/config location; do not assume a portable default"
+  },
+  "supported_formats": {
+    "content": [
+      ".xml",
+      ".exe",
+      ".bat",
+      ".lnk",
+      ".zip"
+    ],
+    "disc": [],
+    "descriptors": []
+  },
+  "library_behavior": {
+    "retroarch_core": false,
+    "standalone": true,
+    "safe_archive_deletion_requires_launch_test": true,
+    "launch_target_sensitive": false
+  },
+  "notes": [
+    "Modern arcade PC loader. Profiles and install folders are key."
+  ]
+}

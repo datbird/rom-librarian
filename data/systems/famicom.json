@@ -3,11 +3,68 @@
   "name": "Nintendo Famicom",
   "category": "console",
   "manufacturer": "Nintendo",
-  "sources": [{ "type": "docs", "url": "https://docs.libretro.com/library/mesen/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
-  "formats": { "preferred": [".nes", ".fds"], "supported": [".nes", ".fds", ".unf", ".unif", ".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
-  "bios": { "required": false, "common_files": ["disksys.rom"], "notes": "Cartridge content usually needs no BIOS; Famicom Disk System content may require a user-managed disk system BIOS." },
-  "emulation": { "preferred_emulators": ["mesen", "retroarch"], "retroarch_cores": ["mesen"] },
-  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": false, "playlist_target_preference": "cartridge or FDS disk image", "safe_archive_deletion_requires_launch_test": true },
-  "safety": { "automation_level": "dry_run_only", "requires_backup": true, "do_not_store": ["bios_roms", "rom_payloads"], "notes": ["Do not merge NES/Famicom/FDS folders without confirmation."] },
-  "notes": ["Alias-like regional record; nes remains the existing broader normalized record."]
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://docs.libretro.com/library/mesen/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "formats": {
+    "preferred": [
+      ".nes",
+      ".fds"
+    ],
+    "supported": [
+      ".nes",
+      ".fds",
+      ".unf",
+      ".unif",
+      ".zip",
+      ".7z"
+    ],
+    "descriptor_files": [],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "bios": {
+    "required": false,
+    "common_files": [
+      "disksys.rom"
+    ],
+    "notes": "Cartridge content usually needs no BIOS; Famicom Disk System content may require a user-managed disk system BIOS."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "mesen",
+      "retroarch"
+    ],
+    "retroarch_cores": [
+      "mesen"
+    ]
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": null,
+    "folder_based": false,
+    "playlist_target_preference": "cartridge or FDS disk image",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "safety": {
+    "automation_level": "dry_run_only",
+    "requires_backup": true,
+    "do_not_store": [
+      "bios_roms",
+      "rom_payloads"
+    ],
+    "notes": [
+      "Do not merge NES/Famicom/FDS folders without confirmation."
+    ]
+  },
+  "notes": [
+    "Alias-like regional record; nes remains the existing broader normalized record."
+  ]
 }

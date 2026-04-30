@@ -1,1 +1,71 @@
-{"id":"voxatron","name":"Voxatron","category":"fantasy_console","manufacturer":"Various","sources":[{"type":"docs","url":"https://gitlab.com/es-de/emulationstation-de/-/blob/master/USERGUIDE.md","last_reviewed":"2026-04-29","confidence":"low"}],"formats":{"preferred":[".zip",".7z",".png"],"supported":[".zip",".7z",".png",".p8",".tic",".wasm",".uf2",".hex",".love"],"descriptor_files":[],"disc_formats":[],"archive_formats":[".zip",".7z"]},"bios":{"required":false,"common_files":[],"notes":"No BIOS file is tracked by this normalized record."},"emulation":{"preferred_emulators":["retroarch"],"retroarch_cores":["retroarch"]},"library_behavior":{"multidisc":false,"multidisc_format":null,"romset_version_sensitive":false,"do_not_unzip_roms_by_default":true,"safe_archive_deletion_requires_launch_test":true},"safety":{"automation_level":"approval_required","requires_backup":true,"do_not_store":["rom_payloads"],"notes":["Keep automated changes conservative until launch behavior is verified for the target frontend."]},"notes":["Fantasy console, micro-console, or small game runtime. File extension and standalone-vs-core support varies by frontend."]}
+{
+  "id": "voxatron",
+  "name": "Voxatron",
+  "category": "fantasy_console",
+  "manufacturer": "Various",
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://www.lexaloffle.com/voxatron.php",
+      "last_reviewed": "2026-04-30",
+      "confidence": "medium"
+    }
+  ],
+  "formats": {
+    "preferred": [
+      ".zip",
+      ".7z",
+      ".png"
+    ],
+    "supported": [
+      ".zip",
+      ".7z",
+      ".png",
+      ".p8",
+      ".tic",
+      ".wasm",
+      ".uf2",
+      ".hex",
+      ".love"
+    ],
+    "descriptor_files": [],
+    "disc_formats": [],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "bios": {
+    "required": false,
+    "common_files": [],
+    "notes": "No BIOS file is tracked by this normalized record."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "retroarch"
+    ],
+    "retroarch_cores": [
+      "retroarch"
+    ]
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": null,
+    "romset_version_sensitive": false,
+    "do_not_unzip_roms_by_default": true,
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "safety": {
+    "automation_level": "approval_required",
+    "requires_backup": true,
+    "do_not_store": [
+      "rom_payloads"
+    ],
+    "notes": [
+      "Keep automated changes conservative until launch behavior is verified for the target frontend."
+    ]
+  },
+  "notes": [
+    "Fantasy console, micro-console, or small game runtime. File extension and standalone-vs-core support varies by frontend."
+  ]
+}

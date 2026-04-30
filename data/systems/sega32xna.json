@@ -1,1 +1,70 @@
-{"id":"sega32xna","name":"Sega32Xna (sega32x folder alias)","category":"console","manufacturer":"Sega","sources":[{"type":"docs","url":"https://gitlab.com/es-de/emulationstation-de/-/blob/master/USERGUIDE.md","last_reviewed":"2026-04-29","confidence":"low"}],"formats":{"preferred":[".32x",".bin",".md"],"supported":[".32x",".bin",".md",".smd",".zip",".7z"],"descriptor_files":[],"disc_formats":[],"archive_formats":[".zip",".7z"]},"bios":{"required":false,"common_files":[],"notes":"No BIOS file is tracked by this normalized record."},"emulation":{"preferred_emulators":["picodrive","genesis-plus-gx"],"retroarch_cores":["picodrive","genesis_plus_gx"]},"library_behavior":{"multidisc":false,"multidisc_format":null,"romset_version_sensitive":false,"do_not_unzip_roms_by_default":true,"safe_archive_deletion_requires_launch_test":true},"safety":{"automation_level":"approval_required","requires_backup":true,"do_not_store":["rom_payloads"],"notes":["Keep automated changes conservative until launch behavior is verified for the target frontend."]},"notes":["Folder/platform alias for `sega32x` used by ES-DE, Batocera, EmuDeck, RetroBat, or related frontends. PicoDrive is commonly used for 32X. Genesis Plus GX support depends on build/core capabilities."]}
+{
+  "id": "sega32xna",
+  "name": "Sega32Xna (sega32x folder alias)",
+  "category": "console",
+  "manufacturer": "Sega",
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://docs.libretro.com/library/picodrive/",
+      "last_reviewed": "2026-04-30",
+      "confidence": "medium"
+    }
+  ],
+  "formats": {
+    "preferred": [
+      ".32x",
+      ".bin",
+      ".md"
+    ],
+    "supported": [
+      ".32x",
+      ".bin",
+      ".md",
+      ".smd",
+      ".zip",
+      ".7z"
+    ],
+    "descriptor_files": [],
+    "disc_formats": [],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "bios": {
+    "required": false,
+    "common_files": [],
+    "notes": "No BIOS file is tracked by this normalized record."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "picodrive",
+      "genesis-plus-gx"
+    ],
+    "retroarch_cores": [
+      "picodrive",
+      "genesis_plus_gx"
+    ]
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": null,
+    "romset_version_sensitive": false,
+    "do_not_unzip_roms_by_default": true,
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "safety": {
+    "automation_level": "approval_required",
+    "requires_backup": true,
+    "do_not_store": [
+      "rom_payloads"
+    ],
+    "notes": [
+      "Keep automated changes conservative until launch behavior is verified for the target frontend."
+    ]
+  },
+  "notes": [
+    "Folder/platform alias for `sega32x` used by ES-DE, Batocera, EmuDeck, RetroBat, or related frontends. PicoDrive is commonly used for 32X. Genesis Plus GX support depends on build/core capabilities."
+  ]
+}

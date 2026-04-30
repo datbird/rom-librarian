@@ -4,18 +4,51 @@
   "category": "emulator",
   "homepage": "https://ryujinx.org/",
   "sources": [
-    { "type": "homepage", "url": "https://ryujinx.org/", "last_reviewed": "2026-04-28", "confidence": "medium" },
-    { "type": "docs", "url": "https://emudeck.github.io/cheat-sheet/", "last_reviewed": "2026-04-28", "confidence": "medium" }
+    {
+      "type": "homepage",
+      "url": "https://ryujinx.org/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "medium"
+    },
+    {
+      "type": "docs",
+      "url": "https://emudeck.github.io/cheat-sheet/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "medium"
+    }
   ],
-  "platforms": ["windows", "linux", "macos", "steamdeck"],
-  "systems": ["switch"],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "switch"
+  ],
   "paths": {
     "config": "platform-specific Ryujinx user directory",
     "keys": "user-managed keys directory",
     "firmware": "installed firmware data managed by the emulator"
   },
-  "supported_formats": { "content": [".xci", ".nsp", ".nca", ".nro"] },
-  "library_behavior": { "supports_m3u": false, "supports_chd": false, "bios_required": true, "install_based_content": true },
-  "quirks": ["switch-keys-secrets"],
-  "notes": ["Never store or request prod.keys/title.keys contents. Only report expected locations and missing-file symptoms."]
+  "supported_formats": {
+    "content": [
+      ".xci",
+      ".nsp",
+      ".nca",
+      ".nro"
+    ]
+  },
+  "library_behavior": {
+    "supports_m3u": false,
+    "supports_chd": false,
+    "bios_required": true,
+    "install_based_content": true
+  },
+  "quirks": [
+    "switch-keys-secrets"
+  ],
+  "notes": [
+    "Never store or request prod.keys/title.keys contents. Only report expected locations and missing-file symptoms."
+  ]
 }

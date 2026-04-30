@@ -1,1 +1,65 @@
-{"id":"vectrex","name":"Vectrex","category":"console","manufacturer":"General Consumer Electronics / Milton Bradley","sources":[{"type":"docs","url":"https://docs.libretro.com/library/vecx/","last_reviewed":"2026-04-29","confidence":"medium"}],"formats":{"preferred":[".vec"],"supported":[".vec",".bin",".zip",".7z"],"descriptor_files":[],"archive_formats":[".zip",".7z"]},"bios":{"required":false,"common_files":[],"notes":"Some overlays or artwork are frontend assets rather than required ROM content."},"emulation":{"preferred_emulators":["vecx","mame"],"retroarch_cores":["vecx","mame"]},"library_behavior":{"multidisc":false,"multidisc_format":null,"folder_based":false,"playlist_target_preference":"cartridge ROM file","safe_archive_deletion_requires_launch_test":true},"safety":{"automation_level":"dry_run_only","requires_backup":true,"do_not_store":["rom_payloads"],"notes":["Overlay artwork should be treated as assets, not ROM payloads."]},"notes":["Vector console platform often paired with overlay media assets."]}
+{
+  "id": "vectrex",
+  "name": "Vectrex",
+  "category": "console",
+  "manufacturer": "General Consumer Electronics / Milton Bradley",
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://docs.libretro.com/library/vecx/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "formats": {
+    "preferred": [
+      ".vec"
+    ],
+    "supported": [
+      ".vec",
+      ".bin",
+      ".zip",
+      ".7z"
+    ],
+    "descriptor_files": [],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "bios": {
+    "required": false,
+    "common_files": [],
+    "notes": "Some overlays or artwork are frontend assets rather than required ROM content."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "vecx",
+      "mame"
+    ],
+    "retroarch_cores": [
+      "vecx",
+      "mame"
+    ]
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": null,
+    "folder_based": false,
+    "playlist_target_preference": "cartridge ROM file",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "safety": {
+    "automation_level": "dry_run_only",
+    "requires_backup": true,
+    "do_not_store": [
+      "rom_payloads"
+    ],
+    "notes": [
+      "Overlay artwork should be treated as assets, not ROM payloads."
+    ]
+  },
+  "notes": [
+    "Vector console platform often paired with overlay media assets."
+  ]
+}

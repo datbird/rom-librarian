@@ -3,12 +3,42 @@
   "name": "Panda3DS",
   "category": "emulator",
   "homepage": "https://github.com/wheremyfoodat/Panda3DS",
-  "sources": [{ "type": "github", "url": "https://github.com/wheremyfoodat/Panda3DS", "last_reviewed": "2026-04-29", "confidence": "medium" }],
-  "platforms": ["windows", "linux", "macos"],
-  "systems": ["3ds", "n3ds"],
-  "paths": { "content": "3DS ROMs or emulator-managed content" },
-  "supported_formats": { "content": [".3ds", ".cci", ".cxi", ".cia"] },
-  "library_behavior": { "experimental_compatibility": true, "install_based_content": true },
-  "quirks": ["es-folder-alias-mismatch"],
-  "notes": ["Keep 3DS key/encryption handling out of rom-librarian data."]
+  "sources": [
+    {
+      "type": "github",
+      "url": "https://github.com/wheremyfoodat/Panda3DS",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos"
+  ],
+  "systems": [
+    "3ds",
+    "n3ds"
+  ],
+  "paths": {
+    "content": "3DS ROMs or emulator-managed content"
+  },
+  "supported_formats": {
+    "content": [
+      ".3ds",
+      ".cci",
+      ".cxi",
+      ".cia"
+    ]
+  },
+  "library_behavior": {
+    "experimental_compatibility": true,
+    "install_based_content": true
+  },
+  "quirks": [
+    "es-folder-alias-mismatch"
+  ],
+  "notes": [
+    "Keep 3DS key/encryption handling out of rom-librarian data."
+  ]
 }

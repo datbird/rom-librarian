@@ -4,14 +4,34 @@
   "category": "arcade",
   "manufacturer": "Various",
   "sources": [
-    { "type": "homepage", "url": "https://www.mamedev.org/", "last_reviewed": "2026-04-28", "confidence": "high" },
-    { "type": "docs", "url": "https://docs.mamedev.org/", "last_reviewed": "2026-04-28", "confidence": "high" }
+    {
+      "type": "homepage",
+      "url": "https://www.mamedev.org/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "high"
+    },
+    {
+      "type": "docs",
+      "url": "https://docs.mamedev.org/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "high"
+    }
   ],
   "formats": {
-    "preferred": [".zip", ".chd"],
-    "supported": [".zip", ".7z", ".chd"],
+    "preferred": [
+      ".zip",
+      ".chd"
+    ],
+    "supported": [
+      ".zip",
+      ".7z",
+      ".chd"
+    ],
     "descriptor_files": [],
-    "archive_formats": [".zip", ".7z"]
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
   },
   "bios": {
     "required": true,
@@ -19,13 +39,23 @@
     "notes": "BIOS/device ZIP requirements vary by machine and romset version."
   },
   "emulation": {
-    "preferred_emulators": ["mame", "fbneo"],
-    "retroarch_cores": ["mame", "fbneo"]
+    "preferred_emulators": [
+      "mame",
+      "fbneo"
+    ],
+    "retroarch_cores": [
+      "mame",
+      "fbneo"
+    ]
   },
   "library_behavior": {
     "romset_version_sensitive": true,
     "do_not_unzip_roms_by_default": true,
-    "set_styles": ["merged", "split", "non-merged"],
+    "set_styles": [
+      "merged",
+      "split",
+      "non-merged"
+    ],
     "chd_layout": "CHDs usually live in a subfolder named after the parent machine shortname.",
     "parent_clone_model": true
   },
@@ -33,17 +63,35 @@
   "safety": {
     "automation_level": "dry_run_only",
     "requires_backup": true,
-    "do_not_store": ["bios_roms", "device_roms", "rom_payloads", "sample_payloads"],
-    "notes": ["Do not rename, unzip, rebuild, or delete arcade ROM sets automatically; MAME set correctness depends on DAT/version context."]
+    "do_not_store": [
+      "bios_roms",
+      "device_roms",
+      "rom_payloads",
+      "sample_payloads"
+    ],
+    "notes": [
+      "Do not rename, unzip, rebuild, or delete arcade ROM sets automatically; MAME set correctness depends on DAT/version context."
+    ]
   },
-  "quirks": ["mame-romset-version"],
-  "confidence_notes": ["MAME layout guidance is intentionally diagnostic-only because correctness depends on machine shortnames, CHD layout, and romset version."],
+  "quirks": [
+    "mame-romset-version"
+  ],
+  "confidence_notes": [
+    "MAME layout guidance is intentionally diagnostic-only because correctness depends on machine shortnames, CHD layout, and romset version."
+  ],
   "source_map": {
-    "formats": ["https://www.mamedev.org/", "https://docs.mamedev.org/"],
-    "safety": ["https://docs.mamedev.org/"]
+    "formats": [
+      "https://www.mamedev.org/",
+      "https://docs.mamedev.org/"
+    ],
+    "safety": [
+      "https://docs.mamedev.org/"
+    ]
   },
   "last_verified_with": {
     "source_review_date": "2026-04-28"
   },
-  "notes": ["MAME is a machine database and hardware preservation project, not a single-console emulator. Treat per-machine data as a future generated dataset, not hand-curated static JSON."]
+  "notes": [
+    "MAME is a machine database and hardware preservation project, not a single-console emulator. Treat per-machine data as a future generated dataset, not hand-curated static JSON."
+  ]
 }

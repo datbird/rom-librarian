@@ -1,5 +1,6 @@
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import process from "node:process";
 import Ajv from "ajv";
@@ -301,4 +302,15 @@ for (const test of tests) {
   console.log(`${test.label} passed`);
 }
 
-console.log(`audit fixture tests passed (${tests.length})`);
+const emptyFolderRoot = fs.mkdtempSync(path.join(os.tmpdir(), "rom-librarian-empty-folders-"));
+fs.mkdirSync(path.join(emptyFolderRoot, "snes", "empty-series"), { recursive: true });
+fs.mkdirSync(path.join(emptyFolderRoot, "snes", "populated"), { recursive: true });
+fs.writeFileSync(path.join(emptyFolderRoot, "snes", "populated", "Game.sfc"), "Synthetic placeholder only\n", "utf8");
+const emptyFolderAudit = runAudit("scripts/audit-empty-folders.mjs", emptyFolderRoot);
+assert(validateAuditResult(emptyFolderAudit), `audit-empty-folders failed audit result schema validation: ${ajv.errorsText(validateAuditResult.errors)}`);
+assert(emptyFolderAudit.status === "completed", "audit-empty-folders did not complete");
+assert(emptyFolderAudit.summary.empty_folders === 1, "audit-empty-folders expected 1 empty folder");
+assert(countFindings(emptyFolderAudit, "empty_folder") === 1, "audit-empty-folders expected empty_folder finding");
+console.log("audit-empty-folders passed");
+
+console.log(`audit fixture tests passed (${tests.length + 1})`);

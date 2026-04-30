@@ -3,11 +3,41 @@
   "name": "SameBoy",
   "category": "emulator",
   "homepage": "https://sameboy.github.io/",
-  "sources": [{ "type": "homepage", "url": "https://sameboy.github.io/", "last_reviewed": "2026-04-29", "confidence": "high" }],
-  "platforms": ["windows", "linux", "macos", "steamdeck"],
-  "systems": ["gb", "gbc"],
-  "paths": { "config": "SameBoy configuration directory", "saves": "configured save directory" },
-  "supported_formats": { "rom": [".gb", ".gbc", ".zip", ".7z"] },
-  "library_behavior": { "cartridge_only": true, "safe_archive_deletion_requires_launch_test": true },
-  "notes": ["Accuracy-focused Game Boy and Game Boy Color emulator."]
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://sameboy.github.io/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "high"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "gb",
+    "gbc"
+  ],
+  "paths": {
+    "config": "SameBoy configuration directory",
+    "saves": "configured save directory"
+  },
+  "supported_formats": {
+    "rom": [
+      ".gb",
+      ".gbc",
+      ".zip",
+      ".7z"
+    ]
+  },
+  "library_behavior": {
+    "cartridge_only": true,
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "notes": [
+    "Accuracy-focused Game Boy and Game Boy Color emulator."
+  ]
 }

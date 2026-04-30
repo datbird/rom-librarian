@@ -1,1 +1,43 @@
-{"id":"bsnes_balanced","name":"bsnes Balanced","category":"emulator","homepage":"https://github.com/libretro","sources":[{"type":"homepage","url":"https://github.com/libretro","last_reviewed":"2026-04-29","confidence":"low"}],"platforms":["windows","linux","macos","steamdeck"],"systems":["snes"],"paths":{"content":"SNES ROM path"},"supported_formats":{"roms":[".sfc",".smc",".bs",".zip",".7z"]},"library_behavior":{"special_chip_sensitive":true,"save_state_sensitive":true,"satellaview_bios_sensitive":true},"notes":["Legacy bsnes balanced core bucket. Preserve ROM/header state and do not store optional BIOS files."]}
+{
+  "id": "bsnes_balanced",
+  "name": "bsnes Balanced",
+  "category": "emulator",
+  "homepage": "https://github.com/libretro",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://github.com/libretro",
+      "last_reviewed": "2026-04-29",
+      "confidence": "low"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "snes"
+  ],
+  "paths": {
+    "content": "SNES ROM path"
+  },
+  "supported_formats": {
+    "roms": [
+      ".sfc",
+      ".smc",
+      ".bs",
+      ".zip",
+      ".7z"
+    ]
+  },
+  "library_behavior": {
+    "special_chip_sensitive": true,
+    "save_state_sensitive": true,
+    "satellaview_bios_sensitive": true
+  },
+  "notes": [
+    "Legacy bsnes balanced core bucket. Preserve ROM/header state and do not store optional BIOS files."
+  ]
+}

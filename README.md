@@ -193,6 +193,7 @@ Audit scripts are intentionally read-only. Run them against `fixtures/` before u
 npm run audit:aliases
 npm run audit:bios -- fixtures/bios-expectations/bios psx
 npm run audit:extensions -- fixtures/extension-mismatch/roms/ds ds
+npm run audit:empty-folders -- fixtures
 npm run audit:m3u -- fixtures/es-psx-multidisc/roms/psx
 npm run audit:media -- fixtures/es-media-paths/roms/snes
 npm run audit:mame -- fixtures/mame-layout/roms/mame
@@ -217,11 +218,12 @@ npm run plan:markdown -- /tmp/media-plan.json
 npm run report:audit -- /tmp/media-audit.json --format markdown
 npm run report:coverage-gaps -- --json-out /tmp/coverage-gaps.json
 npm run report:coverage-gaps -- --format markdown --limit 25
+npm run report:data-quality -- --format markdown
 npm run report:summary -- --format markdown
 ```
 
 Repair plans are non-mutating. They standardize risk, backup requirements, proposed dry-run steps, and blocked actions; they do not edit metadata or files.
-Coverage-gap reports are also read-only. They compare broad static recognition IDs with source-backed normalized records so data backfill can be prioritized.
+Coverage-gap and data-quality reports are also read-only. Coverage reports enforce complete normalized or alias-backed coverage, while quality reports flag low-confidence and generic-source records for later improvement.
 
 Two narrowly scoped mutating applicators exist for proving backup/apply mechanics:
 

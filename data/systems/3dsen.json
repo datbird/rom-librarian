@@ -3,11 +3,60 @@
   "name": "3Dsen",
   "category": "launcher",
   "manufacturer": "Geod Studio / Community",
-  "sources": [{ "type": "homepage", "url": "https://www.geodstudio.net/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
-  "formats": { "preferred": [".nes"], "supported": [".nes", ".zip", ".7z", ".bin", ".rom"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
-  "bios": { "required": false, "common_files": [], "notes": "3Dsen is a launcher/runtime target for supported games rather than a generic system." },
-  "emulation": { "preferred_emulators": ["retroarch"], "retroarch_cores": [] },
-  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": false, "playlist_target_preference": "supported game ROM or launcher entry", "safe_archive_deletion_requires_launch_test": true },
-  "safety": { "automation_level": "dry_run_only", "requires_backup": true, "do_not_store": ["rom_payloads"], "notes": ["Do not assume all NES files are supported by 3Dsen profiles."] },
-  "notes": ["Static recognition record for frontend folders that expose 3Dsen separately."]
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://www.geodstudio.net/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "formats": {
+    "preferred": [
+      ".nes"
+    ],
+    "supported": [
+      ".nes",
+      ".zip",
+      ".7z",
+      ".bin",
+      ".rom"
+    ],
+    "descriptor_files": [],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "bios": {
+    "required": false,
+    "common_files": [],
+    "notes": "3Dsen is a launcher/runtime target for supported games rather than a generic system."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "retroarch"
+    ],
+    "retroarch_cores": []
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": null,
+    "folder_based": false,
+    "playlist_target_preference": "supported game ROM or launcher entry",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "safety": {
+    "automation_level": "dry_run_only",
+    "requires_backup": true,
+    "do_not_store": [
+      "rom_payloads"
+    ],
+    "notes": [
+      "Do not assume all NES files are supported by 3Dsen profiles."
+    ]
+  },
+  "notes": [
+    "Static recognition record for frontend folders that expose 3Dsen separately."
+  ]
 }

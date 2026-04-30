@@ -1,1 +1,45 @@
-{"id":"ikemen-go","name":"Ikemen GO","category":"runtime","homepage":"https://github.com/ikemen-engine/Ikemen-GO","sources":[{"type":"github","url":"https://github.com/ikemen-engine/Ikemen-GO","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows","linux","macos"],"systems":["ikemen"],"paths":{"data":"Ikemen installation/data directory","config":"save/config directory"},"supported_formats":{"launcher":[".sh",".desktop",".bat",".cmd",".lnk",".exe"]},"library_behavior":{"supports_m3u":false,"bios_required_for_disc_systems":false,"cli_or_frontend_wrapper_common":true},"quirks":[],"notes":["Fighting-game engine runtime. Character/stage data should be preserved."]}
+{
+  "id": "ikemen-go",
+  "name": "Ikemen GO",
+  "category": "runtime",
+  "homepage": "https://github.com/ikemen-engine/Ikemen-GO",
+  "sources": [
+    {
+      "type": "github",
+      "url": "https://github.com/ikemen-engine/Ikemen-GO",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos"
+  ],
+  "systems": [
+    "ikemen"
+  ],
+  "paths": {
+    "data": "Ikemen installation/data directory",
+    "config": "save/config directory"
+  },
+  "supported_formats": {
+    "launcher": [
+      ".sh",
+      ".desktop",
+      ".bat",
+      ".cmd",
+      ".lnk",
+      ".exe"
+    ]
+  },
+  "library_behavior": {
+    "supports_m3u": false,
+    "bios_required_for_disc_systems": false,
+    "cli_or_frontend_wrapper_common": true
+  },
+  "quirks": [],
+  "notes": [
+    "Fighting-game engine runtime. Character/stage data should be preserved."
+  ]
+}

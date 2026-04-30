@@ -3,11 +3,81 @@
   "name": "Moonlight Game Streaming",
   "category": "launcher",
   "manufacturer": "Moonlight community",
-  "sources": [{ "type": "homepage", "url": "https://moonlight-stream.org/", "last_reviewed": "2026-04-29", "confidence": "high" }, { "type": "github", "url": "https://github.com/moonlight-stream/moonlight-qt", "last_reviewed": "2026-04-29", "confidence": "high" }],
-  "formats": { "preferred": [".sh", ".desktop"], "supported": [".sh", ".desktop", ".bat", ".cmd", ".lnk", ".url", ".exe", ".zip", ".7z"], "descriptor_files": [".sh", ".desktop", ".bat", ".cmd", ".lnk", ".url"], "archive_formats": [".zip", ".7z"] },
-  "bios": { "required": false, "common_files": [], "notes": "Streaming launcher target; no emulator BIOS files." },
-  "emulation": { "preferred_emulators": ["os-shell", "retroarch"], "retroarch_cores": [] },
-  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": true, "playlist_target_preference": "launcher shortcut or script", "safe_archive_deletion_requires_launch_test": true },
-  "safety": { "automation_level": "approval_required", "requires_backup": true, "do_not_store": ["account_data", "tokens", "host_pairing_data"], "notes": ["Do not edit pairing credentials, host IDs, or account-linked data."] },
-  "notes": ["Frontend entries usually launch scripts/shortcuts that invoke Moonlight rather than local ROM payloads."]
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://moonlight-stream.org/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "high"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/moonlight-stream/moonlight-qt",
+      "last_reviewed": "2026-04-29",
+      "confidence": "high"
+    }
+  ],
+  "formats": {
+    "preferred": [
+      ".sh",
+      ".desktop"
+    ],
+    "supported": [
+      ".sh",
+      ".desktop",
+      ".bat",
+      ".cmd",
+      ".lnk",
+      ".url",
+      ".exe",
+      ".zip",
+      ".7z"
+    ],
+    "descriptor_files": [
+      ".sh",
+      ".desktop",
+      ".bat",
+      ".cmd",
+      ".lnk",
+      ".url"
+    ],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "bios": {
+    "required": false,
+    "common_files": [],
+    "notes": "Streaming launcher target; no emulator BIOS files."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "os-shell",
+      "retroarch"
+    ],
+    "retroarch_cores": []
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": null,
+    "folder_based": true,
+    "playlist_target_preference": "launcher shortcut or script",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "safety": {
+    "automation_level": "approval_required",
+    "requires_backup": true,
+    "do_not_store": [
+      "account_data",
+      "tokens",
+      "host_pairing_data"
+    ],
+    "notes": [
+      "Do not edit pairing credentials, host IDs, or account-linked data."
+    ]
+  },
+  "notes": [
+    "Frontend entries usually launch scripts/shortcuts that invoke Moonlight rather than local ROM payloads."
+  ]
 }

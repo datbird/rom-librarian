@@ -1,1 +1,47 @@
-{"id":"cannonball","name":"Cannonball","category":"source_port","homepage":"https://github.com/libretro","sources":[{"type":"homepage","url":"https://github.com/libretro","last_reviewed":"2026-04-29","confidence":"low"}],"platforms":["windows","linux","macos","steamdeck"],"systems":["html5"],"paths":{"content":"OutRun data folder or launcher entry","config":"Runtime/core configuration"},"supported_formats":{"game_data":["folder",".zip",".7z"],"launchers":[".sh",".desktop"]},"library_behavior":{"commercial_data_required":true,"folder_based":true,"working_directory_sensitive":true,"safe_archive_deletion_requires_launch_test":true},"notes":["Source-port style content. Preserve required game data, config, and launch arguments."]}
+{
+  "id": "cannonball",
+  "name": "Cannonball",
+  "category": "source_port",
+  "homepage": "https://github.com/libretro",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://github.com/libretro",
+      "last_reviewed": "2026-04-29",
+      "confidence": "low"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "html5"
+  ],
+  "paths": {
+    "content": "OutRun data folder or launcher entry",
+    "config": "Runtime/core configuration"
+  },
+  "supported_formats": {
+    "game_data": [
+      "folder",
+      ".zip",
+      ".7z"
+    ],
+    "launchers": [
+      ".sh",
+      ".desktop"
+    ]
+  },
+  "library_behavior": {
+    "commercial_data_required": true,
+    "folder_based": true,
+    "working_directory_sensitive": true,
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "notes": [
+    "Source-port style content. Preserve required game data, config, and launch arguments."
+  ]
+}

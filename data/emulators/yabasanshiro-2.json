@@ -1,1 +1,48 @@
-{"id":"yabasanshiro-2","name":"Yaba Sanshiro 2","category":"emulator","homepage":"https://www.uoyabause.org/","sources":[{"type":"homepage","url":"https://www.uoyabause.org/","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows","linux","macos","steamdeck"],"systems":["saturn"],"paths":{"content":"Saturn disc content path","bios":"Configured Saturn BIOS path where used","config":"Yaba Sanshiro settings and saves"},"supported_formats":{"disc":[".cue",".bin",".chd",".iso"],"playlist":[".m3u"]},"library_behavior":{"bios_optional_or_required_by_game":true,"disc_descriptor_sensitive":true,"multidisc_playlist_supported":true,"do_not_convert_chd_by_default":true},"notes":["Saturn disc and BIOS handling varies by setup. Do not store BIOS files or mutate disc payloads from generic audits."]}
+{
+  "id": "yabasanshiro-2",
+  "name": "Yaba Sanshiro 2",
+  "category": "emulator",
+  "homepage": "https://www.uoyabause.org/",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://www.uoyabause.org/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "saturn"
+  ],
+  "paths": {
+    "content": "Saturn disc content path",
+    "bios": "Configured Saturn BIOS path where used",
+    "config": "Yaba Sanshiro settings and saves"
+  },
+  "supported_formats": {
+    "disc": [
+      ".cue",
+      ".bin",
+      ".chd",
+      ".iso"
+    ],
+    "playlist": [
+      ".m3u"
+    ]
+  },
+  "library_behavior": {
+    "bios_optional_or_required_by_game": true,
+    "disc_descriptor_sensitive": true,
+    "multidisc_playlist_supported": true,
+    "do_not_convert_chd_by_default": true
+  },
+  "notes": [
+    "Saturn disc and BIOS handling varies by setup. Do not store BIOS files or mutate disc payloads from generic audits."
+  ]
+}

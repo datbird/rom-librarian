@@ -3,12 +3,55 @@
   "name": "Amstrad CPC",
   "category": "computer",
   "manufacturer": "Amstrad",
-  "sources": [{ "type": "docs", "url": "https://docs.libretro.com/library/caprice32/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
-  "formats": { "preferred": [".dsk", ".cdt"], "supported": [".dsk", ".sna", ".cdt", ".cpr", ".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
-  "bios": { "required": false, "common_files": [], "notes": "BIOS/system ROM handling is emulator-distribution specific." },
-  "emulation": { "preferred_emulators": ["caprice32"], "retroarch_cores": ["caprice32"] },
-  "library_behavior": { "multidisc": false, "multidisc_format": null, "playlist_target_preference": "disk/tape/cartridge image", "safe_archive_deletion_requires_launch_test": true },
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://docs.libretro.com/library/caprice32/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "formats": {
+    "preferred": [
+      ".dsk",
+      ".cdt"
+    ],
+    "supported": [
+      ".dsk",
+      ".sna",
+      ".cdt",
+      ".cpr",
+      ".zip",
+      ".7z"
+    ],
+    "descriptor_files": [],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "bios": {
+    "required": false,
+    "common_files": [],
+    "notes": "BIOS/system ROM handling is emulator-distribution specific."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "caprice32"
+    ],
+    "retroarch_cores": [
+      "caprice32"
+    ]
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": null,
+    "playlist_target_preference": "disk/tape/cartridge image",
+    "safe_archive_deletion_requires_launch_test": true
+  },
   "frontend_notes": {},
   "quirks": [],
-  "notes": ["Computer controls and model selection can affect launches more than file layout."]
+  "notes": [
+    "Computer controls and model selection can affect launches more than file layout."
+  ]
 }

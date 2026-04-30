@@ -1,1 +1,77 @@
-{"id":"consolearcade","name":"Consolearcade","category":"arcade","manufacturer":"Various","sources":[{"type":"docs","url":"https://gitlab.com/es-de/emulationstation-de/-/blob/master/USERGUIDE.md","last_reviewed":"2026-04-29","confidence":"low"},{"type":"docs","url":"https://docs.mamedev.org/","last_reviewed":"2026-04-29","confidence":"medium"}],"formats":{"preferred":[".zip",".7z",".chd"],"supported":[".zip",".7z",".chd",".cmd",".sh",".desktop"],"descriptor_files":[],"disc_formats":[".chd"],"archive_formats":[".zip",".7z"]},"bios":{"required":true,"common_files":[],"notes":"BIOS, firmware, keys, and machine ROMs are user-managed and must not be stored by rom-librarian."},"emulation":{"preferred_emulators":["mame","fbneo"],"retroarch_cores":["mame","fbneo"]},"library_behavior":{"multidisc":false,"multidisc_format":null,"romset_version_sensitive":true,"do_not_unzip_roms_by_default":true,"safe_archive_deletion_requires_launch_test":true},"safety":{"automation_level":"dry_run_only","requires_backup":true,"do_not_store":["rom_payloads","bios_files","firmware_files","keys"],"notes":["Do not rename, unzip, merge, split, or rebuild arcade sets without matching DAT/version context.","BIOS and firmware files are user-managed and must not be collected or stored by audits.","Disc/archive conversion should remain report-only unless a dedicated verified workflow exists."]},"notes":["Arcade/platform-board folder recognized from ES-DE/Batocera coverage. ROM set version, BIOS/device ZIPs, CHDs, and emulator choice are critical."]}
+{
+  "id": "consolearcade",
+  "name": "Consolearcade",
+  "category": "arcade",
+  "manufacturer": "Various",
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://docs.mamedev.org/",
+      "last_reviewed": "2026-04-30",
+      "confidence": "medium"
+    }
+  ],
+  "formats": {
+    "preferred": [
+      ".zip",
+      ".7z",
+      ".chd"
+    ],
+    "supported": [
+      ".zip",
+      ".7z",
+      ".chd",
+      ".cmd",
+      ".sh",
+      ".desktop"
+    ],
+    "descriptor_files": [],
+    "disc_formats": [
+      ".chd"
+    ],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "bios": {
+    "required": true,
+    "common_files": [],
+    "notes": "BIOS, firmware, keys, and machine ROMs are user-managed and must not be stored by rom-librarian."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "mame",
+      "fbneo"
+    ],
+    "retroarch_cores": [
+      "mame",
+      "fbneo"
+    ]
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": null,
+    "romset_version_sensitive": true,
+    "do_not_unzip_roms_by_default": true,
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "safety": {
+    "automation_level": "dry_run_only",
+    "requires_backup": true,
+    "do_not_store": [
+      "rom_payloads",
+      "bios_files",
+      "firmware_files",
+      "keys"
+    ],
+    "notes": [
+      "Do not rename, unzip, merge, split, or rebuild arcade sets without matching DAT/version context.",
+      "BIOS and firmware files are user-managed and must not be collected or stored by audits.",
+      "Disc/archive conversion should remain report-only unless a dedicated verified workflow exists."
+    ]
+  },
+  "notes": [
+    "Arcade/platform-board folder recognized from ES-DE/Batocera coverage. ROM set version, BIOS/device ZIPs, CHDs, and emulator choice are critical."
+  ]
+}

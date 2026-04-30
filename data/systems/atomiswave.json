@@ -3,13 +3,68 @@
   "name": "Sammy Atomiswave",
   "category": "arcade",
   "manufacturer": "Sammy",
-  "sources": [{ "type": "docs", "url": "https://docs.libretro.com/library/flycast/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
-  "formats": { "preferred": [".zip"], "supported": [".zip", ".7z", ".lst", ".bin", ".dat"], "descriptor_files": [".lst"], "archive_formats": [".zip", ".7z"] },
-  "bios": { "required": true, "common_files": ["awbios.zip"], "notes": "Atomiswave BIOS requirements depend on emulator/core and romset." },
-  "emulation": { "preferred_emulators": ["flycast"], "retroarch_cores": ["flycast"] },
-  "library_behavior": { "romset_version_sensitive": true, "do_not_unzip_roms_by_default": true },
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://docs.libretro.com/library/flycast/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "formats": {
+    "preferred": [
+      ".zip"
+    ],
+    "supported": [
+      ".zip",
+      ".7z",
+      ".lst",
+      ".bin",
+      ".dat"
+    ],
+    "descriptor_files": [
+      ".lst"
+    ],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "bios": {
+    "required": true,
+    "common_files": [
+      "awbios.zip"
+    ],
+    "notes": "Atomiswave BIOS requirements depend on emulator/core and romset."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "flycast"
+    ],
+    "retroarch_cores": [
+      "flycast"
+    ]
+  },
+  "library_behavior": {
+    "romset_version_sensitive": true,
+    "do_not_unzip_roms_by_default": true
+  },
   "frontend_notes": {},
-  "safety": { "automation_level": "dry_run_only", "requires_backup": true, "do_not_store": ["bios_roms", "rom_payloads"], "notes": ["Do not rename/rebuild Atomiswave sets without verified set/version context."] },
-  "quirks": ["mame-romset-version"],
-  "notes": ["Atomiswave often shares Flycast arcade workflows with NAOMI."]
+  "safety": {
+    "automation_level": "dry_run_only",
+    "requires_backup": true,
+    "do_not_store": [
+      "bios_roms",
+      "rom_payloads"
+    ],
+    "notes": [
+      "Do not rename/rebuild Atomiswave sets without verified set/version context."
+    ]
+  },
+  "quirks": [
+    "mame-romset-version"
+  ],
+  "notes": [
+    "Atomiswave often shares Flycast arcade workflows with NAOMI."
+  ]
 }

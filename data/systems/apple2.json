@@ -3,12 +3,56 @@
   "name": "Apple II",
   "category": "computer",
   "manufacturer": "Apple",
-  "sources": [{ "type": "github", "url": "https://github.com/libretro/linapple", "last_reviewed": "2026-04-29", "confidence": "medium" }],
-  "formats": { "preferred": [".dsk", ".woz"], "supported": [".dsk", ".do", ".po", ".nib", ".woz", ".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
-  "bios": { "required": false, "common_files": [], "notes": "Apple II emulator requirements vary by implementation." },
-  "emulation": { "preferred_emulators": ["linapple"], "retroarch_cores": ["linapple"] },
-  "library_behavior": { "multidisc": true, "multidisc_format": "emulator_specific", "playlist_target_preference": "disk image", "safe_archive_deletion_requires_launch_test": true },
+  "sources": [
+    {
+      "type": "github",
+      "url": "https://github.com/libretro/linapple",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "formats": {
+    "preferred": [
+      ".dsk",
+      ".woz"
+    ],
+    "supported": [
+      ".dsk",
+      ".do",
+      ".po",
+      ".nib",
+      ".woz",
+      ".zip",
+      ".7z"
+    ],
+    "descriptor_files": [],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "bios": {
+    "required": false,
+    "common_files": [],
+    "notes": "Apple II emulator requirements vary by implementation."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "linapple"
+    ],
+    "retroarch_cores": [
+      "linapple"
+    ]
+  },
+  "library_behavior": {
+    "multidisc": true,
+    "multidisc_format": "emulator_specific",
+    "playlist_target_preference": "disk image",
+    "safe_archive_deletion_requires_launch_test": true
+  },
   "frontend_notes": {},
   "quirks": [],
-  "notes": ["Disk side/order and boot expectations can matter for launch behavior."]
+  "notes": [
+    "Disk side/order and boot expectations can matter for launch behavior."
+  ]
 }

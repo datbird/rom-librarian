@@ -1,1 +1,48 @@
-{"id":"beebem","name":"BeebEm","category":"emulator","homepage":"https://github.com/stardot/beebem-windows","sources":[{"type":"github","url":"https://github.com/stardot/beebem-windows","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows","linux"],"systems":["bbcmicro","electron"],"paths":{"roms":"BBC Micro ROM directory","config":"BeebEm configuration"},"supported_formats":{"disk":[".ssd",".dsd",".adf",".adl",".img"],"tape":[".uef",".csw"]},"library_behavior":{"supports_m3u":false,"bios_required_for_disc_systems":false,"cli_or_frontend_wrapper_common":true},"quirks":[],"notes":["BBC Micro emulator. Machine ROMs are user-managed emulator setup."]}
+{
+  "id": "beebem",
+  "name": "BeebEm",
+  "category": "emulator",
+  "homepage": "https://github.com/stardot/beebem-windows",
+  "sources": [
+    {
+      "type": "github",
+      "url": "https://github.com/stardot/beebem-windows",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux"
+  ],
+  "systems": [
+    "bbcmicro",
+    "electron"
+  ],
+  "paths": {
+    "roms": "BBC Micro ROM directory",
+    "config": "BeebEm configuration"
+  },
+  "supported_formats": {
+    "disk": [
+      ".ssd",
+      ".dsd",
+      ".adf",
+      ".adl",
+      ".img"
+    ],
+    "tape": [
+      ".uef",
+      ".csw"
+    ]
+  },
+  "library_behavior": {
+    "supports_m3u": false,
+    "bios_required_for_disc_systems": false,
+    "cli_or_frontend_wrapper_common": true
+  },
+  "quirks": [],
+  "notes": [
+    "BBC Micro emulator. Machine ROMs are user-managed emulator setup."
+  ]
+}

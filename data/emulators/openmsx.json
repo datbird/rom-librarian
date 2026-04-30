@@ -1,1 +1,55 @@
-{"id":"openmsx","name":"openMSX","category":"emulator","homepage":"https://openmsx.org/","sources":[{"type":"homepage","url":"https://openmsx.org/","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows","linux","macos"],"systems":["msx","msx1","msx2","msx2plus","msxturbor"],"paths":{"machines":"openMSX machines directory","config":"openMSX user configuration"},"supported_formats":{"cartridge":[".rom",".mx1",".mx2"],"disk":[".dsk"],"tape":[".cas"],"playlist":[".m3u"]},"library_behavior":{"supports_m3u":true,"bios_required_for_disc_systems":false,"cli_or_frontend_wrapper_common":true},"quirks":[],"notes":["Machine definitions and system ROMs are emulator setup material."]}
+{
+  "id": "openmsx",
+  "name": "openMSX",
+  "category": "emulator",
+  "homepage": "https://openmsx.org/",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://openmsx.org/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos"
+  ],
+  "systems": [
+    "msx",
+    "msx1",
+    "msx2",
+    "msx2plus",
+    "msxturbor"
+  ],
+  "paths": {
+    "machines": "openMSX machines directory",
+    "config": "openMSX user configuration"
+  },
+  "supported_formats": {
+    "cartridge": [
+      ".rom",
+      ".mx1",
+      ".mx2"
+    ],
+    "disk": [
+      ".dsk"
+    ],
+    "tape": [
+      ".cas"
+    ],
+    "playlist": [
+      ".m3u"
+    ]
+  },
+  "library_behavior": {
+    "supports_m3u": true,
+    "bios_required_for_disc_systems": false,
+    "cli_or_frontend_wrapper_common": true
+  },
+  "quirks": [],
+  "notes": [
+    "Machine definitions and system ROMs are emulator setup material."
+  ]
+}

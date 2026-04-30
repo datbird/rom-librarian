@@ -1,1 +1,49 @@
-{"id":"dosbox","name":"DOSBox","category":"emulator","homepage":"https://www.dosbox.com/","sources":[{"type":"homepage","url":"https://www.dosbox.com/","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows","linux","macos"],"systems":["dos","pc"],"paths":{"games":"mounted DOS game folders","config":"dosbox.conf and per-game launchers"},"supported_formats":{"launcher":[".conf",".bat",".cmd",".sh",".desktop"],"disk":[".iso",".cue"]},"library_behavior":{"supports_m3u":false,"bios_required_for_disc_systems":false,"cli_or_frontend_wrapper_common":true},"quirks":[],"notes":["DOS emulator. Mount paths and per-game config are part of launch behavior."]}
+{
+  "id": "dosbox",
+  "name": "DOSBox",
+  "category": "emulator",
+  "homepage": "https://www.dosbox.com/",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://www.dosbox.com/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos"
+  ],
+  "systems": [
+    "dos",
+    "pc"
+  ],
+  "paths": {
+    "games": "mounted DOS game folders",
+    "config": "dosbox.conf and per-game launchers"
+  },
+  "supported_formats": {
+    "launcher": [
+      ".conf",
+      ".bat",
+      ".cmd",
+      ".sh",
+      ".desktop"
+    ],
+    "disk": [
+      ".iso",
+      ".cue"
+    ]
+  },
+  "library_behavior": {
+    "supports_m3u": false,
+    "bios_required_for_disc_systems": false,
+    "cli_or_frontend_wrapper_common": true
+  },
+  "quirks": [],
+  "notes": [
+    "DOS emulator. Mount paths and per-game config are part of launch behavior."
+  ]
+}

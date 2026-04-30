@@ -64,6 +64,17 @@ npm run report:summary -- --json-out /tmp/summary.json
 
 JSON summary output is validated by `schema/summary-report.schema.json` in the output test suite.
 
+## Data Quality
+
+Data-quality reports flag advisory cleanup targets in normalized records, such as low-confidence sources, generic source URLs, and placeholder supported formats:
+
+```bash
+npm run report:data-quality
+npm run report:data-quality -- --format markdown
+```
+
+Quality findings are advisory and do not affect coverage completeness.
+
 ## Format Matrix
 
 | Command | JSON stdout | `--json-out` | Markdown | HTML |
@@ -72,6 +83,7 @@ JSON summary output is validated by `schema/summary-report.schema.json` in the o
 | `npm run plan:markdown -- <plan.json>` | no | no | default | no |
 | `npm run plan:changes -- <plan.json>` | default | supported | no | no |
 | `npm run report:coverage-gaps` | default | supported | `--format markdown` | no |
+| `npm run report:data-quality` | default | supported | `--format markdown` | no |
 | `npm run report:summary` | default | supported | `--format markdown` | no |
 
 ## JSON Schemas
@@ -93,4 +105,4 @@ Rollback supports `--dry-run` for planned restore/delete output with `applied: f
 
 ## CI Artifacts
 
-The Check workflow runs `npm run examples:outputs -- tmp/examples` and uploads example audit outputs. The artifact includes audit JSON, repair plans, dry-run changes, Markdown reports, HTML reports, coverage-gap reports, and summary reports for representative fixtures.
+The Check workflow runs `npm run examples:outputs -- tmp/examples` and uploads example audit outputs. The artifact includes audit JSON, repair plans, dry-run changes, Markdown reports, HTML reports, coverage-gap reports, data-quality reports, and summary reports for representative fixtures.

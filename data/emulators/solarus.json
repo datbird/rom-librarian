@@ -1,1 +1,46 @@
-{"id":"solarus","name":"Solarus","category":"runtime","homepage":"https://www.solarus-games.org/","sources":[{"type":"homepage","url":"https://www.solarus-games.org/","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows","linux","macos"],"systems":["solarus"],"paths":{"quests":"Solarus quest files or directories","config":"Solarus user data directory"},"supported_formats":{"quest":[".solarus",".zip"],"launcher":[".sh",".desktop",".exe"]},"library_behavior":{"supports_m3u":false,"bios_required_for_disc_systems":false,"cli_or_frontend_wrapper_common":true},"quirks":[],"notes":["Quest runtime. Preserve quest package and save data separately."]}
+{
+  "id": "solarus",
+  "name": "Solarus",
+  "category": "runtime",
+  "homepage": "https://www.solarus-games.org/",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://www.solarus-games.org/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos"
+  ],
+  "systems": [
+    "solarus"
+  ],
+  "paths": {
+    "quests": "Solarus quest files or directories",
+    "config": "Solarus user data directory"
+  },
+  "supported_formats": {
+    "quest": [
+      ".solarus",
+      ".zip"
+    ],
+    "launcher": [
+      ".sh",
+      ".desktop",
+      ".exe"
+    ]
+  },
+  "library_behavior": {
+    "supports_m3u": false,
+    "bios_required_for_disc_systems": false,
+    "cli_or_frontend_wrapper_common": true
+  },
+  "quirks": [],
+  "notes": [
+    "Quest runtime. Preserve quest package and save data separately."
+  ]
+}

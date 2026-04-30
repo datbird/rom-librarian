@@ -4,22 +4,51 @@
   "category": "console",
   "manufacturer": "Nintendo",
   "sources": [
-    { "type": "homepage", "url": "https://ryujinx.org/", "last_reviewed": "2026-04-28", "confidence": "medium" },
-    { "type": "docs", "url": "https://emudeck.github.io/cheat-sheet/", "last_reviewed": "2026-04-28", "confidence": "medium" }
+    {
+      "type": "homepage",
+      "url": "https://ryujinx.org/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "medium"
+    },
+    {
+      "type": "docs",
+      "url": "https://emudeck.github.io/cheat-sheet/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "medium"
+    }
   ],
   "formats": {
-    "preferred": [".xci", ".nsp"],
-    "supported": [".xci", ".nsp", ".nca", ".nro", ".nso"],
+    "preferred": [
+      ".xci",
+      ".nsp"
+    ],
+    "supported": [
+      ".xci",
+      ".nsp",
+      ".nca",
+      ".nro",
+      ".nso"
+    ],
     "descriptor_files": [],
-    "archive_formats": [".zip", ".7z"]
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
   },
   "bios": {
     "required": true,
-    "common_files": ["prod.keys", "title.keys"],
+    "common_files": [
+      "prod.keys",
+      "title.keys"
+    ],
     "notes": "Keys and firmware must be dumped by the user and must never be stored in project config, docs, examples, or chat."
   },
   "emulation": {
-    "preferred_emulators": ["ryujinx", "yuzu", "eden"],
+    "preferred_emulators": [
+      "ryujinx",
+      "yuzu",
+      "eden"
+    ],
     "retroarch_cores": []
   },
   "library_behavior": {
@@ -35,17 +64,36 @@
   "safety": {
     "automation_level": "approval_required",
     "requires_backup": true,
-    "do_not_store": ["account_data", "firmware", "keys", "prod_keys", "title_keys", "user_save_data"],
-    "notes": ["Keys, firmware, account data, and installed content state must remain user-managed and outside rom-librarian data."]
+    "do_not_store": [
+      "account_data",
+      "firmware",
+      "keys",
+      "prod_keys",
+      "title_keys",
+      "user_save_data"
+    ],
+    "notes": [
+      "Keys, firmware, account data, and installed content state must remain user-managed and outside rom-librarian data."
+    ]
   },
-  "quirks": ["switch-keys-secrets"],
-  "confidence_notes": ["Switch support and emulator availability are volatile; retain conservative metadata and verify the active frontend parser before suggesting changes."],
+  "quirks": [
+    "switch-keys-secrets"
+  ],
+  "confidence_notes": [
+    "Switch support and emulator availability are volatile; retain conservative metadata and verify the active frontend parser before suggesting changes."
+  ],
   "source_map": {
-    "formats": ["https://emudeck.github.io/cheat-sheet/"],
-    "safety": ["https://emudeck.github.io/cheat-sheet/"]
+    "formats": [
+      "https://emudeck.github.io/cheat-sheet/"
+    ],
+    "safety": [
+      "https://emudeck.github.io/cheat-sheet/"
+    ]
   },
   "last_verified_with": {
     "source_review_date": "2026-04-28"
   },
-  "notes": ["Never ask the user to paste keys. Only identify expected file locations and missing-file symptoms."]
+  "notes": [
+    "Never ask the user to paste keys. Only identify expected file locations and missing-file symptoms."
+  ]
 }

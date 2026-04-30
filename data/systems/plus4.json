@@ -3,13 +3,98 @@
   "name": "Commodore Plus/4",
   "category": "computer",
   "manufacturer": "Commodore",
-  "sources": [{ "type": "homepage", "url": "https://vice-emu.sourceforge.io/", "last_reviewed": "2026-04-29", "confidence": "medium" }, { "type": "docs", "url": "https://docs.mamedev.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
-  "aliases": { "folder_ids": ["plus4", "cplus4", "commodoreplus4"], "frontend_ids": ["plus4"], "region_ids": [], "equivalent_system_ids": [] },
-  "formats": { "preferred": [".d64", ".prg", ".tap"], "supported": [".zip", ".7z", ".d64", ".g64", ".t64", ".tap", ".prg", ".crt", ".dsk", ".hfe", ".m3u", ".rom", ".bin"], "descriptor_files": [".m3u"], "archive_formats": [".zip", ".7z"] },
-  "bios": { "required": true, "common_files": [], "notes": "Plus/4 machine ROM expectations depend on emulator and frontend configuration." },
-  "emulation": { "preferred_emulators": ["vice", "mame", "retroarch"], "retroarch_cores": ["vice_xplus4", "mame"] },
-  "library_behavior": { "multidisc": true, "multidisc_format": "m3u", "folder_based": false, "playlist_target_preference": "disk, tape, program, cartridge, or playlist", "safe_archive_deletion_requires_launch_test": true },
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://vice-emu.sourceforge.io/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    },
+    {
+      "type": "docs",
+      "url": "https://docs.mamedev.org/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "aliases": {
+    "folder_ids": [
+      "plus4",
+      "cplus4",
+      "commodoreplus4"
+    ],
+    "frontend_ids": [
+      "plus4"
+    ],
+    "region_ids": [],
+    "equivalent_system_ids": []
+  },
+  "formats": {
+    "preferred": [
+      ".d64",
+      ".prg",
+      ".tap"
+    ],
+    "supported": [
+      ".zip",
+      ".7z",
+      ".d64",
+      ".g64",
+      ".t64",
+      ".tap",
+      ".prg",
+      ".crt",
+      ".dsk",
+      ".hfe",
+      ".m3u",
+      ".rom",
+      ".bin"
+    ],
+    "descriptor_files": [
+      ".m3u"
+    ],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "bios": {
+    "required": true,
+    "common_files": [],
+    "notes": "Plus/4 machine ROM expectations depend on emulator and frontend configuration."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "vice",
+      "mame",
+      "retroarch"
+    ],
+    "retroarch_cores": [
+      "vice_xplus4",
+      "mame"
+    ]
+  },
+  "library_behavior": {
+    "multidisc": true,
+    "multidisc_format": "m3u",
+    "folder_based": false,
+    "playlist_target_preference": "disk, tape, program, cartridge, or playlist",
+    "safe_archive_deletion_requires_launch_test": true
+  },
   "frontend_notes": {},
-  "safety": { "automation_level": "approval_required", "requires_backup": true, "do_not_store": ["machine_roms", "bios_roms", "rom_payloads"], "notes": ["Do not merge Plus/4, C16, and C64 media automatically."] },
-  "notes": ["Plus/4 libraries need Commodore-family but model-specific handling."]
+  "safety": {
+    "automation_level": "approval_required",
+    "requires_backup": true,
+    "do_not_store": [
+      "machine_roms",
+      "bios_roms",
+      "rom_payloads"
+    ],
+    "notes": [
+      "Do not merge Plus/4, C16, and C64 media automatically."
+    ]
+  },
+  "notes": [
+    "Plus/4 libraries need Commodore-family but model-specific handling."
+  ]
 }

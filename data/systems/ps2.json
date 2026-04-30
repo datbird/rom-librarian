@@ -4,15 +4,47 @@
   "category": "console",
   "manufacturer": "Sony",
   "sources": [
-    { "type": "homepage", "url": "https://pcsx2.net/", "last_reviewed": "2026-04-28", "confidence": "high" },
-    { "type": "docs", "url": "https://pcsx2.net/docs/setup/gather", "last_reviewed": "2026-04-28", "confidence": "high" },
-    { "type": "docs", "url": "https://emudeck.github.io/cheat-sheet/", "last_reviewed": "2026-04-28", "confidence": "medium" }
+    {
+      "type": "homepage",
+      "url": "https://pcsx2.net/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "high"
+    },
+    {
+      "type": "docs",
+      "url": "https://pcsx2.net/docs/setup/gather",
+      "last_reviewed": "2026-04-28",
+      "confidence": "high"
+    },
+    {
+      "type": "docs",
+      "url": "https://emudeck.github.io/cheat-sheet/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "medium"
+    }
   ],
   "formats": {
-    "preferred": [".chd", ".iso"],
-    "supported": [".iso", ".chd", ".cso", ".gz", ".bin", ".mdf", ".nrg", ".m3u"],
-    "descriptor_files": [".m3u"],
-    "archive_formats": [".zip", ".7z"]
+    "preferred": [
+      ".chd",
+      ".iso"
+    ],
+    "supported": [
+      ".iso",
+      ".chd",
+      ".cso",
+      ".gz",
+      ".bin",
+      ".mdf",
+      ".nrg",
+      ".m3u"
+    ],
+    "descriptor_files": [
+      ".m3u"
+    ],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
   },
   "bios": {
     "required": true,
@@ -20,8 +52,12 @@
     "notes": "PCSX2 requires a legally dumped PS2 BIOS. File names vary by region and dump method."
   },
   "emulation": {
-    "preferred_emulators": ["pcsx2"],
-    "retroarch_cores": ["lrps2"]
+    "preferred_emulators": [
+      "pcsx2"
+    ],
+    "retroarch_cores": [
+      "lrps2"
+    ]
   },
   "library_behavior": {
     "multidisc": true,
@@ -37,17 +73,37 @@
   "safety": {
     "automation_level": "approval_required",
     "requires_backup": true,
-    "do_not_store": ["bios", "bios_roms", "firmware", "rom_payloads"],
-    "notes": ["PCSX2 requires a user-dumped BIOS; do not store BIOS files, checksums, or dump metadata in project data."]
+    "do_not_store": [
+      "bios",
+      "bios_roms",
+      "firmware",
+      "rom_payloads"
+    ],
+    "notes": [
+      "PCSX2 requires a user-dumped BIOS; do not store BIOS files, checksums, or dump metadata in project data."
+    ]
   },
-  "quirks": ["multidisc-chd-m3u-edge-cases", "retroarch-system-dir-confusion"],
-  "confidence_notes": ["PCSX2 BIOS guidance is official-doc-backed; frontend parser aliases should still be verified per installation."],
+  "quirks": [
+    "multidisc-chd-m3u-edge-cases",
+    "retroarch-system-dir-confusion"
+  ],
+  "confidence_notes": [
+    "PCSX2 BIOS guidance is official-doc-backed; frontend parser aliases should still be verified per installation."
+  ],
   "source_map": {
-    "formats": ["https://pcsx2.net/", "https://pcsx2.net/docs/setup/gather"],
-    "safety": ["https://pcsx2.net/docs/setup/gather"]
+    "formats": [
+      "https://pcsx2.net/",
+      "https://pcsx2.net/docs/setup/gather"
+    ],
+    "safety": [
+      "https://pcsx2.net/docs/setup/gather"
+    ]
   },
   "last_verified_with": {
     "source_review_date": "2026-04-28"
   },
-  "notes": ["Prefer CHD for compressed disc storage where the selected PCSX2 version supports it.", "Do not store BIOS files or BIOS checksums in rom-librarian configs."]
+  "notes": [
+    "Prefer CHD for compressed disc storage where the selected PCSX2 version supports it.",
+    "Do not store BIOS files or BIOS checksums in rom-librarian configs."
+  ]
 }

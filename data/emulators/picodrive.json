@@ -3,12 +3,56 @@
   "name": "PicoDrive",
   "category": "emulator",
   "homepage": "https://docs.libretro.com/library/picodrive/",
-  "sources": [{ "type": "docs", "url": "https://docs.libretro.com/library/picodrive/", "last_reviewed": "2026-04-29", "confidence": "high" }],
-  "platforms": ["windows", "linux", "macos", "steamdeck"],
-  "systems": ["genesis", "megadrive", "sega32x", "segacd", "megacd", "sms"],
-  "paths": { "bios": "RetroArch system directory for CD content", "config": "RetroArch core options" },
-  "supported_formats": { "rom": [".md", ".gen", ".smd", ".32x", ".cue", ".chd", ".m3u", ".zip", ".7z"] },
-  "library_behavior": { "supports_cd": true, "supports_32x": true, "supports_m3u": true, "bios_required_for_cd": true },
-  "quirks": ["retroarch-system-dir-confusion", "es-folder-alias-mismatch"],
-  "notes": ["Useful for 32X and Sega CD workflows; BIOS and .m3u behavior are core-specific."]
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://docs.libretro.com/library/picodrive/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "high"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "genesis",
+    "megadrive",
+    "sega32x",
+    "segacd",
+    "megacd",
+    "sms"
+  ],
+  "paths": {
+    "bios": "RetroArch system directory for CD content",
+    "config": "RetroArch core options"
+  },
+  "supported_formats": {
+    "rom": [
+      ".md",
+      ".gen",
+      ".smd",
+      ".32x",
+      ".cue",
+      ".chd",
+      ".m3u",
+      ".zip",
+      ".7z"
+    ]
+  },
+  "library_behavior": {
+    "supports_cd": true,
+    "supports_32x": true,
+    "supports_m3u": true,
+    "bios_required_for_cd": true
+  },
+  "quirks": [
+    "retroarch-system-dir-confusion",
+    "es-folder-alias-mismatch"
+  ],
+  "notes": [
+    "Useful for 32X and Sega CD workflows; BIOS and .m3u behavior are core-specific."
+  ]
 }

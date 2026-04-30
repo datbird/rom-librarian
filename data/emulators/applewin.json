@@ -1,1 +1,46 @@
-{"id":"applewin","name":"AppleWin","category":"emulator","homepage":"https://github.com/AppleWin/AppleWin","sources":[{"type":"github","url":"https://github.com/AppleWin/AppleWin","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows"],"systems":["apple2","apple2gs"],"paths":{"disks":"Apple II disk images","config":"AppleWin configuration"},"supported_formats":{"disk":[".dsk",".do",".po",".nib",".woz"],"tape":[".wav"]},"library_behavior":{"supports_m3u":false,"bios_required_for_disc_systems":false,"cli_or_frontend_wrapper_common":true},"quirks":[],"notes":["Apple II emulator. Model/firmware settings affect compatibility."]}
+{
+  "id": "applewin",
+  "name": "AppleWin",
+  "category": "emulator",
+  "homepage": "https://github.com/AppleWin/AppleWin",
+  "sources": [
+    {
+      "type": "github",
+      "url": "https://github.com/AppleWin/AppleWin",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows"
+  ],
+  "systems": [
+    "apple2",
+    "apple2gs"
+  ],
+  "paths": {
+    "disks": "Apple II disk images",
+    "config": "AppleWin configuration"
+  },
+  "supported_formats": {
+    "disk": [
+      ".dsk",
+      ".do",
+      ".po",
+      ".nib",
+      ".woz"
+    ],
+    "tape": [
+      ".wav"
+    ]
+  },
+  "library_behavior": {
+    "supports_m3u": false,
+    "bios_required_for_disc_systems": false,
+    "cli_or_frontend_wrapper_common": true
+  },
+  "quirks": [],
+  "notes": [
+    "Apple II emulator. Model/firmware settings affect compatibility."
+  ]
+}

@@ -1,1 +1,51 @@
-{"id":"pokemini","name":"PokeMini","category":"emulator","homepage":"https://github.com/libretro/PokeMini","sources":[{"type":"github","url":"https://github.com/libretro/PokeMini","last_reviewed":"2026-04-30","confidence":"medium"},{"type":"docs","url":"https://docs.libretro.com/meta/core-list/","last_reviewed":"2026-04-30","confidence":"medium"}],"platforms":["windows","linux","macos","steamdeck"],"systems":["pokemini"],"paths":{"content":"Content path or launcher target managed by the selected frontend","saves":"Emulator-specific save/config location; do not assume a portable default"},"supported_formats":{"content":[".min",".zip",".7z"],"disc":[],"descriptors":[]},"library_behavior":{"retroarch_core":true,"standalone":true,"safe_archive_deletion_requires_launch_test":true,"launch_target_sensitive":false},"notes":["Pokemon Mini emulator."]}
+{
+  "id": "pokemini",
+  "name": "PokeMini",
+  "category": "emulator",
+  "homepage": "https://github.com/libretro/PokeMini",
+  "sources": [
+    {
+      "type": "github",
+      "url": "https://github.com/libretro/PokeMini",
+      "last_reviewed": "2026-04-30",
+      "confidence": "medium"
+    },
+    {
+      "type": "docs",
+      "url": "https://docs.libretro.com/meta/core-list/",
+      "last_reviewed": "2026-04-30",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "pokemini"
+  ],
+  "paths": {
+    "content": "Content path or launcher target managed by the selected frontend",
+    "saves": "Emulator-specific save/config location; do not assume a portable default"
+  },
+  "supported_formats": {
+    "content": [
+      ".min",
+      ".zip",
+      ".7z"
+    ],
+    "disc": [],
+    "descriptors": []
+  },
+  "library_behavior": {
+    "retroarch_core": true,
+    "standalone": true,
+    "safe_archive_deletion_requires_launch_test": true,
+    "launch_target_sensitive": false
+  },
+  "notes": [
+    "Pokemon Mini emulator."
+  ]
+}

@@ -4,17 +4,60 @@
   "category": "emulator",
   "homepage": "https://flyinghead.github.io/flycast-builds/",
   "sources": [
-    { "type": "homepage", "url": "https://flyinghead.github.io/flycast-builds/", "last_reviewed": "2026-04-28", "confidence": "high" },
-    { "type": "docs", "url": "https://docs.libretro.com/library/flycast/", "last_reviewed": "2026-04-28", "confidence": "high" }
+    {
+      "type": "homepage",
+      "url": "https://flyinghead.github.io/flycast-builds/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "high"
+    },
+    {
+      "type": "docs",
+      "url": "https://docs.libretro.com/library/flycast/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "high"
+    }
   ],
-  "platforms": ["windows", "linux", "macos", "steamdeck"],
-  "systems": ["dreamcast", "naomi", "naomi2", "atomiswave"],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "dreamcast",
+    "naomi",
+    "naomi2",
+    "atomiswave"
+  ],
   "paths": {
     "config": "platform-specific Flycast config directory",
     "bios": "dc and arcade BIOS files under configured data/system path"
   },
-  "supported_formats": { "disc": [".gdi", ".cdi", ".chd", ".cue", ".m3u"], "arcade": [".zip", ".bin", ".lst"] },
-  "library_behavior": { "supports_m3u": true, "supports_chd": true, "bios_required": false, "supports_arcade_boards": true },
-  "quirks": ["multidisc-chd-m3u-edge-cases", "retroarch-system-dir-confusion"],
-  "notes": ["Flycast covers Dreamcast plus related Sega arcade platforms; verify BIOS/ROM placement for NAOMI/Atomiswave separately from Dreamcast disc libraries."]
+  "supported_formats": {
+    "disc": [
+      ".gdi",
+      ".cdi",
+      ".chd",
+      ".cue",
+      ".m3u"
+    ],
+    "arcade": [
+      ".zip",
+      ".bin",
+      ".lst"
+    ]
+  },
+  "library_behavior": {
+    "supports_m3u": true,
+    "supports_chd": true,
+    "bios_required": false,
+    "supports_arcade_boards": true
+  },
+  "quirks": [
+    "multidisc-chd-m3u-edge-cases",
+    "retroarch-system-dir-confusion"
+  ],
+  "notes": [
+    "Flycast covers Dreamcast plus related Sega arcade platforms; verify BIOS/ROM placement for NAOMI/Atomiswave separately from Dreamcast disc libraries."
+  ]
 }

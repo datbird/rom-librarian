@@ -1,1 +1,45 @@
-{"id":"same_cdi","name":"SAME CDi","category":"emulator","homepage":"https://docs.libretro.com/library/same_cdi/","sources":[{"type":"docs","url":"https://docs.libretro.com/library/same_cdi/","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows","linux","macos","steamdeck"],"systems":["cdi","cdimono1"],"paths":{"bios":"RetroArch system directory / MAME machine ROM paths"},"supported_formats":{"disc":[".chd",".cue",".iso"]},"library_behavior":{"bios_required":true,"mame_derived":true,"safe_archive_deletion_requires_launch_test":true},"quirks":["retroarch-system-dir-confusion"],"notes":["CD-i libretro core derived from MAME/SAME workflows."]}
+{
+  "id": "same_cdi",
+  "name": "SAME CDi",
+  "category": "emulator",
+  "homepage": "https://docs.libretro.com/library/same_cdi/",
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://docs.libretro.com/library/same_cdi/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "cdi",
+    "cdimono1"
+  ],
+  "paths": {
+    "bios": "RetroArch system directory / MAME machine ROM paths"
+  },
+  "supported_formats": {
+    "disc": [
+      ".chd",
+      ".cue",
+      ".iso"
+    ]
+  },
+  "library_behavior": {
+    "bios_required": true,
+    "mame_derived": true,
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "quirks": [
+    "retroarch-system-dir-confusion"
+  ],
+  "notes": [
+    "CD-i libretro core derived from MAME/SAME workflows."
+  ]
+}

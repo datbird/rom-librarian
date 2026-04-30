@@ -1,1 +1,42 @@
-{"id":"beetle_vb","name":"Beetle VB","category":"emulator","homepage":"https://docs.libretro.com/library/beetle_vb/","sources":[{"type":"docs","url":"https://docs.libretro.com/library/beetle_vb/","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows","linux","macos","steamdeck"],"systems":["virtualboy"],"paths":{"config":"RetroArch core options"},"supported_formats":{"rom":[".vb",".vboy",".bin",".zip",".7z"]},"library_behavior":{"cartridge_only":true,"safe_archive_deletion_requires_launch_test":true},"notes":["Virtual Boy libretro core."]}
+{
+  "id": "beetle_vb",
+  "name": "Beetle VB",
+  "category": "emulator",
+  "homepage": "https://docs.libretro.com/library/beetle_vb/",
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://docs.libretro.com/library/beetle_vb/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "virtualboy"
+  ],
+  "paths": {
+    "config": "RetroArch core options"
+  },
+  "supported_formats": {
+    "rom": [
+      ".vb",
+      ".vboy",
+      ".bin",
+      ".zip",
+      ".7z"
+    ]
+  },
+  "library_behavior": {
+    "cartridge_only": true,
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "notes": [
+    "Virtual Boy libretro core."
+  ]
+}

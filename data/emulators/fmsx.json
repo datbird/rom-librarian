@@ -1,1 +1,49 @@
-{"id":"fmsx","name":"fMSX","category":"emulator","homepage":"https://fms.komkon.org/fMSX/","sources":[{"type":"homepage","url":"https://fms.komkon.org/fMSX/","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows","linux","macos","android"],"systems":["msx","msx1","msx2"],"paths":{"system":"emulator system ROM directory","config":"emulator configuration"},"supported_formats":{"cartridge":[".rom"],"disk":[".dsk"],"tape":[".cas"]},"library_behavior":{"supports_m3u":false,"bios_required_for_disc_systems":false,"cli_or_frontend_wrapper_common":true},"quirks":[],"notes":["MSX emulator/runtime with machine ROM setup requirements."]}
+{
+  "id": "fmsx",
+  "name": "fMSX",
+  "category": "emulator",
+  "homepage": "https://fms.komkon.org/fMSX/",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://fms.komkon.org/fMSX/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "android"
+  ],
+  "systems": [
+    "msx",
+    "msx1",
+    "msx2"
+  ],
+  "paths": {
+    "system": "emulator system ROM directory",
+    "config": "emulator configuration"
+  },
+  "supported_formats": {
+    "cartridge": [
+      ".rom"
+    ],
+    "disk": [
+      ".dsk"
+    ],
+    "tape": [
+      ".cas"
+    ]
+  },
+  "library_behavior": {
+    "supports_m3u": false,
+    "bios_required_for_disc_systems": false,
+    "cli_or_frontend_wrapper_common": true
+  },
+  "quirks": [],
+  "notes": [
+    "MSX emulator/runtime with machine ROM setup requirements."
+  ]
+}

@@ -4,16 +4,43 @@
   "category": "mobile",
   "manufacturer": "Sun/Oracle/Nokia/etc.",
   "sources": [
-    { "type": "github", "url": "https://github.com/hex007/freej2me", "last_reviewed": "2026-04-28", "confidence": "high" }
+    {
+      "type": "github",
+      "url": "https://github.com/hex007/freej2me",
+      "last_reviewed": "2026-04-28",
+      "confidence": "high"
+    }
   ],
   "formats": {
-    "preferred": [".jar", ".jad"],
-    "supported": [".jar", ".jad", ".zip"],
-    "descriptor_files": [".jad"],
-    "archive_formats": [".zip"]
+    "preferred": [
+      ".jar",
+      ".jad"
+    ],
+    "supported": [
+      ".jar",
+      ".jad",
+      ".zip"
+    ],
+    "descriptor_files": [
+      ".jad"
+    ],
+    "archive_formats": [
+      ".zip"
+    ]
   },
-  "bios": { "required": false, "common_files": [] },
-  "emulation": { "preferred_emulators": ["freej2me", "kemulator"], "retroarch_cores": ["freej2me"] },
+  "bios": {
+    "required": false,
+    "common_files": []
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "freej2me",
+      "kemulator"
+    ],
+    "retroarch_cores": [
+      "freej2me"
+    ]
+  },
   "library_behavior": {
     "device_profile_matters": true,
     "screen_resolution_matters": true,
@@ -21,5 +48,7 @@
   },
   "frontend_notes": {},
   "quirks": [],
-  "notes": ["A valid JAR can still behave incorrectly if the emulator uses the wrong phone profile or resolution."]
+  "notes": [
+    "A valid JAR can still behave incorrectly if the emulator uses the wrong phone profile or resolution."
+  ]
 }

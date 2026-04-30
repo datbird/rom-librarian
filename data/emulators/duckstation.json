@@ -4,17 +4,48 @@
   "category": "emulator",
   "homepage": "https://www.duckstation.org/",
   "sources": [
-    { "type": "homepage", "url": "https://www.duckstation.org/", "last_reviewed": "2026-04-28", "confidence": "high" },
-    { "type": "github", "url": "https://github.com/stenzek/duckstation", "last_reviewed": "2026-04-28", "confidence": "high" }
+    {
+      "type": "homepage",
+      "url": "https://www.duckstation.org/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "high"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/stenzek/duckstation",
+      "last_reviewed": "2026-04-28",
+      "confidence": "high"
+    }
   ],
-  "platforms": ["windows", "linux", "macos", "steamdeck"],
-  "systems": ["psx"],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "psx"
+  ],
   "paths": {
     "config": "platform-specific user config directory",
     "bios": "configured BIOS directory"
   },
-  "supported_formats": { "disc": [".cue", ".chd", ".iso", ".m3u", ".pbp"] },
-  "library_behavior": { "supports_m3u": true, "supports_chd": true, "bios_required": true },
+  "supported_formats": {
+    "disc": [
+      ".cue",
+      ".chd",
+      ".iso",
+      ".m3u",
+      ".pbp"
+    ]
+  },
+  "library_behavior": {
+    "supports_m3u": true,
+    "supports_chd": true,
+    "bios_required": true
+  },
   "quirks": [],
-  "notes": ["DuckStation is the default recommendation for PSX where available."]
+  "notes": [
+    "DuckStation is the default recommendation for PSX where available."
+  ]
 }

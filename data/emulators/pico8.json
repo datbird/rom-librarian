@@ -1,1 +1,44 @@
-{"id":"pico8","name":"PICO-8","category":"runtime","homepage":"https://www.lexaloffle.com/pico-8.php","sources":[{"type":"docs","url":"https://www.lexaloffle.com/pico-8.php","last_reviewed":"2026-04-30","confidence":"medium"}],"platforms":["windows","linux","macos","steamdeck"],"systems":["pico8"],"paths":{"content":"Content path or launcher target managed by the selected frontend","saves":"Emulator-specific save/config location; do not assume a portable default"},"supported_formats":{"content":[".p8",".p8.png"],"disc":[],"descriptors":[]},"library_behavior":{"retroarch_core":false,"standalone":true,"safe_archive_deletion_requires_launch_test":true,"launch_target_sensitive":true},"notes":["Official commercial PICO-8 runtime."]}
+{
+  "id": "pico8",
+  "name": "PICO-8",
+  "category": "runtime",
+  "homepage": "https://www.lexaloffle.com/pico-8.php",
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://www.lexaloffle.com/pico-8.php",
+      "last_reviewed": "2026-04-30",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "pico8"
+  ],
+  "paths": {
+    "content": "Content path or launcher target managed by the selected frontend",
+    "saves": "Emulator-specific save/config location; do not assume a portable default"
+  },
+  "supported_formats": {
+    "content": [
+      ".p8",
+      ".p8.png"
+    ],
+    "disc": [],
+    "descriptors": []
+  },
+  "library_behavior": {
+    "retroarch_core": false,
+    "standalone": true,
+    "safe_archive_deletion_requires_launch_test": true,
+    "launch_target_sensitive": true
+  },
+  "notes": [
+    "Official commercial PICO-8 runtime."
+  ]
+}

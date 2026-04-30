@@ -1,1 +1,50 @@
-{"id":"bluemsx","name":"blueMSX","category":"emulator","homepage":"http://bluemsx.com/","sources":[{"type":"homepage","url":"http://bluemsx.com/","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows","linux"],"systems":["msx","msx1","msx2","msx2plus"],"paths":{"machines":"blueMSX Machines directory","config":"blueMSX configuration"},"supported_formats":{"cartridge":[".rom",".mx1",".mx2"],"disk":[".dsk"],"tape":[".cas"]},"library_behavior":{"supports_m3u":false,"bios_required_for_disc_systems":false,"cli_or_frontend_wrapper_common":true},"quirks":[],"notes":["Machine/system ROM files are emulator setup material and should not be stored in metadata."]}
+{
+  "id": "bluemsx",
+  "name": "blueMSX",
+  "category": "emulator",
+  "homepage": "http://bluemsx.com/",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "http://bluemsx.com/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux"
+  ],
+  "systems": [
+    "msx",
+    "msx1",
+    "msx2",
+    "msx2plus"
+  ],
+  "paths": {
+    "machines": "blueMSX Machines directory",
+    "config": "blueMSX configuration"
+  },
+  "supported_formats": {
+    "cartridge": [
+      ".rom",
+      ".mx1",
+      ".mx2"
+    ],
+    "disk": [
+      ".dsk"
+    ],
+    "tape": [
+      ".cas"
+    ]
+  },
+  "library_behavior": {
+    "supports_m3u": false,
+    "bios_required_for_disc_systems": false,
+    "cli_or_frontend_wrapper_common": true
+  },
+  "quirks": [],
+  "notes": [
+    "Machine/system ROM files are emulator setup material and should not be stored in metadata."
+  ]
+}

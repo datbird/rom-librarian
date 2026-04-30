@@ -3,11 +3,55 @@
   "name": "FS-UAE",
   "category": "emulator",
   "homepage": "https://fs-uae.net/",
-  "sources": [{ "type": "homepage", "url": "https://fs-uae.net/", "last_reviewed": "2026-04-29", "confidence": "high" }],
-  "platforms": ["windows", "linux", "macos"],
-  "systems": ["amiga", "amiga500", "amiga600", "amiga1200", "amigacd32", "amigacdtv"],
-  "paths": { "config": "FS-UAE configuration and launcher databases", "kickstarts": "user-managed Kickstart ROM directory" },
-  "supported_formats": { "disk": [".adf", ".adz", ".ipf", ".dms", ".m3u"], "hardfile": [".hdf"], "packages": [".lha", ".zip", ".7z"] },
-  "library_behavior": { "requires_machine_profile": true, "kickstart_required": true, "supports_multidisk": true, "safe_archive_deletion_requires_launch_test": true },
-  "notes": ["Amiga model, Kickstart, RAM, and WHDLoad assumptions are launch-critical."]
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://fs-uae.net/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "high"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos"
+  ],
+  "systems": [
+    "amiga",
+    "amiga500",
+    "amiga600",
+    "amiga1200",
+    "amigacd32",
+    "amigacdtv"
+  ],
+  "paths": {
+    "config": "FS-UAE configuration and launcher databases",
+    "kickstarts": "user-managed Kickstart ROM directory"
+  },
+  "supported_formats": {
+    "disk": [
+      ".adf",
+      ".adz",
+      ".ipf",
+      ".dms",
+      ".m3u"
+    ],
+    "hardfile": [
+      ".hdf"
+    ],
+    "packages": [
+      ".lha",
+      ".zip",
+      ".7z"
+    ]
+  },
+  "library_behavior": {
+    "requires_machine_profile": true,
+    "kickstart_required": true,
+    "supports_multidisk": true,
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "notes": [
+    "Amiga model, Kickstart, RAM, and WHDLoad assumptions are launch-critical."
+  ]
 }

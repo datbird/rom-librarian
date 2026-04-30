@@ -3,11 +3,76 @@
   "name": "Amiga 500",
   "category": "computer",
   "manufacturer": "Commodore",
-  "sources": [{ "type": "homepage", "url": "https://fs-uae.net/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
-  "formats": { "preferred": [".adf", ".lha"], "supported": [".adf", ".adz", ".dms", ".ipf", ".lha", ".m3u", ".zip", ".7z", ".dsk", ".hfe"], "descriptor_files": [".m3u"], "archive_formats": [".zip", ".7z", ".lha"] },
-  "bios": { "required": true, "common_files": ["kick34005.A500"], "notes": "A500 Kickstart/model assumptions are user-managed and emulator-profile sensitive." },
-  "emulation": { "preferred_emulators": ["fs-uae", "puae"], "retroarch_cores": ["puae"] },
-  "library_behavior": { "multidisc": true, "multidisc_format": "m3u", "folder_based": false, "playlist_target_preference": "disk image, WHDLoad package, or playlist", "safe_archive_deletion_requires_launch_test": true },
-  "safety": { "automation_level": "approval_required", "requires_backup": true, "do_not_store": ["kickstart_roms", "bios_roms", "rom_payloads"], "notes": ["Do not reorder disks or merge Amiga model folders automatically."] },
-  "notes": ["A500 disk order and Kickstart choice are launch-critical."]
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://fs-uae.net/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "formats": {
+    "preferred": [
+      ".adf",
+      ".lha"
+    ],
+    "supported": [
+      ".adf",
+      ".adz",
+      ".dms",
+      ".ipf",
+      ".lha",
+      ".m3u",
+      ".zip",
+      ".7z",
+      ".dsk",
+      ".hfe"
+    ],
+    "descriptor_files": [
+      ".m3u"
+    ],
+    "archive_formats": [
+      ".zip",
+      ".7z",
+      ".lha"
+    ]
+  },
+  "bios": {
+    "required": true,
+    "common_files": [
+      "kick34005.A500"
+    ],
+    "notes": "A500 Kickstart/model assumptions are user-managed and emulator-profile sensitive."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "fs-uae",
+      "puae"
+    ],
+    "retroarch_cores": [
+      "puae"
+    ]
+  },
+  "library_behavior": {
+    "multidisc": true,
+    "multidisc_format": "m3u",
+    "folder_based": false,
+    "playlist_target_preference": "disk image, WHDLoad package, or playlist",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "safety": {
+    "automation_level": "approval_required",
+    "requires_backup": true,
+    "do_not_store": [
+      "kickstart_roms",
+      "bios_roms",
+      "rom_payloads"
+    ],
+    "notes": [
+      "Do not reorder disks or merge Amiga model folders automatically."
+    ]
+  },
+  "notes": [
+    "A500 disk order and Kickstart choice are launch-critical."
+  ]
 }

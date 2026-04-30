@@ -118,6 +118,10 @@ function blockedActions(finding) {
     blocked.push("Do not convert, rename, quarantine, or delete unsupported files until system selection is verified.");
   }
 
+  if (finding.type === "empty_folder") {
+    blocked.push("Do not delete empty folders until frontend, scraper, sync, and placeholder-folder expectations are reviewed.");
+  }
+
   if (frontendProfile) blocked.push(...profileGuidance[frontendProfile].blocked_actions);
 
   return blocked;

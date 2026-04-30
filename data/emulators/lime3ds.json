@@ -4,17 +4,54 @@
   "category": "emulator",
   "homepage": "https://github.com/Lime3DS/Lime3DS",
   "sources": [
-    { "type": "github", "url": "https://github.com/Lime3DS/Lime3DS", "last_reviewed": "2026-04-28", "confidence": "medium" },
-    { "type": "docs", "url": "https://emudeck.github.io/cheat-sheet/", "last_reviewed": "2026-04-28", "confidence": "medium" }
+    {
+      "type": "github",
+      "url": "https://github.com/Lime3DS/Lime3DS",
+      "last_reviewed": "2026-04-28",
+      "confidence": "medium"
+    },
+    {
+      "type": "docs",
+      "url": "https://emudeck.github.io/cheat-sheet/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "medium"
+    }
   ],
-  "platforms": ["windows", "linux", "macos", "steamdeck"],
-  "systems": ["3ds", "n3ds"],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "3ds",
+    "n3ds"
+  ],
   "paths": {
     "config": "platform-specific Lime3DS/Citra-derived user directory",
     "keys": "sysdata/keys path for encrypted content when required"
   },
-  "supported_formats": { "content": [".3ds", ".3dsx", ".app", ".axf", ".cci", ".cxi", ".elf"] },
-  "library_behavior": { "supports_m3u": false, "supports_chd": false, "bios_required": false, "install_based_content": true },
-  "quirks": ["es-folder-alias-mismatch"],
-  "notes": ["CIA/install workflows are not the same as direct ROM launching. Verify frontend parser compatibility before moving files."]
+  "supported_formats": {
+    "content": [
+      ".3ds",
+      ".3dsx",
+      ".app",
+      ".axf",
+      ".cci",
+      ".cxi",
+      ".elf"
+    ]
+  },
+  "library_behavior": {
+    "supports_m3u": false,
+    "supports_chd": false,
+    "bios_required": false,
+    "install_based_content": true
+  },
+  "quirks": [
+    "es-folder-alias-mismatch"
+  ],
+  "notes": [
+    "CIA/install workflows are not the same as direct ROM launching. Verify frontend parser compatibility before moving files."
+  ]
 }

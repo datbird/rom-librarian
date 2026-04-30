@@ -1,1 +1,41 @@
-{"id":"2048","name":"2048 libretro core","category":"emulator","homepage":"https://github.com/libretro/libretro-2048","sources":[{"type":"homepage","url":"https://github.com/libretro/libretro-2048","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows","linux","macos","steamdeck"],"systems":["html5"],"paths":{"content":"Usually no external ROM content; frontend may use a placeholder entry"},"supported_formats":{"placeholder":[".sh",".desktop",".txt"]},"library_behavior":{"built_in_content":true,"frontend_target_preference":"launcher or placeholder entry","safe_archive_deletion_requires_launch_test":false},"notes":["Core provides built-in game behavior; repairs should treat content entries as launcher metadata rather than ROM payloads."]}
+{
+  "id": "2048",
+  "name": "2048 libretro core",
+  "category": "emulator",
+  "homepage": "https://github.com/libretro/libretro-2048",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://github.com/libretro/libretro-2048",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "html5"
+  ],
+  "paths": {
+    "content": "Usually no external ROM content; frontend may use a placeholder entry"
+  },
+  "supported_formats": {
+    "placeholder": [
+      ".sh",
+      ".desktop",
+      ".txt"
+    ]
+  },
+  "library_behavior": {
+    "built_in_content": true,
+    "frontend_target_preference": "launcher or placeholder entry",
+    "safe_archive_deletion_requires_launch_test": false
+  },
+  "notes": [
+    "Core provides built-in game behavior; repairs should treat content entries as launcher metadata rather than ROM payloads."
+  ]
+}

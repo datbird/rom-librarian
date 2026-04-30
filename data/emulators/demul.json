@@ -1,1 +1,51 @@
-{"id":"demul","name":"DEmul","category":"emulator","homepage":"https://demul.emulation64.com/","sources":[{"type":"homepage","url":"https://demul.emulation64.com/","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows","linux","macos","steamdeck"],"systems":["atomiswave","dreamcast","naomi","naomi2"],"paths":{"roms":"Configured ROM path","bios":"Configured BIOS path","plugins":"DEmul plugin/config directory"},"supported_formats":{"disc":[".gdi",".cdi",".chd"],"arcade":[".zip",".7z"]},"library_behavior":{"bios_required":true,"disc_descriptor_sensitive":true,"arcade_set_version_sensitive":true,"do_not_unzip_roms_by_default":true},"notes":["Legacy Dreamcast/NAOMI emulator. Preserve BIOS/config/plugin state and avoid archive or CHD mutation from generic audits."]}
+{
+  "id": "demul",
+  "name": "DEmul",
+  "category": "emulator",
+  "homepage": "https://demul.emulation64.com/",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://demul.emulation64.com/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "atomiswave",
+    "dreamcast",
+    "naomi",
+    "naomi2"
+  ],
+  "paths": {
+    "roms": "Configured ROM path",
+    "bios": "Configured BIOS path",
+    "plugins": "DEmul plugin/config directory"
+  },
+  "supported_formats": {
+    "disc": [
+      ".gdi",
+      ".cdi",
+      ".chd"
+    ],
+    "arcade": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "library_behavior": {
+    "bios_required": true,
+    "disc_descriptor_sensitive": true,
+    "arcade_set_version_sensitive": true,
+    "do_not_unzip_roms_by_default": true
+  },
+  "notes": [
+    "Legacy Dreamcast/NAOMI emulator. Preserve BIOS/config/plugin state and avoid archive or CHD mutation from generic audits."
+  ]
+}

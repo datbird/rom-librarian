@@ -3,12 +3,58 @@
   "name": "Commodore 64",
   "category": "computer",
   "manufacturer": "Commodore",
-  "sources": [{ "type": "docs", "url": "https://vice-emu.sourceforge.io/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
-  "formats": { "preferred": [".d64", ".crt", ".tap"], "supported": [".d64", ".g64", ".t64", ".tap", ".crt", ".prg", ".zip", ".7z"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
-  "bios": { "required": false, "common_files": [], "notes": "VICE distributions typically include emulator ROM resources; user library audits should not manage them as game BIOS files." },
-  "emulation": { "preferred_emulators": ["vice"], "retroarch_cores": ["vice_x64"] },
-  "library_behavior": { "multidisc": true, "multidisc_format": "m3u_or_emulator_specific", "playlist_target_preference": "disk/tape/cartridge image", "safe_archive_deletion_requires_launch_test": true },
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://vice-emu.sourceforge.io/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "formats": {
+    "preferred": [
+      ".d64",
+      ".crt",
+      ".tap"
+    ],
+    "supported": [
+      ".d64",
+      ".g64",
+      ".t64",
+      ".tap",
+      ".crt",
+      ".prg",
+      ".zip",
+      ".7z"
+    ],
+    "descriptor_files": [],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "bios": {
+    "required": false,
+    "common_files": [],
+    "notes": "VICE distributions typically include emulator ROM resources; user library audits should not manage them as game BIOS files."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "vice"
+    ],
+    "retroarch_cores": [
+      "vice_x64"
+    ]
+  },
+  "library_behavior": {
+    "multidisc": true,
+    "multidisc_format": "m3u_or_emulator_specific",
+    "playlist_target_preference": "disk/tape/cartridge image",
+    "safe_archive_deletion_requires_launch_test": true
+  },
   "frontend_notes": {},
   "quirks": [],
-  "notes": ["Computer launch behavior can depend on autoload commands and emulator profiles, not just file extension."]
+  "notes": [
+    "Computer launch behavior can depend on autoload commands and emulator profiles, not just file extension."
+  ]
 }

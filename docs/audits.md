@@ -23,6 +23,7 @@ Implemented audits:
 - `npm run audit:extensions -- <path> <system-id>` checks unsupported extensions for a normalized system.
 - `npm run audit:bios -- <path> <system-id>` checks expected BIOS filenames only; it does not validate BIOS contents.
 - `npm run audit:duplicates -- <path>` checks duplicate normalized titles for region/revision/manual review.
+- `npm run audit:empty-folders -- <path>` checks empty library folders as manual-review cleanup candidates.
 - `npm run audit:fixtures` runs the implemented audits against synthetic fixtures.
 
 Safety limits:

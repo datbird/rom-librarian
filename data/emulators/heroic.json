@@ -1,1 +1,45 @@
-{"id":"heroic","name":"Heroic Games Launcher","category":"launcher","homepage":"https://heroicgameslauncher.com","sources":[{"type":"docs","url":"https://heroicgameslauncher.com/","last_reviewed":"2026-04-30","confidence":"medium"}],"platforms":["windows","linux","macos","steamdeck"],"systems":["heroic"],"paths":{"content":"Content path or launcher target managed by the selected frontend","saves":"Emulator-specific save/config location; do not assume a portable default"},"supported_formats":{"content":[".json",".desktop",".sh"],"disc":[],"descriptors":[]},"library_behavior":{"retroarch_core":false,"standalone":true,"safe_archive_deletion_requires_launch_test":true,"launch_target_sensitive":true},"notes":["Launcher for Epic/GOG/Amazon games."]}
+{
+  "id": "heroic",
+  "name": "Heroic Games Launcher",
+  "category": "launcher",
+  "homepage": "https://heroicgameslauncher.com",
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://heroicgameslauncher.com/",
+      "last_reviewed": "2026-04-30",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "heroic"
+  ],
+  "paths": {
+    "content": "Content path or launcher target managed by the selected frontend",
+    "saves": "Emulator-specific save/config location; do not assume a portable default"
+  },
+  "supported_formats": {
+    "content": [
+      ".json",
+      ".desktop",
+      ".sh"
+    ],
+    "disc": [],
+    "descriptors": []
+  },
+  "library_behavior": {
+    "retroarch_core": false,
+    "standalone": true,
+    "safe_archive_deletion_requires_launch_test": true,
+    "launch_target_sensitive": true
+  },
+  "notes": [
+    "Launcher for Epic/GOG/Amazon games."
+  ]
+}

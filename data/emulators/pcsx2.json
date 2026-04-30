@@ -4,18 +4,55 @@
   "category": "emulator",
   "homepage": "https://pcsx2.net/",
   "sources": [
-    { "type": "homepage", "url": "https://pcsx2.net/", "last_reviewed": "2026-04-28", "confidence": "high" },
-    { "type": "docs", "url": "https://pcsx2.net/docs/setup/gather", "last_reviewed": "2026-04-28", "confidence": "high" }
+    {
+      "type": "homepage",
+      "url": "https://pcsx2.net/",
+      "last_reviewed": "2026-04-28",
+      "confidence": "high"
+    },
+    {
+      "type": "docs",
+      "url": "https://pcsx2.net/docs/setup/gather",
+      "last_reviewed": "2026-04-28",
+      "confidence": "high"
+    }
   ],
-  "platforms": ["windows", "linux", "macos", "steamdeck"],
-  "systems": ["ps2"],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "ps2"
+  ],
   "paths": {
     "config": "platform-specific PCSX2 user/config directory",
     "bios": "configured BIOS directory",
     "memcards": "configured memory-card directory"
   },
-  "supported_formats": { "disc": [".iso", ".chd", ".cso", ".gz", ".bin", ".mdf", ".nrg", ".m3u"] },
-  "library_behavior": { "supports_m3u": true, "supports_chd": true, "bios_required": true, "install_based_content": false },
-  "quirks": ["multidisc-chd-m3u-edge-cases"],
-  "notes": ["PCSX2 is the default recommendation for PS2. Verify BIOS path and selected renderer/controller profile separately from ROM path checks."]
+  "supported_formats": {
+    "disc": [
+      ".iso",
+      ".chd",
+      ".cso",
+      ".gz",
+      ".bin",
+      ".mdf",
+      ".nrg",
+      ".m3u"
+    ]
+  },
+  "library_behavior": {
+    "supports_m3u": true,
+    "supports_chd": true,
+    "bios_required": true,
+    "install_based_content": false
+  },
+  "quirks": [
+    "multidisc-chd-m3u-edge-cases"
+  ],
+  "notes": [
+    "PCSX2 is the default recommendation for PS2. Verify BIOS path and selected renderer/controller profile separately from ROM path checks."
+  ]
 }

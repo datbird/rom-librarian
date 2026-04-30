@@ -1,1 +1,51 @@
-{"id":"lutro","name":"Lutro","category":"runtime","homepage":"https://github.com/libretro","sources":[{"type":"docs","url":"https://docs.libretro.com/library/lutro/","last_reviewed":"2026-04-30","confidence":"medium"}],"platforms":["windows","linux","macos","steamdeck"],"systems":["lutro"],"paths":{"content":"Content path or launcher target managed by the selected frontend","saves":"Emulator-specific save/config location; do not assume a portable default"},"supported_formats":{"content":[".zip",".7z",".png",".p8",".tic",".wasm",".uf2",".hex",".love"],"disc":[],"descriptors":[]},"library_behavior":{"retroarch_core":true,"standalone":false,"safe_archive_deletion_requires_launch_test":true,"launch_target_sensitive":true},"notes":["Static recognition entry added from public frontend/core coverage. Verify exact launch behavior for the target frontend before repair automation."]}
+{
+  "id": "lutro",
+  "name": "Lutro",
+  "category": "runtime",
+  "homepage": "https://github.com/libretro",
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://docs.libretro.com/library/lutro/",
+      "last_reviewed": "2026-04-30",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "lutro"
+  ],
+  "paths": {
+    "content": "Content path or launcher target managed by the selected frontend",
+    "saves": "Emulator-specific save/config location; do not assume a portable default"
+  },
+  "supported_formats": {
+    "content": [
+      ".zip",
+      ".7z",
+      ".png",
+      ".p8",
+      ".tic",
+      ".wasm",
+      ".uf2",
+      ".hex",
+      ".love"
+    ],
+    "disc": [],
+    "descriptors": []
+  },
+  "library_behavior": {
+    "retroarch_core": true,
+    "standalone": false,
+    "safe_archive_deletion_requires_launch_test": true,
+    "launch_target_sensitive": true
+  },
+  "notes": [
+    "Static recognition entry added from public frontend/core coverage. Verify exact launch behavior for the target frontend before repair automation."
+  ]
+}

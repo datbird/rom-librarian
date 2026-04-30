@@ -1,1 +1,42 @@
-{"id":"eduke32","name":"EDuke32","category":"source_port","homepage":"https://www.eduke32.com/","sources":[{"type":"homepage","url":"https://www.eduke32.com/","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows","linux","macos"],"systems":["eduke32"],"paths":{"game_data":"Duke Nukem 3D data directory","config":"EDuke32 configuration directory"},"supported_formats":{"game_data":[".grp",".con",".zip"]},"library_behavior":{"supports_m3u":false,"bios_required_for_disc_systems":false,"cli_or_frontend_wrapper_common":true},"quirks":[],"notes":["Source port for Duke Nukem 3D data. Commercial data must not be bundled."]}
+{
+  "id": "eduke32",
+  "name": "EDuke32",
+  "category": "source_port",
+  "homepage": "https://www.eduke32.com/",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://www.eduke32.com/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos"
+  ],
+  "systems": [
+    "eduke32"
+  ],
+  "paths": {
+    "game_data": "Duke Nukem 3D data directory",
+    "config": "EDuke32 configuration directory"
+  },
+  "supported_formats": {
+    "game_data": [
+      ".grp",
+      ".con",
+      ".zip"
+    ]
+  },
+  "library_behavior": {
+    "supports_m3u": false,
+    "bios_required_for_disc_systems": false,
+    "cli_or_frontend_wrapper_common": true
+  },
+  "quirks": [],
+  "notes": [
+    "Source port for Duke Nukem 3D data. Commercial data must not be bundled."
+  ]
+}

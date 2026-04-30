@@ -1,1 +1,47 @@
-{"id":"advancemame","name":"AdvanceMAME","category":"emulator","homepage":"https://www.advancemame.it/","sources":[{"type":"homepage","url":"https://www.advancemame.it/","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows","linux","macos","steamdeck"],"systems":["arcade","mame"],"paths":{"rompath":"Configured ROM path","config":"AdvanceMAME configuration files"},"supported_formats":{"arcade":[".zip",".7z",".chd"]},"library_behavior":{"romset_version_sensitive":true,"do_not_unzip_roms_by_default":true,"parent_clone_model":true,"chd_subfolders":true},"quirks":["mame-romset-version"],"notes":["Static source maps this ID shallowly; treat as arcade/DAT-sensitive and do not rebuild, unzip, or rename sets from generic audits."]}
+{
+  "id": "advancemame",
+  "name": "AdvanceMAME",
+  "category": "emulator",
+  "homepage": "https://www.advancemame.it/",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://www.advancemame.it/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "arcade",
+    "mame"
+  ],
+  "paths": {
+    "rompath": "Configured ROM path",
+    "config": "AdvanceMAME configuration files"
+  },
+  "supported_formats": {
+    "arcade": [
+      ".zip",
+      ".7z",
+      ".chd"
+    ]
+  },
+  "library_behavior": {
+    "romset_version_sensitive": true,
+    "do_not_unzip_roms_by_default": true,
+    "parent_clone_model": true,
+    "chd_subfolders": true
+  },
+  "quirks": [
+    "mame-romset-version"
+  ],
+  "notes": [
+    "Static source maps this ID shallowly; treat as arcade/DAT-sensitive and do not rebuild, unzip, or rename sets from generic audits."
+  ]
+}

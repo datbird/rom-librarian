@@ -1,1 +1,46 @@
-{"id":"minivmac","name":"Mini vMac","category":"emulator","homepage":"https://www.gryphel.com/c/minivmac/","sources":[{"type":"homepage","url":"https://www.gryphel.com/c/minivmac/","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows","linux","macos","steamdeck"],"systems":["macintosh"],"paths":{"disk_images":"Classic Mac disk images","rom":"Macintosh ROM path","config":"Emulator preferences"},"supported_formats":{"media":[".dsk",".img",".hfv",".iso",".zip",".7z"]},"library_behavior":{"machine_rom_required":true,"disk_image_sensitive":true,"boot_order_sensitive":true},"notes":["Requires user-provided Macintosh ROMs. Do not store or validate ROM contents; preserve disk order and config."]}
+{
+  "id": "minivmac",
+  "name": "Mini vMac",
+  "category": "emulator",
+  "homepage": "https://www.gryphel.com/c/minivmac/",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://www.gryphel.com/c/minivmac/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "macintosh"
+  ],
+  "paths": {
+    "disk_images": "Classic Mac disk images",
+    "rom": "Macintosh ROM path",
+    "config": "Emulator preferences"
+  },
+  "supported_formats": {
+    "media": [
+      ".dsk",
+      ".img",
+      ".hfv",
+      ".iso",
+      ".zip",
+      ".7z"
+    ]
+  },
+  "library_behavior": {
+    "machine_rom_required": true,
+    "disk_image_sensitive": true,
+    "boot_order_sensitive": true
+  },
+  "notes": [
+    "Requires user-provided Macintosh ROMs. Do not store or validate ROM contents; preserve disk order and config."
+  ]
+}

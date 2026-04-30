@@ -4,16 +4,81 @@
   "category": "arcade",
   "manufacturer": "Capcom",
   "sources": [
-    { "type": "docs", "url": "https://docs.libretro.com/library/fbneo/", "last_reviewed": "2026-04-29", "confidence": "medium" },
-    { "type": "docs", "url": "https://docs.mamedev.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }
+    {
+      "type": "docs",
+      "url": "https://docs.libretro.com/library/fbneo/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    },
+    {
+      "type": "docs",
+      "url": "https://docs.mamedev.org/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
   ],
-  "aliases": { "folder_ids": ["cps3"], "frontend_ids": ["cps3"], "region_ids": [], "equivalent_system_ids": [] },
-  "formats": { "preferred": [".zip", ".chd"], "supported": [".zip", ".7z", ".chd"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
-  "bios": { "required": false, "common_files": [], "notes": "CPS3 sets may include CHD data depending on emulator and romset layout." },
-  "emulation": { "preferred_emulators": ["fbneo", "mame"], "retroarch_cores": ["fbneo", "mame"] },
-  "library_behavior": { "romset_version_sensitive": true, "do_not_unzip_roms_by_default": true, "parent_clone_model": true, "chd_subfolders_expected": true },
+  "aliases": {
+    "folder_ids": [
+      "cps3"
+    ],
+    "frontend_ids": [
+      "cps3"
+    ],
+    "region_ids": [],
+    "equivalent_system_ids": []
+  },
+  "formats": {
+    "preferred": [
+      ".zip",
+      ".chd"
+    ],
+    "supported": [
+      ".zip",
+      ".7z",
+      ".chd"
+    ],
+    "descriptor_files": [],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "bios": {
+    "required": false,
+    "common_files": [],
+    "notes": "CPS3 sets may include CHD data depending on emulator and romset layout."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "fbneo",
+      "mame"
+    ],
+    "retroarch_cores": [
+      "fbneo",
+      "mame"
+    ]
+  },
+  "library_behavior": {
+    "romset_version_sensitive": true,
+    "do_not_unzip_roms_by_default": true,
+    "parent_clone_model": true,
+    "chd_subfolders_expected": true
+  },
   "frontend_notes": {},
-  "safety": { "automation_level": "dry_run_only", "requires_backup": true, "do_not_store": ["rom_payloads"], "notes": ["Do not move CHDs away from their matching parent ZIP/folder relationship during automatic repair."] },
-  "quirks": ["mame-romset-version"],
-  "notes": ["Audit CPS3 CHD placement read-only before proposing any layout repair."]
+  "safety": {
+    "automation_level": "dry_run_only",
+    "requires_backup": true,
+    "do_not_store": [
+      "rom_payloads"
+    ],
+    "notes": [
+      "Do not move CHDs away from their matching parent ZIP/folder relationship during automatic repair."
+    ]
+  },
+  "quirks": [
+    "mame-romset-version"
+  ],
+  "notes": [
+    "Audit CPS3 CHD placement read-only before proposing any layout repair."
+  ]
 }

@@ -3,14 +3,74 @@
   "name": "Xbox 360",
   "category": "console",
   "manufacturer": "Microsoft",
-  "sources": [{ "type": "github", "url": "https://github.com/xenia-project/xenia/wiki/Quickstart", "last_reviewed": "2026-04-29", "confidence": "medium" }],
-  "aliases": { "folder_ids": ["xbox360", "x360"], "frontend_ids": ["xbox360"], "region_ids": [], "equivalent_system_ids": [] },
-  "formats": { "preferred": [".iso", ".xex", ".god"], "supported": [".iso", ".xex", ".god"], "descriptor_files": [".xex"], "archive_formats": [] },
-  "bios": { "required": false, "common_files": [], "notes": "Xenia does not use the same BIOS workflow as many disc-console emulators, but game content format and compatibility are highly title-dependent." },
-  "emulation": { "preferred_emulators": ["xenia"], "retroarch_cores": [] },
-  "library_behavior": { "multidisc": false, "multidisc_format": null, "folder_based": true, "playlist_target_preference": "ISO, Games on Demand container, or extracted default.xex depending on frontend parser" },
+  "sources": [
+    {
+      "type": "github",
+      "url": "https://github.com/xenia-project/xenia/wiki/Quickstart",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "aliases": {
+    "folder_ids": [
+      "xbox360",
+      "x360"
+    ],
+    "frontend_ids": [
+      "xbox360"
+    ],
+    "region_ids": [],
+    "equivalent_system_ids": []
+  },
+  "formats": {
+    "preferred": [
+      ".iso",
+      ".xex",
+      ".god"
+    ],
+    "supported": [
+      ".iso",
+      ".xex",
+      ".god"
+    ],
+    "descriptor_files": [
+      ".xex"
+    ],
+    "archive_formats": []
+  },
+  "bios": {
+    "required": false,
+    "common_files": [],
+    "notes": "Xenia does not use the same BIOS workflow as many disc-console emulators, but game content format and compatibility are highly title-dependent."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "xenia"
+    ],
+    "retroarch_cores": []
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": null,
+    "folder_based": true,
+    "playlist_target_preference": "ISO, Games on Demand container, or extracted default.xex depending on frontend parser"
+  },
   "frontend_notes": {},
-  "safety": { "automation_level": "approval_required", "requires_backup": true, "do_not_store": ["rom_payloads", "account_data"], "notes": ["Do not transform ISO, GOD, or extracted XEX layouts automatically; format conversion can be destructive or tool-specific."] },
-  "confidence_notes": ["Compatibility and launch format support vary heavily by title, emulator build, and frontend parser."],
-  "notes": ["Keep Xbox 360 repairs limited to read-only diagnosis and user-approved dry-run plans."]
+  "safety": {
+    "automation_level": "approval_required",
+    "requires_backup": true,
+    "do_not_store": [
+      "rom_payloads",
+      "account_data"
+    ],
+    "notes": [
+      "Do not transform ISO, GOD, or extracted XEX layouts automatically; format conversion can be destructive or tool-specific."
+    ]
+  },
+  "confidence_notes": [
+    "Compatibility and launch format support vary heavily by title, emulator build, and frontend parser."
+  ],
+  "notes": [
+    "Keep Xbox 360 repairs limited to read-only diagnosis and user-approved dry-run plans."
+  ]
 }

@@ -3,12 +3,45 @@
   "name": "Kronos",
   "category": "emulator",
   "homepage": "https://github.com/FCare/Kronos",
-  "sources": [{ "type": "github", "url": "https://github.com/FCare/Kronos", "last_reviewed": "2026-04-29", "confidence": "medium" }],
-  "platforms": ["windows", "linux", "retroarch"],
-  "systems": ["saturn"],
-  "paths": { "bios": "emulator/core system path", "config": "frontend/core-specific config" },
-  "supported_formats": { "disc": [".cue", ".bin", ".iso", ".chd", ".m3u"] },
-  "library_behavior": { "bios_may_be_required": true, "supports_m3u": true, "compatibility_varies": true },
-  "quirks": ["multidisc-chd-m3u-edge-cases", "retroarch-system-dir-confusion"],
-  "notes": ["Saturn compatibility varies by emulator; path validity is not launch validity."]
+  "sources": [
+    {
+      "type": "github",
+      "url": "https://github.com/FCare/Kronos",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "retroarch"
+  ],
+  "systems": [
+    "saturn"
+  ],
+  "paths": {
+    "bios": "emulator/core system path",
+    "config": "frontend/core-specific config"
+  },
+  "supported_formats": {
+    "disc": [
+      ".cue",
+      ".bin",
+      ".iso",
+      ".chd",
+      ".m3u"
+    ]
+  },
+  "library_behavior": {
+    "bios_may_be_required": true,
+    "supports_m3u": true,
+    "compatibility_varies": true
+  },
+  "quirks": [
+    "multidisc-chd-m3u-edge-cases",
+    "retroarch-system-dir-confusion"
+  ],
+  "notes": [
+    "Saturn compatibility varies by emulator; path validity is not launch validity."
+  ]
 }

@@ -3,11 +3,70 @@
   "name": "MSX2+",
   "category": "computer",
   "manufacturer": "ASCII / Microsoft / Various",
-  "sources": [{ "type": "homepage", "url": "https://openmsx.org/", "last_reviewed": "2026-04-29", "confidence": "medium" }],
-  "formats": { "preferred": [".rom", ".dsk"], "supported": [".rom", ".mx2", ".dsk", ".cas", ".zip", ".7z"], "descriptor_files": [".m3u"], "archive_formats": [".zip", ".7z"] },
-  "bios": { "required": true, "common_files": [], "notes": "MSX2+ requires machine ROMs/databases appropriate to the selected profile." },
-  "emulation": { "preferred_emulators": ["openmsx", "bluemsx"], "retroarch_cores": ["bluemsx", "fmsx"] },
-  "library_behavior": { "multidisc": true, "multidisc_format": "m3u", "folder_based": false, "playlist_target_preference": "ROM, disk, tape, or playlist", "safe_archive_deletion_requires_launch_test": true },
-  "safety": { "automation_level": "approval_required", "requires_backup": true, "do_not_store": ["machine_roms", "bios_roms", "rom_payloads"], "notes": ["Do not merge MSX2 and MSX2+ libraries without user confirmation."] },
-  "notes": ["MSX family generations should stay distinct for machine-profile diagnosis."]
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://openmsx.org/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "formats": {
+    "preferred": [
+      ".rom",
+      ".dsk"
+    ],
+    "supported": [
+      ".rom",
+      ".mx2",
+      ".dsk",
+      ".cas",
+      ".zip",
+      ".7z"
+    ],
+    "descriptor_files": [
+      ".m3u"
+    ],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "bios": {
+    "required": true,
+    "common_files": [],
+    "notes": "MSX2+ requires machine ROMs/databases appropriate to the selected profile."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "openmsx",
+      "bluemsx"
+    ],
+    "retroarch_cores": [
+      "bluemsx",
+      "fmsx"
+    ]
+  },
+  "library_behavior": {
+    "multidisc": true,
+    "multidisc_format": "m3u",
+    "folder_based": false,
+    "playlist_target_preference": "ROM, disk, tape, or playlist",
+    "safe_archive_deletion_requires_launch_test": true
+  },
+  "safety": {
+    "automation_level": "approval_required",
+    "requires_backup": true,
+    "do_not_store": [
+      "machine_roms",
+      "bios_roms",
+      "rom_payloads"
+    ],
+    "notes": [
+      "Do not merge MSX2 and MSX2+ libraries without user confirmation."
+    ]
+  },
+  "notes": [
+    "MSX family generations should stay distinct for machine-profile diagnosis."
+  ]
 }

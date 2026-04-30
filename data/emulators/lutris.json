@@ -1,1 +1,52 @@
-{"id":"lutris","name":"Lutris","category":"launcher","homepage":"https://lutris.net","sources":[{"type":"homepage","url":"https://lutris.net","last_reviewed":"2026-04-29","confidence":"high"}],"platforms":["linux","steamdeck"],"systems":["lutris","wine","windows9x"],"paths":{"library":"Lutris game library metadata","prefixes":"Wine prefixes and runner state","runners":"Installed runner versions"},"supported_formats":{"launchers":[".json",".yml",".yaml",".desktop",".sh"],"installers":[".exe",".msi",".zip","folder"]},"library_behavior":{"managed_library":true,"prefix_state_sensitive":true,"runner_version_sensitive":true,"do_not_modify_app_data":true},"notes":["Preserve prefixes, runner versions, environment variables, and per-game config. Repairs should be dry-run unless explicitly scoped to launcher metadata."]}
+{
+  "id": "lutris",
+  "name": "Lutris",
+  "category": "launcher",
+  "homepage": "https://lutris.net",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://lutris.net",
+      "last_reviewed": "2026-04-29",
+      "confidence": "high"
+    }
+  ],
+  "platforms": [
+    "linux",
+    "steamdeck"
+  ],
+  "systems": [
+    "lutris",
+    "wine",
+    "windows9x"
+  ],
+  "paths": {
+    "library": "Lutris game library metadata",
+    "prefixes": "Wine prefixes and runner state",
+    "runners": "Installed runner versions"
+  },
+  "supported_formats": {
+    "launchers": [
+      ".json",
+      ".yml",
+      ".yaml",
+      ".desktop",
+      ".sh"
+    ],
+    "installers": [
+      ".exe",
+      ".msi",
+      ".zip",
+      "folder"
+    ]
+  },
+  "library_behavior": {
+    "managed_library": true,
+    "prefix_state_sensitive": true,
+    "runner_version_sensitive": true,
+    "do_not_modify_app_data": true
+  },
+  "notes": [
+    "Preserve prefixes, runner versions, environment variables, and per-game config. Repairs should be dry-run unless explicitly scoped to launcher metadata."
+  ]
+}

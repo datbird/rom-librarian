@@ -1,1 +1,52 @@
-{"id":"pcsx_rearmed","name":"PCSX ReARMed","category":"emulator","homepage":"https://docs.libretro.com/library/pcsx_rearmed/","sources":[{"type":"docs","url":"https://docs.libretro.com/library/pcsx_rearmed/","last_reviewed":"2026-04-29","confidence":"medium"}],"platforms":["windows","linux","macos","android","steamdeck"],"systems":["psx"],"paths":{"system":"RetroArch system directory","config":"core options"},"supported_formats":{"disc":[".cue",".chd",".pbp",".m3u"],"archive":[".zip",".7z"]},"library_behavior":{"supports_m3u":true,"bios_required_for_disc_systems":true,"cli_or_frontend_wrapper_common":true},"quirks":["retroarch-system-dir-confusion","multidisc-chd-m3u-edge-cases"],"notes":["PlayStation core often used on ARM handhelds. BIOS and CHD/M3U behavior should be verified per device."]}
+{
+  "id": "pcsx_rearmed",
+  "name": "PCSX ReARMed",
+  "category": "emulator",
+  "homepage": "https://docs.libretro.com/library/pcsx_rearmed/",
+  "sources": [
+    {
+      "type": "docs",
+      "url": "https://docs.libretro.com/library/pcsx_rearmed/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "medium"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "android",
+    "steamdeck"
+  ],
+  "systems": [
+    "psx"
+  ],
+  "paths": {
+    "system": "RetroArch system directory",
+    "config": "core options"
+  },
+  "supported_formats": {
+    "disc": [
+      ".cue",
+      ".chd",
+      ".pbp",
+      ".m3u"
+    ],
+    "archive": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "library_behavior": {
+    "supports_m3u": true,
+    "bios_required_for_disc_systems": true,
+    "cli_or_frontend_wrapper_common": true
+  },
+  "quirks": [
+    "retroarch-system-dir-confusion",
+    "multidisc-chd-m3u-edge-cases"
+  ],
+  "notes": [
+    "PlayStation core often used on ARM handhelds. BIOS and CHD/M3U behavior should be verified per device."
+  ]
+}

@@ -3,13 +3,66 @@
   "name": "Sony PlayStation Vita",
   "category": "handheld",
   "manufacturer": "Sony",
-  "sources": [{ "type": "homepage", "url": "https://vita3k.org/", "last_reviewed": "2026-04-29", "confidence": "high" }],
-  "formats": { "preferred": ["folder", ".pkg"], "supported": ["folder", ".pkg", ".vpk", ".zip"], "descriptor_files": [], "archive_formats": [".zip", ".7z"] },
-  "bios": { "required": true, "common_files": [], "notes": "Vita3K workflows can involve firmware and installed content managed inside the emulator." },
-  "emulation": { "preferred_emulators": ["vita3k"], "retroarch_cores": [] },
-  "library_behavior": { "multidisc": false, "multidisc_format": null, "install_based_content": true, "playlist_target_preference": "installed emulator entry or package/folder", "safe_archive_deletion_requires_launch_test": true },
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://vita3k.org/",
+      "last_reviewed": "2026-04-29",
+      "confidence": "high"
+    }
+  ],
+  "formats": {
+    "preferred": [
+      "folder",
+      ".pkg"
+    ],
+    "supported": [
+      "folder",
+      ".pkg",
+      ".vpk",
+      ".zip"
+    ],
+    "descriptor_files": [],
+    "archive_formats": [
+      ".zip",
+      ".7z"
+    ]
+  },
+  "bios": {
+    "required": true,
+    "common_files": [],
+    "notes": "Vita3K workflows can involve firmware and installed content managed inside the emulator."
+  },
+  "emulation": {
+    "preferred_emulators": [
+      "vita3k"
+    ],
+    "retroarch_cores": []
+  },
+  "library_behavior": {
+    "multidisc": false,
+    "multidisc_format": null,
+    "install_based_content": true,
+    "playlist_target_preference": "installed emulator entry or package/folder",
+    "safe_archive_deletion_requires_launch_test": true
+  },
   "frontend_notes": {},
-  "safety": { "automation_level": "approval_required", "requires_backup": true, "do_not_store": ["firmware", "keys", "account_data", "user_save_data", "rom_payloads"], "notes": ["Keep Vita firmware, packages, licenses, and emulator state outside project data."] },
+  "safety": {
+    "automation_level": "approval_required",
+    "requires_backup": true,
+    "do_not_store": [
+      "firmware",
+      "keys",
+      "account_data",
+      "user_save_data",
+      "rom_payloads"
+    ],
+    "notes": [
+      "Keep Vita firmware, packages, licenses, and emulator state outside project data."
+    ]
+  },
   "quirks": [],
-  "notes": ["Do not infer launchability from file extension alone for installed Vita content."]
+  "notes": [
+    "Do not infer launchability from file extension alone for installed Vita content."
+  ]
 }

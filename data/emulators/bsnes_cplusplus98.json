@@ -1,1 +1,42 @@
-{"id":"bsnes_cplusplus98","name":"bsnes C++98","category":"emulator","homepage":"https://github.com/libretro","sources":[{"type":"homepage","url":"https://github.com/libretro","last_reviewed":"2026-04-29","confidence":"low"}],"platforms":["windows","linux","macos","steamdeck"],"systems":["html5"],"paths":{"content":"SNES ROM path or frontend placeholder"},"supported_formats":{"roms":[".sfc",".smc",".bs",".zip",".7z"]},"library_behavior":{"special_chip_sensitive":true,"save_state_sensitive":true},"notes":["Low-confidence legacy bsnes variant. Verify exact frontend/core mapping before automated repair."]}
+{
+  "id": "bsnes_cplusplus98",
+  "name": "bsnes C++98",
+  "category": "emulator",
+  "homepage": "https://github.com/libretro",
+  "sources": [
+    {
+      "type": "homepage",
+      "url": "https://github.com/libretro",
+      "last_reviewed": "2026-04-29",
+      "confidence": "low"
+    }
+  ],
+  "platforms": [
+    "windows",
+    "linux",
+    "macos",
+    "steamdeck"
+  ],
+  "systems": [
+    "html5"
+  ],
+  "paths": {
+    "content": "SNES ROM path or frontend placeholder"
+  },
+  "supported_formats": {
+    "roms": [
+      ".sfc",
+      ".smc",
+      ".bs",
+      ".zip",
+      ".7z"
+    ]
+  },
+  "library_behavior": {
+    "special_chip_sensitive": true,
+    "save_state_sensitive": true
+  },
+  "notes": [
+    "Low-confidence legacy bsnes variant. Verify exact frontend/core mapping before automated repair."
+  ]
+}
