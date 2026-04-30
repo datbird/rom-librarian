@@ -6,7 +6,7 @@ It gives an AI assistant a structured reference database for frontends, systems,
 
 ## Status
 
-The project is ready for the initial `v1.0` repository commit and install testing.
+The project has complete normalized or alias-backed coverage for every static system and emulator ID, with validation, reports, and reversible repair workflows covered by `npm run check`.
 
 Completed:
 
@@ -15,6 +15,7 @@ Completed:
 - Phase 3: Tier 2 static data expansion
 - Phase 4: README, reference docs, and validation tooling
 - Normalized sourced data layer for frontends, systems, emulators, scraper sources, scraper tools, metadata stores, and asset taxonomy
+- Complete normalized coverage guard for systems and emulators
 
 Not included in this repository state:
 
@@ -77,7 +78,7 @@ Then register or copy `rom-librarian.md` according to the target agent's skill s
 For this local workspace, the source lives at:
 
 ```text
-/home/tbird/aiplayground/rom-librarian
+/home/tbird/gitrepos/rom-librarian
 ```
 
 ## Personal Config
@@ -285,6 +286,8 @@ Static database coverage:
 - 352 normalized system/platform records
 - 297 normalized emulator/runtime records
 - 24 quirks
+
+Coverage completeness is enforced by `npm run check:coverage` and included in `npm run check`. New static system or emulator IDs must be normalized directly or covered by an intentional alias group.
 
 See `docs/` for the current lists. `docs/reports.md` summarizes audit reports, repair plans, dry-run changes, coverage gaps, and CI artifacts. `docs/alias-intent.md` explains direct records versus alias-covered IDs.
 
