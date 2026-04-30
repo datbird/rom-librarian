@@ -46,8 +46,8 @@ assert(auditHtml.includes("rom-librarian Audit Report"), "audit HTML report miss
 
 const coverage = JSON.parse(execFileSync(process.execPath, ["scripts/report-coverage-gaps.mjs"], { cwd: root, encoding: "utf8" }));
 assert(validateCoverageGapReport(coverage), `coverage gap report failed schema validation: ${ajv.errorsText(validateCoverageGapReport.errors)}`);
-assert(coverage.systems.missing_count > 0, "coverage report should list missing normalized systems");
-assert(coverage.emulators.missing_count > 0, "coverage report should list missing normalized emulators");
+assert(coverage.systems.missing_count === 0, "coverage report should show complete normalized system coverage");
+assert(coverage.emulators.missing_count === 0, "coverage report should show complete normalized emulator coverage");
 
 const limitedCoverage = JSON.parse(execFileSync(process.execPath, ["scripts/report-coverage-gaps.mjs", "--section", "systems", "--limit", "5"], { cwd: root, encoding: "utf8" }));
 assert(validateCoverageGapReport(limitedCoverage), `limited coverage gap report failed schema validation: ${ajv.errorsText(validateCoverageGapReport.errors)}`);
@@ -65,8 +65,8 @@ assert(validateSummaryReport(summary), `summary report failed schema validation:
 assert(summary.normalized_counts.systems > 0, "summary report missing normalized counts");
 const summaryMarkdown = execFileSync(process.execPath, ["scripts/report-summary.mjs", "--format", "markdown"], { cwd: root, encoding: "utf8" });
 assert(summaryMarkdown.includes("# rom-librarian Summary"), "summary markdown missing title");
-assert(summaryMarkdown.includes(summary.recommended_next.systems[0].priority_reason), "summary markdown missing system priority reasons");
-assert(summaryMarkdown.includes(summary.recommended_next.emulators[0].priority_reason), "summary markdown missing emulator priority reasons");
+assert(summary.coverage.systems_percent === 100, "summary report should show complete system coverage");
+assert(summary.coverage.emulators_percent === 100, "summary report should show complete emulator coverage");
 
 const reportMatrix = [
   ["cue", "scripts/audit-cue.mjs", "fixtures/cue-issues/roms/psx"],
