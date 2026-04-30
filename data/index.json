@@ -732,6 +732,8 @@
     "summary_report": "schema/summary-report.schema.json",
     "data_quality_report": "schema/data-quality-report.schema.json",
     "data_quality_budget": "schema/data-quality-budget.schema.json",
+    "commands": "schema/commands.schema.json",
+    "advisor_report": "schema/advisor-report.schema.json",
     "applicator_result": "schema/applicator-result.schema.json",
     "rollback_result": "schema/rollback-result.schema.json"
   }

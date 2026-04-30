@@ -1,0 +1,9 @@
+{
+  "version": "1.0.0",
+  "profiles": [
+    { "id": "es-de", "path": "fixtures/frontend-smoke/es-de", "audits": ["audit:descriptors"] },
+    { "id": "launchbox", "path": "fixtures/frontend-smoke/launchbox", "audits": ["audit:launchbox"] },
+    { "id": "romm", "path": "fixtures/frontend-smoke/romm", "audits": ["audit:romm"] },
+    { "id": "pegasus", "path": "fixtures/frontend-smoke/pegasus", "audits": ["audit:pegasus"] }
+  ]
+}

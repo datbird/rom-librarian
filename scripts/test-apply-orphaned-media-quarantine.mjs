@@ -29,6 +29,11 @@ assert(countFindings(audit, "orphaned_media") === 1, "media fixture should start
 const plan = runJson(["scripts/plan-repairs.mjs", "-"], JSON.stringify(audit));
 const planPath = path.join(tempRoot, "media-plan.json");
 fs.writeFileSync(planPath, JSON.stringify(plan), "utf8");
+const dryRunResult = runJson(["scripts/apply-orphaned-media-quarantine.mjs", planPath, "--dry-run"]);
+assertApplicatorResult(dryRunResult, "orphaned media quarantine dry-run result");
+assert(dryRunResult.mode === "dry-run" && dryRunResult.backup_manifest === null, "orphaned media dry-run should not create a manifest");
+assert(dryRunResult.changes.every((change) => change.applied === false), "orphaned media dry-run should not apply changes");
+assert(fs.existsSync(path.join(target, dryRunResult.changes[0].path)), "orphaned media dry-run should not move source file");
 const result = runJson(["scripts/apply-orphaned-media-quarantine.mjs", planPath, "--apply"]);
 assertApplicatorResult(result, "orphaned media quarantine result");
 assert(result.changes.length === 1, "orphaned media quarantine expected one moved file");

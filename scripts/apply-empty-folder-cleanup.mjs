@@ -4,11 +4,12 @@ import { emitJson } from "./lib/audit-utils.mjs";
 
 const planPath = process.argv[2];
 const apply = process.argv.includes("--apply");
+const dryRun = process.argv.includes("--dry-run");
 const allowRealTargets = process.argv.includes("--allow-real-targets");
 const confirmTarget = getOptionValue("--confirm-target");
 
 if (planPath === "--help" || planPath === "-h" || !planPath) {
-  console.log("Usage: node scripts/apply-empty-folder-cleanup.mjs <repair-plan.json> --apply [--allow-real-targets --confirm-target <absolute-target>]");
+  console.log("Usage: node scripts/apply-empty-folder-cleanup.mjs <repair-plan.json> (--apply|--dry-run) [--allow-real-targets --confirm-target <absolute-target>]");
   process.exit(planPath ? 0 : 1);
 }
 
@@ -17,7 +18,8 @@ function fail(message) {
   process.exit(1);
 }
 
-if (!apply) fail("Refusing to mutate without explicit --apply");
+if (apply && dryRun) fail("Use only one of --apply or --dry-run");
+if (!apply && !dryRun) fail("Refusing to proceed without explicit --apply or --dry-run");
 
 function getOptionValue(name) {
   const index = process.argv.indexOf(name);
@@ -59,17 +61,21 @@ for (const step of plan.steps || []) {
   if (!folderPath.startsWith(target + path.sep)) fail(`Empty folder path escapes target: ${finding.folder}`);
   if (!isEmptyDirectory(folderPath)) fail(`Refusing to delete non-empty or missing folder: ${finding.folder}`);
 
-  fs.rmdirSync(folderPath);
-  if (fs.existsSync(folderPath)) fail(`Post-apply verification failed for ${finding.folder}`);
+  if (apply) {
+    fs.rmdirSync(folderPath);
+    if (fs.existsSync(folderPath)) fail(`Post-apply verification failed for ${finding.folder}`);
+  }
 
-  changes.push({ operation: "delete_empty_folder", path: relativeFromTarget(target, folderPath), deleted_path: folderPath, applied: true });
-  verification.push({ folder: relativeFromTarget(target, folderPath), verified: true, check: "empty_folder_removed" });
+  changes.push({ operation: "delete_empty_folder", path: relativeFromTarget(target, folderPath), deleted_path: folderPath, applied: apply });
+  verification.push({ folder: relativeFromTarget(target, folderPath), verified: true, check: apply ? "empty_folder_removed" : "empty_folder_exists_and_is_empty" });
 }
 
 if (changes.length === 0) fail("No empty_folder findings were eligible for this applicator");
 
-fs.mkdirSync(manifestRoot, { recursive: true });
-const manifest = {
+let manifestPath = null;
+if (apply) {
+  fs.mkdirSync(manifestRoot, { recursive: true });
+  const manifest = {
   operation_id: operationId,
   created_at: new Date().toISOString(),
   audit: plan.audit,
@@ -78,19 +84,20 @@ const manifest = {
   planned_changes: changes,
   backup_paths: [],
   rollback_notes: ["Rollback recreates deleted empty folders only when the destination path is still absent."]
-};
+  };
 
-const manifestPath = path.join(manifestRoot, "backup-manifest.json");
-fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2), "utf8");
+  manifestPath = path.join(manifestRoot, "backup-manifest.json");
+  fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2), "utf8");
+}
 
 emitJson({
   operation: "apply-empty-folder-cleanup",
-  mode: "mutating",
-  status: "applied",
+  mode: apply ? "mutating" : "dry-run",
+  status: apply ? "applied" : "planned",
   target,
   real_target: !isFixtureTarget,
   changes,
   verification,
   backup_manifest: manifestPath,
-  notes: ["Only empty leaf folders were deleted. No ROM, disc image, media, metadata, save, BIOS, firmware, or key files were modified."]
+  notes: [apply ? "Only empty leaf folders were deleted. No ROM, disc image, media, metadata, save, BIOS, firmware, or key files were modified." : "Dry run only. Empty folders were verified but not deleted."]
 });

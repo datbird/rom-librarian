@@ -219,13 +219,15 @@ npm run report:audit -- /tmp/media-audit.json --format markdown
 npm run report:coverage-gaps -- --json-out /tmp/coverage-gaps.json
 npm run report:coverage-gaps -- --format markdown --limit 25
 npm run report:data-quality -- --format markdown
+npm run report:advisor -- --frontend es-de --system psx --emulator duckstation
 npm run report:summary -- --format markdown
 ```
 
 Repair plans are non-mutating. They standardize risk, backup requirements, proposed dry-run steps, and blocked actions; they do not edit metadata or files.
 Coverage-gap and data-quality reports are also read-only. Coverage reports enforce complete normalized or alias-backed coverage, while quality reports flag low-confidence and generic-source records for later improvement.
+Advisor reports combine selected frontend, system, and emulator records with recommended commands and forbidden actions.
 
-Two narrowly scoped mutating applicators exist for proving backup/apply mechanics:
+Six narrowly scoped mutating applicators exist for proving backup/apply mechanics:
 
 ```bash
 npm run apply:m3u-case-fixes -- <m3u-repair-plan.json> --apply

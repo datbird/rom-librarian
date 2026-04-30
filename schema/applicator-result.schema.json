@@ -9,8 +9,8 @@
       "type": "string",
       "enum": ["apply-m3u-case-fixes", "apply-cue-case-fixes", "apply-gdi-case-fixes", "apply-missing-m3u-playlists", "apply-empty-folder-cleanup", "apply-orphaned-media-quarantine"]
     },
-    "mode": { "type": "string", "enum": ["mutating"] },
-    "status": { "type": "string", "enum": ["applied"] },
+    "mode": { "type": "string", "enum": ["mutating", "dry-run"] },
+    "status": { "type": "string", "enum": ["applied", "planned"] },
     "target": { "type": "string" },
     "real_target": { "type": "boolean" },
     "changes": {
@@ -21,7 +21,7 @@
         "required": ["operation", "applied"],
         "properties": {
           "operation": { "type": "string" },
-          "applied": { "type": "boolean", "enum": [true] }
+          "applied": { "type": "boolean" }
         },
         "additionalProperties": true
       }
@@ -39,7 +39,7 @@
         "additionalProperties": true
       }
     },
-    "backup_manifest": { "type": "string" },
+    "backup_manifest": { "type": ["string", "null"] },
     "notes": { "type": "array", "items": { "type": "string" } }
   },
   "additionalProperties": false

@@ -10,6 +10,7 @@ const ajv = new Ajv({ allErrors: true, strict: false, validateSchema: false });
 const validateCoverageGapReport = ajv.compile(JSON.parse(fs.readFileSync(path.join(root, "schema/coverage-gap-report.schema.json"), "utf8")));
 const validateDataQualityReport = ajv.compile(JSON.parse(fs.readFileSync(path.join(root, "schema/data-quality-report.schema.json"), "utf8")));
 const validateDataQualityBudget = ajv.compile(JSON.parse(fs.readFileSync(path.join(root, "schema/data-quality-budget.schema.json"), "utf8")));
+const validateAdvisorReport = ajv.compile(JSON.parse(fs.readFileSync(path.join(root, "schema/advisor-report.schema.json"), "utf8")));
 const validateSummaryReport = ajv.compile(JSON.parse(fs.readFileSync(path.join(root, "schema/summary-report.schema.json"), "utf8")));
 
 function assert(condition, message) {
@@ -77,6 +78,9 @@ const dataQualityMarkdown = execFileSync(process.execPath, ["scripts/report-data
 assert(dataQualityMarkdown.includes("# Data Quality"), "data quality markdown missing title");
 const dataQualityBudget = JSON.parse(execFileSync(process.execPath, ["scripts/check-data-quality-budget.mjs", "--max-findings", "184", "--max-low-confidence", "105", "--max-generic-sources", "79"], { cwd: root, encoding: "utf8" }));
 assert(validateDataQualityBudget(dataQualityBudget), `data quality budget failed schema validation: ${ajv.errorsText(validateDataQualityBudget.errors)}`);
+const advisor = JSON.parse(execFileSync(process.execPath, ["scripts/report-advisor.mjs", "--frontend", "es-de", "--system", "psx", "--emulator", "duckstation"], { cwd: root, encoding: "utf8" }));
+assert(validateAdvisorReport(advisor), `advisor report failed schema validation: ${ajv.errorsText(validateAdvisorReport.errors)}`);
+assert(advisor.recommended_commands.some((command) => command.id === "audit:m3u"), "advisor should recommend M3U audit for PSX context");
 
 const reportMatrix = [
   ["cue", "scripts/audit-cue.mjs", "fixtures/cue-issues/roms/psx"],
@@ -111,6 +115,7 @@ assert(fs.existsSync(path.join(exampleDirectory, "data-quality.md")), "example g
 assert(fs.existsSync(path.join(exampleDirectory, "data-quality-budget.json")), "example generation missing data quality budget JSON");
 assert(fs.existsSync(path.join(exampleDirectory, "summary.json")), "example generation missing summary JSON");
 assert(fs.existsSync(path.join(exampleDirectory, "summary.md")), "example generation missing summary markdown");
+assert(fs.existsSync(path.join(exampleDirectory, "advisor.json")), "example generation missing advisor JSON");
 const generatedCoverage = JSON.parse(fs.readFileSync(path.join(exampleDirectory, "coverage-gaps.json"), "utf8"));
 assert(validateCoverageGapReport(generatedCoverage), `generated coverage report failed schema validation: ${ajv.errorsText(validateCoverageGapReport.errors)}`);
 const generatedDataQuality = JSON.parse(fs.readFileSync(path.join(exampleDirectory, "data-quality.json"), "utf8"));
@@ -120,6 +125,8 @@ const generatedDataQualityBudget = JSON.parse(fs.readFileSync(path.join(exampleD
 assert(validateDataQualityBudget(generatedDataQualityBudget), `generated data quality budget failed schema validation: ${ajv.errorsText(validateDataQualityBudget.errors)}`);
 const generatedSummary = JSON.parse(fs.readFileSync(path.join(exampleDirectory, "summary.json"), "utf8"));
 assert(validateSummaryReport(generatedSummary), `generated summary report failed schema validation: ${ajv.errorsText(validateSummaryReport.errors)}`);
+const generatedAdvisor = JSON.parse(fs.readFileSync(path.join(exampleDirectory, "advisor.json"), "utf8"));
+assert(validateAdvisorReport(generatedAdvisor), `generated advisor report failed schema validation: ${ajv.errorsText(validateAdvisorReport.errors)}`);
 assert(fs.readFileSync(path.join(exampleDirectory, "coverage-gaps.md"), "utf8").includes("# Coverage Gaps"), "generated coverage markdown missing title");
 assert(fs.readFileSync(path.join(exampleDirectory, "data-quality.md"), "utf8").includes("# Data Quality"), "generated data quality markdown missing title");
 assert(fs.readFileSync(path.join(exampleDirectory, "summary.md"), "utf8").includes("# rom-librarian Summary"), "generated summary markdown missing title");

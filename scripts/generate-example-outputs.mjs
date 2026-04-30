@@ -39,6 +39,7 @@ const dataQualityMarkdownPath = path.join(outputRoot, "data-quality.md");
 const dataQualityBudgetJsonPath = path.join(outputRoot, "data-quality-budget.json");
 const summaryJsonPath = path.join(outputRoot, "summary.json");
 const summaryMarkdownPath = path.join(outputRoot, "summary.md");
+const advisorJsonPath = path.join(outputRoot, "advisor.json");
 execFileSync(process.execPath, ["scripts/report-coverage-gaps.mjs", "--limit", "25", "--json-out", coverageJsonPath], { cwd: process.cwd(), stdio: "inherit" });
 fs.writeFileSync(coverageMarkdownPath, execFileSync(process.execPath, ["scripts/report-coverage-gaps.mjs", "--limit", "25", "--format", "markdown"], { cwd: process.cwd(), encoding: "utf8" }), "utf8");
 execFileSync(process.execPath, ["scripts/report-data-quality.mjs", "--json-out", dataQualityJsonPath], { cwd: process.cwd(), stdio: "inherit" });
@@ -46,5 +47,6 @@ fs.writeFileSync(dataQualityMarkdownPath, execFileSync(process.execPath, ["scrip
 fs.writeFileSync(dataQualityBudgetJsonPath, execFileSync(process.execPath, ["scripts/check-data-quality-budget.mjs", "--max-findings", "184", "--max-low-confidence", "105", "--max-generic-sources", "79"], { cwd: process.cwd(), encoding: "utf8" }), "utf8");
 execFileSync(process.execPath, ["scripts/report-summary.mjs", "--json-out", summaryJsonPath], { cwd: process.cwd(), stdio: "inherit" });
 fs.writeFileSync(summaryMarkdownPath, execFileSync(process.execPath, ["scripts/report-summary.mjs", "--format", "markdown"], { cwd: process.cwd(), encoding: "utf8" }), "utf8");
+execFileSync(process.execPath, ["scripts/report-advisor.mjs", "--frontend", "es-de", "--system", "psx", "--emulator", "duckstation", "--json-out", advisorJsonPath], { cwd: process.cwd(), stdio: "inherit" });
 
 console.log(JSON.stringify({ status: "completed", output_root: outputRoot, examples: examples.length }, null, 2));

@@ -30,6 +30,11 @@ assert(countFindings(audit, "empty_folder") === 1, "empty-folder fixture should 
 const plan = runJson(["scripts/plan-repairs.mjs", "-"], JSON.stringify(audit));
 const planPath = path.join(tempRoot, "empty-plan.json");
 fs.writeFileSync(planPath, JSON.stringify(plan), "utf8");
+const dryRunResult = runJson(["scripts/apply-empty-folder-cleanup.mjs", planPath, "--dry-run"]);
+assertApplicatorResult(dryRunResult, "empty-folder cleanup dry-run result");
+assert(dryRunResult.mode === "dry-run" && dryRunResult.backup_manifest === null, "empty-folder dry-run should not create a manifest");
+assert(dryRunResult.changes.every((change) => change.applied === false), "empty-folder dry-run should not apply changes");
+assert(fs.existsSync(path.join(fixtureTarget, "snes", "empty")), "empty-folder dry-run should not remove folder");
 const result = runJson(["scripts/apply-empty-folder-cleanup.mjs", planPath, "--apply"]);
 assertApplicatorResult(result, "empty-folder cleanup result");
 assert(result.changes.length === 1, "empty-folder cleanup expected one deleted folder");

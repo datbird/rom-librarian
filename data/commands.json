@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0",
+  "commands": [
+    { "id": "audit:m3u", "command": "npm run audit:m3u -- <path>", "category": "audit", "mutates": false, "inputs": ["library path"], "outputs": ["audit JSON"], "safety_gates": [] },
+    { "id": "audit:cue", "command": "npm run audit:cue -- <path>", "category": "audit", "mutates": false, "inputs": ["library path"], "outputs": ["audit JSON"], "safety_gates": [] },
+    { "id": "audit:gdi", "command": "npm run audit:gdi -- <path>", "category": "audit", "mutates": false, "inputs": ["library path"], "outputs": ["audit JSON"], "safety_gates": [] },
+    { "id": "audit:descriptors", "command": "npm run audit:descriptors -- <path>", "category": "audit", "mutates": false, "inputs": ["library path"], "outputs": ["audit JSON"], "safety_gates": [] },
+    { "id": "audit:media", "command": "npm run audit:media -- <path>", "category": "audit", "mutates": false, "inputs": ["library path"], "outputs": ["audit JSON"], "safety_gates": [] },
+    { "id": "audit:launchbox", "command": "npm run audit:launchbox -- <path>", "category": "audit", "mutates": false, "inputs": ["library path"], "outputs": ["audit JSON"], "safety_gates": [] },
+    { "id": "audit:pegasus", "command": "npm run audit:pegasus -- <path>", "category": "audit", "mutates": false, "inputs": ["library path"], "outputs": ["audit JSON"], "safety_gates": [] },
+    { "id": "audit:romm", "command": "npm run audit:romm -- <path>", "category": "audit", "mutates": false, "inputs": ["library path"], "outputs": ["audit JSON"], "safety_gates": [] },
+    { "id": "audit:mame", "command": "npm run audit:mame -- <path>", "category": "audit", "mutates": false, "inputs": ["library path"], "outputs": ["audit JSON"], "safety_gates": [] },
+    { "id": "audit:empty-folders", "command": "npm run audit:empty-folders -- <path>", "category": "audit", "mutates": false, "inputs": ["library path"], "outputs": ["audit JSON"], "safety_gates": [] },
+    { "id": "plan:repairs", "command": "npm run plan:repairs -- <audit-output.json>", "category": "plan", "mutates": false, "inputs": ["audit JSON"], "outputs": ["repair plan JSON"], "safety_gates": [] },
+    { "id": "plan:changes", "command": "npm run plan:changes -- <repair-plan.json>", "category": "plan", "mutates": false, "inputs": ["repair plan JSON"], "outputs": ["dry-run change JSON"], "safety_gates": [] },
+    { "id": "report:advisor", "command": "npm run report:advisor -- [--frontend <id>] [--system <id>] [--emulator <id>]", "category": "report", "mutates": false, "inputs": ["normalized IDs"], "outputs": ["advisor JSON"], "safety_gates": [] },
+    { "id": "report:coverage-gaps", "command": "npm run report:coverage-gaps", "category": "report", "mutates": false, "inputs": [], "outputs": ["coverage JSON"], "safety_gates": [] },
+    { "id": "report:data-quality", "command": "npm run report:data-quality", "category": "report", "mutates": false, "inputs": [], "outputs": ["quality JSON"], "safety_gates": [] },
+    { "id": "apply:m3u-case-fixes", "command": "npm run apply:m3u-case-fixes -- <plan.json> --apply", "category": "apply", "mutates": true, "inputs": ["repair plan JSON"], "outputs": ["applicator JSON", "backup manifest"], "safety_gates": ["--apply", "--allow-real-targets", "--confirm-target"] },
+    { "id": "apply:cue-case-fixes", "command": "npm run apply:cue-case-fixes -- <plan.json> --apply", "category": "apply", "mutates": true, "inputs": ["repair plan JSON"], "outputs": ["applicator JSON", "backup manifest"], "safety_gates": ["--apply", "--allow-real-targets", "--confirm-target"] },
+    { "id": "apply:gdi-case-fixes", "command": "npm run apply:gdi-case-fixes -- <plan.json> --apply", "category": "apply", "mutates": true, "inputs": ["repair plan JSON"], "outputs": ["applicator JSON", "backup manifest"], "safety_gates": ["--apply", "--allow-real-targets", "--confirm-target"] },
+    { "id": "apply:missing-m3u-playlists", "command": "npm run apply:missing-m3u-playlists -- <plan.json> --apply", "category": "apply", "mutates": true, "inputs": ["repair plan JSON"], "outputs": ["applicator JSON", "backup manifest"], "safety_gates": ["--apply", "--allow-real-targets", "--confirm-target"] },
+    { "id": "apply:empty-folder-cleanup", "command": "npm run apply:empty-folder-cleanup -- <plan.json> --apply", "category": "apply", "mutates": true, "inputs": ["repair plan JSON"], "outputs": ["applicator JSON", "backup manifest"], "safety_gates": ["--apply", "--allow-real-targets", "--confirm-target"] },
+    { "id": "apply:orphaned-media-quarantine", "command": "npm run apply:orphaned-media-quarantine -- <plan.json> --apply", "category": "apply", "mutates": true, "inputs": ["repair plan JSON"], "outputs": ["applicator JSON", "backup manifest"], "safety_gates": ["--apply", "--allow-real-targets", "--confirm-target"] },
+    { "id": "rollback:manifest", "command": "npm run rollback:manifest -- <backup-manifest.json> (--dry-run|--apply)", "category": "rollback", "mutates": true, "inputs": ["backup manifest JSON"], "outputs": ["rollback JSON"], "safety_gates": ["--dry-run or --apply", "--allow-real-targets", "--confirm-target"] }
+  ]
+}

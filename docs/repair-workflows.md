@@ -146,11 +146,11 @@ The CUE case-fix applicator:
 
 `scripts/apply-gdi-case-fixes.mjs` follows the same gate/backup/rollback model for `gdi_case_mismatch` findings from `audit:gdi`. It edits only GDI track filename text and never moves, deletes, or converts track payloads.
 
-`scripts/apply-empty-folder-cleanup.mjs` can delete empty leaf folders when all of these are true:
+`scripts/apply-empty-folder-cleanup.mjs` can preflight with `--dry-run` or delete empty leaf folders when all of these are true:
 
 - Input is a dry-run repair plan generated from `audit:empty-folders`.
 - The finding type is `empty_folder`.
-- `--apply` is present.
+- exactly one of `--dry-run` or `--apply` is present.
 - The folder still exists and is empty at apply time.
 
 For non-fixture targets, this applicator also requires:
@@ -165,11 +165,11 @@ The empty-folder applicator:
 - never deletes files or non-empty directories
 - rolls back by recreating deleted empty folders only if the destination path is still absent
 
-`scripts/apply-orphaned-media-quarantine.mjs` can move orphaned media files into quarantine when all of these are true:
+`scripts/apply-orphaned-media-quarantine.mjs` can preflight with `--dry-run` or move orphaned media files into quarantine when all of these are true:
 
 - Input is a dry-run repair plan generated from `audit:media`.
 - The finding type is `orphaned_media`.
-- `--apply` is present.
+- exactly one of `--dry-run` or `--apply` is present.
 - The media file still exists at apply time.
 
 For non-fixture targets, this applicator also requires:

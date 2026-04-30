@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/07/schema",
+  "$id": "https://github.com/datbird/rom-librarian/schema/commands.schema.json",
+  "title": "rom-librarian command catalog",
+  "type": "object",
+  "required": ["version", "commands"],
+  "properties": {
+    "version": { "type": "string" },
+    "commands": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "command", "category", "mutates", "inputs", "outputs", "safety_gates"],
+        "properties": {
+          "id": { "type": "string" },
+          "command": { "type": "string" },
+          "category": { "type": "string", "enum": ["audit", "plan", "report", "apply", "rollback"] },
+          "mutates": { "type": "boolean" },
+          "inputs": { "type": "array", "items": { "type": "string" } },
+          "outputs": { "type": "array", "items": { "type": "string" } },
+          "safety_gates": { "type": "array", "items": { "type": "string" } }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

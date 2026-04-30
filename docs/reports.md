@@ -64,6 +64,16 @@ npm run report:summary -- --json-out /tmp/summary.json
 
 JSON summary output is validated by `schema/summary-report.schema.json` in the output test suite.
 
+## Advisor
+
+Advisor reports combine selected normalized frontend, system, and emulator records with command recommendations and forbidden actions:
+
+```bash
+npm run report:advisor -- --frontend es-de --system psx --emulator duckstation
+```
+
+The advisor is read-only and validates against `schema/advisor-report.schema.json`.
+
 ## Data Quality
 
 Data-quality reports flag advisory cleanup targets in normalized records, such as low-confidence sources, generic source URLs, and placeholder supported formats:
@@ -85,6 +95,7 @@ Quality findings are advisory and do not affect coverage completeness.
 | `npm run plan:changes -- <plan.json>` | default | supported | no | no |
 | `npm run report:coverage-gaps` | default | supported | `--format markdown` | no |
 | `npm run report:data-quality` | default | supported | `--format markdown` | no |
+| `npm run report:advisor` | default | supported | no | no |
 | `npm run report:summary` | default | supported | `--format markdown` | no |
 
 ## JSON Schemas
@@ -97,6 +108,7 @@ Quality findings are advisory and do not affect coverage completeness.
 | Coverage-gap report JSON | `schema/coverage-gap-report.schema.json` |
 | Data-quality report JSON | `schema/data-quality-report.schema.json` |
 | Data-quality budget JSON | `schema/data-quality-budget.schema.json` |
+| Advisor report JSON | `schema/advisor-report.schema.json` |
 | Summary report JSON | `schema/summary-report.schema.json` |
 | Backup manifest JSON | `schema/backup-manifest.schema.json` |
 | Mutating applicator result JSON | `schema/applicator-result.schema.json` |
