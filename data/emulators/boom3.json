@@ -5,10 +5,10 @@
   "homepage": "https://github.com/libretro",
   "sources": [
     {
-      "type": "homepage",
-      "url": "https://github.com/libretro",
-      "last_reviewed": "2026-04-29",
-      "confidence": "low"
+      "type": "github",
+      "url": "https://github.com/libretro/boom3",
+      "last_reviewed": "2026-04-30",
+      "confidence": "medium"
     }
   ],
   "platforms": [

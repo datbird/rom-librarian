@@ -80,6 +80,25 @@ for (const change of manifest.planned_changes) {
     continue;
   }
 
+  if (change.operation === "quarantine_orphaned_media") {
+    if (fs.existsSync(destination)) fail(`Refusing to restore over existing path: ${relativeDestination}`);
+    if (!change.quarantine_path) fail("Rollback change missing quarantine_path");
+    const quarantinePath = path.resolve(change.quarantine_path);
+    if (!fs.existsSync(quarantinePath)) fail(`Quarantined file does not exist: ${quarantinePath}`);
+    if (apply) {
+      fs.mkdirSync(path.dirname(destination), { recursive: true });
+      fs.renameSync(quarantinePath, destination);
+    }
+    restored.push({
+      operation: "restore_quarantined_file",
+      destination,
+      backup_path: quarantinePath,
+      restored: apply,
+      applied: apply
+    });
+    continue;
+  }
+
   if (!change.backup_path) fail("Rollback change missing backup_path");
   const backupPath = path.resolve(change.backup_path);
   if (!fs.existsSync(backupPath)) fail(`Backup file does not exist: ${backupPath}`);

@@ -6,13 +6,7 @@
   "sources": [
     {
       "type": "github",
-      "url": "https://github.com/libretro",
-      "last_reviewed": "2026-04-30",
-      "confidence": "low"
-    },
-    {
-      "type": "docs",
-      "url": "https://docs.libretro.com/meta/core-list/",
+      "url": "https://github.com/libretro/libretro-crocods",
       "last_reviewed": "2026-04-30",
       "confidence": "medium"
     }

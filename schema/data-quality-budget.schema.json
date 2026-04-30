@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/07/schema",
+  "$id": "https://github.com/datbird/rom-librarian/schema/data-quality-budget.schema.json",
+  "title": "rom-librarian data quality budget report",
+  "type": "object",
+  "required": ["report", "mode", "status", "enforced", "checks", "notes"],
+  "properties": {
+    "report": { "type": "string", "enum": ["data-quality-budget"] },
+    "mode": { "type": "string", "enum": ["read-only"] },
+    "status": { "type": "string", "enum": ["within_budget", "over_budget"] },
+    "enforced": { "type": "boolean", "enum": [false] },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "actual", "budget"],
+        "properties": {
+          "name": { "type": "string", "enum": ["findings", "low_confidence_source", "generic_source_url"] },
+          "actual": { "type": "integer", "minimum": 0 },
+          "budget": { "type": "integer", "minimum": 0 }
+        },
+        "additionalProperties": false
+      }
+    },
+    "notes": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false
+}

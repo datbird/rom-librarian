@@ -730,6 +730,8 @@
     "backup_manifest": "schema/backup-manifest.schema.json",
     "dry_run_change": "schema/dry-run-change.schema.json",
     "summary_report": "schema/summary-report.schema.json",
+    "data_quality_report": "schema/data-quality-report.schema.json",
+    "data_quality_budget": "schema/data-quality-budget.schema.json",
     "applicator_result": "schema/applicator-result.schema.json",
     "rollback_result": "schema/rollback-result.schema.json"
   }

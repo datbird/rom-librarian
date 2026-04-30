@@ -74,7 +74,7 @@ npm run report:data-quality -- --format markdown
 ```
 
 Quality findings are advisory and do not affect coverage completeness.
-`npm run check:data-quality` compares current finding totals with explicit budget values and currently reports `enforced: false`, so it tracks quality drift without blocking development.
+`npm run check:data-quality` compares current finding totals with explicit budget values and currently reports `enforced: false`, so it tracks quality drift without blocking development. Current budgets are ratcheted to `184` total findings, `105` low-confidence sources, and `79` generic source URLs.
 
 ## Format Matrix
 
@@ -96,6 +96,7 @@ Quality findings are advisory and do not affect coverage completeness.
 | Dry-run change JSON | `schema/dry-run-change.schema.json` |
 | Coverage-gap report JSON | `schema/coverage-gap-report.schema.json` |
 | Data-quality report JSON | `schema/data-quality-report.schema.json` |
+| Data-quality budget JSON | `schema/data-quality-budget.schema.json` |
 | Summary report JSON | `schema/summary-report.schema.json` |
 | Backup manifest JSON | `schema/backup-manifest.schema.json` |
 | Mutating applicator result JSON | `schema/applicator-result.schema.json` |
@@ -107,4 +108,4 @@ Rollback supports `--dry-run` for planned restore/delete output with `applied: f
 
 ## CI Artifacts
 
-The Check workflow runs `npm run examples:outputs -- tmp/examples` and uploads example audit outputs. The artifact includes audit JSON, repair plans, dry-run changes, Markdown reports, HTML reports, coverage-gap reports, data-quality reports, and summary reports for representative fixtures.
+The Check workflow runs `npm run examples:outputs -- tmp/examples` and uploads example audit outputs. The artifact includes audit JSON, repair plans, dry-run changes, Markdown reports, HTML reports, coverage-gap reports, data-quality reports, data-quality budget reports, and summary reports for representative fixtures.

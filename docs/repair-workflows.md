@@ -1,6 +1,6 @@
 # Repair Workflows
 
-Five narrow mutating workflows are implemented: `.m3u` case-mismatch fixes, `.cue` case-mismatch fixes, `.gdi` case-mismatch fixes, additive missing-`.m3u` generation, and empty leaf-folder cleanup. General library repair workflows are not implemented yet.
+Six narrow mutating workflows are implemented: `.m3u` case-mismatch fixes, `.cue` case-mismatch fixes, `.gdi` case-mismatch fixes, additive missing-`.m3u` generation, empty leaf-folder cleanup, and orphaned-media quarantine. General library repair workflows are not implemented yet.
 
 Any future mutating workflow should use this minimum design:
 
@@ -63,6 +63,7 @@ Until these guardrails are implemented and tested, audits and repair plans must 
 | CUE case fixes | gated apply | CUE `FILE` text case replacement | `--apply`; real targets also require `--allow-real-targets --confirm-target <absolute-target>` | BIN/WAV/payload tracks, media, metadata, BIOS, firmware, keys, saves |
 | GDI case fixes | gated apply | GDI track filename text case replacement | `--apply`; real targets also require `--allow-real-targets --confirm-target <absolute-target>` | track payloads, media, metadata, BIOS, firmware, keys, saves |
 | Empty folder cleanup | gated apply | empty leaf-folder deletion | `--apply`; real targets also require `--allow-real-targets --confirm-target <absolute-target>` | files, non-empty folders, media, metadata, BIOS, firmware, keys, saves |
+| Orphaned media quarantine | gated apply | move orphaned media files to `.rom-librarian-quarantine` | `--apply`; real targets also require `--allow-real-targets --confirm-target <absolute-target>` | ROMs, metadata, referenced media, BIOS, firmware, keys, saves |
 | CHD candidates | read-only | none | none | CHD files, source descriptors, conversion output |
 | Arcade/MAME/FBNeo checks | read-only | none | none | zipped sets, DAT rebuilds, merged/split sets |
 
@@ -75,6 +76,7 @@ Until these guardrails are implemented and tested, audits and repair plans must 
 | `apply:gdi-case-fixes` | Copies each edited `.gdi` file under `.rom-librarian-backups/<operation>/` | Restores the backed-up GDI over the edited GDI | Real-target rollback requires `--allow-real-targets --confirm-target <absolute-target>` |
 | `apply:missing-m3u-playlists` | Stores generated playlist path and exact generated content in the manifest | Deletes the generated playlist only if its current content still exactly matches the manifest | Refuses to delete if the generated playlist was edited after creation; real-target rollback requires exact confirmation |
 | `apply:empty-folder-cleanup` | Stores deleted empty folder paths in the manifest | Recreates deleted empty folders only if the destination path is still absent | Refuses to recreate over an existing path; real-target rollback requires exact confirmation |
+| `apply:orphaned-media-quarantine` | Stores original path and quarantine path in the manifest | Moves quarantined media back only if the original path is still absent | Refuses to restore over an existing path; real-target rollback requires exact confirmation |
 
 Rollback never deletes backup files. A rollback operation is itself mutating and requires `--apply`.
 
@@ -163,6 +165,26 @@ The empty-folder applicator:
 - never deletes files or non-empty directories
 - rolls back by recreating deleted empty folders only if the destination path is still absent
 
+`scripts/apply-orphaned-media-quarantine.mjs` can move orphaned media files into quarantine when all of these are true:
+
+- Input is a dry-run repair plan generated from `audit:media`.
+- The finding type is `orphaned_media`.
+- `--apply` is present.
+- The media file still exists at apply time.
+
+For non-fixture targets, this applicator also requires:
+
+- `--allow-real-targets`
+- `--confirm-target <absolute-target>` matching the repair plan target exactly
+
+The orphaned-media applicator:
+
+- moves only files reported as orphaned media by the audit
+- preserves relative paths under `.rom-librarian-quarantine/<operation>/`
+- writes `backup-manifest.json`
+- never edits metadata or deletes media permanently
+- rolls back by moving quarantined files back only if the original path is still absent
+
 Example:
 
 ```bash
@@ -190,6 +212,11 @@ npm run audit:empty-folders -- /path/to/roms --json-out /tmp/empty-folders-audit
 npm run plan:repairs -- /tmp/empty-folders-audit.json --json-out /tmp/empty-folders-plan.json
 npm run apply:empty-folder-cleanup -- /tmp/empty-folders-plan.json --apply --allow-real-targets --confirm-target /path/to/roms
 npm run rollback:manifest -- <backup-manifest.json> --apply --allow-real-targets --confirm-target /path/to/roms
+
+npm run audit:media -- fixtures/es-media-paths/roms/snes --json-out /tmp/media-audit.json
+npm run plan:repairs -- /tmp/media-audit.json --json-out /tmp/media-plan.json
+npm run apply:orphaned-media-quarantine -- /tmp/media-plan.json --apply
+npm run rollback:manifest -- <backup-manifest.json> --apply
 ```
 
 Real target example:
@@ -200,6 +227,7 @@ npm run apply:cue-case-fixes -- /tmp/cue-plan.json --apply --allow-real-targets 
 npm run apply:gdi-case-fixes -- /tmp/gdi-plan.json --apply --allow-real-targets --confirm-target /absolute/library/path
 npm run apply:missing-m3u-playlists -- /tmp/missing-m3u-plan.json --apply --allow-real-targets --confirm-target /absolute/library/path
 npm run apply:empty-folder-cleanup -- /tmp/empty-folder-plan.json --apply --allow-real-targets --confirm-target /absolute/library/path
+npm run apply:orphaned-media-quarantine -- /tmp/media-plan.json --apply --allow-real-targets --confirm-target /absolute/library/path
 npm run rollback:manifest -- <backup-manifest.json> --apply --allow-real-targets --confirm-target /absolute/library/path
 ```
 
