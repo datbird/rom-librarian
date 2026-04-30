@@ -6,8 +6,8 @@
   "required": ["operation", "mode", "status", "target", "real_target", "manifest", "restored", "notes"],
   "properties": {
     "operation": { "type": "string", "enum": ["rollback-backup-manifest"] },
-    "mode": { "type": "string", "enum": ["mutating"] },
-    "status": { "type": "string", "enum": ["restored"] },
+    "mode": { "type": "string", "enum": ["mutating", "dry-run"] },
+    "status": { "type": "string", "enum": ["restored", "planned"] },
     "target": { "type": "string" },
     "real_target": { "type": "boolean" },
     "manifest": { "type": "string" },
@@ -16,12 +16,13 @@
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["operation", "destination", "restored"],
+        "required": ["operation", "destination", "restored", "applied"],
         "properties": {
           "operation": { "type": "string", "enum": ["restore_backup_file", "delete_generated_file"] },
           "destination": { "type": "string" },
           "backup_path": { "type": "string" },
-          "restored": { "type": "boolean", "enum": [true] }
+          "restored": { "type": "boolean" },
+          "applied": { "type": "boolean" }
         },
         "additionalProperties": false
       }

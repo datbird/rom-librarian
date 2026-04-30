@@ -54,6 +54,10 @@ assert(missingConfirmRefusal.includes("--confirm-target"), "real target missing 
 const realMissingResult = runJson(["scripts/apply-missing-m3u-playlists.mjs", realMissingPlanPath, "--apply", "--allow-real-targets", "--confirm-target", realMissingTarget]);
 assertApplicatorResult(realMissingResult, "real missing M3U result");
 assert(realMissingResult.real_target === true, "real target missing M3U apply should mark real_target true");
+const realMissingDryRun = runJson(["scripts/rollback-backup-manifest.mjs", realMissingResult.backup_manifest, "--dry-run", "--allow-real-targets", "--confirm-target", realMissingTarget]);
+assertRollbackResult(realMissingDryRun, "real missing M3U dry-run rollback result");
+assert(realMissingDryRun.mode === "dry-run" && realMissingDryRun.restored.every((item) => item.applied === false), "missing M3U dry-run rollback should not apply changes");
+assert(fs.existsSync(realMissingResult.changes[0].created_path), "dry-run rollback should not delete generated playlist");
 const changedPlaylist = realMissingResult.changes[0].created_path;
 fs.appendFileSync(changedPlaylist, "# user edit\n", "utf8");
 const changedRollbackRefusal = runExpectFailure(["scripts/rollback-backup-manifest.mjs", realMissingResult.backup_manifest, "--apply", "--allow-real-targets", "--confirm-target", realMissingTarget]);

@@ -110,6 +110,13 @@ assert(countFindings(runJson(["scripts/audit-m3u.mjs", realTarget]), "case_misma
 
 const rollbackRefusal = runExpectFailure(["scripts/rollback-backup-manifest.mjs", realResult.backup_manifest, "--apply"]);
 assert(rollbackRefusal.includes("--allow-real-targets"), "real target rollback should require --allow-real-targets");
+const dryRunRefusal = runExpectFailure(["scripts/rollback-backup-manifest.mjs", realResult.backup_manifest, "--dry-run"]);
+assert(dryRunRefusal.includes("--allow-real-targets"), "real target dry-run rollback should require --allow-real-targets");
+const realDryRun = runJson(["scripts/rollback-backup-manifest.mjs", realResult.backup_manifest, "--dry-run", "--allow-real-targets", "--confirm-target", realTarget]);
+assertRollbackResult(realDryRun, "real M3U dry-run rollback result");
+assert(realDryRun.mode === "dry-run" && realDryRun.status === "planned", "rollback dry-run should report planned dry-run mode");
+assert(realDryRun.restored.every((item) => item.applied === false && item.restored === false), "rollback dry-run entries should not be applied");
+assert(countFindings(runJson(["scripts/audit-m3u.mjs", realTarget]), "case_mismatch") === 0, "real target dry-run rollback should not change files");
 
 const realRollback = runJson(["scripts/rollback-backup-manifest.mjs", realResult.backup_manifest, "--apply", "--allow-real-targets", "--confirm-target", realTarget]);
 assertRollbackResult(realRollback, "real M3U rollback result");

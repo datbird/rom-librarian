@@ -1,14 +1,17 @@
 import fs from "node:fs";
 import path from "node:path";
+import Ajv from "ajv";
 import { emitJson } from "./lib/audit-utils.mjs";
 
 const manifestPath = process.argv[2];
 const apply = process.argv.includes("--apply");
+const dryRun = process.argv.includes("--dry-run");
 const allowRealTargets = process.argv.includes("--allow-real-targets");
 const confirmTarget = getOptionValue("--confirm-target");
+const root = process.cwd();
 
 if (manifestPath === "--help" || manifestPath === "-h" || !manifestPath) {
-  console.log("Usage: node scripts/rollback-backup-manifest.mjs <backup-manifest.json> --apply [--allow-real-targets --confirm-target <absolute-target>]");
+  console.log("Usage: node scripts/rollback-backup-manifest.mjs <backup-manifest.json> (--apply|--dry-run) [--allow-real-targets --confirm-target <absolute-target>]");
   process.exit(manifestPath ? 0 : 1);
 }
 
@@ -17,7 +20,8 @@ function fail(message) {
   process.exit(1);
 }
 
-if (!apply) fail("Refusing to restore files without explicit --apply");
+if (apply && dryRun) fail("Use only one of --apply or --dry-run");
+if (!apply && !dryRun) fail("Refusing to restore files without explicit --apply or --dry-run");
 if (!fs.existsSync(manifestPath)) fail(`Manifest does not exist: ${manifestPath}`);
 
 function getOptionValue(name) {
@@ -27,7 +31,9 @@ function getOptionValue(name) {
 }
 
 const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
-if (!manifest.operation_id || !Array.isArray(manifest.planned_changes) || !Array.isArray(manifest.backup_paths)) fail("Invalid backup manifest shape");
+const ajv = new Ajv({ allErrors: true, strict: false, validateSchema: false });
+const validateBackupManifest = ajv.compile(JSON.parse(fs.readFileSync(path.join(root, "schema/backup-manifest.schema.json"), "utf8")));
+if (!validateBackupManifest(manifest)) fail(`Invalid backup manifest schema: ${ajv.errorsText(validateBackupManifest.errors)}`);
 
 const target = path.resolve(manifest.target || "");
 const isFixtureTarget = target.includes(`${path.sep}fixtures${path.sep}`);
@@ -52,11 +58,12 @@ for (const change of manifest.planned_changes) {
     if (!fs.existsSync(destination)) fail(`Generated playlist does not exist: ${relativeDestination}`);
     const currentContent = fs.readFileSync(destination, "utf8");
     if (currentContent !== change.created_content) fail(`Refusing to delete changed generated playlist: ${relativeDestination}`);
-    fs.unlinkSync(destination);
+    if (apply) fs.unlinkSync(destination);
     restored.push({
       operation: "delete_generated_file",
       destination,
-      restored: true
+      restored: apply,
+      applied: apply
     });
     continue;
   }
@@ -65,22 +72,23 @@ for (const change of manifest.planned_changes) {
   const backupPath = path.resolve(change.backup_path);
   if (!fs.existsSync(backupPath)) fail(`Backup file does not exist: ${backupPath}`);
 
-  fs.copyFileSync(backupPath, destination);
+  if (apply) fs.copyFileSync(backupPath, destination);
   restored.push({
     operation: "restore_backup_file",
     destination,
     backup_path: backupPath,
-    restored: true
+    restored: apply,
+    applied: apply
   });
 }
 
 emitJson({
   operation: "rollback-backup-manifest",
-  mode: "mutating",
-  status: "restored",
+  mode: apply ? "mutating" : "dry-run",
+  status: apply ? "restored" : "planned",
   target,
   real_target: !isFixtureTarget,
   manifest: path.resolve(manifestPath),
   restored,
-  notes: ["Backup files were copied back to their original destinations. Backup files were not deleted."]
+  notes: [apply ? "Backup files were copied back to their original destinations. Backup files were not deleted." : "Dry run only. No files were restored or deleted."]
 });

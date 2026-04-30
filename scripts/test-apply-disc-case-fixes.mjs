@@ -62,6 +62,9 @@ assert(countFindings(runJson(["scripts/audit-gdi.mjs", gdiTarget]), "gdi_case_mi
 const gdiRollback = runJson(["scripts/rollback-backup-manifest.mjs", gdiResult.backup_manifest, "--apply"]);
 assertBackupManifest(JSON.parse(fs.readFileSync(gdiResult.backup_manifest, "utf8")), "GDI backup manifest");
 assertRollbackResult(gdiRollback, "GDI rollback result");
+const gdiDryRun = runJson(["scripts/rollback-backup-manifest.mjs", gdiResult.backup_manifest, "--dry-run"]);
+assertRollbackResult(gdiDryRun, "GDI dry-run rollback result");
+assert(gdiDryRun.mode === "dry-run" && gdiDryRun.restored.every((item) => item.applied === false), "GDI dry-run rollback should not apply changes");
 assert(gdiRollback.restored.length === 1, "GDI rollback expected one restored file");
 
 const realGdiRoot = fs.mkdtempSync(path.join(os.tmpdir(), "rom-librarian-real-gdi-"));

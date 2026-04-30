@@ -88,6 +88,7 @@ JSON summary output is validated by `schema/summary-report.schema.json` in the o
 | Rollback result JSON | `schema/rollback-result.schema.json` |
 
 Coverage-gap bucket names are schema-constrained so newly introduced prioritization categories must be added intentionally. Applicator result validation covers the JSON emitted by the M3U, missing-M3U, CUE, and GDI applicators. Rollback result validation covers manifest-backed file restores and generated-playlist deletion rollbacks.
+Rollback supports `--dry-run` for planned restore/delete output with `applied: false`; real targets still require `--allow-real-targets --confirm-target <absolute-target>`.
 
 ## CI Artifacts
 
