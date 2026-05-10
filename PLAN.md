@@ -265,7 +265,7 @@ These seed the `quirks` section of static.json:
 
 | ID | Frontend | System | Description |
 |----|----------|--------|-------------|
-| `es-loose-images` | retrobat / batocera / es-de | any disc | EmulationStation scans subfolders and detects loose .cue/.bin files alongside .m3u files, causing double-detection. Fix: move images to a sibling folder outside Favorite/ |
+| `es-loose-images` | retrobat / batocera / es-de | any disc | EmulationStation scans subfolders and detects loose .cue/.bin files alongside .m3u files, causing double-detection. Fix: keep .m3u files in the active scanned folder and move disc payload folders to a separate child of the platform parent, such as `segadreamcast/diskimages`. |
 | `faux-m3u-dir` | varies | any multi-disc | Folders named `<game>.m3u` can be an intentional folder marker in some workflows, but they are not real playlist files. Behavior is frontend/emulator-specific and should be governed by user policy: ask, forbid, allow, or preserve. |
 | `es-m3u-folder-name` | retrobat / batocera | any | Many ES-style configurations expect real `.m3u` files at the frontend-scanned system root. Faux `.m3u` directories may be invisible or duplicate-prone unless that exact frontend/emulator/parser is known to support them. |
 | `7z-stdin-multidisc` | n/a | any multi-disc | When extracting multi-disc .7z files in a bash while-read loop, 7-Zip consumes stdin, causing only Disc 1 to be extracted. Fix: redirect stdin with `< /dev/null` on the 7z command. |
@@ -382,7 +382,7 @@ Captured from real sessions — use this to build `examples/user.example.json`:
 - **ROM root**: `G:\games\emulation\roms`
 - **Systems worked on**:
   - `psx`: Clean. Images in `sonyplaystation\images\`, .m3u files in `sonyplaystation\Favorite\`, paths are relative `..\\images\\GameName\\disc.cue`
-  - `dreamcast`: Clean. Images in `segadreamcast\Favorite\GameName\`, .m3u files in `segadreamcast\Favorite\`, paths are `GameName\disc.cue`
+  - `dreamcast`: Clean. RetroBat scans `segadreamcast\Favorite\`. `.m3u` files and scraped media stay in `Favorite`; actual disc payload folders live in `segadreamcast\diskimages\`; playlist paths are relative `..\\diskimages\\GameName\\disc.cue`.
 - **7-Zip**: Installed at `C:\Program Files\7-Zip\7z.exe`
 - **Quirks encountered**: es-loose-images, es-m3u-folder-name, 7z-stdin-multidisc, wsl-path-7zip, mv-same-name-dir, find-dir-name-match
 

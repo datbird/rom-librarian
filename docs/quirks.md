@@ -29,6 +29,31 @@ The seed deployment produced several durable scripting lessons:
 - Always verify `.m3u` entries resolve before deleting source archives.
 - Never treat path validation as proof that a game launches successfully.
 
+## ES Loose Image Layout
+
+When an ES-style frontend scans subfolders, the `.m3u` playlist should be treated as the visible game entry and the raw disc payloads should be hidden from the active scanned folder.
+
+Use these layout terms consistently:
+
+- Platform parent: the system folder, such as `sonyplaystation` or `segadreamcast`.
+- Active scanned games folder: the folder the frontend is actually using for entries, such as `Favorite`.
+- Payload folder: a separate child of the platform parent that contains `.cue`, `.gdi`, `.bin`, `.iso`, `.chd`, or per-game disc folders.
+
+Preferred RetroBat shape:
+
+```text
+segadreamcast/Favorite/Game.m3u
+segadreamcast/diskimages/Game/Game (Disc 1).cue
+```
+
+Example playlist line from `Favorite`:
+
+```text
+..\diskimages\Game\Game (Disc 1).cue
+```
+
+Do not flatten an intentional scanned subfolder into the platform parent unless the user asks for that. Do not create platform-like sibling folders such as `segadreamcast_images` when a child folder under the platform parent is the safer fit.
+
 ## Secret Handling
 
 Do not store secrets in `user.json`, learned notes, examples, or docs.

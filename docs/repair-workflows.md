@@ -51,6 +51,39 @@ Blocked by default:
 
 Until these guardrails are implemented and tested, audits and repair plans must remain non-mutating.
 
+## ES Multi-Disc Layout Repairs
+
+For ES-style frontends that show duplicate entries for both `.m3u` playlists and individual disc/image files, preserve the active scanned games folder and hide only the payload files.
+
+Terminology:
+
+- Platform parent: the system folder, for example `sonyplaystation`, `segadreamcast`, `psx`, or `dreamcast`.
+- Active scanned games folder: the folder the frontend is actually scanning for entries. This can be the platform parent itself or a child such as `Favorite`.
+- Payload folder: a separate child of the platform parent used for actual disc/image folders, such as `diskimages`.
+
+Repair intent:
+
+- Keep `.m3u` files in the active scanned games folder because the playlist is the frontend-visible game.
+- Move `.cue`, `.gdi`, `.bin`, `.iso`, `.chd`, and per-game disc folders out of the active scanned games folder.
+- Prefer a payload folder under the platform parent, such as `segadreamcast/diskimages`, instead of a sibling folder beside the platform parent, such as `segadreamcast_images`.
+- Avoid payload folder names that collide with scraped media folders. Use `diskimages` or `discimages` instead of `images` when `images` already means artwork.
+- Rewrite `.m3u` entries relative to the active scanned games folder and preserve the target runtime's path separator.
+
+RetroBat Dreamcast example:
+
+```text
+segadreamcast/Favorite/Shenmue (USA).m3u
+segadreamcast/diskimages/Shenmue (USA)/Shenmue (USA) (Disc 1).cue
+```
+
+Example playlist line from `Favorite`:
+
+```text
+..\diskimages\Shenmue (USA)\Shenmue (USA) (Disc 1).cue
+```
+
+Before applying this kind of repair, report the active scanned folder, payload destination, number of playlists, number and size of payload folders, destination conflicts, rollback strategy, and post-repair verification commands.
+
 ## Mutation Safety Matrix
 
 | Workflow | Default mode | Allowed mutation | Required gates | Never touches |
@@ -64,6 +97,7 @@ Until these guardrails are implemented and tested, audits and repair plans must 
 | GDI case fixes | gated apply | GDI track filename text case replacement | `--apply`; real targets also require `--allow-real-targets --confirm-target <absolute-target>` | track payloads, media, metadata, BIOS, firmware, keys, saves |
 | Empty folder cleanup | gated apply | empty leaf-folder deletion | `--apply`; real targets also require `--allow-real-targets --confirm-target <absolute-target>` | files, non-empty folders, media, metadata, BIOS, firmware, keys, saves |
 | Orphaned media quarantine | gated apply | move orphaned media files to `.rom-librarian-quarantine` | `--apply`; real targets also require `--allow-real-targets --confirm-target <absolute-target>` | ROMs, metadata, referenced media, BIOS, firmware, keys, saves |
+| ES multi-disc payload moves | design only | move disc payload folders out of active scanned folder and rewrite `.m3u` entries | not implemented as an applicator; requires manual dry-run, explicit approval, backup manifest, and post-audit verification | BIOS, firmware, keys, saves, unrelated systems |
 | CHD candidates | read-only | none | none | CHD files, source descriptors, conversion output |
 | Arcade/MAME/FBNeo checks | read-only | none | none | zipped sets, DAT rebuilds, merged/split sets |
 

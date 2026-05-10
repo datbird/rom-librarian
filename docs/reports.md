@@ -16,6 +16,8 @@ npm run report:audit -- /tmp/m3u-audit.json --format html
 
 Audit reports summarize severity counts, finding types, likely causes, and review actions. They are intended for human review and issue attachments.
 
+Raw audit JSON is an internal interchange format. Do not use raw JSON, one-off script object dumps, or long unformatted terminal output as the user-facing report when a renderer or concise summary is available. If a custom inspection script is necessary, summarize its result with the relevant counts, source and destination paths, conflicts, risks, and verification status.
+
 When auditing from WSL or SSH, pass the OS where the frontend/emulator actually interprets paths if inference is ambiguous. For example, a Windows RetroBat library inspected from WSL should use `--target-os windows`; a Batocera share mounted on Linux should use `--target-os linux`.
 
 ## Repair Plans
@@ -42,6 +44,8 @@ npm run plan:changes -- /tmp/m3u-plan.json --json-out /tmp/m3u-changes.json
 ```
 
 Every change is marked `applied: false`. Quarantine paths use a deterministic dry-run timestamp placeholder.
+
+Dry-run change JSON is meant for review tooling. For normal human review, render the repair plan with `plan:markdown` or summarize the proposed operations in prose before asking for approval.
 
 ## Output Modes
 

@@ -128,6 +128,10 @@ Use rom-librarian to create a dry-run plan for converting Dreamcast .m3u folders
 ```
 
 ```text
+Use rom-librarian to repair duplicate Dreamcast entries in RetroBat while keeping my Favorite folder as the scanned games folder.
+```
+
+```text
 Use rom-librarian to check whether my MAME set should be extracted or left zipped.
 ```
 
@@ -217,6 +221,8 @@ npm run test:audits
 ```
 
 Each audit also supports `--json-out <file>` for agent-friendly output capture.
+
+For user-facing summaries, prefer the report renderers or a concise written summary over raw JSON or ad-hoc script output. Raw artifacts are useful for tooling, but the normal review flow should call `report:audit`, `plan:markdown`, or summarize the key counts, paths, conflicts, risks, and verification status.
 
 Generate a read-only repair plan from an audit JSON file or stdin:
 
