@@ -104,7 +104,8 @@ Identify:
 - Frontend OS, agent OS, and whether the agent path view differs from the target runtime path view.
 - Active emulator/core for that system when known.
 - System ROM path.
-- Whether there is a `Favorite` folder, root games folder, media folders, or image staging folder.
+- Whether there is a frontend-scanned subfolder such as `Favorite`, a platform parent folder such as `segadreamcast`, media folders, or image staging folder.
+- Whether the user's games intentionally live in a subfolder under the platform parent. If most ROM entries are under such a subfolder, treat that subfolder as the active scanned games folder unless evidence shows otherwise.
 - ROM/image formats present.
 - `.m3u` files and what they reference.
 - Whether `.m3u` entries resolve to real files.
@@ -247,21 +248,44 @@ Applies when ES-based frontends display both playlist entries and disc/image fil
 
 Goal:
 
-- Keep frontend-visible `.m3u` files in the scanned ROM folder.
-- Move actual image folders outside the scanned folder, such as a sibling `images/` folder.
+- Treat each `.m3u` as the frontend-visible game entry for multi-disc or multi-file disc-image sets.
+- Keep frontend-visible `.m3u` files in the active scanned games folder, not necessarily the platform parent. For example, if games are under `segadreamcast/Favorite`, keep the `.m3u` files in `Favorite`.
+- Move actual disc/image folders outside the active scanned games folder so the frontend does not detect every `.cue`, `.gdi`, `.bin`, `.iso`, or `.chd` as a separate game.
+- Prefer placing the hidden disc/image payload folder under the platform parent, not beside it as a new platform-like sibling folder. For example use `segadreamcast/diskimages`, not `segadreamcast_images`, unless the user asks for a sibling path.
+- Use a name that is clearly distinct from scraped artwork directories, such as `diskimages`, `discimages`, or `payloads`; avoid reusing scraper media names like `images` when that would mix artwork with ROM payload files.
 - Update `.m3u` entries with relative paths.
+
+Path inference rules:
+
+- Platform parent: the known system folder such as `sonyplaystation`, `segadreamcast`, `psx`, or `dreamcast`.
+- Active scanned games folder: the folder where the frontend is actually looking for games. This can be the platform parent itself or a child such as `Favorite`.
+- If many games are already in a child of the platform parent, preserve that child as the scanned games folder in repair plans unless the user explicitly wants to flatten it.
+- If moving payload files for `.m3u` cleanup, move them to another child of the same platform parent and reference them from the active scanned games folder.
 
 RetroBat PSX example:
 
 ```text
 sonyplaystation/Favorite/Game.m3u
-sonyplaystation/images/Game/Game (Disc 1).cue
+sonyplaystation/diskimages/Game/Game (Disc 1).cue
 ```
 
 Example `.m3u` entry:
 
 ```text
-..\images\Game\Game (Disc 1).cue
+..\diskimages\Game\Game (Disc 1).cue
+```
+
+RetroBat Dreamcast example:
+
+```text
+segadreamcast/Favorite/Shenmue (USA).m3u
+segadreamcast/diskimages/Shenmue (USA)/Shenmue (USA) (Disc 1).cue
+```
+
+Example `.m3u` entry from `Favorite`:
+
+```text
+..\diskimages\Shenmue (USA)\Shenmue (USA) (Disc 1).cue
 ```
 
 ### Archive Extraction Repair
@@ -320,6 +344,8 @@ For frontend behavior:
 
 Prefer readable standard reports over raw JSON when a report script exists. Keep the workflow dependency-free by writing audit or plan JSON to a temporary file, then rendering that artifact.
 
+Do not present raw script output as the user-facing report when a readable summary can be produced. This includes raw JSON, ad-hoc Node/Python object dumps, or long unformatted audit findings. Use the standard renderers below, or translate custom script results into a concise human summary with counts, paths, risks, and next action.
+
 Standard examples:
 
 ```bash
@@ -330,6 +356,8 @@ npm run plan:markdown -- /tmp/rom-librarian-plan.json --limit 50
 ```
 
 Use `--format text` for compact terminal output, `--format markdown` for issue/comment output, and `--format html` only when the user asks for a browser-friendly artifact. Do not require optional pretty-output dependencies for normal skill usage.
+
+When writing one-off inspection scripts, treat their output as an internal artifact unless the user specifically asks for raw output. Summarize it in prose and include only the key fields needed for a decision, such as source path, destination path, item counts, size, conflicts, and verification status.
 
 When enhanced dependencies are installed and the user wants richer terminal output, use the opt-in enhanced renderer:
 
