@@ -4,15 +4,19 @@ rom-librarian reports are review artifacts. They do not modify library files, me
 
 ## Audit Reports
 
-Render any audit JSON result as Markdown or HTML:
+Render any audit JSON result as Markdown, plain text, or HTML:
 
 ```bash
 npm run audit:m3u -- fixtures/es-psx-multidisc/roms/psx --json-out /tmp/m3u-audit.json
+npm run audit:m3u -- /mnt/g/games/emulation/roms/sonyplaystation --target-os windows --json-out /tmp/m3u-audit.json
 npm run report:audit -- /tmp/m3u-audit.json
+npm run report:audit -- /tmp/m3u-audit.json --format text --limit 25
 npm run report:audit -- /tmp/m3u-audit.json --format html
 ```
 
-Audit reports summarize findings, likely causes, and review actions. They are intended for human review and issue attachments.
+Audit reports summarize severity counts, finding types, likely causes, and review actions. They are intended for human review and issue attachments.
+
+When auditing from WSL or SSH, pass the OS where the frontend/emulator actually interprets paths if inference is ambiguous. For example, a Windows RetroBat library inspected from WSL should use `--target-os windows`; a Batocera share mounted on Linux should use `--target-os linux`.
 
 ## Repair Plans
 
@@ -22,6 +26,7 @@ Repair plans convert audit findings into risk-ranked dry-run steps:
 npm run plan:repairs -- /tmp/m3u-audit.json --json-out /tmp/m3u-plan.json
 npm run plan:repairs -- /tmp/m3u-audit.json --profile es-de --json-out /tmp/m3u-es-de-plan.json
 npm run plan:markdown -- /tmp/m3u-plan.json
+npm run plan:markdown -- /tmp/m3u-plan.json --limit 25
 ```
 
 Profiles currently support `es-de`, `launchbox`, `romm`, and `pegasus`. Profiles add frontend-specific blocked actions and descriptor guidance only; they do not authorize mutation.
@@ -37,6 +42,40 @@ npm run plan:changes -- /tmp/m3u-plan.json --json-out /tmp/m3u-changes.json
 ```
 
 Every change is marked `applied: false`. Quarantine paths use a deterministic dry-run timestamp placeholder.
+
+## Output Modes
+
+The standard reporting mode is dependency-free and should remain suitable for skill usage, terminal sessions, issue comments, and copied Markdown artifacts.
+
+Use this standard flow for readable output without adding packages:
+
+```bash
+npm run audit:m3u -- <path> --json-out /tmp/audit.json
+npm run report:audit -- /tmp/audit.json --limit 50
+npm run plan:repairs -- /tmp/audit.json --json-out /tmp/plan.json
+npm run plan:markdown -- /tmp/plan.json --limit 50
+```
+
+Enhanced rendering is intentionally optional and should not become required for audits, repair plans, CI validation, or skill usage. If added later, keep it behind a separate command or package script such as `report:audit:enhanced`, and keep the standard renderers working with only Node built-ins.
+
+## Enhanced Reports
+
+Enhanced reports are opt-in terminal reports that use additional dependencies for color, framed summaries, and wrapped tables. They are useful during interactive review, but the standard renderers remain the compatibility baseline.
+
+Installed enhanced-report dependencies:
+
+- `chalk` for severity color
+- `cli-table3` for terminal tables
+- `boxen` for framed report headers
+
+Example:
+
+```bash
+npm run audit:m3u -- <path> --json-out /tmp/audit.json
+npm run report:audit:enhanced -- /tmp/audit.json --limit 25
+```
+
+Enhanced report commands should never be required by applicators, CI safety checks, or skill usage. If an enhanced command fails because optional dependencies are unavailable, fall back to `npm run report:audit -- <audit.json> --format text`.
 
 ## Coverage Gaps
 
@@ -90,8 +129,9 @@ Quality findings are advisory and do not affect coverage completeness.
 
 | Command | JSON stdout | `--json-out` | Markdown | HTML |
 | --- | --- | --- | --- | --- |
-| `npm run report:audit -- <audit.json>` | no | no | default, `--format markdown` | `--format html` |
-| `npm run plan:markdown -- <plan.json>` | no | no | default | no |
+| `npm run report:audit -- <audit.json>` | no | no | default, `--format markdown`; plain text via `--format text` | `--format html` |
+| `npm run report:audit:enhanced -- <audit.json>` | no | no | no; rich terminal text only | no |
+| `npm run plan:markdown -- <plan.json>` | no | no | default, supports `--limit` | no |
 | `npm run plan:changes -- <plan.json>` | default | supported | no | no |
 | `npm run report:coverage-gaps` | default | supported | `--format markdown` | no |
 | `npm run report:data-quality` | default | supported | `--format markdown` | no |

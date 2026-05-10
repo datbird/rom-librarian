@@ -1,9 +1,29 @@
 import fs from "node:fs";
 import path from "node:path";
-import { emitJson, ensureDirectoryArg, findCaseInsensitivePath, getTagValues, normalizeRelativePath, readLines, toRelative, walk } from "./lib/audit-utils.mjs";
+import { emitJson, ensureDirectoryArg, findCaseInsensitivePath, getOptionValue, getTagValues, normalizeRelativePath, readLines, toRelative, walk } from "./lib/audit-utils.mjs";
 
 const target = process.argv[2];
-const absoluteTarget = ensureDirectoryArg(target, "Usage: node scripts/audit-m3u.mjs <library-path>");
+const absoluteTarget = ensureDirectoryArg(target, "Usage: node scripts/audit-m3u.mjs <library-path> [--target-os windows|linux|macos]");
+const targetOs = getTargetOs();
+
+function getTargetOs() {
+  const explicit = getOptionValue(process.argv.slice(2), "--target-os");
+  if (explicit && !["windows", "linux", "macos"].includes(explicit)) throw new Error("--target-os must be one of: windows, linux, macos");
+  if (explicit) return explicit;
+  if (/^\/mnt\/[a-z](\/|$)/i.test(absoluteTarget)) return "windows";
+  if (process.platform === "darwin") return "macos";
+  if (process.platform === "win32") return "windows";
+  return "linux";
+}
+
+function normalizePlaylistEntryForTarget(entry) {
+  if (targetOs === "windows") return normalizeRelativePath(entry);
+  return entry.replace(/^\.\//, "");
+}
+
+function resolvePlaylistEntry(baseDirectory, entry) {
+  return path.resolve(baseDirectory, normalizePlaylistEntryForTarget(entry));
+}
 
 function getGamelistPaths(gamelistPath) {
   const xml = fs.readFileSync(gamelistPath, "utf8");
@@ -26,7 +46,7 @@ function discGroupKey(filePath) {
 
 for (const m3uPath of m3uFiles) {
   for (const entry of readLines(m3uPath)) {
-    const resolvedTarget = path.resolve(path.dirname(m3uPath), entry);
+    const resolvedTarget = resolvePlaylistEntry(path.dirname(m3uPath), entry);
     playlistTargets.add(path.normalize(resolvedTarget));
 
     if (fs.existsSync(resolvedTarget)) continue;
@@ -122,7 +142,8 @@ const result = {
   checks: ["playlist_targets", "case_mismatches", "duplicate_disc_entries", "missing_m3u_playlists", "subfolder_suffixes"],
   summary: {
     m3u_files: m3uFiles.length,
-    findings: findings.length
+    findings: findings.length,
+    target_os: targetOs
   },
   findings,
   notes: ["Read-only audit. No playlists, metadata, or disc files were modified."]

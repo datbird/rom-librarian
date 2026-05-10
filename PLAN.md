@@ -266,7 +266,8 @@ These seed the `quirks` section of static.json:
 | ID | Frontend | System | Description |
 |----|----------|--------|-------------|
 | `es-loose-images` | retrobat / batocera / es-de | any disc | EmulationStation scans subfolders and detects loose .cue/.bin files alongside .m3u files, causing double-detection. Fix: move images to a sibling folder outside Favorite/ |
-| `es-m3u-folder-name` | retrobat / batocera | any | Folders named `<game>.m3u` (with .m3u as folder name) are not detected as games. .m3u file must be at the root of the system ROM folder. |
+| `faux-m3u-dir` | varies | any multi-disc | Folders named `<game>.m3u` can be an intentional folder marker in some workflows, but they are not real playlist files. Behavior is frontend/emulator-specific and should be governed by user policy: ask, forbid, allow, or preserve. |
+| `es-m3u-folder-name` | retrobat / batocera | any | Many ES-style configurations expect real `.m3u` files at the frontend-scanned system root. Faux `.m3u` directories may be invisible or duplicate-prone unless that exact frontend/emulator/parser is known to support them. |
 | `7z-stdin-multidisc` | n/a | any multi-disc | When extracting multi-disc .7z files in a bash while-read loop, 7-Zip consumes stdin, causing only Disc 1 to be extracted. Fix: redirect stdin with `< /dev/null` on the 7z command. |
 | `wsl-path-7zip` | n/a | any | Windows 7-Zip must be called with Windows-style paths (backslash) when invoked from WSL. Use `wslpath -w` to convert. |
 | `mv-same-name-dir` | n/a | any | `mv folder.m3u folder` on Linux moves the source INSIDE the destination if destination already exists as a directory, rather than renaming. Check for pre-existing directory before rename. |
@@ -275,6 +276,18 @@ These seed the `quirks` section of static.json:
 ---
 
 ## Emulators to Document
+
+## Reporting Modes
+
+The default reporting mode should stay dependency-free. Standard renderers may use Node/Python built-ins only and should produce readable Markdown, text, or simple HTML from machine-readable JSON artifacts.
+
+An optional enhanced rendering mode can be added later for richer terminal or browser output. Keep it opt-in, separate from core validation, and named around capability rather than dependency weight, for example:
+
+- `enhanced renderer`
+- `rich reports`
+- `interactive reports`
+
+Core audits, repair plans, applicators, CI checks, and skill usage must continue to work without installing enhanced rendering dependencies.
 
 ### Tier 1
 

@@ -84,7 +84,9 @@ For disc-based systems, prefer descriptor files as playlist targets:
 - `.chd` directly when the emulator supports it
 - `.iso` directly only when no descriptor is required
 
-For multi-disc systems, `.m3u` files should list one disc descriptor per line. Verify every entry resolves before deleting source archives or old files.
+For multi-disc systems, real `.m3u` files should list one disc descriptor per line. Verify every entry resolves before deleting source archives or old files.
+
+Some collections use faux `.m3u` directories, where `<game>.m3u/` is a folder marker for one multi-disc title rather than a playlist file. Treat that as a frontend/emulator/user-policy convention, not an automatic error. Diagnose whether the active frontend supports it and apply the configured `faux_m3u_dirs` policy before planning conversion to real `.m3u` files.
 
 ## Arcade Guidance
 

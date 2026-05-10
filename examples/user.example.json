@@ -6,9 +6,21 @@
     "frontend": "retrobat",
     "frontend_version": null,
     "os": "windows",
+    "agent_os": "linux",
     "wsl": true,
     "rom_root": "/mnt/g/games/emulation/roms",
     "bios_root": null
+  },
+  "preferences": {
+    "faux_m3u_dirs": "forbid",
+    "playlist_path_separator": "auto",
+    "playlist_path_separator_by_system": {},
+    "faux_m3u_dirs_by_system": {
+      "psx": "forbid",
+      "ps2": "forbid",
+      "saturn": "forbid",
+      "dreamcast": "forbid"
+    }
   },
   "systems": {
     "psx": {
@@ -18,6 +30,10 @@
       "images_path": "/mnt/g/games/emulation/roms/sonyplaystation/images",
       "favorites_path": "/mnt/g/games/emulation/roms/sonyplaystation/Favorite",
       "multidisc_override": null,
+      "frontend_os": "windows",
+      "emulator": "duckstation",
+      "emulator_os": "windows",
+      "playlist_path_separator": "backslash",
       "notes": "172 games. .m3u files live in sonyplaystation/Favorite/ with relative paths ..\\images\\GameName\\disc.cue pointing to sonyplaystation/images/. All .7z archives extracted and deleted. Images moved to images/ to prevent ES double-detection.",
       "last_worked": "2026-04-28"
     },
@@ -50,7 +66,7 @@
       "system": "psx",
       "frontend": "retrobat",
       "category": "structure",
-      "note": "PSX Favorite folder was initially organized as named '<game>.m3u' directories containing .7z archives and an inner .m3u file. Required repair: extract .7z archives (7z.exe via WSL with wslpath -w and < /dev/null), rename folders to remove .m3u extension, move .m3u to Favorite root, then relocate all image folders to sonyplaystation/images/ to prevent ES double-detection."
+      "note": "PSX Favorite folder was initially organized as named '<game>.m3u' directories containing .7z archives and an inner .m3u file. The user's faux_m3u_dirs policy was forbid, so required repair was: extract .7z archives (7z.exe via WSL with wslpath -w and < /dev/null), rename folders to remove .m3u extension, move .m3u to Favorite root, then relocate all image folders to sonyplaystation/images/ to prevent ES double-detection."
     },
     {
       "date": "2026-04-28",

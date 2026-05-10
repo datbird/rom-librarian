@@ -37,7 +37,12 @@
         "os": {
           "type": "string",
           "enum": ["windows", "linux", "macos"],
-          "description": "Host operating system"
+          "description": "Operating system where the primary frontend is actually running. This is the path interpretation perspective for frontend-managed metadata and playlists."
+        },
+        "agent_os": {
+          "type": ["string", "null"],
+          "enum": ["windows", "linux", "macos", null],
+          "description": "Operating system where rom-librarian commands are executed. This can differ from deployment.os when running under WSL or SSH."
         },
         "wsl": {
           "type": "boolean",
@@ -50,6 +55,38 @@
         "bios_root": {
           "type": ["string", "null"],
           "description": "Absolute path to the BIOS directory, or null if using frontend default"
+        }
+      }
+    },
+    "preferences": {
+      "type": "object",
+      "description": "User/deployment policy choices that guide diagnosis and repair planning.",
+      "properties": {
+        "faux_m3u_dirs": {
+          "type": "string",
+          "enum": ["ask", "forbid", "allow", "preserve"],
+          "description": "Global policy for directories named <game>.m3u/. ask = report and confirm before conversion; forbid = convert to real playlist files when planning repairs; allow = acceptable if supported; preserve = do not convert without explicit targeted approval."
+        },
+        "faux_m3u_dirs_by_system": {
+          "type": "object",
+          "description": "Per-system override for faux_m3u_dirs. Keys should match system IDs from static.json.",
+          "additionalProperties": {
+            "type": "string",
+            "enum": ["ask", "forbid", "allow", "preserve"]
+          }
+        },
+        "playlist_path_separator": {
+          "type": "string",
+          "enum": ["auto", "target_os", "forwardslash", "backslash"],
+          "description": "Global preference for generated playlist path separators. auto/target_os means use the active frontend or emulator expectation rather than the agent OS."
+        },
+        "playlist_path_separator_by_system": {
+          "type": "object",
+          "description": "Per-system playlist separator override for unusual frontend/emulator expectations.",
+          "additionalProperties": {
+            "type": "string",
+            "enum": ["auto", "target_os", "forwardslash", "backslash"]
+          }
         }
       }
     },
@@ -83,6 +120,25 @@
           "multidisc_override": {
             "type": ["string", "null"],
             "description": "Override the multidisc handling method for this system (e.g. m3u_in_rom_root)"
+          },
+          "frontend_os": {
+            "type": ["string", "null"],
+            "enum": ["windows", "linux", "macos", null],
+            "description": "Per-system override for the OS perspective used by frontend metadata, if it differs from deployment.os."
+          },
+          "emulator": {
+            "type": ["string", "null"],
+            "description": "Primary emulator/core used for this system when known. Use this to capture emulator-specific ROM format or playlist expectations."
+          },
+          "emulator_os": {
+            "type": ["string", "null"],
+            "enum": ["windows", "linux", "macos", null],
+            "description": "OS perspective of the actual emulator process when it differs from the frontend, such as a Windows frontend launching a Linux/WSL tool or vice versa."
+          },
+          "playlist_path_separator": {
+            "type": ["string", "null"],
+            "enum": ["auto", "target_os", "forwardslash", "backslash", null],
+            "description": "Per-system separator expectation for generated .m3u entries. Use null/auto unless a frontend or emulator has a known unusual expectation."
           },
           "notes": {
             "type": ["string", "null"],

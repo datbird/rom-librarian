@@ -40,6 +40,7 @@
     "fileops": "python3 tools/fileops.py",
     "plan:repairs": "node scripts/plan-repairs.mjs",
     "report:audit": "node scripts/render-audit-report.mjs",
+    "report:audit:enhanced": "node scripts/render-audit-report-enhanced.mjs",
     "report:advisor": "node scripts/report-advisor.mjs",
     "report:coverage-gaps": "node scripts/report-coverage-gaps.mjs",
     "report:data-quality": "node scripts/report-data-quality.mjs",
@@ -60,6 +61,9 @@
   },
   "license": "MIT",
   "dependencies": {
-    "ajv": "^8.20.0"
+    "ajv": "^8.20.0",
+    "boxen": "^8.0.1",
+    "chalk": "^5.6.2",
+    "cli-table3": "^0.6.5"
   }
 }
